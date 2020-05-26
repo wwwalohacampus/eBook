@@ -51,6 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.key("com.eBook.mgr")
 		.tokenRepository(createJDBCRepository())
 		.tokenValiditySeconds(60*60*24);
+		
+		// 접근 제한 설정
+		http.authorizeRequests()
+		.antMatchers("/")
+		.authenticated();
+		
 	}
 
 	@Bean

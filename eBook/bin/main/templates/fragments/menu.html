@@ -3,77 +3,86 @@
 
 <body>
    <div align="center" th:fragment="menu">
-      <table border="1">
+      <!-- Page Wrapper -->
+  	  <div id="wrapper">
          <th:block sec:authorize="isAuthenticated()">
-	         <tr>   
-	               <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-		               <!-- 관리자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >회원관리</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>      
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >교보문고</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >네이버</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >로망띠끄</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >리디북스</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >윈스토어</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >북큐브</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >카카오페이지</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >톡소다</a></td>
-	               </th:block>
-	         </tr>
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >한국이퍼브</a></td>
-	               </th:block>
-	         </tr>      
-	         <tr>
-	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
-		               <!-- 사용자 권한 메뉴 -->
-		               <td width="120"><a href="#" th:href="@{/}" >정산내역</a></td>
-	               </th:block>
-	         </tr>      
+             <!-- 관리자 권한 메뉴 -->
+             <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+             	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+             		<li class="nav-item">
+             			<a href="#" th:href="@{/}" alt="">회원관리</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">교보문고</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">네이버</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">로망띠끄</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">리디북스</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">윈스토어</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">북큐브</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">카카오페이지</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">톡소다</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">한국이퍼브</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">정산내역</a>
+             		</li>
+             	</ul>
+             </th:block>
+             
+             
+              <!-- 사용자 권한 메뉴 -->
+             <th:block sec:authorize="hasRole('ROLE_USER')">
+		         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+             		<li class="nav-item">
+             			<a class="nav-link" href="#" th:href="@{/}" alt="">교보문고</a>
+             		</li>
+             		<li class="nav-item">
+             			<a class="nav-link" href="#" th:href="@{/}" alt="">네이버</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">로망띠끄</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">리디북스</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">윈스토어</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">북큐브</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">카카오페이지</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">톡소다</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">한국이퍼브</a>
+             		</li>
+             		<li>
+             			<a href="#" th:href="@{/}" alt="">정산내역</a>
+             		</li>
+             	</ul>
+	         </th:block> 
          </th:block>
-         
-      </table>
+         </div>
    </div>
 </body>
 </html>
