@@ -1,0 +1,79 @@
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<body>
+   <div align="center" th:fragment="menu">
+      <table border="1">
+         <th:block sec:authorize="isAuthenticated()">
+	         <tr>   
+	               <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+		               <!-- 관리자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >회원관리</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>      
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >교보문고</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >네이버</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >로망띠끄</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >리디북스</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >윈스토어</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >북큐브</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >카카오페이지</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >톡소다</a></td>
+	               </th:block>
+	         </tr>
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >한국이퍼브</a></td>
+	               </th:block>
+	         </tr>      
+	         <tr>
+	               <th:block sec:authorize="hasRole('ROLE_MEMBER')">
+		               <!-- 사용자 권한 메뉴 -->
+		               <td width="120"><a href="#" th:href="@{/}" >정산내역</a></td>
+	               </th:block>
+	         </tr>      
+         </th:block>
+         
+      </table>
+   </div>
+</body>
+</html>
