@@ -5,85 +5,85 @@
 <mapper namespace="com.eBook.mgr.mapper.MemberMapper">
 
    <resultMap type="Member" id="memberMap">
-      <id property="userNo" column="user_no" />
-      <result property="userNo" column="user_no" />
-      <result property="userId" column="user_id" />
-      <result property="userPw" column="user_pw" />
-      <result property="userName" column="user_name" />
+      <id property="idx" column="idx" />
+      <result property="idx" column="idx" />
+      <result property="id" column="id" />
+      <result property="pw" column="pw" />
+      <result property="realName" column="real_name" />
       <result property="enabled" column="enabled" />
-      <result property="regDate" column="reg_date" />
+      <result property="loginStatus" column="login_status" />
       <result property="updDate" column="upd_date" />
       <collection property="authList" resultMap="authMap">
       </collection>
    </resultMap>
 
    <resultMap type="MemberAuth" id="authMap">
-      <result property="userNo" column="user_no" />
+      <result property="idx" column="idx" />
       <result property="auth" column="auth" />
    </resultMap>
    
    <insert id="create">
       INSERT INTO member
          (
-            user_id,
-            user_pw,
-            user_name
+            id,
+            pw,
+            real_name
          )
       VALUES
          (
-            #{userId},
-            #{userPw},
-            #{userName}
+            #{id},
+            #{pw},
+            #{realName}
          )
    </insert>
    
    <insert id="createAuth">
       INSERT INTO member_auth
           (
-            user_no,
+            idx,
             auth
           )
       VALUES
           (
-            #{userNo},
+            #{idx},
             #{auth}
           )
    </insert>
    
    <select id="readByUserId" resultMap="memberMap">
-   	SELECT mem.user_no,
-	   		mem.user_id,
-	   		user_pw,
-	   		user_name,
-	   		enabled,
+   	SELECT mem.idx,
+	   		mem.id,
+	   		pw,
+	   		real_name,
+	   		login_status,
 	   		reg_date,
 	   		upd_date,
 	   		auth
-   	FROM  member mem LEFT OUTER JOIN member_auth auth ON mem.user_no = auth.user_no
-   	WHERE mem.user_id = #{userId}
+   	FROM  member mem LEFT OUTER JOIN member_auth auth ON mem.idx = auth.idx
+   	WHERE mem.id = #{id}
    </select>
    
    <select id="list" resultType="Member">
-   	SELECT user_no,
-   		user_id,
-   		user_pw,
-   		user_name,
+   	SELECT idx,
+   		id,
+   		pw,
+   		real_name,
    		reg_date
    	FROM member
    	ORDER BY reg_date DESC
    </select>
    
    <select id="read" resultMap="memberMap">
-   	SELECT mem.user_no,
-   		mem.user_id,
-   		user_pw,
-   		user_name,
+   	SELECT mem.idx,
+   		mem.id,
+   		pw,
+   		real_name,
    		reg_date,
    		upd_date,
    		auth
    	FROM member mem LEFT OUTER JOIN member_auth auth
-   		ON mem.user_no = auth.user_no
-   	WHERE mem.user_id = #{userId}
+   		ON mem.idx = auth.idx
+   	WHERE mem.id = #{id}
    </select>
    
 </mapper>
