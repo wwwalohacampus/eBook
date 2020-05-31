@@ -19,6 +19,7 @@ public class Winstore {
 	String publisher;							//출판사
 	String author;								//글작가
 	String pictureAuthor;						//그림작가
+	String type;								//타입
 	String saleRate;							//판매건수
 	String cencelRate;							//취소건수
 	String settlementTargetAmount;				//정산대상액

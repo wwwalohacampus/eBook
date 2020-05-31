@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class Kakao {
-	String specialGeneral1;					//특별/할인
+	String brand;							//브랜드
 	String specialGeneral2;					//특별/할인
 	String entrepreneur;					//사업자명
 	String entrepreneurId;					//사업자번호
