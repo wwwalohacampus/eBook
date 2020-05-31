@@ -18,10 +18,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void register(Member member) throws Exception {
 		mapper.create(member);
-		member = mapper.read(member.getUserId());
+		member = mapper.read(member.getId());
 		
 		MemberAuth memberAuth = new MemberAuth();
-		memberAuth.setUserNo(member.getUserNo());
+		memberAuth.setIdx(member.getIdx());
 		memberAuth.setAuth("ROLE_USER");
 		
 		mapper.createAuth(memberAuth);

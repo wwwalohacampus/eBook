@@ -41,12 +41,12 @@ public class MemberController {
 			return "user/register";
 		}
 		
-		String inputPassword = member.getUserPw();
-		member.setUserPw(passwordEncoder.encode(inputPassword));
+		String inputPassword = member.getPw();
+		member.setPw(passwordEncoder.encode(inputPassword));
 		
 		service.register(member);
 		
-		rttr.addFlashAttribute("userName", member.getUserName());
+		rttr.addFlashAttribute("userName", member.getRealName());
 		
 		return "redirect:/user/registerSuccess";
 	}
