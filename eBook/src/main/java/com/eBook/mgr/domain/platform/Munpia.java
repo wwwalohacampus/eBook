@@ -10,7 +10,7 @@ public class Munpia {
 	String brand;							//브랜드
 	String date;							//날짜
 	String classification;					//분류
-	String productName;					//작품
+	String productName;						//작품
 	String purchase;						//구매
 	String purchaseCancel;					//구매취소
 	String rental;							//대여
