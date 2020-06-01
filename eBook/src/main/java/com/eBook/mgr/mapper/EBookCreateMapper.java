@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.eBook.mgr.domain.platform.Bookcube;
 
 @Mapper
-public interface EBookMapper {
+public interface EBookCreateMapper {
 	public void bookcubeCreate(Bookcube bookcube) throws Exception;
 	public void epubCreate(Bookcube bookcube) throws Exception;
 	public void joaraCreate(Bookcube bookcube) throws Exception;
