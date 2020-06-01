@@ -9,10 +9,17 @@
       <result property="idx" column="idx" />
       <result property="id" column="id" />
       <result property="pw" column="pw" />
+      <result property="author" column="author" />
       <result property="realName" column="real_name" />
-      <result property="enabled" column="enabled" />
+      <result property="accountNumber" column="account_number" />
+      <result property="residentRegistrationNumber" column="resident_registration_number" />
+      <result property="virtuousTax" column="virtuous_tax" />
       <result property="loginStatus" column="login_status" />
+      <result property="auth" column="auth" />
+      <result property="settlementRatio" column="settlement_ratio" />
+      <result property="regDate" column="reg_date" />
       <result property="updDate" column="upd_date" />
+      <result property="writerId" column="writer_id" />
       <collection property="authList" resultMap="authMap">
       </collection>
    </resultMap>

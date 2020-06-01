@@ -19,6 +19,7 @@ public class Member {
 	private Boolean loginStatus;			// 로그인 활성/비활성
 	String auth;							// 권한
 	String settlementRatio;					// 정산비율
+	String writerId;						// 작가ID
 	
 	private Date regDate;
 	private Date updDate;
