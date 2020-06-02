@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eBook.mgr.mapper.EBookListMapper">
+	
+	<select id="listBookcube" resultType="Bookcube"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_bookcube
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listEpub" resultType="Epub"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_epub
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listJoara" resultType="Joara"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_joara
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listKakao" resultType="Kakao"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_kakao
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listkyobo" resultType="kyobo"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_kyobo
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listMrblue" resultType="Mrblue"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_mrblue
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listMunpia" resultType="Munpia"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_munpia
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listNaver" resultType="Naver"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_naver
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listRidibooks" resultType="Ridibooks"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_ridibooks
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listRomance" resultType="Romance"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_romance
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listTocsoda" resultType="Tocsoda"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_tocsoda
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+		
+	<select id="listWinstore" resultType="Winstore"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_winstore
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+</mapper>

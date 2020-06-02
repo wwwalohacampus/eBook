@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eBook.mgr.mapper.EBookDeleteMapper">
+	
+	<delete id="deleteBookcube">
+		DELETE FROM tb_platform_bookcube
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteEpub">
+		DELETE FROM tb_platform_epub
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteJoara">
+		DELETE FROM tb_platform_joara
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteKakao">
+		DELETE FROM tb_platform_kakao
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deletekyobo">
+		DELETE FROM tb_platform_kyobo
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteMrblue">
+		DELETE FROM tb_platform_mrblue
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteMunpia">
+		DELETE FROM tb_platform_munpia
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteNaver">
+		DELETE FROM tb_platform_naver
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteRidibooks">
+		DELETE FROM tb_platform_ridibooks
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteRomance">
+		DELETE FROM tb_platform_romance
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteTocsoda">
+		DELETE FROM tb_platform_tocsoda
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteWinstore">
+		DELETE FROM tb_platform_winstore
+		WHERE writer_id = #{writerId}
+	</delete>
+	
+</mapper>
