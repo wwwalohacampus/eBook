@@ -20,6 +20,7 @@ public class Member {
 	String auth;							// 권한
 	String settlementRatio;					// 정산비율
 	String writerId;						// 작가ID
+	String manager;							// 담당자
 	
 	private Date regDate;
 	private Date updDate;
