@@ -3,19 +3,30 @@ package com.eBook.mgr.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.eBook.mgr.domain.platform.Bookcube;
+import com.eBook.mgr.domain.platform.Epub;
+import com.eBook.mgr.domain.platform.Joara;
+import com.eBook.mgr.domain.platform.Kakao;
+import com.eBook.mgr.domain.platform.Mrblue;
+import com.eBook.mgr.domain.platform.Munpia;
+import com.eBook.mgr.domain.platform.Naver;
+import com.eBook.mgr.domain.platform.Ridibooks;
+import com.eBook.mgr.domain.platform.Romance;
+import com.eBook.mgr.domain.platform.Tocsoda;
+import com.eBook.mgr.domain.platform.Winstore;
+import com.eBook.mgr.domain.platform.kyobo;
 
 @Mapper
 public interface EBookCreateMapper {
-	public void bookcubeCreate(Bookcube bookcube) throws Exception;
-	public void epubCreate(Bookcube bookcube) throws Exception;
-	public void joaraCreate(Bookcube bookcube) throws Exception;
-	public void kakaoCreate(Bookcube bookcube) throws Exception;
-	public void kyoboCreate(Bookcube bookcube) throws Exception;
-	public void MrblueCreate(Bookcube bookcube) throws Exception;
-	public void MunpiaCreate(Bookcube bookcube) throws Exception;
-	public void naverCreate(Bookcube bookcube) throws Exception;
-	public void ridibooksCreate(Bookcube bookcube) throws Exception;
-	public void romanceCreate(Bookcube bookcube) throws Exception;
-	public void tocsodaCreate(Bookcube bookcube) throws Exception;
-	public void winstoreCreate(Bookcube bookcube) throws Exception;
+	public void createBookcube(Bookcube bookcube) throws Exception;
+	public void createEpub(Epub epub) throws Exception;
+	public void createJoara(Joara joara) throws Exception;
+	public void createKakao(Kakao kakao) throws Exception;
+	public void createKyobo(kyobo kyobo) throws Exception;
+	public void createMrblue(Mrblue mrblue) throws Exception;
+	public void createMunpia(Munpia munpia) throws Exception;
+	public void createNaver(Naver naver) throws Exception;
+	public void createRidibooks(Ridibooks ridibooks) throws Exception;
+	public void createRomance(Romance romance) throws Exception;
+	public void createTocsoda(Tocsoda tocsoda) throws Exception;
+	public void createWinstore(Winstore winstore) throws Exception;
 }

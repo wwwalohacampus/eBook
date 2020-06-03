@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eBook.mgr.mapper.EBookCreateMapper">
 
-	<insert id="bookcubeCreate">
+	<insert id="createBookcube">
 		INSERT INTO tb_platform_bookcube (
 		product_name,
 		author,
@@ -51,7 +51,7 @@
 	</insert>
 
 
-	<insert id="epubCreate">
+	<insert id="createEpub">
 		INSERT INTO tb_platform_epub (
 		index,
 		product_name,
@@ -102,7 +102,7 @@
 	</insert>
 
 
-	<insert id="joaraCreate">
+	<insert id="createJoara">
 		INSERT INTO tb_platform_joara (
 		brand,
 		product_name,
@@ -132,7 +132,7 @@
 		)
 	</insert>
 
-	<insert id="kakaoCreate">
+	<insert id="createKakao">
 		INSERT INTO tb_platform_kakao (
 		brand,
 		special_general_2,
@@ -230,7 +230,7 @@
 		)
 	</insert>
 
-	<insert id="kyoboCreate">
+	<insert id="createKyobo">
 		INSERT INTO tb_platform_kyobo (
 		brand,
 		sales_category,
@@ -285,7 +285,7 @@
 	</insert>
 
 
-	<insert id="MrblueCreate">
+	<insert id="createMrblue">
 		INSERT INTO tb_platform_mrblue
 		(
 		brand,
@@ -374,7 +374,7 @@
 		)
 	</insert>
 
-	<insert id="MunpiaCreate">
+	<insert id="createMunpia">
 		INSERT INTO tb_platform_munpia
 		(
 		author,
@@ -418,7 +418,7 @@
 
 	</insert>
 
-	<insert id="naverCreate">
+	<insert id="createNaver">
 		INSERT INTO tb_platform_naver
 		(
 		product_name,
@@ -507,7 +507,7 @@
 	</insert>
 
 
-	<insert id="ridibooksCreate">
+	<insert id="createRidibooks">
 		INSERT INTO tb_platform_ridibooks
 		(
 		series_id,
@@ -603,7 +603,7 @@
 
 	</insert>
 
-	<insert id="romanceCreate">
+	<insert id="createRomance">
 		INSERT INTO tb_platform_romance
 		(
 		book_code,
@@ -637,7 +637,7 @@
 
 	</insert>
 
-	<insert id="tocsodaCreate">
+	<insert id="createTocsoda">
 		INSERT INTO tb_platform_tocsoda
 		(
 		product_bacord,
@@ -672,7 +672,7 @@
 	</insert>
 
 
-	<insert id="winstoreCreate">
+	<insert id="createWinstore">
 		INSERT INTO tb_platform_winstore
 		(
 		partner_name,
