@@ -1,5 +1,8 @@
 package com.eBook.mgr.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 public interface EBookDeleteMapper {
 	public void deleteBookcube(String writerId) throws Exception;
 	public void deleteEpub(String writerId) throws Exception;

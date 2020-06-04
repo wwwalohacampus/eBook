@@ -3,6 +3,8 @@ package com.eBook.mgr.mapper;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.eBook.mgr.domain.platform.Bookcube;
 import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
@@ -16,6 +18,7 @@ import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
 import com.eBook.mgr.domain.platform.kyobo;
 
+@Mapper
 public interface EBookListMapper {
 	public List<Bookcube> listBookcube(Date setDate) throws Exception;
 	public List<Epub> listEpub(Date setDate) throws Exception;
