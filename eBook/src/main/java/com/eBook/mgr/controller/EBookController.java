@@ -23,6 +23,13 @@ public class EBookController {
 	@Autowired
 	EBookService eBookService;
 	
+	/*
+	로직구상:
+	 뷰단에서 hidden 처리된 platformType을 가져와 분기하여 플랫폼별로 리스트를 보여줌.
+	 파일 삭제, 적용하기 버튼을 눌러도 platformType값은 고정되어있어 서로 다른 값을 침해하는 일은 발생되지 않을것으로 판단됨.
+	 
+	 */
+	
 	
 	// 플랫폼 별로 리스트 보여주기
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
