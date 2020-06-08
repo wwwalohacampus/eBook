@@ -16,7 +16,7 @@ public class Winstore {
 	String productId;							//상품ID
 	String secondSettlementStatus;				//2차정산여부
 	String category;							//카테고리
-	String publisher;							//출판사
+	String brand;								//출판사
 	String author;								//글작가
 	String pictureAuthor;						//그림작가
 	String type;								//타입

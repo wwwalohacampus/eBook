@@ -11,7 +11,7 @@ public class Naver {
 	String providerCode;								//공급자코드
 	String cpName;										//CP명
 	String author;										//저자명
-	String publisher;									//출판사
+	String brand;										//출판사
 	String ageLimit;									//나이제한
 	String serviceDay;									//서비스일
 	String rentalNumber;								//대여권_건수

@@ -8,7 +8,7 @@ import lombok.Data;
 public class Bookcube {
 	String productName;						//제목
 	String author;							//저자
-	String publisher;						//출판권자
+	String brand;							//출판권자
 	String salesCategory;					//판매처
 	String salesType;						//판매유형
 	String episode;							//부수

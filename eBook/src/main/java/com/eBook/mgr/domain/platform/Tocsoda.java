@@ -9,7 +9,7 @@ public class Tocsoda {
 	String productBacord;					//상품바코드
 	String productName;						//작품명
 	String author;							//작가명
-	String publisher;						//출판사
+	String brand;							//출판사
 	String pc;								//PC
 	String android;							//안드로이드
 	String ios;								//IOS

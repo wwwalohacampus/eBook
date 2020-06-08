@@ -13,7 +13,7 @@ public class Ridibooks {
 	String author; 										//저자
 	String translators; 								//역자
 	String picture; 									//그림
-	String publisher; 									//출판사
+	String brand; 										//출판사
 	String seriesName; 									//시리즈명
 	String ebooksPrice; 								//전자책정가
 	String singleSaleSales; 							//단권판매액

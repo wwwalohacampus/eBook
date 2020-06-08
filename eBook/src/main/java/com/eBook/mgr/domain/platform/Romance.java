@@ -8,7 +8,7 @@ import lombok.Data;
 public class Romance {
 	String bookCode;						//도서코드
 	String productName;						//상품명
-	String publisher;						//출판사명
+	String brand;							//출판사명
 	String author;							//저자명
 	String saleRate;						//판매수
 	String internetSales;					//인터넷판매액
