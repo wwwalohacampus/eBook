@@ -50,7 +50,7 @@
 		)
 	</insert>
 
-
+<!-- 
 	<insert id="createEpub">
 		INSERT INTO tb_platform_epub (
 		index,
@@ -100,7 +100,7 @@
 		#{setDate}
 		)
 	</insert>
-
+ -->
 
 	<insert id="createJoara">
 		INSERT INTO tb_platform_joara (
@@ -744,6 +744,96 @@
 		#{setDate}
 		)
 	</insert>
+	
 
+	<insert id="createAladin">
+		INSERT INTO tb_platform_aladin 
+            (
+            sales_cancel_date, 
+             item_id, 
+             product_name, 
+             sales_type, 
+             net_price, 
+             sale_price, 
+             payment, 
+             cancel_date, 
+             author, 
+             brand, 
+             publisher, 
+             isbn, 
+             cid, 
+             writer_id, 
+             set_date
+             ) 
+		VALUES      
+			(
+			#{salesCancelDate},
+			#{itemId},
+			#{productName},
+			#{salesType},
+			#{netPrice},
+			#{salePrice},
+			#{payment},
+			#{cancelDate},
+			#{author},
+			#{brand},
+			#{publisher},
+			#{isbn},
+			#{cid},
+			#{writerId},
+			#{setDate}
+	        )
+	</insert>
+	
+	<insert id="createYes24">
+		INSERT INTO tb_platform_yes24 
+            (
+            no, 
+             product_name, 
+             brand, 
+             brand_sale_price, 
+             sales, 
+             sales_sale_price, 
+             sales_refund_price, 
+             cost_rate, 
+             payment, 
+             event_type, 
+             sale_type, 
+             event_sale_price, 
+             author, 
+             epubl_id, 
+             set_code, 
+             paperbook_isbn, 
+             ebook_isbn, 
+             sale_date, 
+             refund_date, 
+             writer_id, 
+             set_date
+             ) 
+		VALUES      
+		(
+			#{no},
+			#{productName},
+			#{brand},
+			#{brandSalePrice},
+			#{sales},
+			#{salesSalePrice},
+			#{salesRefundPrice},
+			#{costRate},
+			#{payment},
+			#{eventType},
+			#{saleType},
+			#{eventSalePrice},
+			#{author},
+			#{epublId},
+			#{setCode},
+			#{paperbookIsbn},
+			#{ebookIsbn},
+			#{saleDate},
+			#{refundDate},
+			#{writerId},
+			#{setDate}
+             )
+	</insert>
 </mapper>
 

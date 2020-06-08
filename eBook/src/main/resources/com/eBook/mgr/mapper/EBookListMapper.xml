@@ -13,6 +13,7 @@
 	]]>
 	</select>
 	
+	<!-- 
 	<select id="listEpub" resultType="Epub"> 
 	<![CDATA[
 		SELECT *
@@ -21,6 +22,7 @@
 		ORDER BY idx
 	]]>
 	</select>
+	 -->
 	
 	<select id="listJoara" resultType="Joara"> 
 	<![CDATA[
@@ -107,6 +109,24 @@
 	<![CDATA[
 		SELECT *
 		FROM tb_platform_winstore
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+	
+	<select id="listAladin" resultType="Aladin"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_aladin
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		ORDER BY idx
+	]]>
+	</select>
+		
+	<select id="listYes24" resultType="Yes24"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_yes24
 		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
 		ORDER BY idx
 	]]>

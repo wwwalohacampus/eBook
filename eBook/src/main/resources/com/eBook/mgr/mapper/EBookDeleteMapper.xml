@@ -9,11 +9,13 @@
 		WHERE writer_id = #{writerId}
 	</delete>
 
+<!-- 
 	<delete id="deleteEpub">
 		DELETE FROM tb_platform_epub
 		WHERE writer_id = #{writerId}
 	</delete>
-
+ -->
+ 
 	<delete id="deleteJoara">
 		DELETE FROM tb_platform_joara
 		WHERE writer_id = #{writerId}
@@ -61,6 +63,16 @@
 
 	<delete id="deleteWinstore">
 		DELETE FROM tb_platform_winstore
+		WHERE writer_id = #{writerId}
+	</delete>
+	
+	<delete id="deleteAladin">
+		DELETE FROM tb_platform_aladin
+		WHERE writer_id = #{writerId}
+	</delete>
+
+	<delete id="deleteYes24">
+		DELETE FROM tb_platform_yes24
 		WHERE writer_id = #{writerId}
 	</delete>
 	

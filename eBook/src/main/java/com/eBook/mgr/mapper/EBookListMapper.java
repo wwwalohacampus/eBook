@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
 import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
@@ -16,12 +17,13 @@ import com.eBook.mgr.domain.platform.Ridibooks;
 import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
+import com.eBook.mgr.domain.platform.Yes24;
 import com.eBook.mgr.domain.platform.kyobo;
 
 @Mapper
 public interface EBookListMapper {
 	public List<Bookcube> listBookcube(Date setDate) throws Exception;
-	public List<Epub> listEpub(Date setDate) throws Exception;
+	//public List<Epub> listEpub(Date setDate) throws Exception;
 	public List<Joara> listJoara(Date setDate) throws Exception;
 	public List<Kakao> listKakao(Date setDate) throws Exception;
 	public List<kyobo> listkyobo(Date setDate) throws Exception;
@@ -32,4 +34,6 @@ public interface EBookListMapper {
 	public List<Romance> listRomance(Date setDate) throws Exception;
 	public List<Tocsoda> listTocsoda(Date setDate) throws Exception;
 	public List<Winstore> listWinstore(Date setDate) throws Exception;
+	public List<Aladin> listAladin(Date setDate) throws Exception;
+	public List<Yes24> listYes24(Date setDate) throws Exception;
 }
