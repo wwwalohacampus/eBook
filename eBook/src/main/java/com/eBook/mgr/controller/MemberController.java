@@ -43,6 +43,8 @@ public class MemberController {
 		
 		String inputPassword = member.getPw();
 		member.setPw(passwordEncoder.encode(inputPassword));
+		System.out.println(inputPassword);
+		System.out.println(passwordEncoder.encode(inputPassword));
 		
 		service.register(member);
 		

@@ -3,6 +3,8 @@ package com.eBook.mgr.service;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +35,9 @@ public class EBookServiceImpl implements EBookService{
 	
 	@Autowired
 	EBookListMapper listMapper;
-	
-	
+
+	private static final Logger log = LoggerFactory.getLogger(EBookServiceImpl.class);
+
 	
 	// 등록단---------------------------------------------------------------------------
 	@Override
@@ -198,6 +201,8 @@ public class EBookServiceImpl implements EBookService{
 	@Override
 	public List<Bookcube> listBookcube(Date setDate) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("ddddddddddddddd");
+		log.info("dddddddddddddddddddddddddddddddddddddd");
 		return listMapper.listBookcube(setDate);
 	}
 

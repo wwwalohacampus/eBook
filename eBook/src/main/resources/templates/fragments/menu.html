@@ -1,11 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
+
+
 <body>
    <div align="center" th:fragment="menu">
       <!-- Page Wrapper -->
   	  <div id="wrapper">
-  	  <input id="platformType" type="hidden" name="platformType" value="p_bookcube" />
          <th:block sec:authorize="isAuthenticated()">
              <!-- 관리자 권한 메뉴 -->
              <th:block sec:authorize="hasRole('ROLE_ADMIN')">
@@ -17,6 +18,7 @@
 				  <div class="sidebar-brand-text mx-3">ALOHA CAMPUS</div>
 				</a>
              	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+  	  				
              		<li class="nav-item">
              			<a href="#" th:href="@{/}" alt="">회원관리</a>
              		</li>
@@ -74,7 +76,7 @@
 					  <div class="sidebar-brand-text mx-3">ALOHA CAMPUS</div>
 					</a>
              		<li class="nav-item">
-             			<a class="nav-link" href="#" th:href="@{/ebook/list}" alt="">북큐브</a>
+             			<a class="nav-link" href="#" th:href="@{/ebook/list(platformType=p_bookcube)}" alt="">북큐브</a>
              		</li>
              		<li class="nav-item">
              			<a class="nav-link" href="#" th:href="@{/}" alt="">한국이퍼브</a>

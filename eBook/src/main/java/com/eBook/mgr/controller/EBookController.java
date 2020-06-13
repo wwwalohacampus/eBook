@@ -1,5 +1,6 @@
 package com.eBook.mgr.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -28,50 +29,68 @@ public class EBookController {
 	 뷰단에서 hidden 처리된 platformType을 가져와 분기하여 플랫폼별로 리스트를 보여줌.
 	 파일 삭제, 적용하기 버튼을 눌러도 platformType값은 고정되어있어 서로 다른 값을 침해하는 일은 발생되지 않을것으로 판단됨.
 	 */
-	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String list1(Model model, @RequestParam String platformType, Date setDate) throws Exception{
+		log.info("플랫폼타입???" + platformType);
+		
+		return "/ebook/list";
+	}
 	
 	// 플랫폼 별로 리스트 보여주기
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(Model model, String platformType, Date setDate) throws Exception{
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	public void list(Model model, @RequestParam String platformType, Date setDate) throws Exception{
 		log.info("플랫폼타입???" + platformType);
+		
+		model.addAttribute("platformType", platformType);
+		
+		setDate = new SimpleDateFormat("yyyy-MM-dd").parse("2020-01-12");
+		
+		try {
+			model.addAttribute("listBookcube", eBookService.listBookcube(setDate));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getStackTrace();
+		}
 		
 		switch (platformType) {
 		case "p_bookcube":
 			model.addAttribute("listBookcube", eBookService.listBookcube(setDate));
+			log.info("찍힘?");
 			break;
-//		case "p_epub":
-//			model.addAttribute("listBookcube", eBookService.listEpub(setDate));
+////		case "p_epub":
+////			model.addAttribute("listBookcube", eBookService.listEpub(setDate));
+////			break;
+//		case "p_joara":
+//			model.addAttribute("listBookcube", eBookService.listJoara(setDate));
 //			break;
-		case "p_joara":
-			model.addAttribute("listBookcube", eBookService.listJoara(setDate));
-			break;
-		case "p_kakao":
-			model.addAttribute("listBookcube", eBookService.listKakao(setDate));
-			break;
-		case "p_kyobo":
-			model.addAttribute("listBookcube", eBookService.listkyobo(setDate));
-			break;
-		case "p_mrblue":
-			model.addAttribute("listBookcube", eBookService.listMrblue(setDate));
-			break;
-		case "p_munpia":
-			model.addAttribute("listBookcube", eBookService.listMunpia(setDate));
-			break;
-		case "p_naver":
-			model.addAttribute("listBookcube", eBookService.listNaver(setDate));
-			break;
-		case "p_ridibooks":
-			model.addAttribute("listBookcube", eBookService.listRidibooks(setDate));
-			break;
-		case "p_romance":
-			model.addAttribute("listBookcube", eBookService.listRomance(setDate));
-			break;
-		case "p_tocsoda":
-			model.addAttribute("listBookcube", eBookService.listTocsoda(setDate));
-			break;
-		case "p_winstore":
-			model.addAttribute("listBookcube", eBookService.listWinstore(setDate));
-			break;
+//		case "p_kakao":
+//			model.addAttribute("listBookcube", eBookService.listKakao(setDate));
+//			break;
+//		case "p_kyobo":
+//			model.addAttribute("listBookcube", eBookService.listkyobo(setDate));
+//			break;
+//		case "p_mrblue":
+//			model.addAttribute("listBookcube", eBookService.listMrblue(setDate));
+//			break;
+//		case "p_munpia":
+//			model.addAttribute("listBookcube", eBookService.listMunpia(setDate));
+//			break;
+//		case "p_naver":
+//			model.addAttribute("listBookcube", eBookService.listNaver(setDate));
+//			break;
+//		case "p_ridibooks":
+//			model.addAttribute("listBookcube", eBookService.listRidibooks(setDate));
+//			break;
+//		case "p_romance":
+//			model.addAttribute("listBookcube", eBookService.listRomance(setDate));
+//			break;
+//		case "p_tocsoda":
+//			model.addAttribute("listBookcube", eBookService.listTocsoda(setDate));
+//			break;
+//		case "p_winstore":
+//			model.addAttribute("listBookcube", eBookService.listWinstore(setDate));
+//			break;
 
 		default:
 			break;
