@@ -5,52 +5,795 @@
 </head>
 <body>
 	<form id="platList" th:action="@{search}" th:object="${listBookcube}" method="POST">
-		<table border="1">
-			<tr>
-				<th align="center">제목</th>
-				<th align="center">저자</th>
-				<th align="center">출판권자</th>
-				<th align="center">판매처</th>
-				<th align="center">판매유형</th>
-				<th align="center">부수</th>
-				<th align="center">정가</th>
-				<th align="center">판매액</th>
-				<th align="center">할인</th>
-				<th align="center">수수료</th>
-				<th align="center">정산대상금액</th>
-				<th align="center">적립금이벤트</th>
-				<th align="center">정산액</th>
-				<th align="center">북넘버</th>
-				<th align="center">isbn</th>
-				<th align="center">e_ISBN(ePub)</th>
-			</tr>
-			<tr th:if="${#lists.isEmpty(listBookcube)}">
-				<td>
-					List is empty
-				</td>
-			</tr>
-			<!-- 추가 수정 -->
-			<tr th:each="board : ${listBookcube}">
-				<td align="center" th:text="${board.productName}">${board.productName}</td>
-				<td align="center" th:text="${board.author}">${board.author}</td>
-				<td align="center" th:text="${board.brand}">${board.brand}</td>
-				<td align="center" th:text="${board.salesCategory}">${board.salesCategory}</td>
-				<td align="center" th:text="${board.salesType}">${board.salesType}</td>
-				<td align="center" th:text="${board.episode}">${board.episode}</td>
-				<td align="center" th:text="${board.netPrice}">${board.netPrice}</td>
-				<td align="center" th:text="${board.salePrice}">${board.salePrice}</td>
-				<td align="center" th:text="${board.discount}">${board.discount}</td>
-				<td align="center" th:text="${board.fee}">${board.fee}</td>
-				<td align="center" th:text="${board.netTargetPrice}">${board.netTargetPrice}</td>
-				<td align="center" th:text="${board.deductionReservesEvent}">${board.deductionReservesEvent}</td>
-				<td align="center" th:text="${board.payment}">${board.payment}</td>
-				<td align="center" th:text="${board.bookId}">${board.bookId}</td>
-				<td align="center" th:text="${board.isbn}">${board.isbn}</td>
-				<td align="center" th:text="${board.eIsbn}">${board.eIsbn}</td>
-				<td align="center" th:text="${board.eIsbnEpub}">${board.eIsbnEpub}</td>
-			</tr>
-		</table>
+		<div id="bookcubeId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">제목</th>
+					<th align="center">저자</th>
+					<th align="center">출판권자</th>
+					<th align="center">판매처</th>
+					<th align="center">판매유형</th>
+					<th align="center">부수</th>
+					<th align="center">정가</th>
+					<th align="center">판매액</th>
+					<th align="center">할인</th>
+					<th align="center">수수료</th>
+					<th align="center">정산대상금액</th>
+					<th align="center">적립금이벤트차감</th>
+					<th align="center">정산액</th>
+					<th align="center">북넘버</th>
+					<th align="center">isbn</th>
+					<th align="center">e-ISBN(PDF)</th>
+					<th align="center">e_ISBN(ePub)</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listBookcube)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listBookcube}">
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.salesCategory}">${board.salesCategory}</td>
+					<td align="center" th:text="${board.salesType}">${board.salesType}</td>
+					<td align="center" th:text="${board.episode}">${board.episode}</td>
+					<td align="center" th:text="${board.netPrice}">${board.netPrice}</td>
+					<td align="center" th:text="${board.salePrice}">${board.salePrice}</td>
+					<td align="center" th:text="${board.discount}">${board.discount}</td>
+					<td align="center" th:text="${board.fee}">${board.fee}</td>
+					<td align="center" th:text="${board.netTargetPrice}">${board.netTargetPrice}</td>
+					<td align="center" th:text="${board.deductionReservesEvent}">${board.deductionReservesEvent}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.bookId}">${board.bookId}</td>
+					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
+					<td align="center" th:text="${board.eIsbn}">${board.eIsbn}</td>
+					<td align="center" th:text="${board.eIsbnEpub}">${board.eIsbnEpub}</td>
+				</tr>
+			</table>
+		</div>
 		
+		<div id="joaraId">
+			<table border="1" style="display:none">
+				<tr>
+					<th align="center">브랜드</th>
+					<th align="center">작품명</th>
+					<th align="center">작품코드</th>
+					<th align="center">작가명</th>
+					<th align="center">단가</th>
+					<th align="center">판매건수</th>
+					<th align="center">비율</th>
+					<th align="center">정산금액</th>
+					<th align="center">정산일</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listJoara)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listJoara}">
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.productCode}">${board.productCode}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.unit}">${board.unit}</td>
+					<td align="center" th:text="${board.saleAmount}">${board.saleAmount}</td>
+					<td align="center" th:text="${board.ratio}">${board.ratio}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.paymentDate}">${board.paymentDate}</td>
+					<td><input type="hidden" name="writerId" th:text="${board.writerId}"/></td>
+				</tr>
+			</table>
+		</div>		
+		
+		<div id="kakaoId">
+			<table border="1" style="display:none">
+				<tr>
+					<th align="center">브랜드</th>
+					<th align="center">특별/일반</th>
+					<th align="center">사업자명</th>
+					<th align="center">사업자번호</th>
+					<th align="center">발행자명</th>
+					<th align="center">계약UID</th>
+					<th align="center">계약유형</th>
+					<th align="center">계약(과/면세)</th>
+					<th align="center">당월신규계약여부</th>
+					<th align="center">카테고리</th>
+					<th align="center">시리즈ID</th>
+					<th align="center">시리즈명</th>
+					<th align="center">제품코드(발행자가 부여하는 코드)	레이블</th>
+					<th align="center">레이블</th>
+					<th align="center">작가명</th>
+					<th align="center">ISBN(유/무)</th>
+					<th align="center">CP정산율_안드로이드/이벤트캐시</th>
+					<th align="center">CP정산율_iOS</th>
+					<th align="center">이용권 종류</th>
+					<th align="center">이용권 금액</th>
+					<th align="center">캐시합계</th>
+					<th align="center">CPP</th>
+					<th align="center">CPI</th>
+					<th align="center">CP1</th>
+					<th align="center">CP3</th>
+					<th align="center">CP4</th>
+					<th align="center">CP7</th>
+					<th align="center">CP8</th>
+					<th align="center">CP9</th>
+					<th align="center">이벤트캐시</th>
+					<th align="center">원화합계</th>
+					<th align="center">CPP</th>
+					<th align="center">CPI</th>
+					<th align="center">CP1</th>
+					<th align="center">CP2</th>
+					<th align="center">CP3</th>
+					<th align="center">CP7</th>
+					<th align="center">CP8</th>
+					<th align="center">CP9</th>
+					<th align="center">이벤트캐시</th>
+					<th align="center">공급가액</th>
+					<th align="center">세액</th>
+					<th align="center">합계금액</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listKakao)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listKakao}">
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.specialGeneral2}">${board.specialGeneral2}</td>
+					<td align="center" th:text="${board.entrepreneur}">${board.entrepreneur}</td>
+					<td align="center" th:text="${board.entrepreneurId}">${board.entrepreneurId}</td>
+					<td align="center" th:text="${board.publisher}">${board.publisher}</td>
+					<td align="center" th:text="${board.contractUid}">${board.contractUid}</td>
+					<td align="center" th:text="${board.contractCategory}">${board.contractCategory}</td>
+					<td align="center" th:text="${board.contract}">${board.contract}</td>
+					<td align="center" th:text="${board.newContract}">${board.newContract}</td>
+					<td align="center" th:text="${board.category}">${board.category}</td>
+					<td align="center" th:text="${board.seriesId}">${board.seriesId}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.productCode}">${board.productCode}</td>
+					<td align="center" th:text="${board.lable}">${board.lable}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.isIsbn}">${board.isIsbn}</td>
+					<td align="center" th:text="${board.cpSettlementRateAndroid}">${board.cpSettlementRateAndroid}</td>
+					<td align="center" th:text="${board.cpSettlementRateIos}">${board.cpSettlementRateIos}</td>
+					<td align="center" th:text="${board.useTicketType}">${board.useTicketType}</td>
+					<td align="center" th:text="${board.useTicketAmount}">${board.useTicketAmount}</td>
+					<td align="center" th:text="${board.cacheSum}">${board.cacheSum}</td>
+					<td align="center" th:text="${board.cpp1}">${board.cpp1}</td>
+					<td align="center" th:text="${board.cpl1}">${board.cpl1}</td>
+					<td align="center" th:text="${board.cp1_1}">${board.cp1_1}</td>
+					<td align="center" th:text="${board.cp2_1}">${board.cp2_1}</td>
+					<td align="center" th:text="${board.cp3_1}">${board.cp3_1}</td>
+					<td align="center" th:text="${board.cp7_1}">${board.cp7_1}</td>
+					<td align="center" th:text="${board.cp8_1}">${board.cp8_1}</td>
+					<td align="center" th:text="${board.cp9_1}">${board.cp9_1}</td>
+					<td align="center" th:text="${board.eventCache1}">${board.eventCache1}</td>
+					<td align="center" th:text="${board.originalSum}">${board.originalSum}</td>
+					<td align="center" th:text="${board.cpp2}">${board.cpp2}</td>
+					<td align="center" th:text="${board.cpl2}">${board.cpl2}</td>
+					<td align="center" th:text="${board.cp1_2}">${board.cp1_2}</td>
+					<td align="center" th:text="${board.cp2_2}">${board.cp2_2}</td>
+					<td align="center" th:text="${board.cp3_2}">${board.cp3_2}</td>
+					<td align="center" th:text="${board.cp7_2}">${board.cp7_2}</td>
+					<td align="center" th:text="${board.cp8_2}">${board.cp8_2}</td>
+					<td align="center" th:text="${board.cp9_2}">${board.cp9_2}</td>
+					<td align="center" th:text="${board.eventCache2}">${board.eventCache2}</td>
+					<td align="center" th:text="${board.valueSupply}">${board.valueSupply}</td>
+					<td align="center" th:text="${board.taxAmount}">${board.taxAmount}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+				</tr>
+			</table>
+		</div>		
+
+		<div id="kyoboId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">브랜드</th>
+					<th align="center">판매구분</th>
+					<th align="center">판매형태</th>
+					<th align="center">상품</th>
+					<th align="center">대분류</th>
+					<th align="center">도서바코드</th>
+					<th align="center">ISBN</th>
+					<th align="center">EPUB ISBN</th>
+					<th align="center">PDF ISBN</th>
+					<th align="center">상품명</th>
+					<th align="center">회차명</th>
+					<th align="center">저자명</th>
+					<th align="center">정가</th>
+					<th align="center">판매가</th>
+					<th align="center">판매량</th>
+					<th align="center">다운로드수</th>
+					<th align="center">정산대상판매가</th>
+					<th align="center">정산대상판매총액</th>
+					<th align="center">지불액</th>
+					<th align="center">정산율(%)</th>
+					<th align="center">북넘버</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listKyobo)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listKyobo}">
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.salesCategory}">${board.salesCategory}</td>
+					<td align="center" th:text="${board.salesType}">${board.salesType}</td>
+					<td align="center" th:text="${board.product}">${board.product}</td>
+					<td align="center" th:text="${board.mainSection}">${board.mainSection}</td>
+					<td align="center" th:text="${board.bookBarcode}">${board.bookBarcode}</td>
+					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
+					<td align="center" th:text="${board.epubIsbn}">${board.epubIsbn}</td>
+					<td align="center" th:text="${board.pdfIsbn}">${board.pdfIsbn}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.episode}">${board.episode}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.netPrice}">${board.netPrice}</td>
+					<td align="center" th:text="${board.salePrice}">${board.salePrice}</td>
+					<td align="center" th:text="${board.saleRate}">${board.saleRate}</td>
+					<td align="center" th:text="${board.download}">${board.download}</td>
+					<td align="center" th:text="${board.netTargetPrice}">${board.netTargetPrice}</td>
+					<td align="center" th:text="${board.netTargetPriceAmount}">${board.netTargetPriceAmount}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.accountingRates}">${board.accountingRates}</td>
+					<td align="center" th:text="${board.bookNumber}">${board.bookNumber}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="mrblueId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">브랜드</th>
+					<th align="center">일자</th>
+					<th align="center">작품명</th>
+					<th align="center">작가명</th>
+					<th align="center">코드</th>
+					<th align="center">정액_건수</th>
+					<th align="center">정액_매출액</th>
+					<th align="center">정액_정산액</th>
+					<th align="center">a앱머니_권별대여_건</th>
+					<th align="center">a앱머니_권별대여_이용권</th>
+					<th align="center">a앱머니_권별대여_매출액</th>
+					<th align="center">a앱머니_권별소장_건</th>
+					<th align="center">a앱머니_권별소장_이용권</th>
+					<th align="center">a앱머니_권별소장_매출액</th>
+					<th align="center">a앱머니_전권대여_건</th>
+					<th align="center">a앱머니_전권대여_이용권</th>
+					<th align="center">a앱머니_전권대여_매출액</th>
+					<th align="center">a앱머니_전권소장_건</th>
+					<th align="center">a앱머니_전권소장_이용권</th>
+					<th align="center">a앱머니_전권소장_매출액</th>
+					<th align="center">i앱머니_권별대여_건</th>
+					<th align="center">i앱머니_권별대여_이용권</th>
+					<th align="center">i앱머니_권별대여_매출액</th>
+					<th align="center">i앱머니_권별소장_건</th>
+					<th align="center">i앱머니_권별소장_이용권</th>
+					<th align="center">i앱머니_권별소장_매출액</th>
+					<th align="center">i앱머니_전권대여_건</th>
+					<th align="center">i앱머니_전권대여_이용권</th>
+					<th align="center">i앱머니_전권대여_매출액</th>
+					<th align="center">i앱머니_전권소장_건</th>
+					<th align="center">i앱머니_전권소장_이용권</th>
+					<th align="center">i앱머니_전권소장_매출액</th>
+					<th align="center">계_권수</th>
+					<th align="center">계_이용권</th>
+					<th align="center">계_매출액</th>
+					<th align="center">계_정산액</th>
+					<th align="center">매출액</th>
+					<th align="center">정산액</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listMrblue)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listMrblue}">
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.date}">${board.date}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.code}">${board.code}</td>
+					<td align="center" th:text="${board.fixedNum}">${board.fixedNum}</td>
+					<td align="center" th:text="${board.fixedSales}">${board.fixedSales}</td>
+					<td align="center" th:text="${board.fixedPayment}">${board.fixedPayment}</td>
+					<td align="center" th:text="${board.aAppOnerentalNum}">${board.aAppOnerentalNum}</td>
+					<td align="center" th:text="${board.aAppOnerentalUse}">${board.aAppOnerentalUse}</td>
+					<td align="center" th:text="${board.aAppOnerentalPayment}">${board.aAppOnerentalPayment}</td>
+					<td align="center" th:text="${board.aAppOnemngrNum}">${board.aAppOnemngrNum}</td>
+					<td align="center" th:text="${board.aAppOnemngrUse}">${board.aAppOnemngrUse}</td>
+					<td align="center" th:text="${board.aAppOnemngrPayment}">${board.aAppOnemngrPayment}</td>
+					<td align="center" th:text="${board.aAppAllrentalNum}">${board.aAppAllrentalNum}</td>
+					<td align="center" th:text="${board.aAppAllrentalUse}">${board.aAppAllrentalUse}</td>
+					<td align="center" th:text="${board.aAppAllrentalPayment}">${board.aAppAllrentalPayment}</td>
+					<td align="center" th:text="${board.aAppAllmngrNum}">${board.aAppAllmngrNum}</td>
+					<td align="center" th:text="${board.aAppAllmngrUse}">${board.aAppAllmngrUse}</td>
+					<td align="center" th:text="${board.aAppAllmngrPayment}">${board.aAppAllmngrPayment}</td>
+					<td align="center" th:text="${board.iAppOnerentalNum}">${board.iAppOnerentalNum}</td>
+					<td align="center" th:text="${board.iAppOnerentalUse}">${board.iAppOnerentalUse}</td>
+					<td align="center" th:text="${board.iAppOnerentalPayment}">${board.iAppOnerentalPayment}</td>
+					<td align="center" th:text="${board.iAppOnemngrNum}">${board.iAppOnemngrNum}</td>
+					<td align="center" th:text="${board.iAppOnemngrUse}">${board.iAppOnemngrUse}</td>
+					<td align="center" th:text="${board.iAppOnemngrPayment}">${board.iAppOnemngrPayment}</td>
+					<td align="center" th:text="${board.iAppAllrentalNum}">${board.iAppAllrentalNum}</td>
+					<td align="center" th:text="${board.iAppAllrentalUse}">${board.iAppAllrentalUse}</td>
+					<td align="center" th:text="${board.iAppAllrentalPayment}">${board.iAppAllrentalPayment}</td>
+					<td align="center" th:text="${board.iAppAllmngrNum}">${board.iAppAllmngrNum}</td>
+					<td align="center" th:text="${board.iAppAllmngrUse}">${board.iAppAllmngrUse}</td>
+					<td align="center" th:text="${board.iAppAllmngrPayment}">${board.iAppAllmngrPayment}</td>
+					<td align="center" th:text="${board.amountNum}">${board.amountNum}</td>
+					<td align="center" th:text="${board.amountUse}">${board.amountUse}</td>
+					<td align="center" th:text="${board.amountPayment}">${board.amountPayment}</td>
+					<td align="center" th:text="${board.amountSettlement}">${board.amountSettlement}</td>
+					<td align="center" th:text="${board.sales}">${board.sales}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="munpiaId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">작가</th>
+					<th align="center">브랜드</th>
+					<th align="center">날짜</th>
+					<th align="center">분류</th>
+					<th align="center">작품</th>
+					<th align="center">구매</th>
+					<th align="center">구매취소</th>
+					<th align="center">대여</th>
+					<th align="center">대여취소</th>
+					<th align="center">총판매</th>
+					<th align="center">총판매취소</th>
+					<th align="center">실판매</th>
+					<th align="center">정산</th>
+					<th align="center">IOS</th>
+					<th align="center">최종정산</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listMunpia)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listMunpia}">
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.date}">${board.date}</td>
+					<td align="center" th:text="${board.classification}">${board.classification}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.purchase}">${board.purchase}</td>
+					<td align="center" th:text="${board.purchaseCancel}">${board.purchaseCancel}</td>
+					<td align="center" th:text="${board.rental}">${board.rental}</td>
+					<td align="center" th:text="${board.rentalCencel}">${board.rentalCencel}</td>
+					<td align="center" th:text="${board.totalSales}">${board.totalSales}</td>
+					<td align="center" th:text="${board.totalSalesCencel}">${board.totalSalesCencel}</td>
+					<td align="center" th:text="${board.realSale}">${board.realSale}</td>
+					<td align="center" th:text="${board.subPayment}">${board.subPayment}</td>
+					<td align="center" th:text="${board.ios}">${board.ios}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="naverId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">상품명</th>
+					<th align="center">컨텐츠No</th>
+					<th align="center">공급자코드</th>
+					<th align="center">CP명</th>
+					<th align="center">저자명</th>
+					<th align="center">출판사</th>
+					<th align="center">나이제한</th>
+					<th align="center">서비스일</th>
+					<th align="center">대여권_건수</th>
+					<th align="center">대여권_비정산</th>
+					<th align="center">대여권_무료이용권</th>
+					<th align="center">대여권_유상쿠키</th>
+					<th align="center">대여권_무상쿠키</th>
+					<th align="center">대여권_유상i쿠키</th>
+					<th align="center">대여권_무상i쿠키</th>
+					<th align="center">소장권_건수</th>
+					<th align="center">소장권_비정산품명</th>
+					<th align="center">소장권_무료이용권</th>
+					<th align="center">소장권_유상쿠키</th>
+					<th align="center">소장권_무상쿠키</th>
+					<th align="center">소장권_유상i쿠키</th>
+					<th align="center">소장권_무상i쿠키</th>
+					<th align="center">쿠키로대여_건수</th>
+					<th align="center">쿠키로대여_유상</th>
+					<th align="center">쿠키로대여_무상</th>
+					<th align="center">쿠키로구매_건수</th>
+					<th align="center">쿠키로구매_유상</th>
+					<th align="center">쿠키로구매_무상</th>
+					<th align="center">i쿠키로대여_건수</th>
+					<th align="center">i쿠키로대여_유상</th>
+					<th align="center">i쿠키로대여_무상</th>
+					<th align="center">i쿠키로구매_건수</th>
+					<th align="center">i쿠키로구매_유상</th>
+					<th align="center">i쿠키로구매_무상</th>
+					<th align="center">i쿠키 수수료</th>
+					<th align="center">합계</th>
+					<th align="center">출판사 정산</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listNaver)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listNaver}">
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.productNo}">${board.productNo}</td>
+					<td align="center" th:text="${board.providerCode}">${board.providerCode}</td>
+					<td align="center" th:text="${board.cpName}">${board.cpName}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.ageLimit}">${board.ageLimit}</td>
+					<td align="center" th:text="${board.serviceDay}">${board.serviceDay}</td>
+					<td align="center" th:text="${board.rentalNumber}">${board.rentalNumber}</td>
+					<td align="center" th:text="${board.rentalNonpy}">${board.rentalNonpy}</td>
+					<td align="center" th:text="${board.rentalFree}">${board.rentalFree}</td>
+					<td align="center" th:text="${board.rentalPaidCookie}">${board.rentalPaidCookie}</td>
+					<td align="center" th:text="${board.rentalFreeCookie}">${board.rentalFreeCookie}</td>
+					<td align="center" th:text="${board.rentalPaidICookie}">${board.rentalPaidICookie}</td>
+					<td align="center" th:text="${board.rentalFreeICookie}">${board.rentalFreeICookie}</td>
+					<td align="center" th:text="${board.ownNumber}">${board.ownNumber}</td>
+					<td align="center" th:text="${board.ownNonpy}">${board.ownNonpy}</td>
+					<td align="center" th:text="${board.ownFree}">${board.ownFree}</td>
+					<td align="center" th:text="${board.ownPaidCookie}">${board.ownPaidCookie}</td>
+					<td align="center" th:text="${board.ownFreeCookie}">${board.ownFreeCookie}</td>
+					<td align="center" th:text="${board.ownPaidICookie}">${board.ownPaidICookie}</td>
+					<td align="center" th:text="${board.ownFreeICookie}">${board.ownFreeICookie}</td>
+					<td align="center" th:text="${board.cookieRentalNumber}">${board.cookieRentalNumber}</td>
+					<td align="center" th:text="${board.cookieRentalPaid}">${board.cookieRentalPaid}</td>
+					<td align="center" th:text="${board.cookieRentalFree}">${board.cookieRentalFree}</td>
+					<td align="center" th:text="${board.cookieOwnNumber}">${board.cookieOwnNumber}</td>
+					<td align="center" th:text="${board.cookieOwnPaid}">${board.cookieOwnPaid}</td>
+					<td align="center" th:text="${board.cookieOwnFree}">${board.cookieOwnFree}</td>
+					<td align="center" th:text="${board.iCookieRentalNumber}">${board.iCookieRentalNumber}</td>
+					<td align="center" th:text="${board.iCookieRentalPaid}">${board.iCookieRentalPaid}</td>
+					<td align="center" th:text="${board.iCookieRentalFree}">${board.iCookieRentalFree}</td>
+					<td align="center" th:text="${board.iCookieOwnNumber}">${board.iCookieOwnNumber}</td>
+					<td align="center" th:text="${board.iCookieOwnPaid}">${board.iCookieOwnPaid}</td>
+					<td align="center" th:text="${board.iCookieOwnFree}">${board.iCookieOwnFree}</td>
+					<td align="center" th:text="${board.iCookieFee}">${board.iCookieFee}</td>
+					<td align="center" th:text="${board.sum}">${board.sum}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="ridibooksId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">시리즈 ID</th>
+					<th align="center">도서 ID</th>
+					<th align="center">제목</th>
+					<th align="center">권/화수</th>
+					<th align="center">저자</th>
+					<th align="center">역자</th>
+					<th align="center">그림</th>
+					<th align="center">출판사</th>
+					<th align="center">시리즈명</th>
+					<th align="center">전자책정가</th>
+					<th align="center">단권판매액</th>
+					<th align="center">단권판매권</th>
+					<th align="center">단권무료권</th>
+					<th align="center">대여액</th>
+					<th align="center">대여권</th>
+					<th align="center">자유다운금액</th>
+					<th align="center">자유다운권</th>
+					<th align="center">세트판매액</th>
+					<th align="center">세트판매권</th>
+					<th align="center">세트대여액</th>
+					<th align="center">세트대여권</th>
+					<th align="center">취소액</th>
+					<th align="center">취소권</th>
+					<th align="center">취소단권판매액</th>
+					<th align="center">취소단권판매권</th>
+					<th align="center">취소대여액</th>
+					<th align="center">취소대여권</th>
+					<th align="center">취소자유다운액</th>
+					<th align="center">취소자유다운권</th>
+					<th align="center">취소세트판매액</th>
+					<th align="center">취소세트판매권</th>
+					<th align="center">세트대여액</th>
+					<th align="center">세트대여권</th>
+					<th align="center">정산액</th>
+					<th align="center">종이책ISBN10</th>
+					<th align="center">종이책ISBN13</th>
+					<th align="center">전자책ISBN10</th>
+					<th align="center">전자책ISBN13</th>
+					<th align="center">CP 관리 ID</th>
+					<th align="center">카테고리1</th>
+					<th align="center">카테고리2</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listRidibooks)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listRidibooks}">
+					<td align="center" th:text="${board.seriesId}">${board.seriesId}</td>
+					<td align="center" th:text="${board.bookId}">${board.bookId}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.episode}">${board.episode}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.translators}">${board.translators}</td>
+					<td align="center" th:text="${board.picture}">${board.picture}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.seriesName}">${board.seriesName}</td>
+					<td align="center" th:text="${board.ebooksPrice}">${board.ebooksPrice}</td>
+					<td align="center" th:text="${board.singleSaleSales}">${board.singleSaleSales}</td>
+					<td align="center" th:text="${board.singleSaleTicket}">${board.singleSaleTicket}</td>
+					<td align="center" th:text="${board.singleFreeTicket}">${board.singleFreeTicket}</td>
+					<td align="center" th:text="${board.rentalAmount}">${board.rentalAmount}</td>
+					<td align="center" th:text="${board.rentalTicket}">${board.rentalTicket}</td>
+					<td align="center" th:text="${board.freeDownAmount}">${board.freeDownAmount}</td>
+					<td align="center" th:text="${board.freeDownTicket}">${board.freeDownTicket}</td>
+					<td align="center" th:text="${board.setSaleAmount}">${board.setSaleAmount}</td>
+					<td align="center" th:text="${board.setSaleTicket}">${board.setSaleTicket}</td>
+					<td align="center" th:text="${board.setRentalAmount}">${board.setRentalAmount}</td>
+					<td align="center" th:text="${board.setRentalTicket}">${board.setRentalTicket}</td>
+					<td align="center" th:text="${board.cancelAmount}">${board.cancelAmount}</td>
+					<td align="center" th:text="${board.cancelTicket}">${board.cancelTicket}</td>
+					<td align="center" th:text="${board.cancelSingleSaleSales}">${board.cancelSingleSaleSales}</td>
+					<td align="center" th:text="${board.cancelSingleSaleTicket}">${board.cancelSingleSaleTicket}</td>
+					<td align="center" th:text="${board.cancelRentalAmount}">${board.cancelRentalAmount}</td>
+					<td align="center" th:text="${board.cancelRentalTicket}">${board.cancelRentalTicket}</td>
+					<td align="center" th:text="${board.cancelFreeDownAmount}">${board.cancelFreeDownAmount}</td>
+					<td align="center" th:text="${board.cancelFreeDownTicket}">${board.cancelFreeDownTicket}</td>
+					<td align="center" th:text="${board.cancelSetSaleAmount}">${board.cancelSetSaleAmount}</td>
+					<td align="center" th:text="${board.cancelSetSaleTicket}">${board.cancelSetSaleTicket}</td>
+					<td align="center" th:text="${board.cancelSetRentalAmount}">${board.cancelSetRentalAmount}</td>
+					<td align="center" th:text="${board.cancelSetRentalTicket}">${board.cancelSetRentalTicket}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.paperbookIsbn10}">${board.paperbookIsbn10}</td>
+					<td align="center" th:text="${board.paperbookIsbn13}">${board.paperbookIsbn13}</td>
+					<td align="center" th:text="${board.ebookIsbn10}">${board.ebookIsbn10}</td>
+					<td align="center" th:text="${board.ebookIsbn13}">${board.ebookIsbn13}</td>
+					<td align="center" th:text="${board.cpManageId}">${board.cpManageId}</td>
+					<td align="center" th:text="${board.category1}">${board.category1}</td>
+					<td align="center" th:text="${board.category2}">${board.category2}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="romanceId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">도서코드</th>
+					<th align="center">상품명</th>
+					<th align="center">출판사명</th>
+					<th align="center">저자명</th>
+					<th align="center">판매수</th>
+					<th align="center">인터넷판매액</th>
+					<th align="center">출판사정산액</th>
+					<th align="center">등록일</th>
+					<th align="center">판매처</th>
+					<th align="center">isbn</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listRomance)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listRomance}">
+					<td align="center" th:text="${board.bookCode}">${board.bookCode}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.saleRate}">${board.saleRate}</td>
+					<td align="center" th:text="${board.internetSales}">${board.internetSales}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.regDate}">${board.regDate}</td>
+					<td align="center" th:text="${board.dealer}">${board.dealer}</td>
+					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div id="tocsodaId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">상품바코드</th>
+					<th align="center">작품명</th>
+					<th align="center">작가명</th>
+					<th align="center">출판사</th>
+					<th align="center">PC</th>
+					<th align="center">안드로이드</th>
+					<th align="center">IOS</th>
+					<th align="center">IOS-IAP</th>
+					<th align="center">합계</th>
+					<th align="center">정산액</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listTocsoda)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listTocsoda}">
+					<td align="center" th:text="${board.productBacord}">${board.productBacord}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.pc}">${board.pc}</td>
+					<td align="center" th:text="${board.android}">${board.android}</td>
+					<td align="center" th:text="${board.ios}">${board.ios}</td>
+					<td align="center" th:text="${board.iosIap}">${board.iosIap}</td>
+					<td align="center" th:text="${board.sum}">${board.sum}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="winstoreId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">파트너명</th>
+					<th align="center">파트너ID</th>
+					<th align="center">사업자구분</th>
+					<th align="center">채널상품ID</th>
+					<th align="center">채널상품명</th>
+					<th align="center">상품명</th>
+					<th align="center">회차</th>
+					<th align="center">상품ID</th>
+					<th align="center">2차정산여부</th>
+					<th align="center">카테고리</th>
+					<th align="center">출판사</th>
+					<th align="center">글작가</th>
+					<th align="center">그림작가</th>
+					<th align="center">타입</th>
+					<th align="center">판매건수</th>
+					<th align="center">취소건수</th>
+					<th align="center">정산대상액</th>
+					<th align="center">판매건수</th>
+					<th align="center">판매금액</th>
+					<th align="center">취소건수</th>
+					<th align="center">취소금액</th>
+					<th align="center">합계</th>
+					<th align="center">결제수단_고객결제</th>
+					<th align="center">결제수단_고객결제(현금영수증)</th>
+					<th align="center">결제수단_쿠폰/포인트등</th>
+					<th align="center">서비스이용료_고객결제 서비스이용료</th>
+					<th align="center">서비스이용료_쿠폰/포인트등액</th>
+					<th align="center">서비스이용료_차감</th>
+					<th align="center">정산지급액</th>
+					<th align="center">정산유형</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listWinstore)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listWinstore}">
+					<td align="center" th:text="${board.partnerName}">${board.partnerName}</td>
+					<td align="center" th:text="${board.partnerId}">${board.partnerId}</td>
+					<td align="center" th:text="${board.entrepreneur}">${board.entrepreneur}</td>
+					<td align="center" th:text="${board.channelProductId}">${board.channelProductId}</td>
+					<td align="center" th:text="${board.channelProductName}">${board.channelProductName}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.episode}">${board.episode}</td>
+					<td align="center" th:text="${board.productId}">${board.productId}</td>
+					<td align="center" th:text="${board.secondSettlementStatus}">${board.secondSettlementStatus}</td>
+					<td align="center" th:text="${board.category}">${board.category}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.pictureAuthor}">${board.pictureAuthor}</td>
+					<td align="center" th:text="${board.type}">${board.type}</td>
+					<td align="center" th:text="${board.saleRate}">${board.saleRate}</td>
+					<td align="center" th:text="${board.cencelRate}">${board.cencelRate}</td>
+					<td align="center" th:text="${board.settlementTargetAmount}">${board.settlementTargetAmount}</td>
+					<td align="center" th:text="${board.salesRate}">${board.salesRate}</td>
+					<td align="center" th:text="${board.salesAmount}">${board.salesAmount}</td>
+					<td align="center" th:text="${board.cencelsRate}">${board.cencelsRate}</td>
+					<td align="center" th:text="${board.cencelsAmount}">${board.cencelsAmount}</td>
+					<td align="center" th:text="${board.sum}">${board.sum}</td>
+					<td align="center" th:text="${board.customerPayment}">${board.customerPayment}</td>
+					<td align="center" th:text="${board.customerPaymentReceipt}">${board.customerPaymentReceipt}</td>
+					<td align="center" th:text="${board.customerPaymentEtc}">${board.customerPaymentEtc}</td>
+					<td align="center" th:text="${board.customerPaymentService}">${board.customerPaymentService}</td>
+					<td align="center" th:text="${board.customerPaymentServiceEtc}">${board.customerPaymentServiceEtc}</td>
+					<td align="center" th:text="${board.serviceDeduction}">${board.serviceDeduction}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.paymentType}">${board.paymentType}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="yes24Id" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">no</th>
+					<th align="center">도서명</th>
+					<th align="center">출판사</th>
+					<th align="center">출판사판매가</th>
+					<th align="center">판매서점</th>
+					<th align="center">서점판매가</th>
+					<th align="center">서점환불가</th>
+					<th align="center">원가율</th>
+					<th align="center">출판사정산액</th>
+					<th align="center">이벤트구분</th>
+					<th align="center">판매구분</th>
+					<th align="center">이벤트판매가</th>
+					<th align="center">저자명</th>
+					<th align="center">ePubID</th>
+					<th align="center">세트코드</th>
+					<th align="center">종이책isbn</th>
+					<th align="center">전자책isbn</th>
+					<th align="center">판매일</th>
+					<th align="center">환불일</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listYes24)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listYes24}">
+					<td align="center" th:text="${board.no}">${board.no}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.brandSalePrice}">${board.brandSalePrice}</td>
+					<td align="center" th:text="${board.sales}">${board.sales}</td>
+					<td align="center" th:text="${board.salesSalePrice}">${board.salesSalePrice}</td>
+					<td align="center" th:text="${board.salesRefundPrice}">${board.salesRefundPrice}</td>
+					<td align="center" th:text="${board.costRate}">${board.costRate}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.eventType}">${board.eventType}</td>
+					<td align="center" th:text="${board.saleType}">${board.saleType}</td>
+					<td align="center" th:text="${board.eventSalePrice}">${board.eventSalePrice}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.epublId}">${board.epublId}</td>
+					<td align="center" th:text="${board.setCode}">${board.setCode}</td>
+					<td align="center" th:text="${board.paperbookIsbn}">${board.paperbookIsbn}</td>
+					<td align="center" th:text="${board.ebookIsbn}">${board.ebookIsbn}</td>
+					<td align="center" th:text="${board.saleDate}">${board.saleDate}</td>
+					<td align="center" th:text="${board.refundDate}">${board.refundDate}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="aladinId" style="display:none">
+			<table border="1">
+				<tr>
+					<th align="center">판매/취소일시</th>
+					<th align="center">ItemId</th>
+					<th align="center">도서명</th>
+					<th align="center">판매형태</th>
+					<th align="center">정가가</th>
+					<th align="center">판매가</th>
+					<th align="center">정산액</th>
+					<th align="center">취소주문일시</th>
+					<th align="center">저자명</th>
+					<th align="center">출판사명</th>
+					<th align="center">정산처명</th>
+					<th align="center">isbn</th>
+					<th align="center">CID</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listAladin)}">
+					<td>
+						List is empty
+					</td>
+				</tr>
+				<tr th:each="board : ${listAladin}">
+					<td align="center" th:text="${board.salesCancelDate}">${board.salesCancelDate}</td>
+					<td align="center" th:text="${board.itemId}">${board.itemId}</td>
+					<td align="center" th:text="${board.productName}">${board.productName}</td>
+					<td align="center" th:text="${board.salesType}">${board.salesType}</td>
+					<td align="center" th:text="${board.netPrice}">${board.netPrice}</td>
+					<td align="center" th:text="${board.salePrice}">${board.salePrice}</td>
+					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td align="center" th:text="${board.cancelDate}">${board.cancelDate}</td>
+					<td align="center" th:text="${board.author}">${board.author}</td>
+					<td align="center" th:text="${board.brand}">${board.brand}</td>
+					<td align="center" th:text="${board.publisher}">${board.publisher}</td>
+					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
+					<td align="center" th:text="${board.cid}">${board.cid}</td>
+				</tr>
+			</table>
+		</div>
+
 	</form>
 
 

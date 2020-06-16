@@ -22,18 +22,18 @@ import com.eBook.mgr.domain.platform.kyobo;
 
 @Mapper
 public interface EBookListMapper {
-	public List<Bookcube> listBookcube(Date setDate) throws Exception;
+	public List<Bookcube> listBookcube(String setDate) throws Exception;
 	//public List<Epub> listEpub(Date setDate) throws Exception;
-	public List<Joara> listJoara(Date setDate) throws Exception;
-	public List<Kakao> listKakao(Date setDate) throws Exception;
-	public List<kyobo> listkyobo(Date setDate) throws Exception;
-	public List<Mrblue> listMrblue(Date setDate) throws Exception;
-	public List<Munpia> listMunpia(Date setDate) throws Exception;
-	public List<Naver> listNaver(Date setDate) throws Exception;
-	public List<Ridibooks> listRidibooks(Date setDate) throws Exception;
-	public List<Romance> listRomance(Date setDate) throws Exception;
-	public List<Tocsoda> listTocsoda(Date setDate) throws Exception;
-	public List<Winstore> listWinstore(Date setDate) throws Exception;
-	public List<Aladin> listAladin(Date setDate) throws Exception;
-	public List<Yes24> listYes24(Date setDate) throws Exception;
+	public List<Joara> listJoara(String setDate) throws Exception;
+	public List<Kakao> listKakao(String setDate) throws Exception;
+	public List<kyobo> listkyobo(String setDate) throws Exception;
+	public List<Mrblue> listMrblue(String setDate) throws Exception;
+	public List<Munpia> listMunpia(String setDate) throws Exception;
+	public List<Naver> listNaver(String setDate) throws Exception;
+	public List<Ridibooks> listRidibooks(String setDate) throws Exception;
+	public List<Romance> listRomance(String setDate) throws Exception;
+	public List<Tocsoda> listTocsoda(String setDate) throws Exception;
+	public List<Winstore> listWinstore(String setDate) throws Exception;
+	public List<Aladin> listAladin(String setDate) throws Exception;
+	public List<Yes24> listYes24(String setDate) throws Exception;
 }

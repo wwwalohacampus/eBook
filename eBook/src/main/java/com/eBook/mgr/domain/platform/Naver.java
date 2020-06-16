@@ -22,7 +22,7 @@ public class Naver {
 	String rentalPaidICookie;							//대여권_유상i쿠키
 	String rentalFreeICookie;							//대여권_무상i쿠키
 	String ownNumber;									//소장권_건수
-	String ownNonpy;									//상소장권_비정산품명
+	String ownNonpy;									//소장권_비정산품명
 	String ownFree;										//소장권_무료이용권
 	String ownPaidCookie;								//소장권_유상쿠키
 	String ownFreeCookie;								//소장권_무상쿠키

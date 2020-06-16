@@ -3,6 +3,7 @@ package com.eBook.mgr.service;
 import java.util.Date;
 import java.util.List;
 
+import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
 import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
@@ -14,6 +15,7 @@ import com.eBook.mgr.domain.platform.Ridibooks;
 import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
+import com.eBook.mgr.domain.platform.Yes24;
 import com.eBook.mgr.domain.platform.kyobo;
 
 public interface EBookService {
@@ -31,6 +33,8 @@ public interface EBookService {
 	public void registerRomance(Romance romance) throws Exception;
 	public void registerTocsoda(Tocsoda tocsoda) throws Exception;
 	public void registerWinstore(Winstore winstore) throws Exception;
+	public void registerYes24(Yes24 yes24) throws Exception;
+	public void registerAladin(Aladin aladin) throws Exception;
 	
 	
 	
@@ -49,6 +53,8 @@ public interface EBookService {
 	public void removeRomance(String writerId) throws Exception;
 	public void removeTocsoda(String writerId) throws Exception;
 	public void removeWinstore(String writerId) throws Exception;
+	public void removeYes24(String writerId) throws Exception;
+	public void removeAladin(String writerId) throws Exception;
 	
 	
 	
@@ -56,18 +62,20 @@ public interface EBookService {
 	
 	
 	// 조회 로직 ----------------------------------------------------------------------
-	public List<Bookcube> listBookcube(Date setDate) throws Exception;
+	public List<Bookcube> listBookcube(String setDate) throws Exception;
 	//public List<Epub> listEpub(Date setDate) throws Exception;
-	public List<Joara> listJoara(Date setDate) throws Exception;
-	public List<Kakao> listKakao(Date setDate) throws Exception;
-	public List<kyobo> listkyobo(Date setDate) throws Exception;
-	public List<Mrblue> listMrblue(Date setDate) throws Exception;
-	public List<Munpia> listMunpia(Date setDate) throws Exception;
-	public List<Naver> listNaver(Date setDate) throws Exception;
-	public List<Ridibooks> listRidibooks(Date setDate) throws Exception;
-	public List<Romance> listRomance(Date setDate) throws Exception;
-	public List<Tocsoda> listTocsoda(Date setDate) throws Exception;
-	public List<Winstore> listWinstore(Date setDate) throws Exception;
+	public List<Joara> listJoara(String setDate) throws Exception;
+	public List<Kakao> listKakao(String setDate) throws Exception;
+	public List<kyobo> listkyobo(String setDate) throws Exception;
+	public List<Mrblue> listMrblue(String setDate) throws Exception;
+	public List<Munpia> listMunpia(String setDate) throws Exception;
+	public List<Naver> listNaver(String setDate) throws Exception;
+	public List<Ridibooks> listRidibooks(String setDate) throws Exception;
+	public List<Romance> listRomance(String setDate) throws Exception;
+	public List<Tocsoda> listTocsoda(String setDate) throws Exception;
+	public List<Winstore> listWinstore(String setDate) throws Exception;
+	public List<Yes24> listYes24(String setDate) throws Exception;
+	public List<Aladin> listAladin(String setDate) throws Exception;
 	
 }
 

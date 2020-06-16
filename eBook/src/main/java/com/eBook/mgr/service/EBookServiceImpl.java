@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
 import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
@@ -19,6 +20,7 @@ import com.eBook.mgr.domain.platform.Ridibooks;
 import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
+import com.eBook.mgr.domain.platform.Yes24;
 import com.eBook.mgr.domain.platform.kyobo;
 import com.eBook.mgr.mapper.EBookCreateMapper;
 import com.eBook.mgr.mapper.EBookDeleteMapper;
@@ -112,6 +114,18 @@ public class EBookServiceImpl implements EBookService{
 		createMapper.createWinstore(winstore);
 	}
 	
+	@Override
+	public void registerYes24(Yes24 yes24) throws Exception {
+		// TODO Auto-generated method stub
+		createMapper.createYes24(yes24);
+	}
+	
+	@Override
+	public void registerAladin(Aladin aladin) throws Exception {
+		// TODO Auto-generated method stub
+		createMapper.createAladin(aladin);
+	}
+	
 	
 	
 	
@@ -191,6 +205,18 @@ public class EBookServiceImpl implements EBookService{
 		// TODO Auto-generated method stub
 		deleteMapper.deleteWinstore(writerId);
 	}
+	
+	@Override
+	public void removeYes24(String writerId) throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.deleteYes24(writerId);
+	}
+	
+	@Override
+	public void removeAladin(String writerId) throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.deleteAladin(writerId);
+	}
 
 	
 	
@@ -199,7 +225,7 @@ public class EBookServiceImpl implements EBookService{
 	
 	// 조회단---------------------------------------------------------------------------
 	@Override
-	public List<Bookcube> listBookcube(Date setDate) throws Exception {
+	public List<Bookcube> listBookcube(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("ddddddddddddddd");
 		log.info("dddddddddddddddddddddddddddddddddddddd");
@@ -213,63 +239,75 @@ public class EBookServiceImpl implements EBookService{
 //	}
 
 	@Override
-	public List<Joara> listJoara(Date setDate) throws Exception {
+	public List<Joara> listJoara(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listJoara(setDate);
 	}
 
 	@Override
-	public List<Kakao> listKakao(Date setDate) throws Exception {
+	public List<Kakao> listKakao(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listKakao(setDate);
 	}
 
 	@Override
-	public List<kyobo> listkyobo(Date setDate) throws Exception {
+	public List<kyobo> listkyobo(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listkyobo(setDate);
 	}
 
 	@Override
-	public List<Mrblue> listMrblue(Date setDate) throws Exception {
+	public List<Mrblue> listMrblue(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listMrblue(setDate);
 	}
 
 	@Override
-	public List<Munpia> listMunpia(Date setDate) throws Exception {
+	public List<Munpia> listMunpia(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listMunpia(setDate);
 	}
 
 	@Override
-	public List<Naver> listNaver(Date setDate) throws Exception {
+	public List<Naver> listNaver(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listNaver(setDate);
 	}
 
 	@Override
-	public List<Ridibooks> listRidibooks(Date setDate) throws Exception {
+	public List<Ridibooks> listRidibooks(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listRidibooks(setDate);
 	}
 
 	@Override
-	public List<Romance> listRomance(Date setDate) throws Exception {
+	public List<Romance> listRomance(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listRomance(setDate);
 	}
 
 	@Override
-	public List<Tocsoda> listTocsoda(Date setDate) throws Exception {
+	public List<Tocsoda> listTocsoda(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listTocsoda(setDate);
 	}
 
 	@Override
-	public List<Winstore> listWinstore(Date setDate) throws Exception {
+	public List<Winstore> listWinstore(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listWinstore(setDate);
+	}
+	
+	@Override
+	public List<Yes24> listYes24(String setDate) throws Exception {
+		// TODO Auto-generated method stub
+		return listMapper.listYes24(setDate);
+	}
+	
+	@Override
+	public List<Aladin> listAladin(String setDate) throws Exception {
+		// TODO Auto-generated method stub
+		return listMapper.listAladin(setDate);
 	}
 
 	
