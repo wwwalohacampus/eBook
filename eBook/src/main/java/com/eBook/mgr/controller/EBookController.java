@@ -37,6 +37,7 @@ public class EBookController {
 	/*
 	안되는것 2020-06-21 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
 						td에 input태그 숨기기
+						list에 layout적용이안됨
 	  
 	 */
 	

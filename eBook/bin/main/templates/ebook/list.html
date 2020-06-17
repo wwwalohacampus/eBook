@@ -5,7 +5,7 @@
 </head>
 <body>
 	<form id="platList" th:action="@{search}" th:object="${listBookcube}" method="POST">
-		<div id="bookcubeId" style="display:none">
+		<div id="bookcubeId">
 			<table border="1">
 				<tr>
 					<th align="center">제목</th>
@@ -48,7 +48,7 @@
 					<td align="center" th:text="${board.bookId}">${board.bookId}</td>
 					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
 					<td align="center" th:text="${board.eIsbn}">${board.eIsbn}</td>
-					<td align="center" th:text="${board.eIsbnEpub}">${board.eIsbnEpub}</td>
+					<td align="center" th:text="${board.eIsbnEpub}">${board.eIsbnEpub}<input type="text" name="writerId" th:value="${board.writerId}"/></td>
 				</tr>
 			</table>
 		</div>
