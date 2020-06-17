@@ -60,8 +60,6 @@ public class EBookController {
 		case "p_bookcube":
 			List<Bookcube> bookList = eBookService.listBookcube(setDate);
 			model.addAttribute("listBookcube", bookList);
-			log.info("찍힘?");
-			log.info(Integer.toString(bookList.size()));
 			break;
 //		case "p_epub":
 //			model.addAttribute("listBookcube", eBookService.listEpub(setDate));
