@@ -3,7 +3,7 @@ package com.eBook.mgr.domain;
 import lombok.Data;
 
 
-// 사용안함
+// -------------------------------사용안함-----------------------------------------
 @Data
 public class Author {
 	String id;								// ID

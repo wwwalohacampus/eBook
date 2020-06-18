@@ -90,11 +90,7 @@
 	</select>
 
 	<select id="list" resultType="Member">
-		SELECT idx,
-			id,
-			pw,
-			real_name,
-			reg_date
+		SELECT *
 		FROM member
 		ORDER BY reg_date DESC
 	</select>
