@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Winstore {
+	String idx;
+	
 	String partnerName;							//파트너명
 	String partnerId;							//파트너ID
 	String entrepreneur;						//사업자구분

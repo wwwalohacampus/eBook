@@ -41,20 +41,20 @@ public interface EBookService {
 	
 	
 	// 삭제 로직 ---------------------------------------------------------------------
-	public void removeBookcube(String writerId) throws Exception;
+	public void removeBookcube(String idx) throws Exception;
 	//public void removeEpub(String writerId) throws Exception;
-	public void removeJoara(String writerId) throws Exception;
-	public void removeKakao(String writerId) throws Exception;
-	public void removekyobo(String writerId) throws Exception;
-	public void removeMrblue(String writerId) throws Exception;
-	public void removeMunpia(String writerId) throws Exception;
-	public void removeNaver(String writerId) throws Exception;
-	public void removeRidibooks(String writerId) throws Exception;
-	public void removeRomance(String writerId) throws Exception;
-	public void removeTocsoda(String writerId) throws Exception;
-	public void removeWinstore(String writerId) throws Exception;
-	public void removeYes24(String writerId) throws Exception;
-	public void removeAladin(String writerId) throws Exception;
+	public void removeJoara(String idx) throws Exception;
+	public void removeKakao(String idx) throws Exception;
+	public void removekyobo(String idx) throws Exception;
+	public void removeMrblue(String idx) throws Exception;
+	public void removeMunpia(String idx) throws Exception;
+	public void removeNaver(String idx) throws Exception;
+	public void removeRidibooks(String idx) throws Exception;
+	public void removeRomance(String idx) throws Exception;
+	public void removeTocsoda(String idx) throws Exception;
+	public void removeWinstore(String idx) throws Exception;
+	public void removeYes24(String idx) throws Exception;
+	public void removeAladin(String idx) throws Exception;
 	
 	
 	

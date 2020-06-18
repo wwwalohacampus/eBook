@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class kyobo {
+	String idx;
+	
 	String brand;								//브랜드
 	String salesCategory;						//판매구분
 	String salesType;							//판매형태

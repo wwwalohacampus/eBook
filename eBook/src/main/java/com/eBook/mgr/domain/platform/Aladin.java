@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Aladin {
+	String idx;
+	
 	String salesCancelDate;			//판매/취소일시
 	String itemId;					//ItemId
 	String productName;				//도서명

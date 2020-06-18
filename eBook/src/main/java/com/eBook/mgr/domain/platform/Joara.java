@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Joara {
+	String idx;
+	
 	String brand;							//브랜드
 	String productName;						//작품명
 	String productCode;						//작품코드

@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Munpia {
+	String idx;
+	
 	String author;							//작가
 	String brand;							//브랜드
 	String date;							//날짜

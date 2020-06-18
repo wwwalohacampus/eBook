@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Ridibooks {
+	String idx;
+	
 	String seriesId; 									//시리즈 ID
 	String bookId; 										//도서 ID
 	String productName; 								//제목

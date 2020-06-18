@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Romance {
+	String idx;
+	
 	String bookCode;						//도서코드
 	String productName;						//상품명
 	String brand;							//출판사명

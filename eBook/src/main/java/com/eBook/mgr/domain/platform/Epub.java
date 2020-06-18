@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Epub {
+	String idx;
+	
 	String index; 								//번호
 	String productName; 						//도서명
 	String publisher; 							//출판사

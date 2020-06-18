@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Tocsoda {
+	String idx;
+	
 	String productBacord;					//상품바코드
 	String productName;						//작품명
 	String author;							//작가명

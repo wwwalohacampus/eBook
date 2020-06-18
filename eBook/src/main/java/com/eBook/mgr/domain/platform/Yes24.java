@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Yes24 {
+	String idx;
+	
 	String no;									//no
 	String productName;							//도서명
 	String brand;								//출판사

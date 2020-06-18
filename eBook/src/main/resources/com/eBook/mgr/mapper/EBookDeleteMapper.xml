@@ -6,7 +6,7 @@
 	
 	<delete id="deleteBookcube">
 		DELETE FROM tb_platform_bookcube
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 <!-- 
@@ -18,62 +18,62 @@
  
 	<delete id="deleteJoara">
 		DELETE FROM tb_platform_joara
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteKakao">
 		DELETE FROM tb_platform_kakao
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deletekyobo">
 		DELETE FROM tb_platform_kyobo
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteMrblue">
 		DELETE FROM tb_platform_mrblue
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteMunpia">
 		DELETE FROM tb_platform_munpia
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteNaver">
 		DELETE FROM tb_platform_naver
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteRidibooks">
 		DELETE FROM tb_platform_ridibooks
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteRomance">
 		DELETE FROM tb_platform_romance
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteTocsoda">
 		DELETE FROM tb_platform_tocsoda
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteWinstore">
 		DELETE FROM tb_platform_winstore
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 	
 	<delete id="deleteAladin">
 		DELETE FROM tb_platform_aladin
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 
 	<delete id="deleteYes24">
 		DELETE FROM tb_platform_yes24
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
 	
 </mapper>

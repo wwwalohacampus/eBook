@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Naver {
+	String idx;
+	
 	String productName;									//상품명
 	String productNo;									//컨텐츠No
 	String providerCode;								//공급자코드

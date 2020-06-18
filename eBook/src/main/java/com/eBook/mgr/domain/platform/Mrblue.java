@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Mrblue {
+	String idx;
+	
 	String brand;							//브랜드
 	String date;							//일자
 	String productName;						//작품명

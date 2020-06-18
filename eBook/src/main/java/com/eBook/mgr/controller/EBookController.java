@@ -36,7 +36,7 @@ public class EBookController {
 	
 	/*
 	안되는것 2020-06-21 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
-						td에 input태그 숨기기
+						Ajax가 안먹음 (list에서 checkBox 체크 후 remove로 로직탈때)
 						list에 layout적용이안됨
 	  
 	 */
@@ -120,10 +120,18 @@ public class EBookController {
 	
 	// 체크된 리스트 삭제하기
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public ModelAndView remove(Model model, String writeId) throws Exception{
+	public ModelAndView remove(Model model, String delete_ids, String p_type) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		log.info("플랫폼타입검사 : " + p_type);
+		String[] deleteIdsArr = delete_ids.split(",");
 	
 		try {
+			for (int i=0; i<deleteIdsArr.length; i++)
+			{ 
+				System.out.println("해당 튜플삭제.....................     = " + deleteIdsArr[i]); 
+				eBookService.removeBookcube(deleteIdsArr[i]); 
+			}
 			
 			mv.addObject("result", true);
 		} catch (Exception e) {
@@ -137,17 +145,11 @@ public class EBookController {
 	
 	// 적용하기 누르면 리스트에있는 목록 수정시키기
 	@RequestMapping(value = "/apply", method = RequestMethod.POST)
-	public ModelAndView apply(Model model, String writeId) throws Exception{
-		ModelAndView mv = new ModelAndView();
-	
-		try {
-			
-			mv.addObject("result", true);
-		} catch (Exception e) {
-			mv.addObject("result", false);
-		}
+	public String apply(Model model, String writeId) throws Exception{
+
 		
-		return mv;
+		
+		return "/ebook/list";
 	
 	}
 	

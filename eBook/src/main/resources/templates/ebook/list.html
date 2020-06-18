@@ -49,7 +49,45 @@
 			$("#aladinId").show();
 			break;
 		}
+		
+
 	});
+	
+	function remove(){
+		var chkVal = "";
+		$(":checkbox[name='delete_ids']:checked").each(function(pi,po){
+			chkVal += po.value+",";
+		});
+		
+		if(chkVal!=""){
+			chkVal = chkVal.substring(0, chkVal.length-1);
+		}
+
+		if (confirm("삭제 하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/remove",
+				data:"&delete_ids="+chkVal,
+				success:function(data){
+						if(data.result){
+							alert("삭제 되었습니다.");
+							location.href="/ebook/list";
+						}else{
+							alert("삭제가 실패 되었습니다.");
+						}
+				}
+			});
+		} else{
+			
+		};
+
+		if(chkVal==""){
+			alert("삭제할 데이터를 체크해주세요.");
+			return ;
+		}
+		
+		
+	}
 </script>
 <body>
 	<form id="platList" th:action="@{search}" th:object="${listBookcube}" method="POST">
@@ -58,6 +96,7 @@
 			<img src="/image/img_bookcube.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">제목</th>
 					<th align="center">저자</th>
 					<th align="center">출판권자</th>
@@ -82,23 +121,25 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listBookcube}">
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.salesCategory}">${board.salesCategory}</td>
-					<td align="center" th:text="${board.salesType}">${board.salesType}</td>
-					<td align="center" th:text="${board.episode}">${board.episode}</td>
-					<td align="center" th:text="${board.netPrice}">${board.netPrice}</td>
-					<td align="center" th:text="${board.salePrice}">${board.salePrice}</td>
-					<td align="center" th:text="${board.discount}">${board.discount}</td>
-					<td align="center" th:text="${board.fee}">${board.fee}</td>
-					<td align="center" th:text="${board.netTargetPrice}">${board.netTargetPrice}</td>
-					<td align="center" th:text="${board.deductionReservesEvent}">${board.deductionReservesEvent}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.bookId}">${board.bookId}</td>
-					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
-					<td align="center" th:text="${board.eIsbn}">${board.eIsbn}</td>
-					<td align="center" th:text="${board.eIsbnEpub}">${board.eIsbnEpub}<input type="text" name="writerId" th:value="${board.writerId}"/></td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.salesCategory}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.salesType}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.episode}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.netPrice}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.salePrice}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.discount}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.fee}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.netTargetPrice}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.deductionReservesEvent}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.bookId}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.isbn}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.eIsbn}"/></td>
+					<td><input style="text-align:center;" type="text" th:value="${board.eIsbnEpub}"/>
+					<input style="text-align:center;" type="hidden" th:value="${board.writerId}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -857,6 +898,14 @@
 		</div>
 
 	</form>
+	
+	<div>
+		<button type="submit" id="btnUpdate">수정하기</button>
+		<button type="submit" onclick="remove();" id="btnDelete">삭제</button>
+		<br> <br>
+		<button type="submit" id="btnUpload">파일업로드</button>
+		<button type="submit" id="btnDownLoad">파일다운로드</button>
+	</div>
 
 
 </body>

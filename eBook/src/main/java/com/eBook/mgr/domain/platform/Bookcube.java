@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Bookcube {
+	String idx;
+	
 	String productName;						//제목
 	String author;							//저자
 	String brand;							//출판권자

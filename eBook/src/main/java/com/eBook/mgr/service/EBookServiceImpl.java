@@ -135,9 +135,9 @@ public class EBookServiceImpl implements EBookService{
 	
 	// 삭제단---------------------------------------------------------------------------------
 	@Override
-	public void removeBookcube(String writerId) throws Exception {
+	public void removeBookcube(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteBookcube(writerId);
+		deleteMapper.deleteBookcube(idx);
 	}
 
 //	@Override
@@ -147,75 +147,75 @@ public class EBookServiceImpl implements EBookService{
 //	}
 
 	@Override
-	public void removeJoara(String writerId) throws Exception {
+	public void removeJoara(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteJoara(writerId);
+		deleteMapper.deleteJoara(idx);
 	}
 
 	@Override
-	public void removeKakao(String writerId) throws Exception {
+	public void removeKakao(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteKakao(writerId);
+		deleteMapper.deleteKakao(idx);
 	}
 
 	@Override
-	public void removekyobo(String writerId) throws Exception {
+	public void removekyobo(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deletekyobo(writerId);
+		deleteMapper.deletekyobo(idx);
 	}
 
 	@Override
-	public void removeMrblue(String writerId) throws Exception {
+	public void removeMrblue(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteMrblue(writerId);
+		deleteMapper.deleteMrblue(idx);
 	}
 
 	@Override
-	public void removeMunpia(String writerId) throws Exception {
+	public void removeMunpia(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteMunpia(writerId);
+		deleteMapper.deleteMunpia(idx);
 	}
 
 	@Override
-	public void removeNaver(String writerId) throws Exception {
+	public void removeNaver(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteNaver(writerId);
+		deleteMapper.deleteNaver(idx);
 	}
 
 	@Override
-	public void removeRidibooks(String writerId) throws Exception {
+	public void removeRidibooks(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteRidibooks(writerId);
+		deleteMapper.deleteRidibooks(idx);
 	}
 
 	@Override
-	public void removeRomance(String writerId) throws Exception {
+	public void removeRomance(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteRomance(writerId);
+		deleteMapper.deleteRomance(idx);
 	}
 
 	@Override
-	public void removeTocsoda(String writerId) throws Exception {
+	public void removeTocsoda(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteTocsoda(writerId);
+		deleteMapper.deleteTocsoda(idx);
 	}
 
 	@Override
-	public void removeWinstore(String writerId) throws Exception {
+	public void removeWinstore(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteWinstore(writerId);
+		deleteMapper.deleteWinstore(idx);
 	}
 	
 	@Override
-	public void removeYes24(String writerId) throws Exception {
+	public void removeYes24(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteYes24(writerId);
+		deleteMapper.deleteYes24(idx);
 	}
 	
 	@Override
-	public void removeAladin(String writerId) throws Exception {
+	public void removeAladin(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deleteAladin(writerId);
+		deleteMapper.deleteAladin(idx);
 	}
 
 	
