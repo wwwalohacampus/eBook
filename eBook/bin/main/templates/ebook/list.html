@@ -1,6 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+
 <title>조회</title>
 </head>
 <script src="/js/jQuery-2.1.4.min.js"></script>
@@ -53,7 +56,16 @@
 
 	});
 	
+	
+	
 	function remove(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		
 		var chkVal = "";
 		$(":checkbox[name='delete_ids']:checked").each(function(pi,po){
 			chkVal += po.value+",";
@@ -62,24 +74,60 @@
 		if(chkVal!=""){
 			chkVal = chkVal.substring(0, chkVal.length-1);
 		}
+		
+		console.log("### chkVal : " + chkVal);
 
+		/*		
+		 $.ajax({
+             url: '/ebook/remove', 					
+             type: 'POST',
+             data: { "delete_ids" : chkVal },
+             beforeSend : function(xhr)
+             {   // 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+                 xhr.setRequestHeader( header, token );
+             },
+             success: function(data, textStatus, jqXHR)
+             {
+                 alert("success!!");
+             },
+             error: function (jqXHR, textStatus, errorThrown)
+             {
+                 alert(errorThrown + " " + textStatus);
+                 //alert("error!!");
+             }
+        });
+		*/
+		
 		if (confirm("삭제 하시겠습니까?")) {
 			$.ajax({
 				type:"post",
 				url:"/ebook/remove",
-				data:"&delete_ids="+chkVal,
-				success:function(data){
-						if(data.result){
+				data:	{ 
+							"delete_ids" : chkVal ,
+							"p_type"	: "[[${platformType}]]"
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
 							alert("삭제 되었습니다.");
-							location.href="/ebook/list";
+							location.href="/ebook/list?platformType=" + "[[${platformType}]]";
 						}else{
 							alert("삭제가 실패 되었습니다.");
 						}
-				}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
 			});
 		} else{
 			
-		};
+		}
 
 		if(chkVal==""){
 			alert("삭제할 데이터를 체크해주세요.");
@@ -87,10 +135,53 @@
 		}
 		
 		
+		
+		
+	}
+	
+	function apply(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		alert("[[${listBookcube}]]");
+		
+		if (confirm("수정 하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/apply",
+				data:	{ 
+							"listBookcube" : "[[${listBookcube}]]" ,
+							"p_type"	: "[[${platformType}]]"
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("수정 되었습니다.");
+							location.href="/ebook/list?platformType=" + "[[${platformType}]]";
+						}else{
+							alert("수정이 실패 되었습니다.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
 	}
 </script>
 <body>
-	<form id="platList" th:action="@{search}" th:object="${listBookcube}" method="POST">
+	<form id="platList" th:action="@{search}" method="POST">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 		<input id="p_type" type="hidden" th:value="${platformType}"/>
 		<div id="bookcubeId" style="display:none">
 			<img src="/image/img_bookcube.jpg" style="width:100px;">
@@ -120,7 +211,7 @@
 						List is empty
 					</td>
 				</tr>
-				<tr th:each="board : ${listBookcube}">
+				<tr th:each="board : ${listBookcube}" th:with=")>
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="text-align:center;" type="text" th:value="${board.productName}"/></td>
 					<td><input style="text-align:center;" type="text" th:value="${board.author}"/></td>
@@ -900,7 +991,7 @@
 	</form>
 	
 	<div>
-		<button type="submit" id="btnUpdate">수정하기</button>
+		<button type="submit" onclick="apply()" id="btnUpdate">수정하기</button>
 		<button type="submit" onclick="remove();" id="btnDelete">삭제</button>
 		<br> <br>
 		<button type="submit" id="btnUpload">파일업로드</button>

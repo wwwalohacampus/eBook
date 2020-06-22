@@ -221,8 +221,15 @@ public class EBookServiceImpl implements EBookService{
 	
 	
 	
+	@Override
+	public void allRemoveBookcube() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteBookcube();
+	}
 	
 	
+	
+
 	// 조회단---------------------------------------------------------------------------
 	@Override
 	public List<Bookcube> listBookcube(String setDate) throws Exception {

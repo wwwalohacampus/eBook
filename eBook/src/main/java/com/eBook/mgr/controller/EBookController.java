@@ -8,6 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,6 @@ public class EBookController {
 	
 	/*
 	안되는것 2020-06-21 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
-						Ajax가 안먹음 (list에서 checkBox 체크 후 remove로 로직탈때)
 						list에 layout적용이안됨
 	  
 	 */
@@ -48,6 +48,7 @@ public class EBookController {
 //	}
 	
 	// 플랫폼 별로 리스트 보여주기
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model, @RequestParam String platformType, String setDate) throws Exception{
 		log.info("플랫폼타입???" + platformType);
@@ -120,36 +121,49 @@ public class EBookController {
 	
 	// 체크된 리스트 삭제하기
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public ModelAndView remove(Model model, String delete_ids, String p_type) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
+	public String remove(Model model, String delete_ids, String p_type) throws Exception{
 		log.info("플랫폼타입검사 : " + p_type);
 		String[] deleteIdsArr = delete_ids.split(",");
-	
+		
 		try {
+			model.addAttribute("result", true);
 			for (int i=0; i<deleteIdsArr.length; i++)
 			{ 
 				System.out.println("해당 튜플삭제.....................     = " + deleteIdsArr[i]); 
 				eBookService.removeBookcube(deleteIdsArr[i]); 
 			}
 			
-			mv.addObject("result", true);
+			// mv.addObject("result", true);
 		} catch (Exception e) {
-			mv.addObject("result", false);
+			model.addAttribute("result", false);
+			//mv.addObject("result", false);
+			e.printStackTrace();
 		}
 		
-		return mv;
+		// return mv;
+		return "redirect:/ebook/list?platformType=" + p_type;
 	
 	}
 	
 	
 	// 적용하기 누르면 리스트에있는 목록 수정시키기
 	@RequestMapping(value = "/apply", method = RequestMethod.POST)
-	public String apply(Model model, String writeId) throws Exception{
+	public String apply(Model model, List<Bookcube> listBookcube, String p_type) throws Exception{
 
+		log.info("플랫폼타입검사 : " + p_type);
 		
+		try {
+			model.addAttribute("result", true);
+			
+			// mv.addObject("result", true);
+		} catch (Exception e) {
+			model.addAttribute("result", false);
+			//mv.addObject("result", false);
+			e.printStackTrace();
+		}
 		
-		return "/ebook/list";
+		// return mv;
+		return "redirect:/ebook/list?platformType=" + p_type;
 	
 	}
 	

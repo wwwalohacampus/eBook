@@ -18,4 +18,6 @@ public interface EBookDeleteMapper {
 	public void deleteWinstore(String idx) throws Exception;
 	public void deleteAladin(String idx) throws Exception;
 	public void deleteYes24(String idx) throws Exception;
+	
+	public void allDeleteBookcube() throws Exception;
 }

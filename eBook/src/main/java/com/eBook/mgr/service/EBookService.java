@@ -57,7 +57,7 @@ public interface EBookService {
 	public void removeAladin(String idx) throws Exception;
 	
 	
-	
+	public void allRemoveBookcube() throws Exception;
 	
 	
 	
