@@ -50,5 +50,5 @@ public class Ridibooks {
 	String category1; 									//카테고리1
 	String category2; 									//카테고리2
 	String writerId; 									//작가id
-	Date setDate; 										//기준월
+	String setDate; 										//기준월
 }

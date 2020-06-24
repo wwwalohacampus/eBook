@@ -39,5 +39,5 @@ public class Winstore {
 	String payment;								//정산지급액
 	String paymentType;							//정산유형
 	String writerId;							//작가id
-	Date setDate;								//기준월
+	String setDate;								//기준월
 }

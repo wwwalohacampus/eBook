@@ -26,7 +26,7 @@
 		WHERE idx = #{idx}
 	</delete>
 
-	<delete id="deletekyobo">
+	<delete id="deleteKyobo">
 		DELETE FROM tb_platform_kyobo
 		WHERE idx = #{idx}
 	</delete>
@@ -81,6 +81,54 @@
 	
 	<delete id="allDeleteBookcube">
 		DELETE FROM tb_platform_bookcube
+	</delete>
+	
+	<delete id="allDeleteJoara">
+		DELETE FROM tb_platform_joara
+	</delete>
+	
+	<delete id="allDeleteKakao">
+		DELETE FROM tb_platform_kakao
+	</delete>
+	
+	<delete id="allDeleteKyobo">
+		DELETE FROM tb_platform_kyobo
+	</delete>
+	
+	<delete id="allDeleteMrblue">
+		DELETE FROM tb_platform_mrblue
+	</delete>
+	
+	<delete id="allDeleteMunpia">
+		DELETE FROM tb_platform_munpia
+	</delete>
+	
+	<delete id="allDeleteNaver">
+		DELETE FROM tb_platform_naver
+	</delete>
+	
+	<delete id="allDeleteRidibooks">
+		DELETE FROM tb_platform_ridibooks
+	</delete>
+	
+	<delete id="allDeleteRomance">
+		DELETE FROM tb_platform_romance
+	</delete>
+	
+	<delete id="allDeleteTocsoda">
+		DELETE FROM tb_platform_tocsoda
+	</delete>
+	
+	<delete id="allDeleteWinstore">
+		DELETE FROM tb_platform_winstore
+	</delete>
+	
+	<delete id="allDeleteAladin">
+		DELETE FROM tb_platform_aladin
+	</delete>
+	
+	<delete id="allDeleteYes24">
+		DELETE FROM tb_platform_yes24
 	</delete>
 	
 </mapper>

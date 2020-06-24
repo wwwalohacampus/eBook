@@ -10,6 +10,7 @@
 <script type="text/javascript">
 	$("document").ready(function(){
 		var p_type = $('#p_type').val();
+		var formObj = $("#platList");
 		
 		switch(p_type){
 		case 'p_bookcube' :
@@ -53,6 +54,18 @@
 			break;
 		}
 		
+		
+		$("#btnUpdate").on("click", function(){
+			if (confirm("수정 하시겠습니까?")) {
+				formObj.attr("action", "/ebook/apply");
+				formObj.attr("method", "post");
+				formObj.submit();
+				
+				alert("수정 완료되었습니다.");
+			} else {
+				alert("수정에 실패하였습니다.");
+			}
+		}); 
 
 	});
 	
@@ -145,14 +158,12 @@
 		var header = $("meta[name='_csrf_header']").attr("content");
 		
 		console.log(token);
-		alert("[[${listBookcube}]]");
 		
 		if (confirm("수정 하시겠습니까?")) {
 			$.ajax({
 				type:"post",
 				url:"/ebook/apply",
 				data:	{ 
-							"listBookcube" : "[[${listBookcube}]]" ,
 							"p_type"	: "[[${platformType}]]"
 						},
 						
@@ -182,7 +193,7 @@
 <body>
 	<form id="platList" th:action="@{search}" method="POST">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-		<input id="p_type" type="hidden" th:value="${platformType}"/>
+		<input id="p_type" name="p_type" type="hidden" th:value="${platformType}"/>
 		<div id="bookcubeId" style="display:none">
 			<img src="/image/img_bookcube.jpg" style="width:100px;">
 			<table border="1">
@@ -211,26 +222,27 @@
 						List is empty
 					</td>
 				</tr>
-				<tr th:each="board : ${listBookcube}" th:with=")>
+				<tr th:each="board : ${listBookcube}"  >
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.productName}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.author}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.brand}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.salesCategory}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.salesType}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.episode}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.netPrice}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.salePrice}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.discount}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.fee}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.netTargetPrice}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.deductionReservesEvent}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.payment}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.bookId}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.isbn}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.eIsbn}"/></td>
-					<td><input style="text-align:center;" type="text" th:value="${board.eIsbnEpub}"/>
-					<input style="text-align:center;" type="hidden" th:value="${board.writerId}"/></td>
+					<td><input style="text-align:center;" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" type="text" name="author" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" type="text" name="brand" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" type="text" name="salesCategory" th:value="${board.salesCategory}"/></td>
+					<td><input style="text-align:center;" type="text" name="salesType" th:value="${board.salesType}"/></td>
+					<td><input style="text-align:center;" type="text" name="episode" th:value="${board.episode}"/></td>
+					<td><input style="text-align:center;" type="text" name="netPrice" th:value="${board.netPrice}"/></td>
+					<td><input style="text-align:center;" type="text" name="salePrice" th:value="${board.salePrice}"/></td>
+					<td><input style="text-align:center;" type="text" name="discount" th:value="${board.discount}"/></td>
+					<td><input style="text-align:center;" type="text" name="fee" th:value="${board.fee}"/></td>
+					<td><input style="text-align:center;" type="text" name="netTargetPrice" th:value="${board.netTargetPrice}"/></td>
+					<td><input style="text-align:center;" type="text" name="deductionReservesEvent" th:value="${board.deductionReservesEvent}"/></td>
+					<td><input style="text-align:center;" type="text" name="payment" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" type="text" name="bookId" th:value="${board.bookId}"/></td>
+					<td><input style="text-align:center;" type="text" name="isbn" th:value="${board.isbn}"/></td>
+					<td><input style="text-align:center;" type="text" name="eIsbn" th:value="${board.eIsbn}"/></td>
+					<td><input style="text-align:center;" type="text" name="eIsbnEpub" th:value="${board.eIsbnEpub}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -239,6 +251,7 @@
 			<img src="/image/img_joara.png" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">브랜드</th>
 					<th align="center">작품명</th>
 					<th align="center">작품코드</th>
@@ -255,16 +268,18 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listJoara}">
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.productCode}">${board.productCode}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.unit}">${board.unit}</td>
-					<td align="center" th:text="${board.saleAmount}">${board.saleAmount}</td>
-					<td align="center" th:text="${board.ratio}">${board.ratio}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.paymentDate}">${board.paymentDate}</td>
-					<td><input type="hidden" name="writerId" th:text="${board.writerId}"/></td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" type="text" name="brand" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" type="text" name="productCode" th:value="${board.productCode}"/></td>
+					<td><input style="text-align:center;" type="text" name="author" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" type="text" name="unit" th:value="${board.unit}"/></td>
+					<td><input style="text-align:center;" type="text" name="saleAmount" th:value="${board.saleAmount}"/></td>
+					<td><input style="text-align:center;" type="text" name="ratio" th:value="${board.ratio}"/></td>
+					<td><input style="text-align:center;" type="text" name="payment" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" type="text" name="paymentDate" th:value="${board.paymentDate}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>		
@@ -273,6 +288,7 @@
 			<img src="/image/img_kakaopage.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">브랜드</th>
 					<th align="center">특별/일반</th>
 					<th align="center">사업자명</th>
@@ -323,49 +339,52 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listKakao}">
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.specialGeneral2}">${board.specialGeneral2}</td>
-					<td align="center" th:text="${board.entrepreneur}">${board.entrepreneur}</td>
-					<td align="center" th:text="${board.entrepreneurId}">${board.entrepreneurId}</td>
-					<td align="center" th:text="${board.publisher}">${board.publisher}</td>
-					<td align="center" th:text="${board.contractUid}">${board.contractUid}</td>
-					<td align="center" th:text="${board.contractCategory}">${board.contractCategory}</td>
-					<td align="center" th:text="${board.contract}">${board.contract}</td>
-					<td align="center" th:text="${board.newContract}">${board.newContract}</td>
-					<td align="center" th:text="${board.category}">${board.category}</td>
-					<td align="center" th:text="${board.seriesId}">${board.seriesId}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.productCode}">${board.productCode}</td>
-					<td align="center" th:text="${board.lable}">${board.lable}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.isIsbn}">${board.isIsbn}</td>
-					<td align="center" th:text="${board.cpSettlementRateAndroid}">${board.cpSettlementRateAndroid}</td>
-					<td align="center" th:text="${board.cpSettlementRateIos}">${board.cpSettlementRateIos}</td>
-					<td align="center" th:text="${board.useTicketType}">${board.useTicketType}</td>
-					<td align="center" th:text="${board.useTicketAmount}">${board.useTicketAmount}</td>
-					<td align="center" th:text="${board.cacheSum}">${board.cacheSum}</td>
-					<td align="center" th:text="${board.cpp1}">${board.cpp1}</td>
-					<td align="center" th:text="${board.cpl1}">${board.cpl1}</td>
-					<td align="center" th:text="${board.cp1_1}">${board.cp1_1}</td>
-					<td align="center" th:text="${board.cp2_1}">${board.cp2_1}</td>
-					<td align="center" th:text="${board.cp3_1}">${board.cp3_1}</td>
-					<td align="center" th:text="${board.cp7_1}">${board.cp7_1}</td>
-					<td align="center" th:text="${board.cp8_1}">${board.cp8_1}</td>
-					<td align="center" th:text="${board.cp9_1}">${board.cp9_1}</td>
-					<td align="center" th:text="${board.eventCache1}">${board.eventCache1}</td>
-					<td align="center" th:text="${board.originalSum}">${board.originalSum}</td>
-					<td align="center" th:text="${board.cpp2}">${board.cpp2}</td>
-					<td align="center" th:text="${board.cpl2}">${board.cpl2}</td>
-					<td align="center" th:text="${board.cp1_2}">${board.cp1_2}</td>
-					<td align="center" th:text="${board.cp2_2}">${board.cp2_2}</td>
-					<td align="center" th:text="${board.cp3_2}">${board.cp3_2}</td>
-					<td align="center" th:text="${board.cp7_2}">${board.cp7_2}</td>
-					<td align="center" th:text="${board.cp8_2}">${board.cp8_2}</td>
-					<td align="center" th:text="${board.cp9_2}">${board.cp9_2}</td>
-					<td align="center" th:text="${board.eventCache2}">${board.eventCache2}</td>
-					<td align="center" th:text="${board.valueSupply}">${board.valueSupply}</td>
-					<td align="center" th:text="${board.taxAmount}">${board.taxAmount}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" type="text" name="brand" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" type="text" name="specialGeneral2" th:value="${board.specialGeneral2}"/></td>
+					<td><input style="text-align:center;" type="text" name="entrepreneur" th:value="${board.entrepreneur}"/></td>
+					<td><input style="text-align:center;" type="text" name="entrepreneurId" th:value="${board.entrepreneurId}"/></td>
+					<td><input style="text-align:center;" type="text" name="publisher" th:value="${board.publisher}"/></td>
+					<td><input style="text-align:center;" type="text" name="contractUid" th:value="${board.contractUid}"/></td>
+					<td><input style="text-align:center;" type="text" name="contractCategory" th:value="${board.contractCategory}"/></td>
+					<td><input style="text-align:center;" type="text" name="contract" th:value="${board.contract}"/></td>
+					<td><input style="text-align:center;" type="text" name="newContract" th:value="${board.newContract}"/></td>
+					<td><input style="text-align:center;" type="text" name="category" th:value="${board.category}"/></td>
+					<td><input style="text-align:center;" type="text" name="seriesId" th:value="${board.seriesId}"/></td>
+					<td><input style="text-align:center;" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" type="text" name="productCode" th:value="${board.productCode}"/></td>
+					<td><input style="text-align:center;" type="text" name="lable" th:value="${board.lable}"/></td>
+					<td><input style="text-align:center;" type="text" name="author" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" type="text" name="isIsbn" th:value="${board.isIsbn}"/></td>
+					<td><input style="text-align:center;" type="text" name="cpSettlementRateAndroid" th:value="${board.cpSettlementRateAndroid}"/></td>
+					<td><input style="text-align:center;" type="text" name="cpSettlementRateIos" th:value="${board.cpSettlementRateIos}"/></td>
+					<td><input style="text-align:center;" type="text" name="useTicketType" th:value="${board.useTicketType}"/></td>
+					<td><input style="text-align:center;" type="text" name="useTicketAmount" th:value="${board.useTicketAmount}"/></td>
+					<td><input style="text-align:center;" type="text" name="cacheSum" th:value="${board.cacheSum}"/></td>
+					<td><input style="text-align:center;" type="text" name="cpp1" th:value="${board.cpp1}"/></td>
+					<td><input style="text-align:center;" type="text" name="cpl1" th:value="${board.cpl1}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp1_1" th:value="${board.cp1_1}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp2_1" th:value="${board.cp2_1}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp3_1" th:value="${board.cp3_1}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp7_1" th:value="${board.cp7_1}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp8_1" th:value="${board.cp8_1}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp9_1" th:value="${board.cp9_1}"/></td>
+					<td><input style="text-align:center;" type="text" name="eventCache1" th:value="${board.eventCache1}"/></td>
+					<td><input style="text-align:center;" type="text" name="originalSum" th:value="${board.originalSum}"/></td>
+					<td><input style="text-align:center;" type="text" name="cpp2" th:value="${board.cpp2}"/></td>
+					<td><input style="text-align:center;" type="text" name="cpl2" th:value="${board.cpl2}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp1_2" th:value="${board.cp1_2}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp2_2" th:value="${board.cp2_2}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp3_2" th:value="${board.cp3_2}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp7_2" th:value="${board.cp7_2}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp8_2" th:value="${board.cp8_2}"/></td>
+					<td><input style="text-align:center;" type="text" name="cp9_2" th:value="${board.cp9_2}"/></td>
+					<td><input style="text-align:center;" type="text" name="eventCache2" th:value="${board.eventCache2}"/></td>
+					<td><input style="text-align:center;" type="text" name="valueSupply" th:value="${board.valueSupply}"/></td>
+					<td><input style="text-align:center;" type="text" name="taxAmount" th:value="${board.taxAmount}"/></td>
+					<td><input style="text-align:center;" type="text" name="payment" th:value="${board.payment}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>		
@@ -374,6 +393,7 @@
 			<img src="/image/img_kyobo.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">브랜드</th>
 					<th align="center">판매구분</th>
 					<th align="center">판매형태</th>
@@ -402,27 +422,30 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listKyobo}">
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.salesCategory}">${board.salesCategory}</td>
-					<td align="center" th:text="${board.salesType}">${board.salesType}</td>
-					<td align="center" th:text="${board.product}">${board.product}</td>
-					<td align="center" th:text="${board.mainSection}">${board.mainSection}</td>
-					<td align="center" th:text="${board.bookBarcode}">${board.bookBarcode}</td>
-					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
-					<td align="center" th:text="${board.epubIsbn}">${board.epubIsbn}</td>
-					<td align="center" th:text="${board.pdfIsbn}">${board.pdfIsbn}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.episode}">${board.episode}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.netPrice}">${board.netPrice}</td>
-					<td align="center" th:text="${board.salePrice}">${board.salePrice}</td>
-					<td align="center" th:text="${board.saleRate}">${board.saleRate}</td>
-					<td align="center" th:text="${board.download}">${board.download}</td>
-					<td align="center" th:text="${board.netTargetPrice}">${board.netTargetPrice}</td>
-					<td align="center" th:text="${board.netTargetPriceAmount}">${board.netTargetPriceAmount}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.accountingRates}">${board.accountingRates}</td>
-					<td align="center" th:text="${board.bookNumber}">${board.bookNumber}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" type="text" name="brand" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" type="text" name="salesCategory" th:value="${board.salesCategory}"/></td>
+					<td><input style="text-align:center;" type="text" name="salesType" th:value="${board.salesType}"/></td>
+					<td><input style="text-align:center;" type="text" name="product" th:value="${board.product}"/></td>
+					<td><input style="text-align:center;" type="text" name="mainSection" th:value="${board.mainSection}"/></td>
+					<td><input style="text-align:center;" type="text" name="bookBarcode" th:value="${board.bookBarcode}"/></td>
+					<td><input style="text-align:center;" type="text" name="isbn" th:value="${board.isbn}"/></td>
+					<td><input style="text-align:center;" type="text" name="epubIsbn" th:value="${board.epubIsbn}"/></td>
+					<td><input style="text-align:center;" type="text" name="pdfIsbn" th:value="${board.pdfIsbn}"/></td>
+					<td><input style="text-align:center;" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" type="text" name="episode" th:value="${board.episode}"/></td>
+					<td><input style="text-align:center;" type="text" name="author" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" type="text" name="netPrice" th:value="${board.netPrice}"/></td>
+					<td><input style="text-align:center;" type="text" name="salePrice" th:value="${board.salePrice}"/></td>
+					<td><input style="text-align:center;" type="text" name="saleRate" th:value="${board.saleRate}"/></td>
+					<td><input style="text-align:center;" type="text" name="download" th:value="${board.download}"/></td>
+					<td><input style="text-align:center;" type="text" name="netTargetPrice" th:value="${board.netTargetPrice}"/></td>
+					<td><input style="text-align:center;" type="text" name="netTargetPriceAmount" th:value="${board.netTargetPriceAmount}"/></td>
+					<td><input style="text-align:center;" type="text" name="payment" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" type="text" name="accountingRates" th:value="${board.accountingRates}"/></td>
+					<td><input style="text-align:center;" type="text" name="bookNumber" th:value="${board.bookNumber}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -431,6 +454,7 @@
 			<img src="/image/img_mrblue.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">브랜드</th>
 					<th align="center">일자</th>
 					<th align="center">작품명</th>
@@ -476,44 +500,47 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listMrblue}">
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.date}">${board.date}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.code}">${board.code}</td>
-					<td align="center" th:text="${board.fixedNum}">${board.fixedNum}</td>
-					<td align="center" th:text="${board.fixedSales}">${board.fixedSales}</td>
-					<td align="center" th:text="${board.fixedPayment}">${board.fixedPayment}</td>
-					<td align="center" th:text="${board.aAppOnerentalNum}">${board.aAppOnerentalNum}</td>
-					<td align="center" th:text="${board.aAppOnerentalUse}">${board.aAppOnerentalUse}</td>
-					<td align="center" th:text="${board.aAppOnerentalPayment}">${board.aAppOnerentalPayment}</td>
-					<td align="center" th:text="${board.aAppOnemngrNum}">${board.aAppOnemngrNum}</td>
-					<td align="center" th:text="${board.aAppOnemngrUse}">${board.aAppOnemngrUse}</td>
-					<td align="center" th:text="${board.aAppOnemngrPayment}">${board.aAppOnemngrPayment}</td>
-					<td align="center" th:text="${board.aAppAllrentalNum}">${board.aAppAllrentalNum}</td>
-					<td align="center" th:text="${board.aAppAllrentalUse}">${board.aAppAllrentalUse}</td>
-					<td align="center" th:text="${board.aAppAllrentalPayment}">${board.aAppAllrentalPayment}</td>
-					<td align="center" th:text="${board.aAppAllmngrNum}">${board.aAppAllmngrNum}</td>
-					<td align="center" th:text="${board.aAppAllmngrUse}">${board.aAppAllmngrUse}</td>
-					<td align="center" th:text="${board.aAppAllmngrPayment}">${board.aAppAllmngrPayment}</td>
-					<td align="center" th:text="${board.iAppOnerentalNum}">${board.iAppOnerentalNum}</td>
-					<td align="center" th:text="${board.iAppOnerentalUse}">${board.iAppOnerentalUse}</td>
-					<td align="center" th:text="${board.iAppOnerentalPayment}">${board.iAppOnerentalPayment}</td>
-					<td align="center" th:text="${board.iAppOnemngrNum}">${board.iAppOnemngrNum}</td>
-					<td align="center" th:text="${board.iAppOnemngrUse}">${board.iAppOnemngrUse}</td>
-					<td align="center" th:text="${board.iAppOnemngrPayment}">${board.iAppOnemngrPayment}</td>
-					<td align="center" th:text="${board.iAppAllrentalNum}">${board.iAppAllrentalNum}</td>
-					<td align="center" th:text="${board.iAppAllrentalUse}">${board.iAppAllrentalUse}</td>
-					<td align="center" th:text="${board.iAppAllrentalPayment}">${board.iAppAllrentalPayment}</td>
-					<td align="center" th:text="${board.iAppAllmngrNum}">${board.iAppAllmngrNum}</td>
-					<td align="center" th:text="${board.iAppAllmngrUse}">${board.iAppAllmngrUse}</td>
-					<td align="center" th:text="${board.iAppAllmngrPayment}">${board.iAppAllmngrPayment}</td>
-					<td align="center" th:text="${board.amountNum}">${board.amountNum}</td>
-					<td align="center" th:text="${board.amountUse}">${board.amountUse}</td>
-					<td align="center" th:text="${board.amountPayment}">${board.amountPayment}</td>
-					<td align="center" th:text="${board.amountSettlement}">${board.amountSettlement}</td>
-					<td align="center" th:text="${board.sales}">${board.sales}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" type="text" name="brand" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" type="text" name="date" th:value="${board.date}"/></td>
+					<td><input style="text-align:center;" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" type="text" name="author" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" type="text" name="code" th:value="${board.code}"/></td>
+					<td><input style="text-align:center;" type="text" name="fixedNum" th:value="${board.fixedNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="fixedSales" th:value="${board.fixedSales}"/></td>
+					<td><input style="text-align:center;" type="text" name="fixedPayment" th:value="${board.fixedPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppOnerentalNum" th:value="${board.aAppOnerentalNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppOnerentalUse" th:value="${board.aAppOnerentalUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppOnerentalPayment" th:value="${board.aAppOnerentalPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppOnemngrNum" th:value="${board.aAppOnemngrNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppOnemngrUse" th:value="${board.aAppOnemngrUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppOnemngrPayment" th:value="${board.aAppOnemngrPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppAllrentalNum" th:value="${board.aAppAllrentalNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppAllrentalUse" th:value="${board.aAppAllrentalUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppAllrentalPayment" th:value="${board.aAppAllrentalPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppAllmngrNum" th:value="${board.aAppAllmngrNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppAllmngrUse" th:value="${board.aAppAllmngrUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="aAppAllmngrPayment" th:value="${board.aAppAllmngrPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppOnerentalNum" th:value="${board.iAppOnerentalNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppOnerentalUse" th:value="${board.iAppOnerentalUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppOnerentalPayment" th:value="${board.iAppOnerentalPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppOnemngrNum" th:value="${board.iAppOnemngrNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppOnemngrUse" th:value="${board.iAppOnemngrUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppOnemngrPayment" th:value="${board.iAppOnemngrPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppAllrentalNum" th:value="${board.iAppAllrentalNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppAllrentalUse" th:value="${board.iAppAllrentalUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppAllrentalPayment" th:value="${board.iAppAllrentalPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppAllmngrNum" th:value="${board.iAppAllmngrNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppAllmngrUse" th:value="${board.iAppAllmngrUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="iAppAllmngrPayment" th:value="${board.iAppAllmngrPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="amountNum" th:value="${board.amountNum}"/></td>
+					<td><input style="text-align:center;" type="text" name="amountUse" th:value="${board.amountUse}"/></td>
+					<td><input style="text-align:center;" type="text" name="amountPayment" th:value="${board.amountPayment}"/></td>
+					<td><input style="text-align:center;" type="text" name="amountSettlement" th:value="${board.amountSettlement}"/></td>
+					<td><input style="text-align:center;" type="text" name="sales" th:value="${board.sales}"/></td>
+					<td><input style="text-align:center;" type="text" name="payment" th:value="${board.payment}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -522,6 +549,7 @@
 			<img src="/image/img_munpia.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">작가</th>
 					<th align="center">브랜드</th>
 					<th align="center">날짜</th>
@@ -544,21 +572,24 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listMunpia}">
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.date}">${board.date}</td>
-					<td align="center" th:text="${board.classification}">${board.classification}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.purchase}">${board.purchase}</td>
-					<td align="center" th:text="${board.purchaseCancel}">${board.purchaseCancel}</td>
-					<td align="center" th:text="${board.rental}">${board.rental}</td>
-					<td align="center" th:text="${board.rentalCencel}">${board.rentalCencel}</td>
-					<td align="center" th:text="${board.totalSales}">${board.totalSales}</td>
-					<td align="center" th:text="${board.totalSalesCencel}">${board.totalSalesCencel}</td>
-					<td align="center" th:text="${board.realSale}">${board.realSale}</td>
-					<td align="center" th:text="${board.subPayment}">${board.subPayment}</td>
-					<td align="center" th:text="${board.ios}">${board.ios}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="date" type="text" th:value="${board.date}"/></td>
+					<td><input style="text-align:center;" name="classification" type="text" th:value="${board.classification}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="purchase" type="text" th:value="${board.purchase}"/></td>
+					<td><input style="text-align:center;" name="purchaseCancel" type="text" th:value="${board.purchaseCancel}"/></td>
+					<td><input style="text-align:center;" name="rental" type="text" th:value="${board.rental}"/></td>
+					<td><input style="text-align:center;" name="rentalCencel" type="text" th:value="${board.rentalCencel}"/></td>
+					<td><input style="text-align:center;" name="totalSales" type="text" th:value="${board.totalSales}"/></td>
+					<td><input style="text-align:center;" name="totalSalesCencel" type="text" th:value="${board.totalSalesCencel}"/></td>
+					<td><input style="text-align:center;" name="realSale" type="text" th:value="${board.realSale}"/></td>
+					<td><input style="text-align:center;" name="subPayment" type="text" th:value="${board.subPayment}"/></td>
+					<td><input style="text-align:center;" name="ios" type="text" th:value="${board.ios}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -567,6 +598,7 @@
 			<img src="/image/img_naver.png" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">상품명</th>
 					<th align="center">컨텐츠No</th>
 					<th align="center">공급자코드</th>
@@ -611,43 +643,46 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listNaver}">
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.productNo}">${board.productNo}</td>
-					<td align="center" th:text="${board.providerCode}">${board.providerCode}</td>
-					<td align="center" th:text="${board.cpName}">${board.cpName}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.ageLimit}">${board.ageLimit}</td>
-					<td align="center" th:text="${board.serviceDay}">${board.serviceDay}</td>
-					<td align="center" th:text="${board.rentalNumber}">${board.rentalNumber}</td>
-					<td align="center" th:text="${board.rentalNonpy}">${board.rentalNonpy}</td>
-					<td align="center" th:text="${board.rentalFree}">${board.rentalFree}</td>
-					<td align="center" th:text="${board.rentalPaidCookie}">${board.rentalPaidCookie}</td>
-					<td align="center" th:text="${board.rentalFreeCookie}">${board.rentalFreeCookie}</td>
-					<td align="center" th:text="${board.rentalPaidICookie}">${board.rentalPaidICookie}</td>
-					<td align="center" th:text="${board.rentalFreeICookie}">${board.rentalFreeICookie}</td>
-					<td align="center" th:text="${board.ownNumber}">${board.ownNumber}</td>
-					<td align="center" th:text="${board.ownNonpy}">${board.ownNonpy}</td>
-					<td align="center" th:text="${board.ownFree}">${board.ownFree}</td>
-					<td align="center" th:text="${board.ownPaidCookie}">${board.ownPaidCookie}</td>
-					<td align="center" th:text="${board.ownFreeCookie}">${board.ownFreeCookie}</td>
-					<td align="center" th:text="${board.ownPaidICookie}">${board.ownPaidICookie}</td>
-					<td align="center" th:text="${board.ownFreeICookie}">${board.ownFreeICookie}</td>
-					<td align="center" th:text="${board.cookieRentalNumber}">${board.cookieRentalNumber}</td>
-					<td align="center" th:text="${board.cookieRentalPaid}">${board.cookieRentalPaid}</td>
-					<td align="center" th:text="${board.cookieRentalFree}">${board.cookieRentalFree}</td>
-					<td align="center" th:text="${board.cookieOwnNumber}">${board.cookieOwnNumber}</td>
-					<td align="center" th:text="${board.cookieOwnPaid}">${board.cookieOwnPaid}</td>
-					<td align="center" th:text="${board.cookieOwnFree}">${board.cookieOwnFree}</td>
-					<td align="center" th:text="${board.iCookieRentalNumber}">${board.iCookieRentalNumber}</td>
-					<td align="center" th:text="${board.iCookieRentalPaid}">${board.iCookieRentalPaid}</td>
-					<td align="center" th:text="${board.iCookieRentalFree}">${board.iCookieRentalFree}</td>
-					<td align="center" th:text="${board.iCookieOwnNumber}">${board.iCookieOwnNumber}</td>
-					<td align="center" th:text="${board.iCookieOwnPaid}">${board.iCookieOwnPaid}</td>
-					<td align="center" th:text="${board.iCookieOwnFree}">${board.iCookieOwnFree}</td>
-					<td align="center" th:text="${board.iCookieFee}">${board.iCookieFee}</td>
-					<td align="center" th:text="${board.sum}">${board.sum}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="productNo" type="text" th:value="${board.productNo}"/></td>
+					<td><input style="text-align:center;" name="providerCode" type="text" th:value="${board.providerCode}"/></td>
+					<td><input style="text-align:center;" name="cpName" type="text" th:value="${board.cpName}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="ageLimit" type="text" th:value="${board.ageLimit}"/></td>
+					<td><input style="text-align:center;" name="serviceDay" type="text" th:value="${board.serviceDay}"/></td>
+					<td><input style="text-align:center;" name="rentalNumber" type="text" th:value="${board.rentalNumber}"/></td>
+					<td><input style="text-align:center;" name="rentalNonpy" type="text" th:value="${board.rentalNonpy}"/></td>
+					<td><input style="text-align:center;" name="rentalFree" type="text" th:value="${board.rentalFree}"/></td>
+					<td><input style="text-align:center;" name="rentalPaidCookie" type="text" th:value="${board.rentalPaidCookie}"/></td>
+					<td><input style="text-align:center;" name="rentalFreeCookie" type="text" th:value="${board.rentalFreeCookie}"/></td>
+					<td><input style="text-align:center;" name="rentalPaidICookie" type="text" th:value="${board.rentalPaidICookie}"/></td>
+					<td><input style="text-align:center;" name="rentalFreeICookie" type="text" th:value="${board.rentalFreeICookie}"/></td>
+					<td><input style="text-align:center;" name="ownNumber" type="text" th:value="${board.ownNumber}"/></td>
+					<td><input style="text-align:center;" name="ownNonpy" type="text" th:value="${board.ownNonpy}"/></td>
+					<td><input style="text-align:center;" name="ownFree" type="text" th:value="${board.ownFree}"/></td>
+					<td><input style="text-align:center;" name="ownPaidCookie" type="text" th:value="${board.ownPaidCookie}"/></td>
+					<td><input style="text-align:center;" name="ownFreeCookie" type="text" th:value="${board.ownFreeCookie}"/></td>
+					<td><input style="text-align:center;" name="ownPaidICookie" type="text" th:value="${board.ownPaidICookie}"/></td>
+					<td><input style="text-align:center;" name="ownFreeICookie" type="text" th:value="${board.ownFreeICookie}"/></td>
+					<td><input style="text-align:center;" name="cookieRentalNumber" type="text" th:value="${board.cookieRentalNumber}"/></td>
+					<td><input style="text-align:center;" name="cookieRentalPaid" type="text" th:value="${board.cookieRentalPaid}"/></td>
+					<td><input style="text-align:center;" name="cookieRentalFree" type="text" th:value="${board.cookieRentalFree}"/></td>
+					<td><input style="text-align:center;" name="cookieOwnNumber" type="text" th:value="${board.cookieOwnNumber}"/></td>
+					<td><input style="text-align:center;" name="cookieOwnPaid" type="text" th:value="${board.cookieOwnPaid}"/></td>
+					<td><input style="text-align:center;" name="cookieOwnFree" type="text" th:value="${board.cookieOwnFree}"/></td>
+					<td><input style="text-align:center;" name="iCookieRentalNumber" type="text" th:value="${board.iCookieRentalNumber}"/></td>
+					<td><input style="text-align:center;" name="iCookieRentalPaid" type="text" th:value="${board.iCookieRentalPaid}"/></td>
+					<td><input style="text-align:center;" name="iCookieRentalFree" type="text" th:value="${board.iCookieRentalFree}"/></td>
+					<td><input style="text-align:center;" name="iCookieOwnNumber" type="text" th:value="${board.iCookieOwnNumber}"/></td>
+					<td><input style="text-align:center;" name="iCookieOwnPaid" type="text" th:value="${board.iCookieOwnPaid}"/></td>
+					<td><input style="text-align:center;" name="iCookieOwnFree" type="text" th:value="${board.iCookieOwnFree}"/></td>
+					<td><input style="text-align:center;" name="iCookieFee" type="text" th:value="${board.iCookieFee}"/></td>
+					<td><input style="text-align:center;" name="sum" type="text" th:value="${board.sum}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -655,7 +690,8 @@
 		<div id="ridibooksId" style="display:none">
 			<img src="/image/img_ridibooks.png" style="width:100px;">
 			<table border="1">
-				<tr>
+				<tr>	
+					<th></th>
 					<th align="center">시리즈 ID</th>
 					<th align="center">도서 ID</th>
 					<th align="center">제목</th>
@@ -704,47 +740,50 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listRidibooks}">
-					<td align="center" th:text="${board.seriesId}">${board.seriesId}</td>
-					<td align="center" th:text="${board.bookId}">${board.bookId}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.episode}">${board.episode}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.translators}">${board.translators}</td>
-					<td align="center" th:text="${board.picture}">${board.picture}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.seriesName}">${board.seriesName}</td>
-					<td align="center" th:text="${board.ebooksPrice}">${board.ebooksPrice}</td>
-					<td align="center" th:text="${board.singleSaleSales}">${board.singleSaleSales}</td>
-					<td align="center" th:text="${board.singleSaleTicket}">${board.singleSaleTicket}</td>
-					<td align="center" th:text="${board.singleFreeTicket}">${board.singleFreeTicket}</td>
-					<td align="center" th:text="${board.rentalAmount}">${board.rentalAmount}</td>
-					<td align="center" th:text="${board.rentalTicket}">${board.rentalTicket}</td>
-					<td align="center" th:text="${board.freeDownAmount}">${board.freeDownAmount}</td>
-					<td align="center" th:text="${board.freeDownTicket}">${board.freeDownTicket}</td>
-					<td align="center" th:text="${board.setSaleAmount}">${board.setSaleAmount}</td>
-					<td align="center" th:text="${board.setSaleTicket}">${board.setSaleTicket}</td>
-					<td align="center" th:text="${board.setRentalAmount}">${board.setRentalAmount}</td>
-					<td align="center" th:text="${board.setRentalTicket}">${board.setRentalTicket}</td>
-					<td align="center" th:text="${board.cancelAmount}">${board.cancelAmount}</td>
-					<td align="center" th:text="${board.cancelTicket}">${board.cancelTicket}</td>
-					<td align="center" th:text="${board.cancelSingleSaleSales}">${board.cancelSingleSaleSales}</td>
-					<td align="center" th:text="${board.cancelSingleSaleTicket}">${board.cancelSingleSaleTicket}</td>
-					<td align="center" th:text="${board.cancelRentalAmount}">${board.cancelRentalAmount}</td>
-					<td align="center" th:text="${board.cancelRentalTicket}">${board.cancelRentalTicket}</td>
-					<td align="center" th:text="${board.cancelFreeDownAmount}">${board.cancelFreeDownAmount}</td>
-					<td align="center" th:text="${board.cancelFreeDownTicket}">${board.cancelFreeDownTicket}</td>
-					<td align="center" th:text="${board.cancelSetSaleAmount}">${board.cancelSetSaleAmount}</td>
-					<td align="center" th:text="${board.cancelSetSaleTicket}">${board.cancelSetSaleTicket}</td>
-					<td align="center" th:text="${board.cancelSetRentalAmount}">${board.cancelSetRentalAmount}</td>
-					<td align="center" th:text="${board.cancelSetRentalTicket}">${board.cancelSetRentalTicket}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.paperbookIsbn10}">${board.paperbookIsbn10}</td>
-					<td align="center" th:text="${board.paperbookIsbn13}">${board.paperbookIsbn13}</td>
-					<td align="center" th:text="${board.ebookIsbn10}">${board.ebookIsbn10}</td>
-					<td align="center" th:text="${board.ebookIsbn13}">${board.ebookIsbn13}</td>
-					<td align="center" th:text="${board.cpManageId}">${board.cpManageId}</td>
-					<td align="center" th:text="${board.category1}">${board.category1}</td>
-					<td align="center" th:text="${board.category2}">${board.category2}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="seriesId" type="text" th:value="${board.seriesId}"/></td>
+					<td><input style="text-align:center;" name="bookId" type="text" th:value="${board.bookId}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="episode" type="text" th:value="${board.episode}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="translators" type="text" th:value="${board.translators}"/></td>
+					<td><input style="text-align:center;" name="picture" type="text" th:value="${board.picture}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="seriesName" type="text" th:value="${board.seriesName}"/></td>
+					<td><input style="text-align:center;" name="ebooksPrice" type="text" th:value="${board.ebooksPrice}"/></td>
+					<td><input style="text-align:center;" name="singleSaleSales" type="text" th:value="${board.singleSaleSales}"/></td>
+					<td><input style="text-align:center;" name="singleSaleTicket" type="text" th:value="${board.singleSaleTicket}"/></td>
+					<td><input style="text-align:center;" name="singleFreeTicket" type="text" th:value="${board.singleFreeTicket}"/></td>
+					<td><input style="text-align:center;" name="rentalAmount" type="text" th:value="${board.rentalAmount}"/></td>
+					<td><input style="text-align:center;" name="rentalTicket" type="text" th:value="${board.rentalTicket}"/></td>
+					<td><input style="text-align:center;" name="freeDownAmount" type="text" th:value="${board.freeDownAmount}"/></td>
+					<td><input style="text-align:center;" name="freeDownTicket" type="text" th:value="${board.freeDownTicket}"/></td>
+					<td><input style="text-align:center;" name="setSaleAmount" type="text" th:value="${board.setSaleAmount}"/></td>
+					<td><input style="text-align:center;" name="setSaleTicket" type="text" th:value="${board.setSaleTicket}"/></td>
+					<td><input style="text-align:center;" name="setRentalAmount" type="text" th:value="${board.setRentalAmount}"/></td>
+					<td><input style="text-align:center;" name="setRentalTicket" type="text" th:value="${board.setRentalTicket}"/></td>
+					<td><input style="text-align:center;" name="cancelAmount" type="text" th:value="${board.cancelAmount}"/></td>
+					<td><input style="text-align:center;" name="cancelTicket" type="text" th:value="${board.cancelTicket}"/></td>
+					<td><input style="text-align:center;" name="cancelSingleSaleSales" type="text" th:value="${board.cancelSingleSaleSales}"/></td>
+					<td><input style="text-align:center;" name="cancelSingleSaleTicket" type="text" th:value="${board.cancelSingleSaleTicket}"/></td>
+					<td><input style="text-align:center;" name="cancelRentalAmount" type="text" th:value="${board.cancelRentalAmount}"/></td>
+					<td><input style="text-align:center;" name="cancelRentalTicket" type="text" th:value="${board.cancelRentalTicket}"/></td>
+					<td><input style="text-align:center;" name="cancelFreeDownAmount" type="text" th:value="${board.cancelFreeDownAmount}"/></td>
+					<td><input style="text-align:center;" name="cancelFreeDownTicket" type="text" th:value="${board.cancelFreeDownTicket}"/></td>
+					<td><input style="text-align:center;" name="cancelSetSaleAmount" type="text" th:value="${board.cancelSetSaleAmount}"/></td>
+					<td><input style="text-align:center;" name="cancelSetSaleTicket" type="text" th:value="${board.cancelSetSaleTicket}"/></td>
+					<td><input style="text-align:center;" name="cancelSetRentalAmount" type="text" th:value="${board.cancelSetRentalAmount}"/></td>
+					<td><input style="text-align:center;" name="cancelSetRentalTicket" type="text" th:value="${board.cancelSetRentalTicket}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" name="paperbookIsbn10" type="text" th:value="${board.paperbookIsbn10}"/></td>
+					<td><input style="text-align:center;" name="paperbookIsbn13" type="text" th:value="${board.paperbookIsbn13}"/></td>
+					<td><input style="text-align:center;" name="ebookIsbn10" type="text" th:value="${board.ebookIsbn10}"/></td>
+					<td><input style="text-align:center;" name="ebookIsbn13" type="text" th:value="${board.ebookIsbn13}"/></td>
+					<td><input style="text-align:center;" name="cpManageId" type="text" th:value="${board.cpManageId}"/></td>
+					<td><input style="text-align:center;" name="category1" type="text" th:value="${board.category1}"/></td>
+					<td><input style="text-align:center;" name="category2" type="text" th:value="${board.category2}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -753,6 +792,7 @@
 			<img src="/image/img_romance.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">도서코드</th>
 					<th align="center">상품명</th>
 					<th align="center">출판사명</th>
@@ -770,16 +810,19 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listRomance}">
-					<td align="center" th:text="${board.bookCode}">${board.bookCode}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.saleRate}">${board.saleRate}</td>
-					<td align="center" th:text="${board.internetSales}">${board.internetSales}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.regDate}">${board.regDate}</td>
-					<td align="center" th:text="${board.dealer}">${board.dealer}</td>
-					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="bookCode" type="text" th:value="${board.bookCode}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="saleRate" type="text" th:value="${board.saleRate}"/></td>
+					<td><input style="text-align:center;" name="internetSales" type="text" th:value="${board.internetSales}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" name="regDate" type="text" th:value="${board.regDate}"/></td>
+					<td><input style="text-align:center;" name="dealer" type="text" th:value="${board.dealer}"/></td>
+					<td><input style="text-align:center;" name="isbn" type="text" th:value="${board.isbn}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -788,6 +831,7 @@
 			<img src="/image/img_tocsoda.png" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">상품바코드</th>
 					<th align="center">작품명</th>
 					<th align="center">작가명</th>
@@ -805,16 +849,19 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listTocsoda}">
-					<td align="center" th:text="${board.productBacord}">${board.productBacord}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.pc}">${board.pc}</td>
-					<td align="center" th:text="${board.android}">${board.android}</td>
-					<td align="center" th:text="${board.ios}">${board.ios}</td>
-					<td align="center" th:text="${board.iosIap}">${board.iosIap}</td>
-					<td align="center" th:text="${board.sum}">${board.sum}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="productBacord" type="text" th:value="${board.productBacord}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="pc" type="text" th:value="${board.pc}"/></td>
+					<td><input style="text-align:center;" name="android" type="text" th:value="${board.android}"/></td>
+					<td><input style="text-align:center;" name="ios" type="text" th:value="${board.ios}"/></td>
+					<td><input style="text-align:center;" name="iosIap" type="text" th:value="${board.iosIap}"/></td>
+					<td><input style="text-align:center;" name="sum" type="text" th:value="${board.sum}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -823,6 +870,7 @@
 			<img src="/image/img_onestore.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">파트너명</th>
 					<th align="center">파트너ID</th>
 					<th align="center">사업자구분</th>
@@ -860,36 +908,39 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listWinstore}">
-					<td align="center" th:text="${board.partnerName}">${board.partnerName}</td>
-					<td align="center" th:text="${board.partnerId}">${board.partnerId}</td>
-					<td align="center" th:text="${board.entrepreneur}">${board.entrepreneur}</td>
-					<td align="center" th:text="${board.channelProductId}">${board.channelProductId}</td>
-					<td align="center" th:text="${board.channelProductName}">${board.channelProductName}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.episode}">${board.episode}</td>
-					<td align="center" th:text="${board.productId}">${board.productId}</td>
-					<td align="center" th:text="${board.secondSettlementStatus}">${board.secondSettlementStatus}</td>
-					<td align="center" th:text="${board.category}">${board.category}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.pictureAuthor}">${board.pictureAuthor}</td>
-					<td align="center" th:text="${board.type}">${board.type}</td>
-					<td align="center" th:text="${board.saleRate}">${board.saleRate}</td>
-					<td align="center" th:text="${board.cencelRate}">${board.cencelRate}</td>
-					<td align="center" th:text="${board.settlementTargetAmount}">${board.settlementTargetAmount}</td>
-					<td align="center" th:text="${board.salesRate}">${board.salesRate}</td>
-					<td align="center" th:text="${board.salesAmount}">${board.salesAmount}</td>
-					<td align="center" th:text="${board.cencelsRate}">${board.cencelsRate}</td>
-					<td align="center" th:text="${board.cencelsAmount}">${board.cencelsAmount}</td>
-					<td align="center" th:text="${board.sum}">${board.sum}</td>
-					<td align="center" th:text="${board.customerPayment}">${board.customerPayment}</td>
-					<td align="center" th:text="${board.customerPaymentReceipt}">${board.customerPaymentReceipt}</td>
-					<td align="center" th:text="${board.customerPaymentEtc}">${board.customerPaymentEtc}</td>
-					<td align="center" th:text="${board.customerPaymentService}">${board.customerPaymentService}</td>
-					<td align="center" th:text="${board.customerPaymentServiceEtc}">${board.customerPaymentServiceEtc}</td>
-					<td align="center" th:text="${board.serviceDeduction}">${board.serviceDeduction}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.paymentType}">${board.paymentType}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="partnerName" type="text" th:value="${board.partnerName}"/></td>
+					<td><input style="text-align:center;" name="partnerId" type="text" th:value="${board.partnerId}"/></td>
+					<td><input style="text-align:center;" name="entrepreneur" type="text" th:value="${board.entrepreneur}"/></td>
+					<td><input style="text-align:center;" name="channelProductId" type="text" th:value="${board.channelProductId}"/></td>
+					<td><input style="text-align:center;" name="channelProductName" type="text" th:value="${board.channelProductName}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="episode" type="text" th:value="${board.episode}"/></td>
+					<td><input style="text-align:center;" name="productId" type="text" th:value="${board.productId}"/></td>
+					<td><input style="text-align:center;" name="secondSettlementStatus" type="text" th:value="${board.secondSettlementStatus}"/></td>
+					<td><input style="text-align:center;" name="category" type="text" th:value="${board.category}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="pictureAuthor" type="text" th:value="${board.pictureAuthor}"/></td>
+					<td><input style="text-align:center;" name="type" type="text" th:value="${board.type}"/></td>
+					<td><input style="text-align:center;" name="saleRate" type="text" th:value="${board.saleRate}"/></td>
+					<td><input style="text-align:center;" name="cencelRate" type="text" th:value="${board.cencelRate}"/></td>
+					<td><input style="text-align:center;" name="settlementTargetAmount" type="text" th:value="${board.settlementTargetAmount}"/></td>
+					<td><input style="text-align:center;" name="salesRate" type="text" th:value="${board.salesRate}"/></td>
+					<td><input style="text-align:center;" name="salesAmount" type="text" th:value="${board.salesAmount}"/></td>
+					<td><input style="text-align:center;" name="cencelsRate" type="text" th:value="${board.cencelsRate}"/></td>
+					<td><input style="text-align:center;" name="cencelsAmount" type="text" th:value="${board.cencelsAmount}"/></td>
+					<td><input style="text-align:center;" name="sum" type="text" th:value="${board.sum}"/></td>
+					<td><input style="text-align:center;" name="customerPayment" type="text" th:value="${board.customerPayment}"/></td>
+					<td><input style="text-align:center;" name="customerPaymentReceipt" type="text" th:value="${board.customerPaymentReceipt}"/></td>
+					<td><input style="text-align:center;" name="customerPaymentEtc" type="text" th:value="${board.customerPaymentEtc}"/></td>
+					<td><input style="text-align:center;" name="customerPaymentService" type="text" th:value="${board.customerPaymentService}"/></td>
+					<td><input style="text-align:center;" name="customerPaymentServiceEtc" type="text" th:value="${board.customerPaymentServiceEtc}"/></td>
+					<td><input style="text-align:center;" name="serviceDeduction" type="text" th:value="${board.serviceDeduction}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" name="paymentType" type="text" th:value="${board.paymentType}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -898,6 +949,7 @@
 			<img src="/image/img_yes24.png" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">no</th>
 					<th align="center">도서명</th>
 					<th align="center">출판사</th>
@@ -924,25 +976,28 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listYes24}">
-					<td align="center" th:text="${board.no}">${board.no}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.brandSalePrice}">${board.brandSalePrice}</td>
-					<td align="center" th:text="${board.sales}">${board.sales}</td>
-					<td align="center" th:text="${board.salesSalePrice}">${board.salesSalePrice}</td>
-					<td align="center" th:text="${board.salesRefundPrice}">${board.salesRefundPrice}</td>
-					<td align="center" th:text="${board.costRate}">${board.costRate}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.eventType}">${board.eventType}</td>
-					<td align="center" th:text="${board.saleType}">${board.saleType}</td>
-					<td align="center" th:text="${board.eventSalePrice}">${board.eventSalePrice}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.epublId}">${board.epublId}</td>
-					<td align="center" th:text="${board.setCode}">${board.setCode}</td>
-					<td align="center" th:text="${board.paperbookIsbn}">${board.paperbookIsbn}</td>
-					<td align="center" th:text="${board.ebookIsbn}">${board.ebookIsbn}</td>
-					<td align="center" th:text="${board.saleDate}">${board.saleDate}</td>
-					<td align="center" th:text="${board.refundDate}">${board.refundDate}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="no" type="text" th:value="${board.no}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="brandSalePrice" type="text" th:value="${board.brandSalePrice}"/></td>
+					<td><input style="text-align:center;" name="sales" type="text" th:value="${board.sales}"/></td>
+					<td><input style="text-align:center;" name="salesSalePrice" type="text" th:value="${board.salesSalePrice}"/></td>
+					<td><input style="text-align:center;" name="salesRefundPrice" type="text" th:value="${board.salesRefundPrice}"/></td>
+					<td><input style="text-align:center;" name="costRate" type="text" th:value="${board.costRate}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" name="eventType" type="text" th:value="${board.eventType}"/></td>
+					<td><input style="text-align:center;" name="saleType" type="text" th:value="${board.saleType}"/></td>
+					<td><input style="text-align:center;" name="eventSalePrice" type="text" th:value="${board.eventSalePrice}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="epublId" type="text" th:value="${board.epublId}"/></td>
+					<td><input style="text-align:center;" name="setCode" type="text" th:value="${board.setCode}"/></td>
+					<td><input style="text-align:center;" name="paperbookIsbn" type="text" th:value="${board.paperbookIsbn}"/></td>
+					<td><input style="text-align:center;" name="ebookIsbn" type="text" th:value="${board.ebookIsbn}"/></td>
+					<td><input style="text-align:center;" name="saleDate" type="text" th:value="${board.saleDate}"/></td>
+					<td><input style="text-align:center;" name="refundDate" type="text" th:value="${board.refundDate}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -951,6 +1006,7 @@
 			<img src="/image/img_aladin.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
+					<th></th>
 					<th align="center">판매/취소일시</th>
 					<th align="center">ItemId</th>
 					<th align="center">도서명</th>
@@ -971,19 +1027,22 @@
 					</td>
 				</tr>
 				<tr th:each="board : ${listAladin}">
-					<td align="center" th:text="${board.salesCancelDate}">${board.salesCancelDate}</td>
-					<td align="center" th:text="${board.itemId}">${board.itemId}</td>
-					<td align="center" th:text="${board.productName}">${board.productName}</td>
-					<td align="center" th:text="${board.salesType}">${board.salesType}</td>
-					<td align="center" th:text="${board.netPrice}">${board.netPrice}</td>
-					<td align="center" th:text="${board.salePrice}">${board.salePrice}</td>
-					<td align="center" th:text="${board.payment}">${board.payment}</td>
-					<td align="center" th:text="${board.cancelDate}">${board.cancelDate}</td>
-					<td align="center" th:text="${board.author}">${board.author}</td>
-					<td align="center" th:text="${board.brand}">${board.brand}</td>
-					<td align="center" th:text="${board.publisher}">${board.publisher}</td>
-					<td align="center" th:text="${board.isbn}">${board.isbn}</td>
-					<td align="center" th:text="${board.cid}">${board.cid}</td>
+					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="text-align:center;" name="salesCancelDate" type="text" th:value="${board.salesCancelDate}"/></td>
+					<td><input style="text-align:center;" name="itemId" type="text" th:value="${board.itemId}"/></td>
+					<td><input style="text-align:center;" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align:center;" name="salesType" type="text" th:value="${board.salesType}"/></td>
+					<td><input style="text-align:center;" name="netPrice" type="text" th:value="${board.netPrice}"/></td>
+					<td><input style="text-align:center;" name="salePrice" type="text" th:value="${board.salePrice}"/></td>
+					<td><input style="text-align:center;" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="text-align:center;" name="cancelDate" type="text" th:value="${board.cancelDate}"/></td>
+					<td><input style="text-align:center;" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="text-align:center;" name="brand" type="text" th:value="${board.brand}"/></td>
+					<td><input style="text-align:center;" name="publisher" type="text" th:value="${board.publisher}"/></td>
+					<td><input style="text-align:center;" name="isbn" type="text" th:value="${board.isbn}"/></td>
+					<td><input style="text-align:center;" name="cid" type="text" th:value="${board.cid}"/>
+					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
 		</div>
@@ -991,7 +1050,7 @@
 	</form>
 	
 	<div>
-		<button type="submit" onclick="apply()" id="btnUpdate">수정하기</button>
+		<button type="submit" id="btnUpdate">수정하기</button>
 		<button type="submit" onclick="remove();" id="btnDelete">삭제</button>
 		<br> <br>
 		<button type="submit" id="btnUpload">파일업로드</button>

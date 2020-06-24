@@ -48,6 +48,6 @@ public class Mrblue {
 	String payment;							//정산액
 	
 	String writerId;						//작가id
-	Date setDate;							//기준월
+	String setDate;							//기준월
 
 }

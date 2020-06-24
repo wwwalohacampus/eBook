@@ -26,5 +26,5 @@ public class Bookcube {
 	String eIsbn;							//e_isbn
 	String eIsbnEpub;						//e-ISBN(ePub)
 	String writerId;						//작가id
-	Date setDate;							//기준월
+	String setDate;							//기준월
 }

@@ -15,7 +15,7 @@ import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
 import com.eBook.mgr.domain.platform.Yes24;
-import com.eBook.mgr.domain.platform.kyobo;
+import com.eBook.mgr.domain.platform.Kyobo;
 
 @Mapper
 public interface EBookCreateMapper {
@@ -23,7 +23,7 @@ public interface EBookCreateMapper {
 	//public void createEpub(Epub epub) throws Exception;
 	public void createJoara(Joara joara) throws Exception;
 	public void createKakao(Kakao kakao) throws Exception;
-	public void createKyobo(kyobo kyobo) throws Exception;
+	public void createKyobo(Kyobo kyobo) throws Exception;
 	public void createMrblue(Mrblue mrblue) throws Exception;
 	public void createMunpia(Munpia munpia) throws Exception;
 	public void createNaver(Naver naver) throws Exception;

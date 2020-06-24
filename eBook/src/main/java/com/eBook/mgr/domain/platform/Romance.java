@@ -19,5 +19,5 @@ public class Romance {
 	String dealer;							//판매처
 	String isbn;							//isbn
 	String writerId;						//작가id
-	Date setDate;							//기준월
+	String setDate;							//기준월
 }

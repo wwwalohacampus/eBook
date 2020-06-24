@@ -18,7 +18,7 @@ import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
 import com.eBook.mgr.domain.platform.Yes24;
-import com.eBook.mgr.domain.platform.kyobo;
+import com.eBook.mgr.domain.platform.Kyobo;
 
 @Mapper
 public interface EBookListMapper {
@@ -26,7 +26,7 @@ public interface EBookListMapper {
 	//public List<Epub> listEpub(Date setDate) throws Exception;
 	public List<Joara> listJoara(String setDate) throws Exception;
 	public List<Kakao> listKakao(String setDate) throws Exception;
-	public List<kyobo> listkyobo(String setDate) throws Exception;
+	public List<Kyobo> listkyobo(String setDate) throws Exception;
 	public List<Mrblue> listMrblue(String setDate) throws Exception;
 	public List<Munpia> listMunpia(String setDate) throws Exception;
 	public List<Naver> listNaver(String setDate) throws Exception;

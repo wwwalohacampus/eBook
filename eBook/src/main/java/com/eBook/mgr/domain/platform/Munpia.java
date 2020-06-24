@@ -25,5 +25,5 @@ public class Munpia {
 	String payment;							//최종정산
 	
 	String writerId;						//작가id
-	Date setDate;							//기준월
+	String setDate;							//기준월
 }

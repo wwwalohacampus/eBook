@@ -16,7 +16,7 @@ import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
 import com.eBook.mgr.domain.platform.Yes24;
-import com.eBook.mgr.domain.platform.kyobo;
+import com.eBook.mgr.domain.platform.Kyobo;
 
 public interface EBookService {
 	
@@ -25,7 +25,7 @@ public interface EBookService {
 	//public void registerEpub(Epub epub) throws Exception;
 	public void registerJoara(Joara joara) throws Exception;
 	public void registerKakao(Kakao kakao) throws Exception;
-	public void registerkyobo(kyobo kyobo) throws Exception;
+	public void registerKyobo(Kyobo kyobo) throws Exception;
 	public void registerMrblue(Mrblue mrblue) throws Exception;
 	public void registerMunpia(Munpia munpia) throws Exception;
 	public void registerNaver(Naver naver) throws Exception;
@@ -45,7 +45,7 @@ public interface EBookService {
 	//public void removeEpub(String writerId) throws Exception;
 	public void removeJoara(String idx) throws Exception;
 	public void removeKakao(String idx) throws Exception;
-	public void removekyobo(String idx) throws Exception;
+	public void removeKyobo(String idx) throws Exception;
 	public void removeMrblue(String idx) throws Exception;
 	public void removeMunpia(String idx) throws Exception;
 	public void removeNaver(String idx) throws Exception;
@@ -58,6 +58,18 @@ public interface EBookService {
 	
 	
 	public void allRemoveBookcube() throws Exception;
+	public void allRemoveJoara() throws Exception;
+	public void allRemoveKakao() throws Exception;
+	public void allRemoveKyobo() throws Exception;
+	public void allRemoveMrblue() throws Exception;
+	public void allRemoveMunpia() throws Exception;
+	public void allRemoveNaver() throws Exception;
+	public void allRemoveRidibooks() throws Exception;
+	public void allRemoveRomance() throws Exception;
+	public void allRemoveTocsoda() throws Exception;
+	public void allRemoveWinstore() throws Exception;
+	public void allRemoveAladin() throws Exception;
+	public void allRemoveYes24() throws Exception;
 	
 	
 	
@@ -66,7 +78,7 @@ public interface EBookService {
 	//public List<Epub> listEpub(Date setDate) throws Exception;
 	public List<Joara> listJoara(String setDate) throws Exception;
 	public List<Kakao> listKakao(String setDate) throws Exception;
-	public List<kyobo> listkyobo(String setDate) throws Exception;
+	public List<Kyobo> listkyobo(String setDate) throws Exception;
 	public List<Mrblue> listMrblue(String setDate) throws Exception;
 	public List<Munpia> listMunpia(String setDate) throws Exception;
 	public List<Naver> listNaver(String setDate) throws Exception;

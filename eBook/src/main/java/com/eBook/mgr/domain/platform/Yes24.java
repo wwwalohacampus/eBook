@@ -28,5 +28,5 @@ public class Yes24 {
 	String saleDate;							//판매일
 	String refundDate;							//환불일
 	String writerId;							//작가id
-	Date setDate;								//기준월
+	String setDate;								//기준월
 }

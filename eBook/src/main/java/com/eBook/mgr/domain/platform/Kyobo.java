@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class kyobo {
+public class Kyobo {
 	String idx;
 	
 	String brand;								//브랜드
@@ -30,5 +30,5 @@ public class kyobo {
 	String accountingRates;						//정산율(%)
 	String bookNumber;							//북넘버
 	String writerId; 							//작가id
-	Date setDate; 								//기준월
+	String setDate; 								//기준월
 }	

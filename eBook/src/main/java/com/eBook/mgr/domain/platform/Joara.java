@@ -18,5 +18,5 @@ public class Joara {
 	String payment;							//정산금액
 	String paymentDate;						//정산일
 	String writerId;						//작가id
-	Date setDate;							//기준월
+	String setDate;							//기준월
 }

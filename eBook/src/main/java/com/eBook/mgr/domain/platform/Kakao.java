@@ -52,5 +52,5 @@ public class Kakao {
 	String taxAmount;						//세액
 	String payment;							//합계금액
 	String writerId; 						//작가id
-	Date setDate; 							//기준월
+	String setDate; 							//기준월
 }

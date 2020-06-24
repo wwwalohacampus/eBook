@@ -21,7 +21,7 @@ import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
 import com.eBook.mgr.domain.platform.Yes24;
-import com.eBook.mgr.domain.platform.kyobo;
+import com.eBook.mgr.domain.platform.Kyobo;
 import com.eBook.mgr.mapper.EBookCreateMapper;
 import com.eBook.mgr.mapper.EBookDeleteMapper;
 import com.eBook.mgr.mapper.EBookListMapper;
@@ -67,7 +67,7 @@ public class EBookServiceImpl implements EBookService{
 	}
 
 	@Override
-	public void registerkyobo(kyobo kyobo) throws Exception {
+	public void registerKyobo(Kyobo kyobo) throws Exception {
 		// TODO Auto-generated method stub
 		createMapper.createKyobo(kyobo);
 	}
@@ -159,9 +159,9 @@ public class EBookServiceImpl implements EBookService{
 	}
 
 	@Override
-	public void removekyobo(String idx) throws Exception {
+	public void removeKyobo(String idx) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.deletekyobo(idx);
+		deleteMapper.deleteKyobo(idx);
 	}
 
 	@Override
@@ -226,9 +226,78 @@ public class EBookServiceImpl implements EBookService{
 		// TODO Auto-generated method stub
 		deleteMapper.allDeleteBookcube();
 	}
-	
-	
-	
+
+	@Override
+	public void allRemoveJoara() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteJoara();
+	}
+
+	@Override
+	public void allRemoveKakao() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteKakao();
+	}
+
+	@Override
+	public void allRemoveKyobo() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteKyobo();
+	}
+
+	@Override
+	public void allRemoveMrblue() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteMrblue();
+	}
+
+	@Override
+	public void allRemoveMunpia() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteMunpia();
+	}
+
+	@Override
+	public void allRemoveNaver() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteNaver();
+	}
+
+	@Override
+	public void allRemoveRidibooks() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteRidibooks();
+	}
+
+	@Override
+	public void allRemoveRomance() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteRomance();
+	}
+
+	@Override
+	public void allRemoveTocsoda() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteTocsoda();
+	}
+
+	@Override
+	public void allRemoveWinstore() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteWinstore();
+	}
+
+	@Override
+	public void allRemoveAladin() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteAladin();
+	}
+
+	@Override
+	public void allRemoveYes24() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteYes24();
+	}
 
 	// 조회단---------------------------------------------------------------------------
 	@Override
@@ -258,7 +327,7 @@ public class EBookServiceImpl implements EBookService{
 	}
 
 	@Override
-	public List<kyobo> listkyobo(String setDate) throws Exception {
+	public List<Kyobo> listkyobo(String setDate) throws Exception {
 		// TODO Auto-generated method stub
 		return listMapper.listkyobo(setDate);
 	}

@@ -22,5 +22,5 @@ public class Aladin {
 	String isbn;					//isbn
 	String cid;						//CID
 	String writerId;				//작가id
-	Date setDate;					//기준월
+	String setDate;					//기준월
 }

@@ -46,5 +46,5 @@ public class Naver {
 	String sum;											//합계
 	String payment;										//출판사 정산
 	String writerId;									//작가id
-	Date setDate;										//기준월
+	String setDate;										//기준월
 }
