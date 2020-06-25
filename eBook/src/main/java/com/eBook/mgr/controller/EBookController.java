@@ -508,7 +508,7 @@ public class EBookController {
 					mrblue.setDate(dateMrblue[i]);
 					mrblue.setProductName(productNameMrblue[i]);
 					mrblue.setAuthor(authorMrblue[i]);
-					mrblue.setCode(brandMrblue[i]);
+					mrblue.setCode(codeMrblue[i]);
 					mrblue.setFixedNum(fixedNumMrblue[i]);
 					mrblue.setFixedSales(fixedSalesMrblue[i]);
 					mrblue.setFixedPayment(fixedPaymentMrblue[i]);
