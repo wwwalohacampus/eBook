@@ -11,6 +11,7 @@
 	$("document").ready(function(){
 		var p_type = $('#p_type').val();
 		var formObj = $("#platList");
+		var fileName = "";
 		
 		switch(p_type){
 		case 'p_bookcube' :
@@ -67,9 +68,46 @@
 			}
 		}); 
 
+		$('input[type=file]').change(function(e){
+			fileName = e.target.files[0].name;
+		});
+		
+		$("#btnDownLoad").on("click", function(){
+			if (confirm("엑셀파일로 다운로드 하시겠습니까? ")) {
+				formObj.attr("action", "/ebook/download");
+				formObj.attr("method", "post");
+				formObj.submit();
+			} else {
+				
+			}
+		});
+
+		$("#btnUpload").on("click", function(){
+			if (confirm("업로드 하시겠습니까? 현재 파일명 : " + fileName + "입니다.")) {
+				formObj.attr("action", "/ebook/process");
+				formObj.attr("method", "post");
+				formObj.attr("enctype", "multipart/form-data");
+				formObj.submit();
+			} else {
+				
+			}
+		});
+		
 	});
 	
-	
+	function doPopCheckAll() {
+		if ($('input:checkbox[name=delete_ids]').length > 0) {
+			if ($("input:checkbox[name='all_chk']").is(":checked")) {
+				$('input:checkbox[name=delete_ids]').each(function() {
+					$(this).prop('checked', true);
+				});
+			} else {
+				$('input:checkbox[name=delete_ids]').each(function() {
+					$(this).prop('checked', false);
+				});
+			}
+		}
+	}
 	
 	function remove(){
 		
@@ -198,7 +236,7 @@
 			<img src="/image/img_bookcube.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">제목</th>
 					<th align="center">저자</th>
 					<th align="center">출판권자</th>
@@ -251,7 +289,7 @@
 			<img src="/image/img_joara.png" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">브랜드</th>
 					<th align="center">작품명</th>
 					<th align="center">작품코드</th>
@@ -288,7 +326,7 @@
 			<img src="/image/img_kakaopage.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">브랜드</th>
 					<th align="center">특별/일반</th>
 					<th align="center">사업자명</th>
@@ -393,7 +431,7 @@
 			<img src="/image/img_kyobo.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">브랜드</th>
 					<th align="center">판매구분</th>
 					<th align="center">판매형태</th>
@@ -454,7 +492,7 @@
 			<img src="/image/img_mrblue.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">브랜드</th>
 					<th align="center">일자</th>
 					<th align="center">작품명</th>
@@ -549,7 +587,7 @@
 			<img src="/image/img_munpia.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">작가</th>
 					<th align="center">브랜드</th>
 					<th align="center">날짜</th>
@@ -598,7 +636,7 @@
 			<img src="/image/img_naver.png" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">상품명</th>
 					<th align="center">컨텐츠No</th>
 					<th align="center">공급자코드</th>
@@ -691,7 +729,7 @@
 			<img src="/image/img_ridibooks.png" style="width:100px;">
 			<table border="1">
 				<tr>	
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">시리즈 ID</th>
 					<th align="center">도서 ID</th>
 					<th align="center">제목</th>
@@ -792,7 +830,7 @@
 			<img src="/image/img_romance.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">도서코드</th>
 					<th align="center">상품명</th>
 					<th align="center">출판사명</th>
@@ -831,7 +869,7 @@
 			<img src="/image/img_tocsoda.png" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">상품바코드</th>
 					<th align="center">작품명</th>
 					<th align="center">작가명</th>
@@ -870,7 +908,7 @@
 			<img src="/image/img_onestore.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">파트너명</th>
 					<th align="center">파트너ID</th>
 					<th align="center">사업자구분</th>
@@ -949,7 +987,7 @@
 			<img src="/image/img_yes24.png" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">no</th>
 					<th align="center">도서명</th>
 					<th align="center">출판사</th>
@@ -1006,7 +1044,7 @@
 			<img src="/image/img_aladin.jpg" style="width:100px;">
 			<table border="1">
 				<tr>
-					<th></th>
+					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">판매/취소일시</th>
 					<th align="center">ItemId</th>
 					<th align="center">도서명</th>
@@ -1046,7 +1084,7 @@
 				</tr>
 			</table>
 		</div>
-
+		<input type="file" id="excelFile" name="file">
 	</form>
 	
 	<div>
