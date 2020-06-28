@@ -12,8 +12,8 @@
 		<result property="author" column="author" />
 		<result property="realName" column="real_name" />
 		<result property="accountNumber" column="account_number" />
-		<result property="residentRegistrationNumber"
-			column="resident_registration_number" />
+		<result property="ctzNumber"
+			column="ctz_number" />
 		<result property="virtuousTax" column="virtuous_tax" />
 		<result property="loginStatus" column="login_status" />
 		<result property="auth" column="auth" />
@@ -41,9 +41,8 @@
 			author,
 			real_name,
 			account_number,
-			resident_registration_number,
+			ctz_number,
 			virtuous_tax,
-			settlement_ratio,
 			writer_id,
 			manager
 		)
@@ -54,9 +53,8 @@
 			#{author},
 			#{realName},
 			#{accountNumber},
-			#{residentRegistrationNumber},
+			#{ctzNumber},
 			#{virtuousTax},
-			#{settlementRatio},
 			#{writerId},
 			#{manager}
 		)

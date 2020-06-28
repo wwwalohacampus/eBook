@@ -41,6 +41,8 @@ public class MemberController {
 			return "user/register";
 		}
 		
+		System.out.println(member);
+		
 		String inputPassword = member.getPw();
 		member.setPw(passwordEncoder.encode(inputPassword));
 		System.out.println(inputPassword);
