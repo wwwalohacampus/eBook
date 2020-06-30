@@ -1,0 +1,255 @@
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+   <title>Main</title>
+   <script src="/js/jQuery-2.1.4.min.js"></script>
+<!--    <script src="/js/platform.js"></script> -->
+\   
+   <!-- Custom styles for this template-->
+  <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+<script type="text/javascript">
+	$("document").ready(function(){
+		var p_type = $('#p_type').val();
+		var formObj = $("#platList");
+		var fileName = "";
+	
+		switch(p_type){
+		case 'p_bookcube' :
+			$("#bookcubeId").show();
+			break;
+		case 'p_joara' :
+			$("#joaraId").show();
+			break;
+		case 'p_kakao' :
+			$("#kakaoId").show();
+			break;
+		case 'p_kyobo' :
+			$("#kyoboId").show();
+			break;
+		case 'p_mrblue' :
+			$("#mrblueId").show();
+			break;
+		case 'p_munpia' :
+			$("#munpiaId").show();
+			break;
+		case 'p_naver' :
+			$("#naverId").show();
+			break;
+		case 'p_ridibooks' :
+			$("#ridibooksId").show();
+			break;
+		case 'p_romance' :
+			$("#romanceId").show();
+			break;
+		case 'p_tocsoda' :
+			$("#tocsodaId").show();
+			break;
+		case 'p_winstore' :
+			$("#winstoreId").show();
+			break;
+		case 'p_yes24' :
+			$("#yes24Id").show();
+			break;
+		case 'p_aladin' :
+			$("#aladinId").show();
+			break;
+		}
+		
+		
+		$("#btnUpdate").on("click", function(){
+			if (confirm("수정 하시겠습니까?")) {
+				formObj.attr("action", "/ebook/apply");
+				formObj.attr("method", "post");
+				formObj.submit();
+				
+				alert("수정 완료되었습니다.");
+			} else {
+				alert("수정에 실패하였습니다.");
+			}
+		}); 
+
+		$('input[type=file]').change(function(e){
+			fileName = e.target.files[0].name;
+		});
+		
+		$("#btnDownLoad").on("click", function(){
+			if (confirm("엑셀파일로 다운로드 하시겠습니까? ")) {
+				formObj.attr("action", "/ebook/download");
+				formObj.attr("method", "post");
+				formObj.submit();
+			} else {
+				
+			}
+		});
+
+		$("#btnUpload").on("click", function(){
+			if (confirm("업로드 하시겠습니까? 현재 파일명 : " + fileName + "입니다.")) {
+				formObj.attr("action", "/ebook/process");
+				formObj.attr("method", "post");
+				formObj.attr("enctype", "multipart/form-data");
+				formObj.submit();
+			} else {
+				
+			}
+		});
+		
+	});
+	
+	function doPopCheckAll() {
+		if ($('input:checkbox[name=delete_ids]').length > 0) {
+			if ($("input:checkbox[name='all_chk']").is(":checked")) {
+				$('input:checkbox[name=delete_ids]').each(function() {
+					$(this).prop('checked', true);
+				});
+			} else {
+				$('input:checkbox[name=delete_ids]').each(function() {
+					$(this).prop('checked', false);
+				});
+			}
+		}
+	}
+	
+	function remove(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		
+		var chkVal = "";
+		$(":checkbox[name='delete_ids']:checked").each(function(pi,po){
+			chkVal += po.value+",";
+		});
+		
+		if(chkVal!=""){
+			chkVal = chkVal.substring(0, chkVal.length-1);
+		}
+		
+		console.log("### chkVal : " + chkVal);
+
+		/*		
+		 $.ajax({
+             url: '/ebook/remove', 					
+             type: 'POST',
+             data: { "delete_ids" : chkVal },
+             beforeSend : function(xhr)
+             {   // 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+                 xhr.setRequestHeader( header, token );
+             },
+             success: function(data, textStatus, jqXHR)
+             {
+                 alert("success!!");
+             },
+             error: function (jqXHR, textStatus, errorThrown)
+             {
+                 alert(errorThrown + " " + textStatus);
+                 //alert("error!!");
+             }
+        });
+		*/
+		
+		if (confirm("삭제 하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/remove",
+				data:	{ 
+							"delete_ids" : chkVal ,
+							"p_type"	: "[[${platformType}]]"
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("삭제 되었습니다.");
+							location.href="/ebook/list?platformType=" + "[[${platformType}]]";
+						}else{
+							alert("삭제가 실패 되었습니다.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+
+		if(chkVal==""){
+			alert("삭제할 데이터를 체크해주세요.");
+			return ;
+		}
+		
+		
+		
+		
+	}
+	
+	function apply(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		if (confirm("수정 하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/apply",
+				data:	{ 
+							"p_type"	: "[[${platformType}]]"
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("수정 되었습니다.");
+							location.href="/ebook/list?platformType=" + "[[${platformType}]]";
+						}else{
+							alert("수정이 실패 되었습니다.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+	}
+</script>
+
+<body>
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{fragments/menu::menu}"></div>
+		<hr>
+			
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				<div th:replace="~{fragments/header::header}"></div>
+				<hr>
+				
+				<div align="center" layout:fragment="content" ></div>
+				<hr>
+				
+				<div th:replace="~{fragments/footer::footer}"></div>
+				<hr>
+			</div>		
+		</div>
+
+	</div>
+</body>
+</html>

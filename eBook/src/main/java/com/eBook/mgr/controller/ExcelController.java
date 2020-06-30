@@ -189,7 +189,7 @@ public class ExcelController implements ServletContextAware {
 						
 					}
 					System.out.println("값은? " + bookcube);
-					//eBookService.registerBookcube(bookcube);
+					eBookService.registerBookcube(bookcube);
 				}
 			}
 			break;
