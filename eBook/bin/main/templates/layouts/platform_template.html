@@ -5,7 +5,7 @@
    <title>Main</title>
    <script src="/js/jQuery-2.1.4.min.js"></script>
 <!--    <script src="/js/platform.js"></script> -->
-\   
+   
    <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 </head>
@@ -14,7 +14,55 @@
 		var p_type = $('#p_type').val();
 		var formObj = $("#platList");
 		var fileName = "";
+		
+		// 현재 연도 가져와서 최근 10년 변수저장------------------------------------
+		let today = new Date();
+		let year = today.getFullYear();
+		
+		var arrYear = new Array();
+		
+		for(var i=0; i<10; i++)
+		{
+			arrYear[i]=year-i + "년";
+		}
+		
+		var monthSelect = document.getElementById("selete_month");
+		var yearSelect = document.getElementById("selete_year");
+		
+		var option1 = document.createElement("option");
+		var option2 = document.createElement("option");
+		var option3 = document.createElement("option");
+		var option4 = document.createElement("option");
+		var option5 = document.createElement("option");
+		var option6 = document.createElement("option");
+		option1.text = arrYear[0];
+		option2.text = arrYear[1];
+		option3.text = arrYear[2];
+		option4.text = arrYear[3];
+		option5.text = arrYear[4];
+		option6.text = arrYear[5];
+		option1.value = arrYear[0];
+		option2.value = arrYear[1];
+		option3.value = arrYear[2];
+		option4.value = arrYear[3];
+		option5.value = arrYear[4];
+		option6.value = arrYear[5];
+		yearSelect.add(option1, null);
+		yearSelect.add(option2, null);
+		yearSelect.add(option3, null);
+		yearSelect.add(option4, null);
+		yearSelect.add(option5, null);
+		yearSelect.add(option6, null);
+		
+		
+		// -------------------------------------------------------------------
+		
+		//var langSelect = document.getElementById("selete_year");
+		//var selectValue = langSelect.options[langSelect.selectedIndex].value;
+		//var selectText = langSelect.options[langSelect.selectedIndex].text;
 	
+
+		
 		switch(p_type){
 		case 'p_bookcube' :
 			$("#bookcubeId").show();
@@ -83,6 +131,12 @@
 				
 			}
 		});
+		
+		$("#btnSelect").on("click", function(){
+			formObj.attr("action", "/ebook/list?platformType=" + p_type);
+			formObj.attr("method", "post");
+			formObj.submit();
+		});
 
 		$("#btnUpload").on("click", function(){
 			if (confirm("업로드 하시겠습니까? 현재 파일명 : " + fileName + "입니다.")) {
@@ -96,6 +150,14 @@
 		});
 		
 	});
+	
+	function selectBox(){
+		var selectMonth = monthSelect.options[monthSelect.selectedIndex].text;
+		var selectYear = yearSelect.options[yearSelect.selectedIndex].text;
+		
+		//$("input[name='p_year']").eq(0).val(selectYear);
+		//$("input[name='p_month']").eq(0).val(selectMonth);
+	}
 	
 	function doPopCheckAll() {
 		if ($('input:checkbox[name=delete_ids]').length > 0) {

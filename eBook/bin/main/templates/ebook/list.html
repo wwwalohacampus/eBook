@@ -16,8 +16,30 @@
 	<form id="platList" th:action="@{search}" method="POST">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 		<input id="p_type" name="p_type" type="hidden" th:value="${platformType}"/>
+	<!-- 	<input id="p_year" name="p_year" type="hidden" value=""/> -->
+	<!--	<input id="p_month" name="p_month" type="hidden" value=""/> -->
+		<select id="selete_year" name="p_year" class="ui compact selection dropdown" >
+			<option value="" selected>연도</option>
+		</select>&nbsp;
+		<select id="selete_month" name="p_month" class="ui compact selection dropdown" >
+			<option value="" selected>월</option>
+			<option value="01월">1월</option>
+			<option value="02월">2월</option>
+			<option value="03월">3월</option>
+			<option value="04월">4월</option>
+			<option value="05월">5월</option>
+			<option value="06월">6월</option>
+			<option value="07월">7월</option>
+			<option value="08월">8월</option>
+			<option value="09월">9월</option>
+			<option value="10월">10월</option>
+			<option value="11월">11월</option>
+			<option value="12월">12월</option>
+		</select>
+		<button type="submit"  onclick="selectBox();" id="btnSelect">조회</button>
 		<div id="bookcubeId" style="display:none">
 			<img src="/image/img_bookcube.jpg" style="width:100px;">
+			
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>

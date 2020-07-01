@@ -2,6 +2,7 @@ package com.eBook.mgr.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -64,11 +65,110 @@ public class EBookController {
 	
 	// 플랫폼 별로 리스트 보여주기
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(Model model, @RequestParam String platformType, String setDate) throws Exception{
+	@RequestMapping(value = "/list")
+	public void list(Model model, @RequestParam String platformType, String p_year, String p_month) throws Exception{
+		log.info("연도...: " + p_year);
+		log.info("월...: " + p_month);
+		model.addAttribute("platformType", platformType);
+		
+		// setDate계산 ---------------------------------------------
+		String setDate = "";
+
+		if(p_month != null) {
+			p_year = p_year.replace("년", "");
+			p_month = p_month.replace("월", "");
+			
+			setDate = p_year + "-" + p_month;
+			log.info("현재 셋데이터" + setDate);
+		} else {
+			Calendar cal = Calendar.getInstance();
+			int year = cal.get(Calendar.YEAR);
+			int month = cal.get(Calendar.MONTH) + 1;
+			String monthString;
+			
+			if(month < 10) {
+				monthString = "0" + Integer.toString(month);
+			} else {
+				monthString = Integer.toString(month);
+			}
+			
+			setDate = Integer.toString(year) + "-" + monthString;
+		}
+
+		
+		log.info("현재 셋데이터" + setDate);
+		// --------------------------------------------------------
+		switch (platformType) {
+		case "p_bookcube":
+			List<Bookcube> bookList = eBookService.listBookcube(setDate);
+			model.addAttribute("listBookcube", bookList);
+			break;
+//		case "p_epub":
+//			model.addAttribute("listBookcube", eBookService.listEpub(setDate));
+//			break;
+		case "p_joara":
+			log.info("p_joara 진입");
+			model.addAttribute("listJoara", eBookService.listJoara(setDate));
+			break;
+		case "p_kakao":
+			log.info("p_kakao 진입");
+			model.addAttribute("listKakao", eBookService.listKakao(setDate));
+			break;
+		case "p_kyobo":
+			log.info("p_kyobo 진입");
+			model.addAttribute("listKyobo", eBookService.listkyobo(setDate));
+			break;
+		case "p_mrblue":
+			log.info("p_mrblue 진입");
+			model.addAttribute("listMrblue", eBookService.listMrblue(setDate));
+			break;
+		case "p_munpia":
+			log.info("p_munpia 진입");
+			model.addAttribute("listMunpia", eBookService.listMunpia(setDate));
+			break;
+		case "p_naver":
+			log.info("p_naver 진입");
+			model.addAttribute("listNaver", eBookService.listNaver(setDate));
+			break;
+		case "p_ridibooks":
+			log.info("p_ridibooks 진입");
+			model.addAttribute("listRidibooks", eBookService.listRidibooks(setDate));
+			break;
+		case "p_romance":
+			log.info("p_romance 진입");
+			model.addAttribute("listRomance", eBookService.listRomance(setDate));
+			break;
+		case "p_tocsoda":
+			log.info("p_tocsoda 진입");
+			model.addAttribute("listTocsoda", eBookService.listTocsoda(setDate));
+			break;
+		case "p_winstore":
+			log.info("p_winstore 진입");
+			model.addAttribute("listWinstore", eBookService.listWinstore(setDate));
+			break;
+		case "p_yes24":
+			log.info("p_yes24 진입");
+			model.addAttribute("listYes24", eBookService.listYes24(setDate));
+			break;
+		case "p_aladin":
+			log.info("p_aladin 진입");
+			model.addAttribute("listAladin", eBookService.listAladin(setDate));
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	/*
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	public void listPost(Model model, @RequestParam String platformType, String setDate) throws Exception{
 		log.info("플랫폼타입???" + platformType);
 		
 		model.addAttribute("platformType", platformType);
+		
+		log.info("현재 셋데이터" + setDate);
 		
 		setDate = "2020-01-12";
 		
@@ -133,6 +233,7 @@ public class EBookController {
 			break;
 		}
 	}
+	*/
 	
 	// 체크된 리스트 삭제하기
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
