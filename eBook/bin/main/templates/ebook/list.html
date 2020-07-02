@@ -16,8 +16,6 @@
 	<form id="platList" th:action="@{search}" method="POST">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 		<input id="p_type" name="p_type" type="hidden" th:value="${platformType}"/>
-	<!-- 	<input id="p_year" name="p_year" type="hidden" value=""/> -->
-	<!--	<input id="p_month" name="p_month" type="hidden" value=""/> -->
 		<select id="selete_year" name="p_year" class="ui compact selection dropdown" >
 			<option value="" selected>연도</option>
 		</select>&nbsp;
@@ -36,7 +34,7 @@
 			<option value="11월">11월</option>
 			<option value="12월">12월</option>
 		</select>
-		<button type="submit"  onclick="selectBox();" id="btnSelect">조회</button>
+		<button type="submit" id="btnSelect">조회</button>
 		<div id="bookcubeId" style="display:none">
 			<img src="/image/img_bookcube.jpg" style="width:100px;">
 			
@@ -890,6 +888,8 @@
 				</tr>
 			</table>
 		</div>
+		<input type="text" id="yearText" name="yearText"> 년
+		<input type="text" id="monthText" name="monthText"> 월<br>
 		<input type="file" id="excelFile" name="file">
 	</form>
 	

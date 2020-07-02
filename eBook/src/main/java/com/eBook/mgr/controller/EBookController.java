@@ -42,18 +42,10 @@ public class EBookController {
 	private static final Logger log = LoggerFactory.getLogger(EBookController.class);
 
 	@Autowired
-	EBookService eBookService;
-	
-	/*
-	로직구상:
-	 뷰단에서 hidden 처리된 platformType을 가져와 분기하여 플랫폼별로 리스트를 보여줌.
-	 파일 삭제, 적용하기 버튼을 눌러도 platformType값은 고정되어있어 서로 다른 값을 침해하는 일은 발생되지 않을것으로 판단됨.
-	 */
-	
+	EBookService eBookService;	
 	
 	/*
 	안되는것 2020-06-21 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
-						list에 layout적용이안됨
 	  
 	 */
 	
@@ -79,7 +71,6 @@ public class EBookController {
 			p_month = p_month.replace("월", "");
 			
 			setDate = p_year + "-" + p_month;
-			log.info("현재 셋데이터" + setDate);
 		} else {
 			Calendar cal = Calendar.getInstance();
 			int year = cal.get(Calendar.YEAR);

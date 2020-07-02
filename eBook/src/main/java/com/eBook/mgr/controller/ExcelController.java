@@ -77,7 +77,7 @@ public class ExcelController implements ServletContextAware {
 	
 	
 	@RequestMapping(value = "/process", method = RequestMethod.POST)
-	public String process(@RequestParam("file") MultipartFile file, String p_type) throws Exception {
+	public String process(@RequestParam("file") MultipartFile file, String p_type, String yearText, String monthText) throws Exception {
 		System.out.println("file : " + file.getOriginalFilename());
 		String fileName = uploadExcelFile(file);
 		System.out.println("File Name : " + fileName);
@@ -86,6 +86,20 @@ public class ExcelController implements ServletContextAware {
 		
 		int rowindex=0;
 		int columnindex=0;
+		
+		
+		//SetDate 세팅-----------------------------------------
+		System.out.println("연도 :" + yearText);
+		System.out.println("월 :" + monthText);
+		
+		if(monthText.length()==1) {
+			monthText = "0" + monthText;
+		}
+		
+		String date=yearText + "-" + monthText + "-10";
+		
+		
+		//-----------------------------------------------------
 		
 		XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
 		//시트 수 (첫번째에만 존재하므로 0을 준다) 
@@ -107,6 +121,7 @@ public class ExcelController implements ServletContextAware {
 		switch (p_type) {
 		case "p_bookcube":		
 			Bookcube bookcube = new Bookcube();
+			bookcube.setSetDate(date);
 			
 			for(rowindex=3;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -195,6 +210,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_joara":
 			Joara joara = new Joara();
+			joara.setSetDate(date);
 			
 			for(rowindex=1;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -269,6 +285,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_kakao":
 			Kakao kakao = new Kakao();
+			kakao.setSetDate(date);
 			
 			for(rowindex=5;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -409,6 +426,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_kyobo":
 			Kyobo kyobo = new Kyobo();
+			kyobo.setSetDate(date);
 			
 			for(rowindex=1;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -505,6 +523,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_mrblue":
 			Mrblue mrblue = new Mrblue();
+			mrblue.setSetDate(date);
 			
 			for(rowindex=6;rowindex<rows-1;rowindex++){
 				//행을읽는다 
@@ -636,6 +655,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_munpia":
 			Munpia munpia = new Munpia();
+			munpia.setSetDate(date);
 			
 			for(rowindex=1;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -722,6 +742,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_naver":
 			Naver naver = new Naver();
+			naver.setSetDate(date);
 			
 			for(rowindex=4;rowindex<rows-2;rowindex++){
 				//행을읽는다 
@@ -857,6 +878,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_ridibooks":
 			Ridibooks ridibooks = new Ridibooks();
+			ridibooks.setSetDate(date);
 			
 			for(rowindex=1;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -1005,6 +1027,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_romance":
 			Romance romance = new Romance();
+			romance.setSetDate(date);
 			
 			for(rowindex=3;rowindex<rows-1;rowindex++){
 				//행을읽는다 
@@ -1081,6 +1104,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_tocsoda":
 			Tocsoda tocsoda = new Tocsoda();
+			tocsoda.setSetDate(date);
 			
 			for(rowindex=5;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -1157,6 +1181,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_winstore":
 			Winstore winstore = new Winstore();
+			winstore.setSetDate(date);
 			
 			for(rowindex=2;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -1273,6 +1298,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_yes24":
 			Yes24 yes24 = new Yes24();
+			yes24.setSetDate(date);
 			
 			for(rowindex=1;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -1369,6 +1395,7 @@ public class ExcelController implements ServletContextAware {
 			
 		case "p_aladin":
 			Aladin aladin = new Aladin();
+			aladin.setSetDate(date);
 			
 			for(rowindex=1;rowindex<rows;rowindex++){
 				//행을읽는다 
@@ -1563,7 +1590,7 @@ public class ExcelController implements ServletContextAware {
 		
 		
 		// 추후 수정
-		setDate = "2020-01-12";
+		setDate = "2020-01";
 		
 		// 이하 플랫폼별 분기처리 로직 ---------------------------------------------------------
 		
