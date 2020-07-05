@@ -18,4 +18,13 @@ public class DbSettingServiceImpl implements DbSettingService {
 		dbSettingMapper.createDbSetting(dbSetting);
 	}
 
+	@Override
+	public boolean findDbSetting(String bookName) throws Exception {
+		// TODO Auto-generated method stub
+		boolean result;
+		result = dbSettingMapper.findDbSetting(bookName);
+		
+		return result;
+	}
+
 }

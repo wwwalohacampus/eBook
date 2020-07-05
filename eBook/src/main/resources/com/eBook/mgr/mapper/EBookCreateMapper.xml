@@ -642,6 +642,7 @@
 		(
 		product_bacord,
 		product_name,
+		large_category,
 		author,
 		brand,
 		pc,
@@ -657,6 +658,7 @@
 		(
 		#{productBacord},
 		#{productName},
+		#{largeCategory},
 		#{author},
 		#{brand},
 		#{pc},

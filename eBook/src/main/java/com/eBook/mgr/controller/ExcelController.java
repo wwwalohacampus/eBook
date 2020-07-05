@@ -60,6 +60,11 @@ import com.eBook.mgr.service.EBookService;
 @RequestMapping("/ebook")
 public class ExcelController implements ServletContextAware {
 	
+	/*
+	 * 엑셀파일 업로드  84행
+	 * 엑셀파일 다운로드  1518행
+	 * */
+	
 	private static final Logger log = LoggerFactory.getLogger(ExcelController.class);
 	
 	@Value("${upload.path}")
@@ -1153,11 +1158,11 @@ public class ExcelController implements ServletContextAware {
 						if (columnindex==0) {
 							tocsoda.setProductBacord(value);
 						} else if (columnindex==1) {
-							tocsoda.setProductName(value);
+							tocsoda.setLargeCategory(value);
 						} else if (columnindex==2) {
-							tocsoda.setAuthor(value);
+							tocsoda.setProductName(value);
 						} else if (columnindex==3) {
-							tocsoda.setBrand(value);
+							tocsoda.setAuthor(value);
 						} else if (columnindex==4) {
 							tocsoda.setPc(value);
 						} else if (columnindex==5) {
@@ -1175,7 +1180,7 @@ public class ExcelController implements ServletContextAware {
 						
 					}
 					System.out.println("값은? " + tocsoda);
-					//eBookService.registerTocsoda(tocsoda);
+					eBookService.registerTocsoda(tocsoda);
 				}
 			}
 			break;
@@ -1590,7 +1595,7 @@ public class ExcelController implements ServletContextAware {
 		
 		
 		// 추후 수정
-		setDate = "2020-01";
+		setDate = "2020-07";
 		
 		// 이하 플랫폼별 분기처리 로직 ---------------------------------------------------------
 		
@@ -2081,10 +2086,10 @@ public class ExcelController implements ServletContextAware {
 			List<Tocsoda> tocsodaList = eBookService.listTocsoda(setDate);
 			for(int i=0; i<tocsodaList.size(); i++) {
 				objRow = objSheet.createRow(5+i);
-				tocsoda_title[0] = tocsodaList.get(i).getProductBacord();			
-				tocsoda_title[1] = tocsodaList.get(i).getProductName();					
-				tocsoda_title[2] = tocsodaList.get(i).getAuthor();					
-				tocsoda_title[3] = tocsodaList.get(i).getBrand();						
+				tocsoda_title[0] = tocsodaList.get(i).getProductBacord();					
+				tocsoda_title[1] = tocsodaList.get(i).getLargeCategory();			
+				tocsoda_title[2] = tocsodaList.get(i).getProductName();					
+				tocsoda_title[3] = tocsodaList.get(i).getAuthor();						
 				tocsoda_title[4] = tocsodaList.get(i).getPc();						
 				tocsoda_title[5] = tocsodaList.get(i).getAndroid();						
 				tocsoda_title[6] = tocsodaList.get(i).getIos();						

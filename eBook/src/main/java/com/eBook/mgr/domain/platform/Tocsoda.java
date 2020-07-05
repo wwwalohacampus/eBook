@@ -9,6 +9,7 @@ public class Tocsoda {
 	String idx;
 	
 	String productBacord;					//상품바코드
+	String largeCategory;					//대분류
 	String productName;						//작품명
 	String author;							//작가명
 	String brand;							//출판사

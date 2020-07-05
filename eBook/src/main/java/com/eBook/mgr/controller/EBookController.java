@@ -45,7 +45,8 @@ public class EBookController {
 	EBookService eBookService;	
 	
 	/*
-	안되는것 2020-06-21 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
+	안되는것 2020-07-05 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
+	엑셀 다운로드 날짜작업하기
 	  
 	 */
 	

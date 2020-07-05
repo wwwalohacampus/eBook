@@ -22,5 +22,9 @@
             ) 
 	</insert>
 
+	<select id="findDbSetting" parameterType="String" resultType="boolean">
+	   select if(count(*) > 0, 'true', 'false')
+	   from tb_dbsetting where product_name = #{productName, jdbcType=VARCHAR}
+	</select>
 </mapper>
 
