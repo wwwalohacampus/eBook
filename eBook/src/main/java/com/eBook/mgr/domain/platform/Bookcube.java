@@ -21,7 +21,7 @@ public class Bookcube {
 	String netTargetPrice;					//정산대상금액
 	String deductionReservesEvent;			//적립금 이벤트 차감
 	String payment;							//정산액
-	String bookId;							//북넘거
+	String bookId;							//북넘버
 	String isbn;							//isbn
 	String eIsbn;							//e_isbn
 	String eIsbnEpub;						//e-ISBN(ePub)

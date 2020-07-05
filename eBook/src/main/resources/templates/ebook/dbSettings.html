@@ -28,6 +28,17 @@
 		$('input[type=file]').change(function(e){
 			fileName = e.target.files[0].name;
 		});
+		
+		$("#btnDbUpload").on("click", function(){
+			if (confirm("업로드 하시겠습니까? 현재 파일명 : " + fileName + "입니다.")) {
+				formObj.attr("action", "/ebook/dbUpload");
+				formObj.attr("method", "post");
+				formObj.attr("enctype", "multipart/form-data");
+				formObj.submit();
+			} else {
+				
+			}
+		});
 	});
 </script>
 
