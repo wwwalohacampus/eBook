@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.eBook.mgr.domain.Member;
 import com.eBook.mgr.domain.MemberAuth;
+import com.eBook.mgr.dto.AuthorListDto;
 
 @Mapper
 public interface MemberMapper {
@@ -15,7 +16,7 @@ public interface MemberMapper {
 	
 	public Member readByUserId(String userId);
 	
-	public List<Member> list() throws Exception;
+	public List<AuthorListDto> list() throws Exception;
 	
 	public Member read(String userId) throws Exception;
 }

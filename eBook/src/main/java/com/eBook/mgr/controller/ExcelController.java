@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -1521,7 +1522,7 @@ public class ExcelController implements ServletContextAware {
 	
 	
 	@RequestMapping(value = "/download", method = RequestMethod.POST)
-	public String download(String p_type, HttpServletResponse response, String setDate) throws Exception {
+	public String download(String p_type, HttpServletResponse response, HttpServletRequest request, String[] nowDate) throws Exception {
 		
 		XSSFWorkbook objWorkBook = new XSSFWorkbook();
 		String fileName = "";
@@ -1592,10 +1593,10 @@ public class ExcelController implements ServletContextAware {
 		styleCon.setTopBorderColor(HSSFColor.GREY_50_PERCENT.index);
 
 		
-		
-		
-		// 추후 수정
-		setDate = "2020-07";
+		//날짜세팅 -----------------------------------------------------------------------
+		nowDate = request.getParameterValues("nowDate");
+		String setDate = nowDate[0];
+		System.out.println("현재날짜 세팅값 : " + setDate);
 		
 		// 이하 플랫폼별 분기처리 로직 ---------------------------------------------------------
 		

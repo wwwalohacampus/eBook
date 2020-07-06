@@ -46,8 +46,14 @@ public class EBookController {
 	
 	/*
 	안되는것 2020-07-05 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
-	엑셀 다운로드 날짜작업하기
 	  
+	 */
+	
+	/*
+	 엑셀 플랫폼 속성 통일하기
+	 --- 5월기준 ---
+	 로망띠끄 (할인 열 추가됨)
+	 예스24 (bookID 열 추가됨)
 	 */
 	
 	
@@ -65,7 +71,7 @@ public class EBookController {
 		model.addAttribute("platformType", platformType);
 		
 		// setDate계산 ---------------------------------------------
-		String setDate = "";
+		String setDate = ""; 
 
 		if(p_month != null) {
 			p_year = p_year.replace("년", "");
@@ -86,6 +92,8 @@ public class EBookController {
 			
 			setDate = Integer.toString(year) + "-" + monthString;
 		}
+		
+		model.addAttribute("setDate", setDate);
 
 		
 		log.info("현재 셋데이터" + setDate);
@@ -150,6 +158,7 @@ public class EBookController {
 		default:
 			break;
 		}
+		
 	}
 	
 	/*

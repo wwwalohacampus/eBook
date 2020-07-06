@@ -24,7 +24,7 @@ public class MemberController {
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
-	private MemberService service;
+	private MemberService memberService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -48,7 +48,7 @@ public class MemberController {
 		System.out.println(inputPassword);
 		System.out.println(passwordEncoder.encode(inputPassword));
 		
-		service.register(member);
+		memberService.register(member);
 		
 		rttr.addFlashAttribute("userName", member.getRealName());
 		
@@ -62,7 +62,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model) throws Exception{
-		model.addAttribute("list", service.list());
+		model.addAttribute("memberList", memberService.list());
 	}
 	
 	

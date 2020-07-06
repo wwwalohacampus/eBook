@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.eBook.mgr.domain.Member;
 import com.eBook.mgr.domain.MemberAuth;
+import com.eBook.mgr.dto.AuthorListDto;
 import com.eBook.mgr.mapper.MemberMapper;
 
 @Service
@@ -37,7 +38,6 @@ public class MemberServiceImpl implements MemberService {
 		memberAuth.setAuth(auth);
 
 		log.info("id : " + member.getId());
-		log.info("작가명 : " + member.getAuthor());
 		log.info("본명 : " + member.getRealName());
 		log.info("권한 : " + memberAuth.getAuth());
 		
@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Member> list() throws Exception {
+	public List<AuthorListDto> list() throws Exception {
 		return mapper.list();
 	}
 

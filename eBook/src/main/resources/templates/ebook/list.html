@@ -15,6 +15,7 @@
 <div layout:fragment="content">
 	<form id="platList" th:action="@{search}" method="POST">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+		<input id="nowDate" name="nowDate" type="hidden" th:value="${setDate}"/>
 		<input id="p_type" name="p_type" type="hidden" th:value="${platformType}"/>
 		<select id="selete_year" name="p_year" class="ui compact selection dropdown" >
 			<option value="" selected>연도</option>

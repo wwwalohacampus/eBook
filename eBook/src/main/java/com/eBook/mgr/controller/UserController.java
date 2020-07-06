@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eBook.mgr.domain.Member;
 import com.eBook.mgr.domain.platform.Bookcube;
+import com.eBook.mgr.dto.AuthorListDto;
 import com.eBook.mgr.service.MemberService;
 
 @Controller
@@ -28,7 +29,7 @@ public class UserController {
 	public void userList(Model model) {
 		
 		try {
-			List<Member> memberList = memberService.list();
+			List<AuthorListDto> memberList = memberService.list();
 			model.addAttribute("memberList", memberList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
