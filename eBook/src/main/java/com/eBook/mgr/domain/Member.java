@@ -15,7 +15,6 @@ public class Member {
 	String ctzNumber;						// 주민번호
 	private Boolean loginStatus;			// 로그인 활성/비활성
 	String auth;							// 권한
-	String writerId;						// 작가ID
 	String manager;							// 담당자
 	int authNumber;							// 권한번호: 0 : 사용자, 1 :  관리자
 	

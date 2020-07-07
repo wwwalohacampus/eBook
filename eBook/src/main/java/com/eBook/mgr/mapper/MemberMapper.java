@@ -11,14 +11,19 @@ import com.eBook.mgr.dto.AuthorListDto;
 
 @Mapper
 public interface MemberMapper {
+	//회원 등록
 	public void createMember(Member member) throws Exception;
 	public void createAuthor(Author author) throws Exception;
 
+	
 	public void createAuth(MemberAuth memberAuth);
 	
 	public Member readByUserId(String userId);
 	
+	//회원 리스트조회
 	public List<AuthorListDto> list() throws Exception;
+	
+	
 	
 	public Member read(String userId) throws Exception;
 	

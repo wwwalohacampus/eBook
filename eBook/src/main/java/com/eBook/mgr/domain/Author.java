@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class Author {
+	String id;
 	String author;							// 작가명
 	String accountNumber;					// 계좌번호
 	String virtuousTax;						// 선인세

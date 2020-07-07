@@ -58,7 +58,6 @@
 			pw,
 			real_name,
 			ctz_number,
-			writer_id,
 			manager
 		)
 		SELECT
@@ -66,16 +65,16 @@
 			#{pw},
 			#{realName},
 			#{ctzNumber},
-			CONCAT('','au-',LPAD(COUNT(*)+1,3,'0')),
 			#{manager}
 		FROM member
 		]]>
 	</insert>
 	
-	<insert id="createAuthor">
-		<![CDATA[
+	<insert id="createAuthor">	
+		<![CDATA[	
 		INSERT INTO tb_author
 		(
+			id,
 			writer_id,
 			author,
 			account_number,
@@ -83,6 +82,7 @@
 			settlement_ratio
 		)
 		SELECT
+			#{id},
 			CONCAT('','au-',LPAD(COUNT(*)+1,3,'0')),
 			#{author},
 			#{accountNumber},
@@ -120,7 +120,7 @@
 
 	<select id="list" resultMap="AuthorDto">
 		SELECT mem.idx,
-			mem.writer_id,
+			author.writer_id,
 			mem.id,
 			author.author,
 			mem.real_name,
@@ -131,7 +131,7 @@
 			author.settlement_ratio,
 			mem.manager
 		FROM member mem INNER JOIN tb_author author
-		ON mem.writer_id = author.writer_id
+		ON mem.id = author.id
 	</select>
 
 	<select id="read" resultMap="memberMap">

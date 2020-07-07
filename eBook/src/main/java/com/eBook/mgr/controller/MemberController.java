@@ -58,6 +58,7 @@ public class MemberController {
 		member.setCtzNumber(request.getParameter("ctzNumber"));
 		member.setManager(request.getParameter("manager"));
 		member.setAuthNumber(Integer.parseInt(request.getParameter("authNumber")));
+		author.setId(request.getParameter("id"));
 		author.setAuthor(request.getParameter("author"));
 		author.setAccountNumber(request.getParameter("accountNumber"));
 		author.setVirtuousTax(request.getParameter("virtuousTax"));
