@@ -25,10 +25,10 @@ public class Member {
 	private List<MemberAuth> authList;
 	
 
-	String author;							// 작가명
-	String accountNumber;					// 계좌번호
-	String virtuousTax;						// 선인세
-	String settlementRatio;					// 정산비율
+//	String author;							// 작가명
+//	String accountNumber;					// 계좌번호
+//	String virtuousTax;						// 선인세
+//	String settlementRatio;					// 정산비율
 }
 
 

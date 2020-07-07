@@ -11,49 +11,47 @@
 <body>
 <div>
    <h2>회원 등록</h2>
-		<form id="member" action="list.html" th:action="@{/user/register}" method="POST">
+		<form id="member" action="list.html" th:action="@{/user/register}"
+			th:object="${member}" method="POST">
+		<input type="hidden" th:value="${writerId}" name="writerId"/>
 
 			<table>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="id"/></td>
+					<td><input type="text" name="id" th:field="*{id}" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="pw"/></td>
+					<td><input type="password" name="pw" th:field="*{pw}" /></td>
 				</tr>
 				<tr>
 					<td>작가명</td>
-					<td><input type="text" name="author"/></td>
+					<td><input type="text" name="author" th:field="*{author}" /></td>
 				</tr>
 				<tr>
 					<td>본명</td>
-					<td><input type="text" name="realName"/></td>
+					<td><input type="text" name="realName" th:field="*{realName}" /></td>
 				</tr>
 				<tr>
 					<td>계좌번호</td>
-					<td><input type="text" name="accountNumber"/></td>
+					<td><input type="text" name="accountNumber" th:field="*{accountNumber}" /></td>
 				</tr>
 				<tr>
 					<td>주민번호</td>
-					<td><input type="text" name="ctzNumber"/></td>
+					<td><input type="text" name="ctzNumber" th:field="*{ctzNumber}" /></td>
 				</tr>
 				<tr>
 					<td>선인세</td>
-					<td><input type="text" name="virtuousTax"/></td>
+					<td><input type="text" name="virtuousTax" th:field="*{virtuousTax}" /></td>
 				</tr>
 				<tr>
 					<td>담당자</td>
-					<td><input type="text" name="manager"/></td>
-				</tr>
-				<tr>
-					<td>정산비율</td>
-					<td><input type="text" name="settlementRatio"/></td>
+					<td><input type="text" name="manager" th:field="*{manager}" /></td>
 				</tr>
 				<tr>
 					<td>권한</td>
 					<td>
-						<select name="authNumber" id="authNumber">
+						<select name="authNumber" id="authNumber" th:field="*{authNumber}">
 								<option value="0">사용자</option>
 								<option value="1">관리자</option>
 						</select>
@@ -63,7 +61,7 @@
 		</form>
 
 		<div>
-      <button type="submit" id="btnRegister">등록</button>
+      <button type="submit" id="btnRegister">수정</button>
       <button type="submit" id="btnList">목록</button>
    </div>
    
@@ -73,7 +71,6 @@
          var formObj = $("#member");
    
          $("#btnRegister").on("click", function() {
-			formObj.attr("method", "post");
             formObj.submit();
          });
          

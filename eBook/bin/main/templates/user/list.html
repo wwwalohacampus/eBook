@@ -8,11 +8,10 @@
 </head>
 <body>
 <div>
-   <h2>회원 목록</h2>
-   <a href="register.html" th:href="@{/user/register}">새로만들기</a>
    
    <table border="1">
       <tr>
+      	 <th></th>
          <th align="center">작가ID</th>
          <th align="center">ID</th>
          <th align="center">작가명</th>
@@ -25,14 +24,16 @@
          <th align="center">담당자</th>
       </tr>
       
-      <tr th:if="${#lists.isEmpty(list)}">
+      <tr th:if="${#lists.isEmpty(memberList)}">
          <td colspan="6">
             List is empty.
          </td>
       </tr>
       
       <tr th:each="member : ${memberList}">
-        <td><input style="text-align:center;" type="text" name="writerId" th:href="'/user/read?writerId=' + ${member.writerId}" th:value="${member.writerId}"/></td>
+      	<td><input type="checkbox" name="delete_ids" th:value="${member.idx}"/></td>
+        <!-- <td><input style="text-align:center;" type="text" name="writerId" th:href="'/user/read?writerId=' + ${member.writerId}" th:value="${member.writerId}"/></td> -->
+        <td><a th:text="${member.writerId}" th:href="@{|/user/read?writerId=${member.writerId}|}"></a></td>
         <td><input style="text-align:center;" type="text" name="id" th:value="${member.id}"/></td>
         <td><input style="text-align:center;" type="text" name="author" th:value="${member.author}"/></td>
         <td><input style="text-align:center;" type="text" name="realName" th:value="${member.realName}"/></td>
@@ -44,6 +45,13 @@
         <td><input style="text-align:center;" type="text" name="manager" th:value="${member.manager}"/></td>
       </tr>
    </table>
+   
+	<div>
+		<a href="register.html" th:href="@{/user/register}">새로만들기</a>
+		<button type="submit" onclick="remove();" id="btnDelete">삭제</button><br>
+		<button type="submit" id="btnUse">회원활성</button>
+		<button type="submit" id="btnUnuse">회원비활성</button>
+	</div>
    
    <script th:inline="javascript">
    

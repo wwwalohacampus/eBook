@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eBook.mgr.domain.Author;
 import com.eBook.mgr.domain.Member;
 import com.eBook.mgr.domain.MemberAuth;
 import com.eBook.mgr.dto.AuthorListDto;
@@ -21,8 +22,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberMapper mapper;
 
 	@Override
-	public void register(Member member) throws Exception {
-		mapper.create(member);
+	public void registerMember(Member member) throws Exception {
+		mapper.createMember(member);
 		
 		String auth = "";
 		if( member.getAuthNumber() == 0 )
@@ -43,6 +44,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		mapper.createAuth(memberAuth);
+	}
+
+	@Override
+	public void registerAuthor(Author author) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.createAuthor(author);
 	}
 
 	@Override
