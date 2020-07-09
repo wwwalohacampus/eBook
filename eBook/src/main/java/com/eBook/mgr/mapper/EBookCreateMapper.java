@@ -33,4 +33,9 @@ public interface EBookCreateMapper {
 	public void createWinstore(Winstore winstore) throws Exception;
 	public void createAladin(Aladin aladin) throws Exception;
 	public void createYes24(Yes24 yes24) throws Exception;
+	
+	
+	public String readBrand(String productName) throws Exception;
+	public String readAuthor(String productName) throws Exception;
+	public String readWriterId(String author) throws Exception;
 }

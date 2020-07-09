@@ -36,7 +36,9 @@ public interface EBookService {
 	public void registerYes24(Yes24 yes24) throws Exception;
 	public void registerAladin(Aladin aladin) throws Exception;
 	
-	
+	public String readBrand(String productName) throws Exception;
+	public String readAuthor(String productName) throws Exception;
+	public String readWriterId(String author) throws Exception;
 	
 	
 	

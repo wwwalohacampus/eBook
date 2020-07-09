@@ -837,5 +837,26 @@
 			#{setDate}
              )
 	</insert>
+	
+	
+	
+	
+	<select id="readBrand" resultType="String">
+		SELECT brand
+		FROM tb_dbsetting
+		WHERE product_name = #{productName}
+	</select>
+	
+	<select id="readAuthor" resultType="String">
+		SELECT author
+		FROM tb_dbsetting
+		WHERE product_name = #{productName}
+	</select>	
+	
+	<select id="readWriterId" resultType="String">
+		SELECT writer_id
+		FROM tb_author
+		WHERE author = #{author}
+	</select>
 </mapper>
 

@@ -209,6 +209,12 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String brand = eBookService.readBrand(bookcube.getProductName());
+					String writerId	= eBookService.readWriterId(bookcube.getAuthor());
+					log.info("브랜드??? : " + brand);
+					log.info("작가??? : " + writerId);
+					bookcube.setBrand(brand);
+					bookcube.setWriterId(writerId);
 					System.out.println("값은? " + bookcube);
 					eBookService.registerBookcube(bookcube);
 				}
@@ -284,8 +290,16 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					log.info("======================================");
+					System.out.println(joara);
+					String brand = eBookService.readBrand(joara.getProductName());
+					String writerId	= eBookService.readWriterId(joara.getAuthor());
+					log.info("브랜드??? : " + brand);
+					log.info("작가??? : " + writerId);
+					joara.setBrand(brand);
+					joara.setWriterId(writerId);
 					System.out.println("값은? " + joara);
-					//eBookService.registerJoara(joara);
+					eBookService.registerJoara(joara);
 				}
 			}
 			break;
@@ -425,8 +439,14 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String brand = eBookService.readBrand(kakao.getProductName());
+					String writerId	= eBookService.readWriterId(kakao.getAuthor());
+					log.info("브랜드??? : " + brand);
+					log.info("작가??? : " + writerId);
+					kakao.setBrand(brand);
+					kakao.setWriterId(writerId);
 					System.out.println("값은? " + kakao);
-					//eBookService.registerKakao(kakao);
+					eBookService.registerKakao(kakao);
 				}
 			}
 			break;
@@ -522,8 +542,14 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String brand = eBookService.readBrand(kyobo.getProductName());
+					String writerId	= eBookService.readWriterId(kyobo.getAuthor());
+					log.info("브랜드??? : " + brand);
+					log.info("작가??? : " + writerId);
+					kyobo.setBrand(brand);
+					kyobo.setWriterId(writerId);
 					System.out.println("값은? " + kyobo);
-					//eBookService.registerKyobo(kyobo);
+					eBookService.registerKyobo(kyobo);
 				}
 			}
 			break;
@@ -653,8 +679,14 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String brand = eBookService.readBrand(mrblue.getProductName());
+					String writerId	= eBookService.readWriterId(mrblue.getAuthor());
+					log.info("브랜드??? : " + brand);
+					log.info("작가??? : " + writerId);
+					mrblue.setBrand(brand);
+					mrblue.setWriterId(writerId);
 					System.out.println("값은? " + mrblue);
-					//eBookService.registerMrblue(mrblue);
+					eBookService.registerMrblue(mrblue);
 				}
 			}
 
@@ -740,9 +772,18 @@ public class ExcelController implements ServletContextAware {
 							munpia.setIos(value);
 						} 
 					}
+					String brand = eBookService.readBrand(munpia.getProductName());
+					String author = eBookService.readAuthor(munpia.getProductName());
+					log.info("작가??? : " + author);
+					munpia.setAuthor(author);
+					String writerId	= eBookService.readWriterId(munpia.getAuthor());
+					log.info("브랜드??? : " + brand);
+					log.info("작가??? : " + writerId);
+					munpia.setBrand(brand);
+					munpia.setWriterId(writerId);
 					munpia.setPayment(Integer.toString(Integer.parseInt(munpia.getSubPayment()) + Integer.parseInt(munpia.getIos())));
 					System.out.println("값은? " + munpia);
-					//eBookService.registerMunpia(munpia);
+					eBookService.registerMunpia(munpia);
 				}
 			}
 			break;
@@ -877,8 +918,12 @@ public class ExcelController implements ServletContextAware {
 					
 					naver.setPayment(Integer.toString(payment));
 					
+					String writerId	= eBookService.readWriterId(naver.getAuthor());
+					log.info("작가??? : " + writerId);
+					naver.setWriterId(writerId);
+					
 					System.out.println("값은? " + naver);
-					//eBookService.registerNaver(naver);
+					eBookService.registerNaver(naver);
 				}
 			}
 			break;
@@ -1026,8 +1071,11 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String writerId	= eBookService.readWriterId(ridibooks.getAuthor());
+					log.info("작가??? : " + writerId);
+					ridibooks.setWriterId(writerId);
 					System.out.println("값은? " + ridibooks);
-					//eBookService.registerRidibooks(ridibooks);
+					eBookService.registerRidibooks(ridibooks);
 				}
 			}
 			break;
@@ -1103,8 +1151,11 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String writerId	= eBookService.readWriterId(romance.getAuthor());
+					log.info("작가??? : " + writerId);
+					romance.setWriterId(writerId);
 					System.out.println("값은? " + romance);
-					//eBookService.registerRomance(romance);
+					eBookService.registerRomance(romance);
 				}
 			}
 			break;
@@ -1180,6 +1231,12 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String brand = eBookService.readBrand(tocsoda.getProductName());
+					String writerId	= eBookService.readWriterId(tocsoda.getAuthor());
+					log.info("브랜드??? : " + brand);
+					log.info("작가??? : " + writerId);
+					tocsoda.setBrand(brand);
+					tocsoda.setWriterId(writerId);
 					System.out.println("값은? " + tocsoda);
 					eBookService.registerTocsoda(tocsoda);
 				}
@@ -1297,8 +1354,11 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String writerId	= eBookService.readWriterId(winstore.getAuthor());
+					log.info("작가??? : " + writerId);
+					winstore.setWriterId(writerId);
 					System.out.println("값은? " + winstore);
-					//eBookService.registerWinstore(winstore);
+					eBookService.registerWinstore(winstore);
 				}
 			}
 			break;
@@ -1392,8 +1452,11 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String writerId	= eBookService.readWriterId(yes24.getAuthor());
+					log.info("작가??? : " + writerId);
+					yes24.setWriterId(writerId);
 					System.out.println("값은? " + yes24);
-					//eBookService.registerYes24(yes24);
+					eBookService.registerYes24(yes24);
 				}
 			}
 
@@ -1484,8 +1547,11 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String writerId	= eBookService.readWriterId(aladin.getAuthor());
+					log.info("작가??? : " + writerId);
+					aladin.setWriterId(writerId);
 					System.out.println("값은? " + aladin);
-					//eBookService.registerAladin(aladin);
+					eBookService.registerAladin(aladin);
 				}
 			}
 

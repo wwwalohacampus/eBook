@@ -128,11 +128,29 @@ public class EBookServiceImpl implements EBookService{
 	
 	
 	
+	@Override
+	public String readBrand(String productName) throws Exception {
+		// TODO Auto-generated method stub
+		return createMapper.readBrand(productName);
+	}
+	
+	@Override
+	public String readAuthor(String productName) throws Exception {
+		// TODO Auto-generated method stub
+		return createMapper.readAuthor(productName);
+	}	
+	
+	@Override
+	public String readWriterId(String author) throws Exception {
+		// TODO Auto-generated method stub
+		return createMapper.readWriterId(author);
+	}
 	
 	
 	
 	
 	
+
 	// 삭제단---------------------------------------------------------------------------------
 	@Override
 	public void removeBookcube(String idx) throws Exception {
