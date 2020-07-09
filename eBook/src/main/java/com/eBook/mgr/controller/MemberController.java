@@ -1,22 +1,23 @@
 package com.eBook.mgr.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eBook.mgr.domain.Author;
 import com.eBook.mgr.domain.Member;
+import com.eBook.mgr.dto.AuthorListDto;
+import com.eBook.mgr.service.AuthorService;
 import com.eBook.mgr.service.MemberService;
 
 @Controller
@@ -30,6 +31,9 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@Autowired
+	private AuthorService authorService;
+	
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	
@@ -37,7 +41,6 @@ public class MemberController {
 	public void registerForm(Member member, String writerId, Model model) throws Exception {
 		log.info("register Member.....");
 		
-		System.out.println("작가 아아디: " + writerId);
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -82,7 +85,14 @@ public class MemberController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model) throws Exception{
-		model.addAttribute("memberList", memberService.list());
+		System.out.println("리스트반환");
+		List<AuthorListDto> list = memberService.list();
+		
+		for (AuthorListDto author : list) {
+			System.out.println("author : " + author.getRealName());
+		}
+		
+		model.addAttribute("memberList", list);
 	}
 	
 	
@@ -90,9 +100,59 @@ public class MemberController {
 	public void readForm(Member member, String writerId, Model model) throws Exception {
 		log.info("register Member.....");
 		
-		System.out.println("작가 아아디: " + writerId);
+		// writerId 로 조회
+		AuthorListDto author =  authorService.read(writerId);
+		model.addAttribute("AuthorListDto", author);
 		model.addAttribute("writerId", writerId);
 	}
 	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(AuthorListDto authorDto) throws Exception {
+		System.out.println(authorDto);
+		
+		// update
+		Member member = new Member();
+		Author author = new Author();
+		
+		member.setId(authorDto.getId());
+		member.setRealName(authorDto.getRealName());
+		member.setCtzNumber(authorDto.getCtzNumber());
+		member.setManager(authorDto.getManager());
+		author.setAuthor(authorDto.getAuthor());
+		author.setAccountNumber(authorDto.getAccountNumber());
+		author.setVirtuousTax(authorDto.getVirtuousTax());
+		author.setSettlementRatio(authorDto.getSettlementRatio());
+		author.setWriterId(authorDto.getWriterId());
+		
+		memberService.modifyAuthorDto(member, author);
+		
+		return "redirect:/user/list";
+	}
+	
+	
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String remove(Model model, String delete_ids) throws Exception {
+		
+		
+		String[] deleteIdsArr = delete_ids.split(",");
+		String id = "";
+		log.info("writerIIID : " + deleteIdsArr[0]);
+		
+		try {
+			model.addAttribute("result", true);
+			for (int i=0; i<deleteIdsArr.length; i++) {
+				id = memberService.readWriterId(deleteIdsArr[i]);
+				log.info("아이디값값?: " + id);
+				
+				memberService.removeAuthorDto(id, deleteIdsArr[i]);
+			}
+		} catch (Exception e) {
+			model.addAttribute("result", false);
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		return "redirect:/user/list";
+	}
 	
 }

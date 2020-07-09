@@ -15,17 +15,33 @@ public interface MemberMapper {
 	public void createMember(Member member) throws Exception;
 	public void createAuthor(Author author) throws Exception;
 
+	//회원 리스트조회
+	public List<AuthorListDto> list() throws Exception;
+	
+	
+	//회원 업데이트
+	public void updateMember(Member member) throws Exception;
+	public void updateAuthor(Author author) throws Exception;
+	
+	
+	//회원 삭제
+	public void deleteMember(String id) throws Exception;
+	public void deleteAuthor(String writerId) throws Exception;
+	public String[] readId(String id) throws Exception;
+	public String readWriterId(String writerId) throws Exception;
+	
+	
+	//회원 활성/비활성
+	public void useLogin(String id) throws Exception;
+	public void unUseLogin(String id) throws Exception;
+	
 	
 	public void createAuth(MemberAuth memberAuth);
 	
 	public Member readByUserId(String userId);
 	
-	//회원 리스트조회
-	public List<AuthorListDto> list() throws Exception;
 	
 	
 	
 	public Member read(String userId) throws Exception;
-	
-	public void deleteMember(String writerId) throws Exception;
 }

@@ -27,7 +27,6 @@
 	</resultMap>
 
 	<resultMap type="com.eBook.mgr.dto.AuthorListDto" id="AuthorDto">
-		<id property="idx" column="idx" />
 		<result property="idx" column="idx" />
 		<result property="writerId" column="writer_id" />
 		<result property="id" column="id" />
@@ -51,7 +50,6 @@
 	</resultMap>
 
 	<insert id="createMember">
-		<![CDATA[
 		INSERT INTO member
 		(
 			id,
@@ -60,14 +58,14 @@
 			ctz_number,
 			manager
 		)
-		SELECT
+		VALUES
+		(
 			#{id},
 			#{pw},
 			#{realName},
 			#{ctzNumber},
 			#{manager}
-		FROM member
-		]]>
+		)
 	</insert>
 	
 	<insert id="createAuthor">	
@@ -91,6 +89,47 @@
 		FROM tb_author
 		]]>
 	</insert>
+	
+	<update id="updateMember">
+		UPDATE member
+		SET real_name = #{realName},
+			ctz_number = #{ctzNumber},
+			manager = #{manager}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="updateAuthor">
+		UPDATE tb_author
+		SET author = #{author},
+			account_number = #{accountNumber},
+			virtuous_tax = #{virtuousTax},
+			settlement_ratio = #{settlementRatio}
+		WHERE writer_id = #{writerId}
+	</update>
+	
+	
+	<delete id="deleteMember">
+		DELETE FROM member
+		WHERE id = #{id}
+	</delete>
+	
+	<delete id="deleteAuthor">
+		DELETE FROM tb_author
+		WHERE writer_id = #{writerId}
+	</delete>
+	
+	<select id="readId" resultType="String">
+		SELECT id
+		FROM tb_author
+		WHERE id = #{id}
+	</select>
+	
+	<select id="readWriterId" resultType="String">
+		SELECT id
+		FROM tb_author
+		WHERE writer_id = #{writerId}
+	</select>
+	
 
 	<insert id="createAuth">
 		INSERT INTO member_auth

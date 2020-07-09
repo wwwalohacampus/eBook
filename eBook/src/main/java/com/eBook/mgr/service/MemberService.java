@@ -10,7 +10,15 @@ public interface MemberService {
 	public void registerMember(Member member) throws Exception;
 	public void registerAuthor(Author author) throws Exception;
 	
+	public void modifyAuthorDto(Member member, Author author) throws Exception;
+	
+	public void removeAuthorDto(String id, String writerId) throws Exception;
+	public String readWriterId(String writerId) throws Exception;
+	
+	
 	public List<AuthorListDto> list() throws Exception;
 	
 	public Member read(String userId) throws Exception;
+	
+	
 }

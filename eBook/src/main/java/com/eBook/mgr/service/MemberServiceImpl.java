@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		MemberAuth memberAuth = new MemberAuth();
 		memberAuth.setIdx(member.getIdx());
-		memberAuth.setAuth(auth);
+		memberAuth.setAuth(auth); 
 
 		log.info("id : " + member.getId());
 		log.info("본명 : " + member.getRealName());
@@ -44,6 +44,43 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		mapper.createAuth(memberAuth);
+	}
+
+	@Override
+	public void modifyAuthorDto(Member member, Author author) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.updateAuthor(author);
+		mapper.updateMember(member);
+	}
+
+	@Override
+	public void removeAuthorDto(String id, String writerId) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.deleteAuthor(writerId);
+		
+		String isNull = "notNull";
+		String[] useId = mapper.readId(id);
+		
+		try {
+			log.info("서비스단아이디값?? : " + useId[0]);
+		} catch (Exception e) {
+			// TODO: handle exception
+			isNull = null;
+		}
+		
+		if(isNull != null) {
+			return;
+		} else {
+			log.info("널값찍혔음!");
+			mapper.deleteMember(id);
+		}
+		
+	}
+
+	@Override
+	public String readWriterId(String writerId) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.readWriterId(writerId);
 	}
 
 	@Override
