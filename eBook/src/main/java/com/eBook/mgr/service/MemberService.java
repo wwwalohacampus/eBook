@@ -21,6 +21,9 @@ public interface MemberService {
 	
 	
 	public List<AuthorListDto> list() throws Exception;
+	public String[] listId() throws Exception;
+	public Member listMember(String id) throws Exception;
+	
 	
 	public Member read(String userId) throws Exception;
 	

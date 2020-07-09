@@ -112,6 +112,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public String[] listId() throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.listId();
+	}
+
+	@Override
+	public Member listMember(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.listMember(id);
+	}
+
+	@Override
 	public Member read(String userId) throws Exception {
 		return mapper.read(userId);
 	}

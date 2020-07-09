@@ -41,6 +41,8 @@ public class MemberController {
 	public void registerForm(Member member, String writerId, Model model) throws Exception {
 		log.info("register Member.....");
 		
+		model.addAttribute("idList", memberService.listId());
+		
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

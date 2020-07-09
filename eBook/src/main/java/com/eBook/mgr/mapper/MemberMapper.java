@@ -17,6 +17,8 @@ public interface MemberMapper {
 
 	//회원 리스트조회
 	public List<AuthorListDto> list() throws Exception;
+	public String[] listId() throws Exception;
+	public Member listMember(String id) throws Exception;
 	
 	
 	//회원 업데이트

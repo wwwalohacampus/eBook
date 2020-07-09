@@ -190,6 +190,17 @@
 		FROM member mem INNER JOIN tb_author author
 		ON mem.id = author.id
 	</select>
+	
+	<select id="listId" resultType="String">
+		SELECT id
+		FROM member
+	</select>
+		
+	<select id="listMember" resultType="com.eBook.mgr.domain.Member">
+		SELECT *
+		FROM member
+		WHERE id = #{id}
+	</select>
 
 	<select id="read" resultMap="memberMap">
 		SELECT mem.idx,

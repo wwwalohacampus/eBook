@@ -12,11 +12,27 @@
 <div>
    <h2>회원 등록</h2>
 		<form id="member" action="list.html" th:action="@{/user/register}" method="POST">
+			<div id="bookcubeId" style="display:none">
+				<table>
+					<tr th:each="board : ${idList}"  >
+						<td><input type="text" name="i_Name" th:value="${board}"/></td>
+					</tr>
+				</table>
+			</div>
 
 			<table>
 				<tr>
 					<td>아이디</td>
 					<td><input type="text" name="id"/></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="delete_ids"/></td>
+					<td>기존 아이디로 등록</td>
+					<td id="hiddenTd" style="display:none">
+						<select id="select_menu" name="select_id" class="ui compact selection dropdown" >
+							<option value="" selected>아이디</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
@@ -71,6 +87,25 @@
       $(document).ready(function() {
    
          var formObj = $("#member");
+         var list = new Array();
+         var menuSelect = document.getElementById("select_menu");
+         
+         $("input[name=i_Name]").each(function(index, item){
+      	 	list.push($(item).val());
+         });
+         
+         for(var i=0; i<list.length; i++){
+        	 $("#select_menu").prepend("<option value='+ list[i] +'>"+ list[i] +"</option>");
+       	 	//menuSelect.add(document.createElement("option"), null);
+     	 }
+         
+         $("input:checkbox").on('click', function(){
+        	 if ( $(this).prop('checked') ) {
+        		 $("#hiddenTd").show();
+        	 } else {
+        		 $("#hiddenTd").hide();
+        	 }
+         });
    
          $("#btnRegister").on("click", function() {
 			formObj.attr("method", "post");
