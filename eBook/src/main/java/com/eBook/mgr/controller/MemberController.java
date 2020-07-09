@@ -155,4 +155,35 @@ public class MemberController {
 		return "redirect:/user/list";
 	}
 	
+	
+	@RequestMapping(value = "/status", method = RequestMethod.POST)
+	public String status(Model model, String delete_ids) throws Exception{
+		
+		String[] deleteIdsArr = delete_ids.split(",");
+		String id = memberService.readWriterId(deleteIdsArr[0]);
+		String status = memberService.readStatus(id);
+		
+		log.info("writerIIID : " + deleteIdsArr[0]);
+		log.info("id : " + id);
+		log.info("status : " + status);
+		
+		Boolean i;
+		if(status.equals("1")) {
+			i = true;
+		} else {
+			i = false;
+		}
+		
+		try {
+			model.addAttribute("result", true);
+			memberService.status(id, i);
+		} catch (Exception e) {
+			model.addAttribute("result", false);
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		return "redirect:/user/list";
+	}
+	
 }

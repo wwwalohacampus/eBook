@@ -16,6 +16,10 @@ public interface MemberService {
 	public String readWriterId(String writerId) throws Exception;
 	
 	
+	public void status(String id, Boolean loginStatus) throws Exception;
+	public String readStatus(String id) throws Exception;
+	
+	
 	public List<AuthorListDto> list() throws Exception;
 	
 	public Member read(String userId) throws Exception;

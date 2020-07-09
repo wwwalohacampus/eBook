@@ -90,6 +90,23 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void status(String id, Boolean loginStatus) throws Exception {
+		// TODO Auto-generated method stub
+		if(loginStatus == true) {
+			mapper.unUseLogin(id);
+		} else {
+			mapper.useLogin(id);
+		}
+	}
+
+	@Override
+	public String readStatus(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.readStatus(id);
+	}
+	
+	
+	@Override
 	public List<AuthorListDto> list() throws Exception {
 		return mapper.list();
 	}

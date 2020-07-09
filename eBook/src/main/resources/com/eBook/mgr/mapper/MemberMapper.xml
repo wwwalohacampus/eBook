@@ -130,6 +130,24 @@
 		WHERE writer_id = #{writerId}
 	</select>
 	
+	<update id="useLogin">
+		UPDATE member
+		SET login_status = 1
+		WHERE id = #{id}
+	</update>
+	
+	<update id="unUseLogin">
+		UPDATE member
+		SET login_status = 0
+		WHERE id = #{id}
+	</update>
+	
+	<select id="readStatus" resultType="String">
+		SELECT login_status
+		FROM member
+		WHERE id = #{id}
+	</select>
+	
 
 	<insert id="createAuth">
 		INSERT INTO member_auth

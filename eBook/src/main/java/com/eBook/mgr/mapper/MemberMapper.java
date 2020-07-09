@@ -34,6 +34,7 @@ public interface MemberMapper {
 	//회원 활성/비활성
 	public void useLogin(String id) throws Exception;
 	public void unUseLogin(String id) throws Exception;
+	public String readStatus(String id) throws Exception;
 	
 	
 	public void createAuth(MemberAuth memberAuth);
