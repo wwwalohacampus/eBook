@@ -107,6 +107,15 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public boolean findId(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.findId(id);
+	}
+	
+	
+	
+
+	@Override
 	public List<AuthorListDto> list() throws Exception {
 		return mapper.list();
 	}

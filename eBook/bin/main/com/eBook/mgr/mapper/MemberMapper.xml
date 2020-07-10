@@ -216,6 +216,13 @@
 		WHERE mem.id = #{id}
 	</select>
 
+
+	<select id="findId" parameterType="String" resultType="boolean">
+	   select if(count(*) > 0, 'true', 'false')
+	   from member where id = #{id, jdbcType=VARCHAR}
+	</select>
+
+	
 </mapper>
 
 

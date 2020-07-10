@@ -17,6 +17,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.eBook.mgr.common.security.CustomAccessDeniedHandler;
 import com.eBook.mgr.common.security.CustomLoginSuccessHandler;
@@ -90,4 +91,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public UserDetailsService createUserDetailsService() {
 		return new CustomUserDetailsService();
 	}
+	
+	@Bean
+	MappingJackson2JsonView jsonView(){
+		return new MappingJackson2JsonView();
+	}
+
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eBook.mgr.domain.Author;
@@ -77,8 +78,13 @@ public class MemberController {
 		System.out.println(inputPassword);
 		System.out.println(passwordEncoder.encode(inputPassword));
 		
-		memberService.registerMember(member);
-		memberService.registerAuthor(author);
+		// id 검사후 중복되는게 있으면 author만 등록
+		if(memberService.findId(member.getId()) == true) {
+			memberService.registerAuthor(author);
+		} else {
+			memberService.registerMember(member);
+			memberService.registerAuthor(author);
+		}
 		
 		rttr.addFlashAttribute("userName", member.getRealName());
 		
@@ -189,22 +195,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/selected", method = RequestMethod.POST)
-	public void selected(Model model, String id) throws Exception{
+	public ModelAndView selected(Model model, String id) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
 		Member member = new Member();
 		log.info("아이디값:   ? " + id);
 		
 		try {
-			model.addAttribute("result", true);
 			member = memberService.listMember(id);
 			System.out.println("member?? " + member);
 			model.addAttribute("member", member);
+
+			mv.addObject("member", member);
+			mv.addObject("result", true);
 		} catch (Exception e) {
-			model.addAttribute("result", false);
 			e.printStackTrace();
 			// TODO: handle exception
+			mv.addObject("result", false);
 		}
 		
-		
+		return mv;
 		
 	}
 	

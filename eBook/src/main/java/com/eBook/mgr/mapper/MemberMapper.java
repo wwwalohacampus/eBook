@@ -39,6 +39,8 @@ public interface MemberMapper {
 	public String readStatus(String id) throws Exception;
 	
 	
+	//중복된 회원 찾기
+	public boolean findId(String id) throws Exception;
 	
 	
 	

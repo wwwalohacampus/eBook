@@ -25,6 +25,9 @@ public interface MemberService {
 	public Member listMember(String id) throws Exception;
 	
 	
+	public boolean findId(String id) throws Exception;
+	
+	
 	public Member read(String userId) throws Exception;
 	
 	

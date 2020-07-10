@@ -39,7 +39,7 @@
 					<td><input type="checkbox" name="delete_ids"/></td>
 					<td>기존 아이디로 등록</td>
 					<td id="hiddenTd" style="display:none">
-						<select id="select_menu" onclick="selected();" name="select_id" class="ui compact selection dropdown" >
+						<select id="select_menu" onchange="selected();" name="select_id" class="ui compact selection dropdown" >
 							<option value="" selected>아이디</option>
 						</select>
 					</td>
@@ -114,10 +114,28 @@
         		 $("#hiddenTd").show();
         	 } else {
         		 $("#hiddenTd").hide();
+     			$('#id').attr("readonly", false);
+    			$('#realName').attr("readonly", false);
+    			$('#ctzNumber').attr("readonly", false);
+    			$('#manager').attr("readonly", false);
+    			$('#pw').attr("disabled", false);
+    			$('#id').attr("disabled", false);
+    			$('#realName').attr("disabled", false);
+    			$('#ctzNumber').attr("disabled", false);
+    			$('#manager').attr("disabled", false);
+    			$('#id').val("");
+				$('#realName').val("");
+				$('#ctzNumber').val("");
+				$('#manager').val("");
         	 }
          });
    
          $("#btnRegister").on("click", function() {
+ 			$('#pw').attr("disabled", false);
+			$('#id').attr("disabled", false);
+			$('#realName').attr("disabled", false);
+			$('#ctzNumber').attr("disabled", false);
+			$('#manager').attr("disabled", false);
 			formObj.attr("method", "post");
             formObj.submit();
          });
@@ -131,13 +149,15 @@
       });
       
       function selected(){
-    	  	alert($("#select_menu option:selected").text());
-    	  
 	  		var token = $("meta[name='_csrf']").attr("content");
 			var header = $("meta[name='_csrf_header']").attr("content");
 			
-//			console.log(token);
-			alert(token);
+			var memberId = "";
+			var memberRealName = "";
+			var memberCtzNumber = "";
+			var memberManager = "";
+			
+			console.log(token);
 			
 			$.ajax({
 				type:"post",
@@ -150,28 +170,31 @@
 					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
 	                 xhr.setRequestHeader( header, token );
 	             },
-				success:function(data, textStatus, jqXHR){
-
+				success:function(data){
+						memberId = data.member.id;
+						memberRealName = data.member.realName; 
+						memberCtzNumber = data.member.ctzNumber;
+						memberManager = data.member.manager;
+						
+						$('#id').val(memberId);
+						$('#realName').val(memberRealName);
+						$('#ctzNumber').val(memberCtzNumber);
+						$('#manager').val(memberManager);
+						
+						/*
 						if(textStatus){
 							alert("적용 되었습니다.");
 							location.href="/user/register"
 						}else{
 							alert("적용 실패");
 						}
+						*/
 				},
 			     error:function(request,status,error){
 			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		        }
 
 			});
-			
-			// 이게안됨...
-			alert([[${member.id}]]);
-			
-			$('#id').val("ddddd");
-			$('#realName').val("ddddd");
-			$('#ctzNumber').val("ddddd");
-			$('#manager').val("ddddd");
 			
 			$('#id').attr("readonly", true);
 			$('#realName').attr("readonly", true);
