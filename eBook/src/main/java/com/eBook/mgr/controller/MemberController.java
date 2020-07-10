@@ -188,4 +188,24 @@ public class MemberController {
 		return "redirect:/user/list";
 	}
 	
+	@RequestMapping(value = "/selected", method = RequestMethod.POST)
+	public void selected(Model model, String id) throws Exception{
+		Member member = new Member();
+		log.info("아이디값:   ? " + id);
+		
+		try {
+			model.addAttribute("result", true);
+			member = memberService.listMember(id);
+			System.out.println("member?? " + member);
+			model.addAttribute("member", member);
+		} catch (Exception e) {
+			model.addAttribute("result", false);
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		
+		
+	}
+	
 }

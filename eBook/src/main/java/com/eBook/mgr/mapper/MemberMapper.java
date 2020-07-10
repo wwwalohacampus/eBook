@@ -39,6 +39,9 @@ public interface MemberMapper {
 	public String readStatus(String id) throws Exception;
 	
 	
+	
+	
+	
 	public void createAuth(MemberAuth memberAuth);
 	
 	public Member readByUserId(String userId);

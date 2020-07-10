@@ -148,6 +148,7 @@
 		WHERE id = #{id}
 	</select>
 	
+	
 
 	<insert id="createAuth">
 		INSERT INTO member_auth

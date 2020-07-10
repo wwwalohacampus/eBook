@@ -4,6 +4,8 @@
    
 <head>
    <title>User</title>
+   <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>   
    <script src="/js/jQuery-2.1.4.min.js"></script>
@@ -12,59 +14,67 @@
 <div>
    <h2>회원 등록</h2>
 		<form id="member" action="list.html" th:action="@{/user/register}" method="POST">
-			<div id="bookcubeId" style="display:none">
+			<div id="listIdBox" style="display:none">
 				<table>
 					<tr th:each="board : ${idList}"  >
 						<td><input type="text" name="i_Name" th:value="${board}"/></td>
 					</tr>
 				</table>
 			</div>
+			
+			<!--
+			<div id="memberBox">
+				<ul>
+					<li><input type="text" name="memberId" th:value="${member.id}"/></li>
+				</ul>
+			</div>
+			-->
 
 			<table>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="id"/></td>
+					<td><input type="text" id="id" name="id"/></td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" name="delete_ids"/></td>
 					<td>기존 아이디로 등록</td>
 					<td id="hiddenTd" style="display:none">
-						<select id="select_menu" name="select_id" class="ui compact selection dropdown" >
+						<select id="select_menu" onclick="selected();" name="select_id" class="ui compact selection dropdown" >
 							<option value="" selected>아이디</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="pw"/></td>
+					<td><input type="password" id="pw" name="pw"/></td>
 				</tr>
 				<tr>
 					<td>작가명</td>
-					<td><input type="text" name="author"/></td>
+					<td><input type="text" id="author" name="author"/></td>
 				</tr>
 				<tr>
 					<td>본명</td>
-					<td><input type="text" name="realName"/></td>
+					<td><input type="text" id="realName" name="realName"/></td>
 				</tr>
 				<tr>
 					<td>계좌번호</td>
-					<td><input type="text" name="accountNumber"/></td>
+					<td><input type="text" id="accountNumber" name="accountNumber"/></td>
 				</tr>
 				<tr>
 					<td>주민번호</td>
-					<td><input type="text" name="ctzNumber"/></td>
+					<td><input type="text" id="ctzNumber" name="ctzNumber"/></td>
 				</tr>
 				<tr>
 					<td>선인세</td>
-					<td><input type="text" name="virtuousTax"/></td>
+					<td><input type="text" id="virtuousTax" name="virtuousTax"/></td>
 				</tr>
 				<tr>
 					<td>담당자</td>
-					<td><input type="text" name="manager"/></td>
+					<td><input type="text" id="manager" name="manager"/></td>
 				</tr>
 				<tr>
 					<td>정산비율</td>
-					<td><input type="text" name="settlementRatio"/></td>
+					<td><input type="text" id="settlementRatio" name="settlementRatio"/></td>
 				</tr>
 				<tr>
 					<td>권한</td>
@@ -85,7 +95,7 @@
    
    <script th:inline="javascript">
       $(document).ready(function() {
-   
+    	  
          var formObj = $("#member");
          var list = new Array();
          var menuSelect = document.getElementById("select_menu");
@@ -119,6 +129,60 @@
       [/th:block]
    
       });
+      
+      function selected(){
+    	  	alert($("#select_menu option:selected").text());
+    	  
+	  		var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			
+//			console.log(token);
+			alert(token);
+			
+			$.ajax({
+				type:"post",
+				url:"/user/selected",
+				data:	{ 
+							"id"	: $("#select_menu option:selected").text()
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("적용 되었습니다.");
+							location.href="/user/register"
+						}else{
+							alert("적용 실패");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+			
+			// 이게안됨...
+			alert([[${member.id}]]);
+			
+			$('#id').val("ddddd");
+			$('#realName').val("ddddd");
+			$('#ctzNumber').val("ddddd");
+			$('#manager').val("ddddd");
+			
+			$('#id').attr("readonly", true);
+			$('#realName').attr("readonly", true);
+			$('#ctzNumber').attr("readonly", true);
+			$('#manager').attr("readonly", true);
+			$('#pw').attr("disabled", true);
+			$('#id').attr("disabled", true);
+			$('#realName').attr("disabled", true);
+			$('#ctzNumber').attr("disabled", true);
+			$('#manager').attr("disabled", true);
+      }
    </script>
 </div>
 </body>
