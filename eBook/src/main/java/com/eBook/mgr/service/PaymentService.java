@@ -1,5 +1,11 @@
 package com.eBook.mgr.service;
 
-public interface PaymentService {
+import java.util.List;
 
+import com.eBook.mgr.dto.PaymentDto;
+
+public interface PaymentService {
+	public List<PaymentDto> listPayment(String setDate) throws Exception;
+	
+	public void insertPayment(PaymentDto dto) throws Exception;
 }

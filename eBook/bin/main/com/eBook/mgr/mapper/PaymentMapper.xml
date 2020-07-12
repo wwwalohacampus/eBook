@@ -4,7 +4,78 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eBook.mgr.mapper.PaymentMapper">
 
+<select id="listPayment" resultType="com.eBook.mgr.dto.PaymentDto">
+	SELECT * 
+	FROM tb_finalsettlement
+	WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+	ORDER BY idx
+</select>
 
+<insert id="createPayment">
+	INSERT INTO tb_finalsettlement
+	            (
+	            author, 
+	             real_name, 
+	             ctz_number, 
+	             account_number, 
+	             pay_bookcube, 
+	             pay_joara, 
+	             pay_kakao, 
+	             pay_kyobo, 
+	             pay_mrblue, 
+	             pay_munpia, 
+	             pay_naver, 
+	             pay_ridibooks, 
+	             pay_romance, 
+	             pay_tocsoda, 
+	             pay_winstore, 
+	             pay_yes24, 
+	             pay_aladin, 
+	             all_payment, 
+	             settlement_ratio, 
+	             author_settlement, 
+	             carry_amount, 
+	             payment, 
+	             virtuous_tax, 
+	             income_tax, 
+	             wthld_tax, 
+	             author_paid, 
+	             writer_id, 
+	             set_date
+	             ) 
+		VALUES      
+				(
+				#{author},
+				#{real_name},
+				#{ctz_number},
+				#{account_number},
+				#{salesType},
+				#{pay_bookcube},
+				#{pay_joara},
+				#{pay_kakao},
+				#{pay_kyobo},
+				#{pay_mrblue},
+				#{pay_munpia},
+				#{pay_naver},
+				#{pay_ridibooks},
+				#{pay_romance},
+				#{pay_tocsoda},
+				#{pay_winstore},
+				#{pay_yes24},
+				#{pay_aladin},
+				#{all_payment},
+				#{settlement_ratio},
+				#{author_settlement},
+				#{carry_amount},
+				#{payment},
+				#{virtuous_tax},
+				#{income_tax},
+				#{wthld_tax},
+				#{author_paid},
+				#{writerId},
+				#{setDate}
+	             )
+</insert>
 	
 </mapper>
 

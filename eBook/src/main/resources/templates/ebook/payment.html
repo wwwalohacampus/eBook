@@ -1,10 +1,134 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+   >
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>payment</title>
+   <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>   
+   <script src="/js/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$("document").ready(function(){
+		var formObj = $("#listForm");
+		
+		
+	});
+	
+	function func_payment(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		if (confirm("정산하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/createPayment",
+				data:	{ 
+							
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("정산완료되었습니다.");
+							location.href="redirect:/ebook/payment";;
+						}else{
+							alert("정산 실패.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+	}
+</script>
 </head>
 <body>
-adsfasfdsdf
+<div>
+	<h1><img src="/image/img_ongle.png" style="width:100px;"></h1>
+   <form id="listForm" action="list.html" method="POST">
+	   <table border="1">
+	      <tr>
+	         <th align="center">작가명</th>
+	         <th align="center">본명</th>
+	         <th align="center">주민등록번호</th>
+	         <th align="center">계좌번호</th>
+	         <th align="center">북큐브</th>
+	         <th align="center">조아라</th>
+	         <th align="center">카카오페이지</th>
+	         <th align="center">교보문고</th>
+	         <th align="center">미스터블루</th>
+	         <th align="center">문피아</th>
+	         <th align="center">네이버</th>
+	         <th align="center">리디북스</th>
+	         <th align="center">로망띠끄</th>
+	         <th align="center">톡소다</th>
+	         <th align="center">원스토어</th>
+	         <th align="center">예스24</th>
+	         <th align="center">알라딘</th>
+	         <th align="center">총매출</th>
+	         <th align="center">정산비율</th>
+	         <th align="center">작가정산액</th>
+	         <th align="center">이월정산액</th>
+	         <th align="center">정산액합계</th>
+	         <th align="center">선인세</th>
+	         <th align="center">소득세</th>
+	         <th align="center">원천징수세</th>
+	         <th align="center">작가지급액</th>
+	      </tr>
+	      
+	      <tr th:if="${#lists.isEmpty(paymentList)}">
+	         <td colspan="6">
+	            List is empty.
+	         </td>
+	      </tr>
+	      
+	      <tr th:each="paymentL : ${paymentList}">
+	        <td><input style="text-align:center;" type="text" name="author" th:value="${paymentL.author}"/></td>
+	        <td><input style="text-align:center;" type="text" name="realName" th:value="${paymentL.realName}"/></td>
+	        <td><input style="text-align:center;" type="text" name="ctzNumber" th:value="${paymentL.ctzNumber}"/></td>
+	        <td><input style="text-align:center;" type="text" name="accountNumber" th:value="${paymentL.accountNumber}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payBookcube" th:value="${paymentL.payBookcube}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payJoara" th:value="${paymentL.payJoara}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payKakao" th:value="${paymentL.payKakao}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payKyobo" th:value="${paymentL.payKyobo}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payMrblue" th:value="${paymentL.payMrblue}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payMunpia" th:value="${paymentL.payMunpia}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payNaver" th:value="${paymentL.payNaver}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payRidibooks" th:value="${paymentL.payRidibooks}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payRomance" th:value="${paymentL.payRomance}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payTocsoda" th:value="${paymentL.payTocsoda}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payWinstore" th:value="${paymentL.payWinstore}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payYes24" th:value="${paymentL.payYes24}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payAladin" th:value="${paymentL.payAladin}"/></td>
+	        <td><input style="text-align:center;" type="text" name="allPayment" th:value="${paymentL.allPayment}"/></td>
+	        <td><input style="text-align:center;" type="text" name="settlementRatio" th:value="${paymentL.settlementRatio}"/></td>
+	        <td><input style="text-align:center;" type="text" name="authorSettlement" th:value="${paymentL.authorSettlement}"/></td>
+	        <td><input style="text-align:center;" type="text" name="carryAmount" th:value="${paymentL.carryAmount}"/></td>
+	        <td><input style="text-align:center;" type="text" name="payment" th:value="${paymentL.payment}"/></td>
+	        <td><input style="text-align:center;" type="text" name="virtuousTax" th:value="${paymentL.virtuousTax}"/></td>
+	        <td><input style="text-align:center;" type="text" name="incomeTax" th:value="${paymentL.incomeTax}"/></td>
+	        <td><input style="text-align:center;" type="text" name="wthldTax" th:value="${paymentL.wthldTax}"/></td>
+	        <td><input style="text-align:center;" type="text" name="authorPaid" th:value="${paymentL.authorPaid}"/></td>
+	      </tr>
+	   </table>
+   </form>
+</div> 
+
+<div>
+	<button type="submit" onclick="func_payment();" id="btnPayment">정산하기</button>
+	<button type="submit" id="btnDownload">파일다운로드</button>
+</div>
 </body>
 </html>
