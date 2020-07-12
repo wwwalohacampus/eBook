@@ -37,6 +37,7 @@
 		<result property="virtuousTax" column="virtuous_tax" />
 		<result property="loginStatus" column="login_status" />
 		<result property="settlementRatio" column="settlement_ratio" />
+		<result property="carryAmount" column="carry_amount" />
 		<result property="manager" column="manager" />
 		<result property="regDate" column="reg_date" />
 		<result property="updDate" column="upd_date" />
@@ -77,7 +78,8 @@
 			author,
 			account_number,
 			virtuous_tax,
-			settlement_ratio
+			settlement_ratio,
+			carry_amount
 		)
 		SELECT
 			#{id},
@@ -85,7 +87,8 @@
 			#{author},
 			#{accountNumber},
 			#{virtuousTax},
-			#{settlementRatio}
+			#{settlementRatio},
+			#{carryAmount}
 		FROM tb_author
 		]]>
 	</insert>
@@ -103,7 +106,8 @@
 		SET author = #{author},
 			account_number = #{accountNumber},
 			virtuous_tax = #{virtuousTax},
-			settlement_ratio = #{settlementRatio}
+			settlement_ratio = #{settlementRatio},
+			carry_amount = #{carryAmount}
 		WHERE writer_id = #{writerId}
 	</update>
 	

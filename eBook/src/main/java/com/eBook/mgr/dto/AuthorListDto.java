@@ -19,7 +19,8 @@ public class AuthorListDto {
 	String virtuousTax;		
 	private Boolean loginStatus;		
 	String settlementRatio;							
-	String manager;			
+	String manager;	
+	String carryAmount;	
 
 	private Date regDate;
 	private Date updDate;

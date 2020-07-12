@@ -69,6 +69,7 @@ public class MemberController {
 		author.setAccountNumber(request.getParameter("accountNumber"));
 		author.setVirtuousTax(request.getParameter("virtuousTax"));
 		author.setSettlementRatio(request.getParameter("settlementRatio"));
+		author.setCarryAmount(request.getParameter("carryAmount"));
 		
 		System.out.println(member);
 		System.out.println(author);
@@ -131,6 +132,7 @@ public class MemberController {
 		author.setVirtuousTax(authorDto.getVirtuousTax());
 		author.setSettlementRatio(authorDto.getSettlementRatio());
 		author.setWriterId(authorDto.getWriterId());
+		author.setCarryAmount(authorDto.getCarryAmount());
 		
 		memberService.modifyAuthorDto(member, author);
 		

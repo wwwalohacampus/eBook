@@ -11,4 +11,5 @@ public class Author {
 	String virtuousTax;						// 선인세
 	String settlementRatio;					// 정산비율
 	String writerId;						// 작가ID
+	String carryAmount;						// 이월정산액
 }
