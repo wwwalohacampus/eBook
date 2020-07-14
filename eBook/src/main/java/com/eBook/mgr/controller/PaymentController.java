@@ -110,9 +110,6 @@ public class PaymentController {
 				String allPayment;						// 총매출
 				String authorSettlement;				// 작가정산액
 				String payment;							// 정산액합계
-				String incomeTax;						// 소득세
-				String wthldTax;						// 원천징수세
-				String authorPaid;						// 작가지급액
 				
 				//총매출계산
 				allPayment = allpay(paymentDto);
