@@ -16,6 +16,7 @@
 		<result property="loginStatus" column="login_status" />
 		<result property="settlementRatio" column="settlement_ratio" />
 		<result property="manager" column="manager" />
+		<result property="carryAmount" column="carry_amount" />
 	</resultMap>
 	
 	<select id="read" resultMap="AuthorDto">
@@ -29,7 +30,8 @@
 			author.virtuous_tax,
 			mem.login_status,
 			author.settlement_ratio,
-			mem.manager
+			mem.manager,
+			author.carry_amount
 		FROM member mem,
 		     tb_author author
 		WHERE mem.id = author.id

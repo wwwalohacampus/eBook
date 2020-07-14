@@ -12,6 +12,28 @@
 	$("document").ready(function(){
 		var formObj = $("#listForm");
 		
+		let today = new Date();
+		let year = today.getFullYear();
+		
+		var arrYear = new Array();
+		
+		for(var i=0; i<10; i++)
+		{
+			arrYear[i]=year-i + "년";
+		}
+		
+		var monthSelect = document.getElementById("selete_month");
+		var yearSelect = document.getElementById("selete_year");
+		
+		var option1 = document.createElement("option");
+		var option2 = document.createElement("option");
+		option1.text = arrYear[0];
+		option2.text = arrYear[1];
+		option1.value = arrYear[0];
+		option2.value = arrYear[1];
+		yearSelect.add(option1, null);
+		yearSelect.add(option2, null);
+		
 		
 	});
 	
@@ -27,7 +49,8 @@
 				type:"post",
 				url:"/ebook/createPayment",
 				data:	{ 
-							
+							"p_year"	: $("#selete_year option:selected").val(),
+							"p_month"   : $("#selete_month option:selected").val()
 						},
 						
 				beforeSend : function(xhr) {   
@@ -127,6 +150,24 @@
 </div> 
 
 <div>
+	<select id="selete_year" name="p_year" class="ui compact selection dropdown" >
+			<option value="" selected>연도</option>
+	</select>&nbsp;
+	<select id="selete_month" name="p_month" class="ui compact selection dropdown" >
+		<option value="" selected>월</option>
+		<option value="01월">1월</option>
+		<option value="02월">2월</option>
+		<option value="03월">3월</option>
+		<option value="04월">4월</option>
+		<option value="05월">5월</option>
+		<option value="06월">6월</option>
+		<option value="07월">7월</option>
+		<option value="08월">8월</option>
+		<option value="09월">9월</option>
+		<option value="10월">10월</option>
+		<option value="11월">11월</option>
+		<option value="12월">12월</option>
+	</select>
 	<button type="submit" onclick="func_payment();" id="btnPayment">정산하기</button>
 	<button type="submit" id="btnDownload">파일다운로드</button>
 </div>

@@ -8,4 +8,9 @@ public interface PaymentService {
 	public List<PaymentDto> listPayment(String setDate) throws Exception;
 	
 	public void insertPayment(PaymentDto dto) throws Exception;
+	
+	public String[] writerIdList() throws Exception;
+	
+	// 합계로직
+	public PaymentDto allPayment(String writerId, String setDate) throws Exception;
 }
