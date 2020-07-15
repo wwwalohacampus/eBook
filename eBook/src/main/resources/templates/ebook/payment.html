@@ -2,11 +2,12 @@
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
    >
 <head>
-	<title>payment</title>
-   <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>   
+<meta charset="UTF-8">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+<link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>   
+<title>payment</title>
+   
    <script src="/js/jQuery-2.1.4.min.js"></script>
 <script type="text/javascript">
 	$("document").ready(function(){
@@ -34,8 +35,63 @@
 		yearSelect.add(option1, null);
 		yearSelect.add(option2, null);
 		
+		yearSelect = document.getElementById("selete_year_select");
+
+		var option1_s = document.createElement("option");
+		var option2_s = document.createElement("option");
+		option1_s.text = arrYear[0];
+		option2_s.text = arrYear[1];
+		option1_s.value = arrYear[0];
+		option2_s.value = arrYear[1];
+		yearSelect.add(option1_s, null);
+		yearSelect.add(option2_s, null);
 		
 	});
+	
+	$("#btnSelect").on("click", function(){
+		formObj.attr("action", "/ebook/payment");
+		formObj.attr("method", "post");
+		formObj.submit();
+	});
+	
+	function func_select(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		alert(token);
+		
+		if (confirm("해당일자로 조회하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/payment",
+				data:	{ 
+							"p_year_select"	: $("#selete_year_select option:selected").val(),
+							"p_month_select"  : $("#selete_month_select option:selected").val()
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							location.href="/ebook/payment";
+						}else{
+							alert("조회 실패.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+	}
 	
 	function func_payment(){
 		
@@ -46,7 +102,7 @@
 		
 		if (confirm("정산하시겠습니까?")) {
 			$.ajax({
-				type:"post",
+				type:"get",
 				url:"/ebook/createPayment",
 				data:	{ 
 							"p_year"	: $("#selete_year option:selected").val(),
@@ -79,8 +135,33 @@
 </head>
 <body>
 <div>
-	<h1><img src="/image/img_ongle.png" style="width:100px;"></h1>
-   <form id="listForm" action="list.html" method="POST">
+   <form id="listForm" method="POST">
+   		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+		<h1><img src="/image/img_ongle.png" style="width:100px;"></h1>
+		<select id="selete_year_select" name="p_year_select" class="form-control w-25" >
+			<option value="" selected>연도</option>
+		</select>&nbsp;
+		<select id="selete_month_select" name="p_month_select" class="form-control w-25" >
+			<option value="" selected>월</option>
+			<option value="01월">1월</option>
+			<option value="02월">2월</option>
+			<option value="03월">3월</option>
+			<option value="04월">4월</option>
+			<option value="05월">5월</option>
+			<option value="06월">6월</option>
+			<option value="07월">7월</option>
+			<option value="08월">8월</option>
+			<option value="09월">9월</option>
+			<option value="10월">10월</option>
+			<option value="11월">11월</option>
+			<option value="12월">12월</option>
+		</select>
+		<button type="submit" id="btnSelect" class="btn btn-success btn-icon-split">
+			<span class="icon text-white-50">
+	                   <i class="fas fa-check"></i>
+	                   </span>
+			<span class="text">조회</span>
+		</button>
 	   <table border="1">
 	      <tr>
 	         <th align="center">작가명</th>
@@ -168,7 +249,7 @@
 		<option value="11월">11월</option>
 		<option value="12월">12월</option>
 	</select>
-	<button type="submit" onclick="func_payment();" id="btnPayment">정산하기</button>
+	<button type="submit" onclick="func_payment();" id="btnPayment">(재)정산하기</button>
 	<button type="submit" id="btnDownload">파일다운로드</button>
 </div>
 </body>

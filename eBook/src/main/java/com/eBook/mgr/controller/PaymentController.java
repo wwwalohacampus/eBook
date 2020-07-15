@@ -37,11 +37,41 @@ public class PaymentController {
 	@Autowired
 	AuthorService authorService;
 
-	@RequestMapping(value = "/payment", method = RequestMethod.GET)
-	public void payment(Model model) throws Exception{
+	@RequestMapping(value = "/payment")
+	public void payment(Model model, String p_year_select, String p_month_select) throws Exception{
 		
+		log.info("===============================???"); 
+		log.info("연... : " + p_year_select);
+		log.info("월... : " + p_month_select);
 		//setDate 계산
-		String setDate = "2020-07";
+		// setDate계산 ---------------------------------------------
+		String setDate = ""; 
+
+		if(p_month_select != null) {
+			p_year_select = p_year_select.replace("년", "");
+			p_month_select = p_month_select.replace("월", "");
+			
+			setDate = p_year_select + "-" + p_month_select;
+		} else {
+			Calendar cal = Calendar.getInstance();
+			int year = cal.get(Calendar.YEAR);
+			int month = cal.get(Calendar.MONTH) + 1;
+			String monthString;
+			
+			if(month < 10) {
+				monthString = "0" + Integer.toString(month);
+			} else {
+				monthString = Integer.toString(month);
+			}
+			
+			setDate = Integer.toString(year) + "-" + monthString;
+		}
+		
+		model.addAttribute("setDate", setDate);
+
+		
+		log.info("현재 셋데이터" + setDate);
+		// --------------------------------------------------------
 		
 		List<PaymentDto> paymentDto = paymentService.listPayment(setDate);
 		
@@ -81,6 +111,7 @@ public class PaymentController {
 		
 
 		try {
+			paymentService.removeList(setDate);
 			
 			PaymentDto paymentDto = new PaymentDto();
 			String writerList[] = paymentService.writerIdList();

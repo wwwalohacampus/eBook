@@ -76,6 +76,11 @@
 	             )
 </insert>
 
+<delete id="deleteList">
+	DELETE FROM tb_finalsettlement
+	WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+</delete>
+
 
 <select id="writerIdList" resultType="String">
 	SELECT writer_id
@@ -83,7 +88,7 @@
 </select>
 
 
-<select id="bookcubePayment" parameterType="String" resultType="String">
+<select id="bookcubePayment" resultType="String">
 	SELECT payment
 	FROM tb_platform_bookcube
 	WHERE writer_id = #{writerId} and DATE(set_date) LIKE CONCAT(#{setDate}, '%')

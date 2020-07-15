@@ -33,6 +33,12 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
+	public void removeList(String setDate) throws Exception {
+		// TODO Auto-generated method stub
+		paymentMapper.deleteList(setDate);
+	}
+
+	@Override
 	public PaymentDto allPayment(String writerId, String setDate) throws Exception {
 
 		PaymentDto paymentDto = new PaymentDto();

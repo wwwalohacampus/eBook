@@ -15,6 +15,8 @@ public interface PaymentMapper {
 	
 	public String[] writerIdList() throws Exception;
 	
+	public void deleteList(String setDate) throws Exception;
+	
 	
 	
 	// 각 플랫폼 합계 로직
