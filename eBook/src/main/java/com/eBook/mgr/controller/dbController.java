@@ -130,8 +130,8 @@ public class dbController implements ServletContextAware{
 											SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 											value = fommatter.format(cell.getDateCellValue())+"";
 										}else{
-											int numeric = (int) cell.getNumericCellValue();
-											value = numeric+"";
+											double numeric = (double) cell.getNumericCellValue();
+											value = String.valueOf(Math.round(numeric));
 										}
 										break;
 									case XSSFCell.CELL_TYPE_STRING:

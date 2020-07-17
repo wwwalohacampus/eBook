@@ -47,6 +47,7 @@ public class EBookController {
 	/*
 	안되는것 2020-07-09 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
 	  					작가테이블 writerId 자동추가 SQL 수정요청 (삭제하고 추가하면 겹쳐버림)
+	  					작가 선인세, 이월금 업데이트 작업진행
 	 */
 	
 	/*
@@ -54,6 +55,7 @@ public class EBookController {
 	 --- 5월기준 ---
 	 로망띠끄 (할인 열 추가됨)
 	 예스24 (bookID 열 추가됨)
+	 리디북스 판매처, 대여유료권 생성
 	 */
 	
 	

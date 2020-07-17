@@ -143,7 +143,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -155,8 +155,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -210,8 +210,11 @@ public class ExcelController implements ServletContextAware {
 						
 					}
 					String brand = eBookService.readBrand(bookcube.getProductName());
-					String writerId	= eBookService.readWriterId(bookcube.getAuthor());
+					String author = eBookService.readAuthor(bookcube.getProductName());
+					log.info("작가명??? : " + author);
+					bookcube.setAuthor(author);
 					log.info("브랜드??? : " + brand);
+					String writerId	= eBookService.readWriterId(bookcube.getAuthor());
 					log.info("작가??? : " + writerId);
 					bookcube.setBrand(brand);
 					bookcube.setWriterId(writerId);
@@ -238,7 +241,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -250,8 +253,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -293,8 +296,11 @@ public class ExcelController implements ServletContextAware {
 					log.info("======================================");
 					System.out.println(joara);
 					String brand = eBookService.readBrand(joara.getProductName());
-					String writerId	= eBookService.readWriterId(joara.getAuthor());
+					String author = eBookService.readAuthor(joara.getProductName());
+					log.info("작가명??? : " + author);
+					joara.setAuthor(author);
 					log.info("브랜드??? : " + brand);
+					String writerId	= eBookService.readWriterId(joara.getAuthor());
 					log.info("작가??? : " + writerId);
 					joara.setBrand(brand);
 					joara.setWriterId(writerId);
@@ -321,7 +327,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -333,8 +339,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -440,8 +446,11 @@ public class ExcelController implements ServletContextAware {
 						
 					}
 					String brand = eBookService.readBrand(kakao.getProductName());
-					String writerId	= eBookService.readWriterId(kakao.getAuthor());
+					String author = eBookService.readAuthor(kakao.getProductName());
+					log.info("작가명??? : " + author);
+					kakao.setAuthor(author);
 					log.info("브랜드??? : " + brand);
+					String writerId	= eBookService.readWriterId(kakao.getAuthor());
 					log.info("작가??? : " + writerId);
 					kakao.setBrand(brand);
 					kakao.setWriterId(writerId);
@@ -468,7 +477,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -480,8 +489,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -543,8 +552,11 @@ public class ExcelController implements ServletContextAware {
 						
 					}
 					String brand = eBookService.readBrand(kyobo.getProductName());
-					String writerId	= eBookService.readWriterId(kyobo.getAuthor());
+					String author = eBookService.readAuthor(kyobo.getProductName());
+					log.info("작가명??? : " + author);
+					kyobo.setAuthor(author);
 					log.info("브랜드??? : " + brand);
+					String writerId	= eBookService.readWriterId(kyobo.getAuthor());
 					log.info("작가??? : " + writerId);
 					kyobo.setBrand(brand);
 					kyobo.setWriterId(writerId);
@@ -571,7 +583,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -583,8 +595,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -680,8 +692,11 @@ public class ExcelController implements ServletContextAware {
 						
 					}
 					String brand = eBookService.readBrand(mrblue.getProductName());
-					String writerId	= eBookService.readWriterId(mrblue.getAuthor());
+					String author = eBookService.readAuthor(mrblue.getProductName());
+					log.info("작가명??? : " + author);
+					mrblue.setAuthor(author);
 					log.info("브랜드??? : " + brand);
+					String writerId	= eBookService.readWriterId(mrblue.getAuthor());
 					log.info("작가??? : " + writerId);
 					mrblue.setBrand(brand);
 					mrblue.setWriterId(writerId);
@@ -709,7 +724,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -724,8 +739,8 @@ public class ExcelController implements ServletContextAware {
 										System.out.println("2번" + value);
 									}else{
 										// 소수점 제거됨. 해결요망
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 										System.out.println("3번" + value);
 									}
 									break;
@@ -805,7 +820,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -817,8 +832,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -918,6 +933,9 @@ public class ExcelController implements ServletContextAware {
 					
 					naver.setPayment(Integer.toString(payment));
 					
+					String author = eBookService.readAuthor(naver.getProductName());
+					log.info("작가명??? : " + author);
+					naver.setAuthor(author);
 					String writerId	= eBookService.readWriterId(naver.getAuthor());
 					log.info("작가??? : " + writerId);
 					naver.setWriterId(writerId);
@@ -948,7 +966,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -960,8 +978,10 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										log.info("값?" + cell.getNumericCellValue());
+										double numeric = (double) cell.getNumericCellValue();
+										//value = String.valueOf(Math.round(numeric));
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -1067,10 +1087,14 @@ public class ExcelController implements ServletContextAware {
 							ridibooks.setCategory1(value);
 						} else if (columnindex==40) {
 							ridibooks.setCategory2(value);
+							System.out.println("밸류값?" + value);
 						} 
 						
 						
 					}
+					String author = eBookService.readAuthor(ridibooks.getProductName());
+					log.info("작가명??? : " + author);
+					ridibooks.setAuthor(author);
 					String writerId	= eBookService.readWriterId(ridibooks.getAuthor());
 					log.info("작가??? : " + writerId);
 					ridibooks.setWriterId(writerId);
@@ -1097,7 +1121,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -1109,8 +1133,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -1151,6 +1175,9 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String author = eBookService.readAuthor(romance.getProductName());
+					log.info("작가명??? : " + author);
+					romance.setAuthor(author);
 					String writerId	= eBookService.readWriterId(romance.getAuthor());
 					log.info("작가??? : " + writerId);
 					romance.setWriterId(writerId);
@@ -1177,7 +1204,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -1189,8 +1216,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -1232,8 +1259,11 @@ public class ExcelController implements ServletContextAware {
 						
 					}
 					String brand = eBookService.readBrand(tocsoda.getProductName());
-					String writerId	= eBookService.readWriterId(tocsoda.getAuthor());
+					String author = eBookService.readAuthor(tocsoda.getProductName());
+					log.info("작가명??? : " + author);
+					tocsoda.setAuthor(author);
 					log.info("브랜드??? : " + brand);
+					String writerId	= eBookService.readWriterId(tocsoda.getAuthor());
 					log.info("작가??? : " + writerId);
 					tocsoda.setBrand(brand);
 					tocsoda.setWriterId(writerId);
@@ -1260,7 +1290,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -1272,8 +1302,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -1354,6 +1384,9 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String author = eBookService.readAuthor(winstore.getProductName());
+					log.info("작가명??? : " + author);
+					winstore.setAuthor(author);
 					String writerId	= eBookService.readWriterId(winstore.getAuthor());
 					log.info("작가??? : " + writerId);
 					winstore.setWriterId(writerId);
@@ -1380,7 +1413,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -1392,8 +1425,8 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -1452,6 +1485,9 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String author = eBookService.readAuthor(yes24.getProductName());
+					log.info("작가명??? : " + author);
+					yes24.setAuthor(author);
 					String writerId	= eBookService.readWriterId(yes24.getAuthor());
 					log.info("작가??? : " + writerId);
 					yes24.setWriterId(writerId);
@@ -1481,7 +1517,7 @@ public class ExcelController implements ServletContextAware {
 		
 						//셀이 빈값일경우를 위한 널체크
 						if(cell==null){
-							continue;
+							value="";
 						}else{ 
 							//타입별로 내용 읽기
 							switch (cell.getCellType()){
@@ -1493,8 +1529,9 @@ public class ExcelController implements ServletContextAware {
 										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
 										value = fommatter.format(cell.getDateCellValue())+"";
 									}else{
-										int numeric = (int) cell.getNumericCellValue();
-										value = numeric+"";
+										double numeric = (double) cell.getNumericCellValue();
+										//value = numeric+"";
+										value = String.valueOf(Math.round(numeric));
 									}
 									break;
 								case XSSFCell.CELL_TYPE_STRING:
@@ -1547,6 +1584,9 @@ public class ExcelController implements ServletContextAware {
 						
 						
 					}
+					String author = eBookService.readAuthor(aladin.getProductName());
+					log.info("작가명??? : " + author);
+					aladin.setAuthor(author);
 					String writerId	= eBookService.readWriterId(aladin.getAuthor());
 					log.info("작가??? : " + writerId);
 					aladin.setWriterId(writerId);

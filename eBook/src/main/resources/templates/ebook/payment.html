@@ -102,7 +102,7 @@
 		
 		if (confirm("정산하시겠습니까?")) {
 			$.ajax({
-				type:"get",
+				type:"post",
 				url:"/ebook/createPayment",
 				data:	{ 
 							"p_year"	: $("#selete_year option:selected").val(),
