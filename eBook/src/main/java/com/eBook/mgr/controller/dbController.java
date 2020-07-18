@@ -118,7 +118,7 @@ public class dbController implements ServletContextAware{
 			
 							//셀이 빈값일경우를 위한 널체크
 							if(cell==null){
-								continue;
+								value="";
 							}else{ 
 								//타입별로 내용 읽기
 								switch (cell.getCellType()){
