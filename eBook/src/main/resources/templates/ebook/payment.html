@@ -131,6 +131,46 @@
 			
 		}
 	}
+	
+function func_finalPayment(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		if (confirm("정산하시겠습니까? 작가별이월금, 선인세 등 정보가 수정됩니다.")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/finalPayment",
+				data:	{ 
+							"p_year"	: $("#selete_year option:selected").val(),
+							"p_month"   : $("#selete_month option:selected").val()
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("정산완료되었습니다.");
+							location.href="/ebook/payment";
+						}else{
+							alert("정산 실패.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+	}
+	
 </script>
 </head>
 <body>
@@ -249,8 +289,9 @@
 		<option value="11월">11월</option>
 		<option value="12월">12월</option>
 	</select>
-	<button type="submit" onclick="func_payment();" id="btnPayment">(재)정산하기</button>
 	<button type="submit" id="btnDownload">파일다운로드</button>
+	<button type="submit" onclick="func_payment();" id="btnPayment">정산TEST</button>
+	<button type="submit" onclick="func_finalPayment();" id="btnPayment">최종정산</button>
 </div>
 </body>
 </html>

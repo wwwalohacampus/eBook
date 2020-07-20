@@ -76,6 +76,18 @@
 	             )
 </insert>
 
+<update id="modifyCarryAmount">
+	UPDATE tb_author
+	SET carry_amount = #{carryAmount}
+	WHERE writer_id = #{writerId}
+</update>
+
+<update id="modifyVirtuousTax">
+	UPDATE tb_author
+	SET virtuous_tax = '0'
+	WHERE writer_id = #{writerId}
+</update>
+
 <delete id="deleteList">
 	DELETE FROM tb_finalsettlement
 	WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')

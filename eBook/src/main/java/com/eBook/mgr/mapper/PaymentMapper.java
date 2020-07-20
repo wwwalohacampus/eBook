@@ -17,6 +17,9 @@ public interface PaymentMapper {
 	
 	public void deleteList(String setDate) throws Exception;
 	
+	public void modifyCarryAmount(@Param("carryAmount") String carryAmount,@Param("writerId") String writerId) throws Exception;
+	
+	public void modifyVirtuousTax(String writerId) throws Exception;
 	
 	
 	// 각 플랫폼 합계 로직

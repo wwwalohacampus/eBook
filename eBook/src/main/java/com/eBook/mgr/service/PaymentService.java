@@ -13,6 +13,10 @@ public interface PaymentService {
 	
 	public void removeList(String setDate) throws Exception;
 	
+	public void updateCarryAmount(String carryAmount, String writerId) throws Exception;
+	
+	public void updateVirtuousTax(String writerId) throws Exception;
+	
 	// 합계로직
 	public PaymentDto allPayment(String writerId, String setDate) throws Exception;
 }

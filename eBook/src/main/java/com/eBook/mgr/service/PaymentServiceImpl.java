@@ -39,6 +39,18 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
+	public void updateCarryAmount(String carryAmount, String writerId) throws Exception {
+		// TODO Auto-generated method stub
+		paymentMapper.modifyCarryAmount(carryAmount, writerId);
+	}
+
+	@Override
+	public void updateVirtuousTax(String writerId) throws Exception {
+		// TODO Auto-generated method stub
+		paymentMapper.modifyVirtuousTax(writerId);
+	}
+
+	@Override
 	public PaymentDto allPayment(String writerId, String setDate) throws Exception {
 
 		PaymentDto paymentDto = new PaymentDto();
