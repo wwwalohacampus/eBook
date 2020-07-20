@@ -83,10 +83,10 @@
 				</div>
 				<div class="card-body">
 				 <div class="table-responsive">
-					<table border="1" class="table table-bordered" width="100%" cellspacing="0">
+					<table border="1">
 						<tr>
 							<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
-							<th height="10px" align="center">제목</th>
+							<th align="center">제목</th>
 							<th align="center" width="">저자</th>
 							<th align="center">출판권자</th>
 							<th align="center">판매처</th>
@@ -105,8 +105,8 @@
 							<th align="center">e_ISBN(ePub)</th>
 						</tr>
 						<tr th:if="${#lists.isEmpty(listBookcube)}">
-							<td>
-								List is empty
+							<td colspan="18">
+								데이터가 없습니다.
 							</td>
 						</tr>
 						<tr th:each="board : ${listBookcube}"  >
@@ -122,7 +122,7 @@
 							<td><input style="width:80px" type="text" name="discount" th:value="${board.discount}"/></td>
 							<td><input style="width:80px" type="text" name="fee" th:value="${board.fee}"/></td>
 							<td><input style="width:80px" type="text" name="netTargetPrice" th:value="${board.netTargetPrice}"/></td>
-							<td><input style="width:80px" type="text" name="deductionReservesEvent" th:value="${board.deductionReservesEvent}"/></td>
+							<td><input style="width:100px" type="text" name="deductionReservesEvent" th:value="${board.deductionReservesEvent}"/></td>
 							<td><input style="width:80px" type="text" name="payment" th:value="${board.payment}"/></td>
 							<td><input style="width:100px" type="text" name="bookId" th:value="${board.bookId}"/></td>
 							<td><input style="width:100px" type="text" name="isbn" th:value="${board.isbn}"/></td>
@@ -138,8 +138,14 @@
 		</div>
 		
 		<div id="joaraId" style="display:none">
-			<img src="/image/img_joara.png" style="width:100px;">
-			<table border="1">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_joara.png" style="width:100px;">
+				<h2>조아라</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">			
+				<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">브랜드</th>
@@ -153,14 +159,14 @@
 					<th align="center">정산일</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listJoara)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listJoara}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" type="text" name="brand" th:value="${board.brand}"/></td>
-					<td><input style="" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 					<td><input style="" type="text" name="productCode" th:value="${board.productCode}"/></td>
 					<td><input style="" type="text" name="author" th:value="${board.author}"/></td>
 					<td><input style="" type="text" name="unit" th:value="${board.unit}"/></td>
@@ -172,11 +178,26 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+		</div>
 		</div>		
 		
 		<div id="kakaoId" style="display:none">
-			<img src="/image/img_kakaopage.jpg" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_kakaopage.jpg" style="width:100px;">
+				<h2>카카오페이지</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">	
 			<table border="1">
+				<tr>
+					<th align="center" colspan="21">기초정보</th>
+					<th align="center" colspan="10">거래현황(캐시)</th>
+					<th align="center" colspan="10">거래금액(원화)</th>
+					<th align="center" colspan="3">CP</th>
+				</tr>
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">브랜드</th>
@@ -224,8 +245,8 @@
 					<th align="center">합계금액</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listKakao)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listKakao}">
@@ -241,7 +262,7 @@
 					<td><input style="" type="text" name="newContract" th:value="${board.newContract}"/></td>
 					<td><input style="" type="text" name="category" th:value="${board.category}"/></td>
 					<td><input style="" type="text" name="seriesId" th:value="${board.seriesId}"/></td>
-					<td><input style="" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 					<td><input style="" type="text" name="productCode" th:value="${board.productCode}"/></td>
 					<td><input style="" type="text" name="lable" th:value="${board.lable}"/></td>
 					<td><input style="" type="text" name="author" th:value="${board.author}"/></td>
@@ -277,10 +298,19 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>		
 
 		<div id="kyoboId" style="display:none">
-			<img src="/image/img_kyobo.jpg" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_kyobo.jpg" style="width:100px;">
+				<h2>교보문고</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
@@ -307,8 +337,8 @@
 					<th align="center">북넘버</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listKyobo)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listKyobo}">
@@ -322,7 +352,7 @@
 					<td><input style="" type="text" name="isbn" th:value="${board.isbn}"/></td>
 					<td><input style="" type="text" name="epubIsbn" th:value="${board.epubIsbn}"/></td>
 					<td><input style="" type="text" name="pdfIsbn" th:value="${board.pdfIsbn}"/></td>
-					<td><input style="" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 					<td><input style="" type="text" name="episode" th:value="${board.episode}"/></td>
 					<td><input style="" type="text" name="author" th:value="${board.author}"/></td>
 					<td><input style="" type="text" name="netPrice" th:value="${board.netPrice}"/></td>
@@ -338,62 +368,94 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="mrblueId" style="display:none">
-			<img src="/image/img_mrblue.jpg" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_mrblue.jpg" style="width:100px;">
+				<h2>미스터블루</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
-					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
-					<th align="center">브랜드</th>
-					<th align="center">일자</th>
-					<th align="center">작품명</th>
-					<th align="center">작가명</th>
-					<th align="center">코드</th>
-					<th align="center">정액_건수</th>
-					<th align="center">정액_매출액</th>
-					<th align="center">정액_정산액</th>
-					<th align="center">a앱머니_권별대여_건</th>
-					<th align="center">a앱머니_권별대여_이용권</th>
-					<th align="center">a앱머니_권별대여_매출액</th>
-					<th align="center">a앱머니_권별소장_건</th>
-					<th align="center">a앱머니_권별소장_이용권</th>
-					<th align="center">a앱머니_권별소장_매출액</th>
-					<th align="center">a앱머니_전권대여_건</th>
-					<th align="center">a앱머니_전권대여_이용권</th>
-					<th align="center">a앱머니_전권대여_매출액</th>
-					<th align="center">a앱머니_전권소장_건</th>
-					<th align="center">a앱머니_전권소장_이용권</th>
-					<th align="center">a앱머니_전권소장_매출액</th>
-					<th align="center">i앱머니_권별대여_건</th>
-					<th align="center">i앱머니_권별대여_이용권</th>
-					<th align="center">i앱머니_권별대여_매출액</th>
-					<th align="center">i앱머니_권별소장_건</th>
-					<th align="center">i앱머니_권별소장_이용권</th>
-					<th align="center">i앱머니_권별소장_매출액</th>
-					<th align="center">i앱머니_전권대여_건</th>
-					<th align="center">i앱머니_전권대여_이용권</th>
-					<th align="center">i앱머니_전권대여_매출액</th>
-					<th align="center">i앱머니_전권소장_건</th>
-					<th align="center">i앱머니_전권소장_이용권</th>
-					<th align="center">i앱머니_전권소장_매출액</th>
-					<th align="center">계_권수</th>
-					<th align="center">계_이용권</th>
-					<th align="center">계_매출액</th>
-					<th align="center">계_정산액</th>
+					<th rowspan="5"><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
+					<th align="center" rowspan="5">브랜드</th>
+					<th align="center" rowspan="5">일자</th>
+					<th align="center" rowspan="5">작품명</th>
+					<th align="center" rowspan="5">작가명</th>
+					<th align="center" rowspan="5">코드</th>
+					<th align="center" colspan="31">매출구분</th>
+					<th align="center" colspan="2">소    계</th>
+				</tr>
+				<tr>
+					<th align="center" colspan="3" rowspan="3">정액</th>
+					<th align="center" colspan="28">종량</th>
+					<th align="center" rowspan="4">매출액</th>
+					<th align="center" rowspan="4">정산액</th>
+				</tr>
+				<tr>
+					<th align="center" colspan="12">블루머니 + A.앱머니</th>
+					<th align="center" colspan="12">I.앱머니</th>
+					<th align="center" colspan="4" rowspan="2">계</th>
+				</tr>
+				<tr>
+					<th align="center" colspan="3">권별 대여</th>
+					<th align="center" colspan="3">권별 소장</th>
+					<th align="center" colspan="3">전권 대여</th>
+					<th align="center" colspan="3">전권 소장</th>
+					<th align="center" colspan="3">권별 대여</th>
+					<th align="center" colspan="3">권별 소장</th>
+					<th align="center" colspan="3">전권 대여</th>
+					<th align="center" colspan="3">전권 소장</th>
+				</tr>
+				<tr>
+					<th align="center">건수</th>
+					<th align="center">매출액</th>
+					<th align="center">정산액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
+					<th align="center">매출액</th>
+					<th align="center">건수</th>
+					<th align="center">이용권(화)수</th>
 					<th align="center">매출액</th>
 					<th align="center">정산액</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listMrblue)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listMrblue}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" type="text" name="brand" th:value="${board.brand}"/></td>
 					<td><input style="" type="text" name="date" th:value="${board.date}"/></td>
-					<td><input style="" type="text" name="productName" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 					<td><input style="" type="text" name="author" th:value="${board.author}"/></td>
 					<td><input style="" type="text" name="code" th:value="${board.code}"/></td>
 					<td><input style="" type="text" name="fixedNum" th:value="${board.fixedNum}"/></td>
@@ -433,10 +495,19 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="munpiaId" style="display:none">
-			<img src="/image/img_munpia.jpg" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_munpia.jpg" style="width:100px;">
+				<h2>문피아</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
@@ -457,8 +528,8 @@
 					<th align="center">최종정산</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listMunpia)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listMunpia}">
@@ -467,7 +538,7 @@
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
 					<td><input style="" name="date" type="text" th:value="${board.date}"/></td>
 					<td><input style="" name="classification" type="text" th:value="${board.classification}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="purchase" type="text" th:value="${board.purchase}"/></td>
 					<td><input style="" name="purchaseCancel" type="text" th:value="${board.purchaseCancel}"/></td>
 					<td><input style="" name="rental" type="text" th:value="${board.rental}"/></td>
@@ -482,59 +553,76 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="naverId" style="display:none">
-			<img src="/image/img_naver.png" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_naver.png" style="width:100px;">
+				<h2>네이버</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
-					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
-					<th align="center">상품명</th>
-					<th align="center">컨텐츠No</th>
-					<th align="center">공급자코드</th>
-					<th align="center">CP명</th>
-					<th align="center">저자명</th>
-					<th align="center">출판사</th>
-					<th align="center">나이제한</th>
-					<th align="center">서비스일</th>
-					<th align="center">대여권_건수</th>
-					<th align="center">대여권_비정산</th>
-					<th align="center">대여권_무료이용권</th>
-					<th align="center">대여권_유상쿠키</th>
-					<th align="center">대여권_무상쿠키</th>
-					<th align="center">대여권_유상i쿠키</th>
-					<th align="center">대여권_무상i쿠키</th>
-					<th align="center">소장권_건수</th>
-					<th align="center">소장권_비정산품명</th>
-					<th align="center">소장권_무료이용권</th>
-					<th align="center">소장권_유상쿠키</th>
-					<th align="center">소장권_무상쿠키</th>
-					<th align="center">소장권_유상i쿠키</th>
-					<th align="center">소장권_무상i쿠키</th>
-					<th align="center">쿠키로대여_건수</th>
-					<th align="center">쿠키로대여_유상</th>
-					<th align="center">쿠키로대여_무상</th>
-					<th align="center">쿠키로구매_건수</th>
-					<th align="center">쿠키로구매_유상</th>
-					<th align="center">쿠키로구매_무상</th>
-					<th align="center">i쿠키로대여_건수</th>
-					<th align="center">i쿠키로대여_유상</th>
-					<th align="center">i쿠키로대여_무상</th>
-					<th align="center">i쿠키로구매_건수</th>
-					<th align="center">i쿠키로구매_유상</th>
-					<th align="center">i쿠키로구매_무상</th>
-					<th align="center">i쿠키 수수료</th>
-					<th align="center">합계</th>
-					<th align="center">출판사 정산</th>
+					<th rowspan="2"><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
+					<th align="center" rowspan="2">상품명</th>
+					<th align="center" rowspan="2">컨텐츠No</th>
+					<th align="center" rowspan="2">공급자코드</th>
+					<th align="center" rowspan="2">CP명</th>
+					<th align="center" rowspan="2">저자명</th>
+					<th align="center" rowspan="2">출판사</th>
+					<th align="center" rowspan="2">나이제한</th>
+					<th align="center" rowspan="2">서비스일</th>
+					<th align="center" colspan="7">대여권</th>
+					<th align="center" colspan="7">소장권</th>
+					<th align="center" colspan="3">쿠키로 대여</th>
+					<th align="center" colspan="3">쿠키로 구매</th>
+					<th align="center" colspan="3">i쿠키로 대여</th>
+					<th align="center" colspan="3">i쿠키로 구매</th>
+					<th align="center" rowspan="2">i쿠키 수수료</th>
+					<th align="center" rowspan="2">합계</th>
+					<th align="center" rowspan="2">출판사 정산</th>
+				</tr>
+				<tr>
+					<th align="center">건수</th>
+					<th align="center">비정산</th>
+					<th align="center">무료이용권</th>
+					<th align="center">유상쿠키</th>
+					<th align="center">무상쿠키</th>
+					<th align="center">유상i쿠키</th>
+					<th align="center">무상i쿠키</th>
+					<th align="center">건수</th>
+					<th align="center">비정산품명</th>
+					<th align="center">무료이용권</th>
+					<th align="center">유상쿠키</th>
+					<th align="center">무상쿠키</th>
+					<th align="center">유상i쿠키</th>
+					<th align="center">무상i쿠키</th>
+					<th align="center">건수</th>
+					<th align="center">유상</th>
+					<th align="center">무상</th>
+					<th align="center">건수</th>
+					<th align="center">유상</th>
+					<th align="center">무상</th>
+					<th align="center">건수</th>
+					<th align="center">유상</th>
+					<th align="center">무상</th>
+					<th align="center">건수</th>
+					<th align="center">유상</th>
+					<th align="center">무상</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listNaver)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listNaver}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="productNo" type="text" th:value="${board.productNo}"/></td>
 					<td><input style="" name="providerCode" type="text" th:value="${board.providerCode}"/></td>
 					<td><input style="" name="cpName" type="text" th:value="${board.cpName}"/></td>
@@ -575,10 +663,19 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="ridibooksId" style="display:none">
-			<img src="/image/img_ridibooks.png" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_ridibooks.png" style="width:100px;">
+				<h2>리디북스</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>	
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
@@ -625,15 +722,15 @@
 					<th align="center">카테고리2</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listRidibooks)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listRidibooks}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" name="seriesId" type="text" th:value="${board.seriesId}"/></td>
 					<td><input style="" name="bookId" type="text" th:value="${board.bookId}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="episode" type="text" th:value="${board.episode}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
 					<td><input style="" name="translators" type="text" th:value="${board.translators}"/></td>
@@ -676,10 +773,19 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="romanceId" style="display:none">
-			<img src="/image/img_romance.jpg" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_romance.jpg" style="width:100px;">
+				<h2>로망띠끄</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
@@ -695,14 +801,14 @@
 					<th align="center">isbn</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listRomance)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listRomance}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" name="bookCode" type="text" th:value="${board.bookCode}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
 					<td><input style="" name="saleRate" type="text" th:value="${board.saleRate}"/></td>
@@ -715,10 +821,19 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 		
 		<div id="tocsodaId" style="display:none">
-			<img src="/image/img_tocsoda.png" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_tocsoda.png" style="width:100px;">
+				<h2>톡소다</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
@@ -734,14 +849,14 @@
 					<th align="center">정산액</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listTocsoda)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listTocsoda}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" name="productBacord" type="text" th:value="${board.productBacord}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
 					<td><input style="" name="pc" type="text" th:value="${board.pc}"/></td>
@@ -754,47 +869,62 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="winstoreId" style="display:none">
-			<img src="/image/img_onestore.jpg" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_onestore.jpg" style="width:100px;">
+				<h2>원스토어</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
-					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
-					<th align="center">파트너명</th>
-					<th align="center">파트너ID</th>
-					<th align="center">사업자구분</th>
-					<th align="center">채널상품ID</th>
-					<th align="center">채널상품명</th>
-					<th align="center">상품명</th>
-					<th align="center">회차</th>
-					<th align="center">상품ID</th>
-					<th align="center">2차정산여부</th>
-					<th align="center">카테고리</th>
-					<th align="center">출판사</th>
-					<th align="center">글작가</th>
-					<th align="center">그림작가</th>
-					<th align="center">타입</th>
-					<th align="center">판매건수</th>
-					<th align="center">취소건수</th>
-					<th align="center">정산대상액</th>
+					<th rowspan="2"><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
+					<th align="center" rowspan="2">파트너명</th>
+					<th align="center" rowspan="2">파트너ID</th>
+					<th align="center" rowspan="2">사업자구분</th>
+					<th align="center" rowspan="2">채널상품ID</th>
+					<th align="center" rowspan="2">채널상품명</th>
+					<th align="center" rowspan="2">상품명</th>
+					<th align="center" rowspan="2">회차</th>
+					<th align="center" rowspan="2">상품ID</th>
+					<th align="center" rowspan="2">2차정산여부</th>
+					<th align="center" rowspan="2">카테고리</th>
+					<th align="center" rowspan="2">출판사</th>
+					<th align="center" rowspan="2">글작가</th>
+					<th align="center" rowspan="2">그림작가</th>
+					<th align="center" rowspan="2">타입</th>
+					<th align="center" rowspan="2">판매건수</th>
+					<th align="center" rowspan="2">취소건수</th>
+					<th align="center" rowspan="2">정산대상액</th>
+					<th align="center" colspan="2">판매</th>
+					<th align="center" colspan="2">취소</th>
+					<th align="center" rowspan="2">합계</th>
+					<th align="center" colspan="3">결제수단</th>
+					<th align="center" colspan="3">서비스이용료</th>
+					<th align="center" rowspan="2">정산지급액</th>
+					<th align="center" rowspan="2">정산유형</th>
+				</tr>
+				<tr>
 					<th align="center">판매건수</th>
 					<th align="center">판매금액</th>
 					<th align="center">취소건수</th>
 					<th align="center">취소금액</th>
-					<th align="center">합계</th>
-					<th align="center">결제수단_고객결제</th>
-					<th align="center">결제수단_고객결제(현금영수증)</th>
-					<th align="center">결제수단_쿠폰/포인트등</th>
-					<th align="center">서비스이용료_고객결제 서비스이용료</th>
-					<th align="center">서비스이용료_쿠폰/포인트등액</th>
-					<th align="center">서비스이용료_차감</th>
-					<th align="center">정산지급액</th>
-					<th align="center">정산유형</th>
+					<th align="center">고객결제</th>
+					<th align="center">고객결제(현금영수증)</th>
+					<th align="center">쿠폰/포인트등</th>
+					<th align="center">고객결제 서비스이용료</th>
+					<th align="center">쿠폰/포인트등액</th>
+					<th align="center">차감</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listWinstore)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listWinstore}">
@@ -804,7 +934,7 @@
 					<td><input style="" name="entrepreneur" type="text" th:value="${board.entrepreneur}"/></td>
 					<td><input style="" name="channelProductId" type="text" th:value="${board.channelProductId}"/></td>
 					<td><input style="" name="channelProductName" type="text" th:value="${board.channelProductName}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="episode" type="text" th:value="${board.episode}"/></td>
 					<td><input style="" name="productId" type="text" th:value="${board.productId}"/></td>
 					<td><input style="" name="secondSettlementStatus" type="text" th:value="${board.secondSettlementStatus}"/></td>
@@ -833,10 +963,19 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="yes24Id" style="display:none">
-			<img src="/image/img_yes24.png" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_yes24.png" style="width:100px;">
+				<h2>예스24</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">	
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
@@ -861,14 +1000,14 @@
 					<th align="center">환불일</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listYes24)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listYes24}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" name="no" type="text" th:value="${board.no}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
 					<td><input style="" name="brandSalePrice" type="text" th:value="${board.brandSalePrice}"/></td>
 					<td><input style="" name="sales" type="text" th:value="${board.sales}"/></td>
@@ -890,10 +1029,19 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 
 		<div id="aladinId" style="display:none">
-			<img src="/image/img_aladin.jpg" style="width:100px;">
+			<div class="sheet-container">
+			<div class="logo">
+				<img src="/image/img_aladin.jpg" style="width:100px;">
+				<h2>알라딘</h2>
+			</div>
+			<div class="card-body">
+			<div class="table-responsive">
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
@@ -912,15 +1060,15 @@
 					<th align="center">CID</th>
 				</tr>
 				<tr th:if="${#lists.isEmpty(listAladin)}">
-					<td>
-						List is empty
+					<td colspan="100">
+						데이터가 없습니다.
 					</td>
 				</tr>
 				<tr th:each="board : ${listAladin}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" name="salesCancelDate" type="text" th:value="${board.salesCancelDate}"/></td>
 					<td><input style="" name="itemId" type="text" th:value="${board.itemId}"/></td>
-					<td><input style="" name="productName" type="text" th:value="${board.productName}"/></td>
+					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="salesType" type="text" th:value="${board.salesType}"/></td>
 					<td><input style="" name="netPrice" type="text" th:value="${board.netPrice}"/></td>
 					<td><input style="" name="salePrice" type="text" th:value="${board.salePrice}"/></td>
@@ -935,6 +1083,9 @@
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
 			</table>
+			</div>
+			</div>
+			</div>
 		</div>
 		<!-- Modal -->
 		<div class="upload-modal" id="myModal">
@@ -963,17 +1114,19 @@
 	</form>
 	
 	<div class="d-flex p-3">
-		<button type="submit" id="btnUpdate" class="btn btn-success mr-2">
+		<button type="submit" id="btnUpdate" class="btn btn-info mr-2">
+			<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
 			<span class="text">수정하기</span>
 		</button>
-		<button type="submit" onclick="remove();" id="btnDelete" class="btn btn-success mr-2">
-			<span class="text">삭제</span>
+		<button type="submit" onclick="remove();" id="btnDelete" class="btn btn-danger mr-2">
+			<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+			<span class="text">삭제하기</span>
 		</button>
    	    <button id="uploadBtn" type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#myModal">
 	  		<span class="icon text-white-50"><i class="fas fa-upload"></i></span>
 	  		<span class="text">파일업로드</span>
 		</button>
-		<button type="submit" id="btnDownLoad" class="btn btn-success mr-2">
+		<button type="submit" id="btnDownLoad" class="btn btn-primary mr-2">
 	  		<span class="icon text-white-50"><i class="fas fa-download"></i></span>
 			<span class="text">파일다운로드</span>
 		</button>
