@@ -1,9 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
+<style>
+	nav {
+		background-color: cornflowerblue !important;
+	}
+</style>
+
 <body>
    <div align="right" th:fragment="header">
-   	  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+   	  <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" >
    	  	<ul class="navbar-nav ml-auto" sec:authorize="!isAuthenticated()">
    	  		<li class="nav-item"><a class="nav-link" href="#" th:href="@{/}" >회원가입</a></li>
    	  		<li class="nav-item"><a class="nav-link" href="#" th:href="@{/}" >로그인</a></li>
