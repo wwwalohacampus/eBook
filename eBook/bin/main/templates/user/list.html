@@ -14,6 +14,9 @@
 <div layout:fragment="content">
 	<div>
 	   <form id="listForm" action="list.html" method="POST">
+	   
+			<div style="overflow:scroll; height:650px;">
+			<div class="card-body">
 		   <table border="1">
 		      <tr>
 		      	 <th></th>
@@ -50,6 +53,8 @@
 		        <td><input style="text-align:center;" type="text" name="manager" th:value="${member.manager}"/></td>
 		      </tr>
 		   </table>
+		   </div>
+		   </div>
 	   </form>
 	</div> 
 	  
