@@ -1,5 +1,7 @@
 package com.eBook.mgr.controller;
 
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eBook.mgr.domain.Author;
 import com.eBook.mgr.dto.AuthorListDto;
 import com.eBook.mgr.dto.PaymentDto;
+import com.eBook.mgr.service.AuthService;
 import com.eBook.mgr.service.AuthorService;
 import com.eBook.mgr.service.MemberService;
 import com.eBook.mgr.service.PaymentService;
@@ -36,9 +39,12 @@ public class PaymentController {
 	
 	@Autowired
 	AuthorService authorService;
+	
+	@Autowired
+	AuthService authService;
 
 	@RequestMapping(value = "/payment")
-	public void payment(Model model, String p_year_select, String p_month_select) throws Exception{
+	public void payment(Model model, String p_year_select, String p_month_select, Principal principal) throws Exception{
 		
 		log.info("===============================???"); 
 		log.info("연... : " + p_year_select);
@@ -73,8 +79,22 @@ public class PaymentController {
 		log.info("현재 셋데이터" + setDate);
 		// --------------------------------------------------------
 		
-		List<PaymentDto> paymentDto = paymentService.listPayment(setDate);
+		String auth = authService.authRoll(principal.getName());
+		log.info("권한? : " + auth);
+		List<PaymentDto> paymentDto = new ArrayList<PaymentDto>();
 		
+		if(auth.equals("ROLE_ADMIN")) {
+			paymentDto = paymentService.listPayment(setDate);
+		} else {
+			paymentDto = authService.listPayment(setDate, principal.getName());
+			if(paymentDto.size() > 0) {
+				if(paymentDto.get(0) == null) {
+					paymentDto = new ArrayList<PaymentDto>();
+				}
+			}
+		}
+		
+		log.info("paymentController : " + paymentDto.size());
 		model.addAttribute("paymentList", paymentDto);
 	}
 	

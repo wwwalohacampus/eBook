@@ -1,5 +1,6 @@
 package com.eBook.mgr.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +34,8 @@ import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
 import com.eBook.mgr.domain.platform.Yes24;
+import com.eBook.mgr.dto.PaymentDto;
+import com.eBook.mgr.service.AuthService;
 import com.eBook.mgr.service.EBookService;
 
 @Controller
@@ -43,6 +46,9 @@ public class EBookController {
 
 	@Autowired
 	EBookService eBookService;	
+	
+	@Autowired
+	AuthService authService;
 	
 	/*
 	안되는것 2020-07-09 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
@@ -67,7 +73,7 @@ public class EBookController {
 	// 플랫폼 별로 리스트 보여주기
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/list")
-	public void list(Model model, @RequestParam String platformType, String p_year, String p_month) throws Exception{
+	public void list(Model model, @RequestParam String platformType, String p_year, String p_month, Principal principal) throws Exception{
 		log.info("연도...: " + p_year);
 		log.info("월...: " + p_month);
 		model.addAttribute("platformType", platformType);
@@ -96,13 +102,21 @@ public class EBookController {
 		}
 		
 		model.addAttribute("setDate", setDate);
+		
+		String auth = authService.authRoll(principal.getName());
 
 		
 		log.info("현재 셋데이터" + setDate);
 		// --------------------------------------------------------
 		switch (platformType) {
 		case "p_bookcube":
-			List<Bookcube> bookList = eBookService.listBookcube(setDate);
+			log.info("p_bookcube 진입");
+			List<Bookcube> bookList = new ArrayList<Bookcube>();
+			if(auth.equals("ROLE_ADMIN")) {
+				bookList = eBookService.listBookcube(setDate);
+			} else {
+				bookList = authService.listBookcube(setDate, principal.getName());
+			}
 			model.addAttribute("listBookcube", bookList);
 			break;
 //		case "p_epub":
@@ -110,51 +124,123 @@ public class EBookController {
 //			break;
 		case "p_joara":
 			log.info("p_joara 진입");
-			model.addAttribute("listJoara", eBookService.listJoara(setDate));
+			List<Joara> joaraList = new ArrayList<Joara>();
+			if(auth.equals("ROLE_ADMIN")) {
+				joaraList = eBookService.listJoara(setDate);
+			} else {
+				joaraList = authService.listJoara(setDate, principal.getName());
+			}
+			model.addAttribute("listJoara", joaraList);
 			break;
 		case "p_kakao":
 			log.info("p_kakao 진입");
-			model.addAttribute("listKakao", eBookService.listKakao(setDate));
+			List<Kakao> kakaoList = new ArrayList<Kakao>();
+			if(auth.equals("ROLE_ADMIN")) {
+				kakaoList = eBookService.listKakao(setDate);
+			} else {
+				kakaoList = authService.listKakao(setDate, principal.getName());
+			}
+			model.addAttribute("listKakao", kakaoList);
 			break;
 		case "p_kyobo":
 			log.info("p_kyobo 진입");
-			model.addAttribute("listKyobo", eBookService.listkyobo(setDate));
+			List<Kyobo> kyoboList = new ArrayList<Kyobo>();
+			if(auth.equals("ROLE_ADMIN")) {
+				kyoboList = eBookService.listkyobo(setDate);
+			} else {
+				kyoboList = authService.listkyobo(setDate, principal.getName());
+			}
+			model.addAttribute("listKyobo", kyoboList);
 			break;
 		case "p_mrblue":
 			log.info("p_mrblue 진입");
-			model.addAttribute("listMrblue", eBookService.listMrblue(setDate));
+			List<Mrblue> mrblueList = new ArrayList<Mrblue>();
+			if(auth.equals("ROLE_ADMIN")) {
+				mrblueList = eBookService.listMrblue(setDate);
+			} else {
+				mrblueList = authService.listMrblue(setDate, principal.getName());
+			}
+			model.addAttribute("listMrblue", mrblueList);
 			break;
 		case "p_munpia":
 			log.info("p_munpia 진입");
-			model.addAttribute("listMunpia", eBookService.listMunpia(setDate));
+			List<Munpia> munpiaList = new ArrayList<Munpia>();
+			if(auth.equals("ROLE_ADMIN")) {
+				munpiaList = eBookService.listMunpia(setDate);
+			} else {
+				munpiaList = authService.listMunpia(setDate, principal.getName());
+			}
+			model.addAttribute("listMunpia", munpiaList);
 			break;
 		case "p_naver":
 			log.info("p_naver 진입");
-			model.addAttribute("listNaver", eBookService.listNaver(setDate));
+			List<Naver> naverList = new ArrayList<Naver>();
+			if(auth.equals("ROLE_ADMIN")) {
+				naverList = eBookService.listNaver(setDate);
+			} else {
+				naverList = authService.listNaver(setDate, principal.getName());
+			}
+			model.addAttribute("listNaver", naverList);
 			break;
 		case "p_ridibooks":
 			log.info("p_ridibooks 진입");
-			model.addAttribute("listRidibooks", eBookService.listRidibooks(setDate));
+			List<Ridibooks> ridibooksList = new ArrayList<Ridibooks>();
+			if(auth.equals("ROLE_ADMIN")) {
+				ridibooksList = eBookService.listRidibooks(setDate);
+			} else {
+				ridibooksList = authService.listRidibooks(setDate, principal.getName());
+			}
+			model.addAttribute("listRidibooks", ridibooksList);
 			break;
 		case "p_romance":
 			log.info("p_romance 진입");
-			model.addAttribute("listRomance", eBookService.listRomance(setDate));
+			List<Romance> romanceList = new ArrayList<Romance>();
+			if(auth.equals("ROLE_ADMIN")) {
+				romanceList = eBookService.listRomance(setDate);
+			} else {
+				romanceList = authService.listRomance(setDate, principal.getName());
+			}
+			model.addAttribute("listRomance", romanceList);
 			break;
 		case "p_tocsoda":
 			log.info("p_tocsoda 진입");
-			model.addAttribute("listTocsoda", eBookService.listTocsoda(setDate));
+			List<Tocsoda> tocsodaList = new ArrayList<Tocsoda>();
+			if(auth.equals("ROLE_ADMIN")) {
+				tocsodaList = eBookService.listTocsoda(setDate);
+			} else {
+				tocsodaList = authService.listTocsoda(setDate, principal.getName());
+			}
+			model.addAttribute("listTocsoda", tocsodaList);
 			break;
 		case "p_winstore":
 			log.info("p_winstore 진입");
-			model.addAttribute("listWinstore", eBookService.listWinstore(setDate));
+			List<Winstore> winstoreList = new ArrayList<Winstore>();
+			if(auth.equals("ROLE_ADMIN")) {
+				winstoreList = eBookService.listWinstore(setDate);
+			} else {
+				winstoreList = authService.listWinstore(setDate, principal.getName());
+			}
+			model.addAttribute("listWinstore", winstoreList);
 			break;
 		case "p_yes24":
 			log.info("p_yes24 진입");
-			model.addAttribute("listYes24", eBookService.listYes24(setDate));
+			List<Yes24> yes24List = new ArrayList<Yes24>();
+			if(auth.equals("ROLE_ADMIN")) {
+				yes24List = eBookService.listYes24(setDate);
+			} else {
+				yes24List = authService.listYes24(setDate, principal.getName());
+			}
+			model.addAttribute("listYes24", yes24List);
 			break;
 		case "p_aladin":
 			log.info("p_aladin 진입");
-			model.addAttribute("listAladin", eBookService.listAladin(setDate));
+			List<Aladin> aladinList = new ArrayList<Aladin>();
+			if(auth.equals("ROLE_ADMIN")) {
+				aladinList = eBookService.listAladin(setDate);
+			} else {
+				aladinList = authService.listAladin(setDate, principal.getName());
+			}
+			model.addAttribute("listAladin", aladinList);
 			break;
 
 		default:

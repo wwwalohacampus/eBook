@@ -321,8 +321,6 @@ public class EBookServiceImpl implements EBookService{
 	@Override
 	public List<Bookcube> listBookcube(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("ddddddddddddddd");
-		log.info("dddddddddddddddddddddddddddddddddddddd");
 		return listMapper.listBookcube(setDate);
 	}
 

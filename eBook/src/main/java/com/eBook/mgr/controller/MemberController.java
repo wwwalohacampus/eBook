@@ -1,5 +1,6 @@
 package com.eBook.mgr.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.eBook.mgr.domain.Author;
 import com.eBook.mgr.domain.Member;
 import com.eBook.mgr.dto.AuthorListDto;
+import com.eBook.mgr.service.AuthService;
 import com.eBook.mgr.service.AuthorService;
 import com.eBook.mgr.service.MemberService;
 
@@ -33,6 +35,9 @@ public class MemberController {
 	
 	@Autowired
 	private AuthorService authorService;
+	
+	@Autowired
+	private AuthService authService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -93,9 +98,19 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(Model model) throws Exception{
-		System.out.println("리스트반환");
-		List<AuthorListDto> list = memberService.list();
+	public void list(Model model, Principal principal) throws Exception{
+		log.info("현재 사용자정보 : " + principal.getName());
+		
+		String auth = authService.authRoll(principal.getName());
+		log.info("권한? : " + auth);
+		List<AuthorListDto> list = null;
+		
+		if(auth.equals("ROLE_ADMIN")) {
+			list = memberService.list();
+		} else {
+			list = authService.list(principal.getName());
+		}
+		
 		
 		for (AuthorListDto author : list) {
 			System.out.println("author : " + author.getRealName());
