@@ -1,48 +1,19 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{/layouts/dbSetting_template}"
+   >
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 
-<title>Insert title here</title>
+<title>DB파일세팅</title>
 </head>
-<script src="/js/jQuery-2.1.4.min.js"></script>
-<script type="text/javascript">
-	$("document").ready(function(){
-		var formObj = $("#platList");
-		var fileName = "";
-		
-		$("#btnMissing").on("click", function(){
-			if (confirm("엑셀파일로 다운로드 하시겠습니까? ")) {
-				formObj.attr("action", "/ebook/missing");
-				formObj.attr("method", "post");
-				formObj.attr("enctype", "multipart/form-data");
-				formObj.submit();
-			} else {
-				
-			}
-		});
-		
-		$('input[type=file]').change(function(e){
-			fileName = e.target.files[0].name;
-		});
-		
-		$("#btnDbUpload").on("click", function(){
-			if (confirm("업로드 하시겠습니까? 현재 파일명 : " + fileName + "입니다.")) {
-				formObj.attr("action", "/ebook/dbUpload");
-				formObj.attr("method", "post");
-				formObj.attr("enctype", "multipart/form-data");
-				formObj.submit();
-			} else {
-				
-			}
-		});
-	});
-</script>
+
 
 <body>
+<div layout:fragment="content">
 	<form id="platList" th:action="@{search}" method="POST">
 		<h1><img src="/image/img_ongle.png" style="width:100px;"> &emsp; &emsp; &emsp; 작업파일 다운로드 &emsp; &emsp; &emsp; &emsp; DB파일 업로드</h1>
 		<table border="1">
@@ -113,5 +84,6 @@
 		<button type="submit" id="btnMissing">누락파일다운</button>
 		<button type="submit" id="btnDbUpload">DB파일업로드</button>
 	</div>
+</div>
 </body>
 </html>

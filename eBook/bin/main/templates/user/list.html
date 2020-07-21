@@ -1,181 +1,64 @@
 <html xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{/layouts/user_template}"
    >
    
 <head>
    <title>User</title>
    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>   
-   <script src="/js/jQuery-2.1.4.min.js"></script>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
 </head>
 <body>
-<div>
-   <form id="listForm" action="list.html" method="POST">
-	   <table border="1">
-	      <tr>
-	      	 <th></th>
-	         <th align="center">작가ID</th>
-	         <th align="center">ID</th>
-	         <th align="center">작가명</th>
-	         <th align="center">본명</th>
-	         <th align="center">계좌번호</th>
-	         <th align="center">주민번호</th>
-	         <th align="center">선인세</th>
-	         <th align="center">로그인활성/비활성</th>
-	         <th align="center">정산비율</th>
-	         <th align="center">담당자</th>
-	      </tr>
-	      
-	      <tr th:if="${#lists.isEmpty(memberList)}">
-	         <td colspan="6">
-	            List is empty.
-	         </td>
-	      </tr>
-	      
-	      <tr th:each="member : ${memberList}">
-	      	<td><input type="checkbox" name="delete_ids" th:value="${member.writerId}"/></td>
-	        <!-- <td><input style="text-align:center;" type="text" name="writerId" th:href="'/user/read?writerId=' + ${member.writerId}" th:value="${member.writerId}"/></td> -->
-	        <td><a th:text="${member.writerId}" th:href="@{|/user/read?writerId=${member.writerId}|}"></a></td>
-	        <td><input style="text-align:center;" type="text" name="id" th:value="${member.id}"/></td>
-	        <td><input style="text-align:center;" type="text" name="author" th:value="${member.author}"/></td>
-	        <td><input style="text-align:center;" type="text" name="realName" th:value="${member.realName}"/></td>
-	        <td><input style="text-align:center;" type="text" name="accountNumber" th:value="${member.accountNumber}"/></td>
-	        <td><input style="text-align:center;" type="text" name="ctzNumber" th:value="${member.ctzNumber}"/></td>
-	        <td><input style="text-align:center;" type="text" name="virtuousTax" th:value="${member.virtuousTax}"/></td>
-	        <td><input style="text-align:center;" type="text" name="loginStatus" th:value="${member.loginStatus}"/></td>
-	        <td><input style="text-align:center;" type="text" name="settlementRatio" th:value="${member.settlementRatio}"/></td>
-	        <td><input style="text-align:center;" type="text" name="manager" th:value="${member.manager}"/></td>
-	      </tr>
-	   </table>
-   </form>
-</div> 
-  
+<div layout:fragment="content">
+	<div>
+	   <form id="listForm" action="list.html" method="POST">
+		   <table border="1">
+		      <tr>
+		      	 <th></th>
+		         <th align="center">작가ID</th>
+		         <th align="center">ID</th>
+		         <th align="center">작가명</th>
+		         <th align="center">본명</th>
+		         <th align="center">계좌번호</th>
+		         <th align="center">주민번호</th>
+		         <th align="center">선인세</th>
+		         <th align="center">로그인활성/비활성</th>
+		         <th align="center">정산비율</th>
+		         <th align="center">담당자</th>
+		      </tr>
+		      
+		      <tr th:if="${#lists.isEmpty(memberList)}">
+		         <td colspan="6">
+		            List is empty.
+		         </td>
+		      </tr>
+		      
+		      <tr th:each="member : ${memberList}">
+		      	<td><input type="checkbox" name="delete_ids" th:value="${member.writerId}"/></td>
+		        <!-- <td><input style="text-align:center;" type="text" name="writerId" th:href="'/user/read?writerId=' + ${member.writerId}" th:value="${member.writerId}"/></td> -->
+		        <td><a th:text="${member.writerId}" th:href="@{|/user/read?writerId=${member.writerId}|}"></a></td>
+		        <td><input style="text-align:center;" type="text" name="id" th:value="${member.id}"/></td>
+		        <td><input style="text-align:center;" type="text" name="author" th:value="${member.author}"/></td>
+		        <td><input style="text-align:center;" type="text" name="realName" th:value="${member.realName}"/></td>
+		        <td><input style="text-align:center; width:250px;"  type="text" name="accountNumber" th:value="${member.accountNumber}"/></td>
+		        <td><input style="text-align:center;" type="text" name="ctzNumber" th:value="${member.ctzNumber}"/></td>
+		        <td><input style="text-align:center;" type="text" name="virtuousTax" th:value="${member.virtuousTax}"/></td>
+		        <td><input style="text-align:center;" type="text" name="loginStatus" th:value="${member.loginStatus}"/></td>
+		        <td><input style="text-align:center;" type="text" name="settlementRatio" th:value="${member.settlementRatio}"/></td>
+		        <td><input style="text-align:center;" type="text" name="manager" th:value="${member.manager}"/></td>
+		      </tr>
+		   </table>
+	   </form>
+	</div> 
+	  
 	<div>
 		<a href="register.html" th:href="@{/user/register}">새로만들기</a>
 		<button type="submit" onclick="remove();" id="btnDelete">삭제</button> </br>
 		<button type="submit" onclick="status();" id="btnStatus">회원활성, 비활성(반드시 한 행만 체크할것)</button>
 	</div>
-   
-   <script th:inline="javascript">
-   $(document).ready(function() {
-	   
-		var formObj = $("#listForm");
-		
-		
-   });
-   
-	function remove(){
-		
-		var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-		
-		console.log(token);
-		
-		
-		var chkVal = "";
-		$(":checkbox[name='delete_ids']:checked").each(function(pi,po){
-			chkVal += po.value+",";
-		});
-		
-		if(chkVal!=""){
-			chkVal = chkVal.substring(0, chkVal.length-1);
-		}
-		
-		console.log("### chkVal : " + chkVal);
-		
-		if (confirm("삭제 하시겠습니까?")) {
-			$.ajax({
-				type:"post",
-				url:"/user/remove",
-				data:	{ 
-							"delete_ids" : chkVal
-						},
-						
-				beforeSend : function(xhr) {   
-					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
-	                 xhr.setRequestHeader( header, token );
-	             },
-				success:function(data, textStatus, jqXHR){
+</div>
 
-						if(textStatus){
-							alert("삭제 되었습니다.");
-							location.href="/user/list";;
-						}else{
-							alert("삭제가 실패 되었습니다.");
-						}
-				},
-			     error:function(request,status,error){
-			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		        }
-
-			});
-		} else{
-			
-		}
-
-		if(chkVal==""){
-			alert("삭제할 데이터를 체크해주세요.");
-			return ;
-		}
-	}
-	
-	function status(){
-		
-		var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-		
-		console.log(token);
-		
-		
-		var chkVal = "";
-		$(":checkbox[name='delete_ids']:checked").each(function(pi,po){
-			chkVal += po.value+",";
-		});
-		
-		if(chkVal!=""){
-			chkVal = chkVal.substring(0, chkVal.length-1);
-		}
-		
-		console.log("### chkVal : " + chkVal);
-		
-		if (confirm("상태를 변경 하시겠습니까?")) {
-			$.ajax({
-				type:"post",
-				url:"/user/status",
-				data:	{ 
-							"delete_ids" : chkVal
-						},
-						
-				beforeSend : function(xhr) {   
-					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
-	                 xhr.setRequestHeader( header, token );
-	             },
-				success:function(data, textStatus, jqXHR){
-
-						if(textStatus){
-							alert("변경 되었습니다.");
-							location.href="/user/list";;
-						}else{
-							alert("변경 실패.");
-						}
-				},
-			     error:function(request,status,error){
-			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		        }
-
-			});
-		} else{
-			
-		}
-
-		if(chkVal==""){
-			alert("변경할 데이터를 체크해주세요.");
-			return ;
-		}
-	}
-	
-   </script>
 </body>
 </html>

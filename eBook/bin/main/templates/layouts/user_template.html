@@ -1,0 +1,224 @@
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+   <title>Main</title>
+   <script src="/js/jQuery-2.1.4.min.js"></script>
+	<!--    <script src="/js/platform.js"></script> -->
+   
+	<!-- Custom styles for this template-->
+	<link href="../css/sb-admin-2.min.css" rel="stylesheet">
+	
+	<!-- Custom fonts for this template -->
+	<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	
+	<!-- Custom styles for this page -->
+	<link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	
+	<!-- Bootstrap core JavaScript-->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- Core plugin JavaScript-->
+	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+	<!-- Custom scripts for all pages-->
+	<script src="/js/sb-admin-2.min.js"></script>
+  
+  
+</head>
+<style>
+	input {
+		border : 0px;
+		background-color : transparent;
+	}
+	
+	table {
+		font-size: 12px !important;
+		text-align: center;
+	}
+	table input {
+		text-align: center;
+	}
+	
+	.sheet-container{
+		
+	}
+	
+	.sheet-container .logo {
+		position: relative;	
+		height: 100px;
+	}
+	
+	.sheet-container .logo img {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		top: 0px;
+		left: 15px;
+	}
+	
+	.sheet-container .logo h2 {
+		position: absolute;
+		top: 35%;
+		left: 50%;
+	}
+	
+	.flat-title {
+		
+	}
+	
+	.flat-title .search {
+		
+	}
+	
+	.flat-title .search select {
+		display: inline-block;
+	}
+	
+	
+	
+</style>
+   <script th:inline="javascript">
+   $(document).ready(function() {
+	   
+		var formObj = $("#listForm");
+		
+		
+   });
+   
+	function remove(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		
+		var chkVal = "";
+		$(":checkbox[name='delete_ids']:checked").each(function(pi,po){
+			chkVal += po.value+",";
+		});
+		
+		if(chkVal!=""){
+			chkVal = chkVal.substring(0, chkVal.length-1);
+		}
+		
+		console.log("### chkVal : " + chkVal);
+		
+		if (confirm("삭제 하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/user/remove",
+				data:	{ 
+							"delete_ids" : chkVal
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("삭제 되었습니다.");
+							location.href="/user/list";;
+						}else{
+							alert("삭제가 실패 되었습니다.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+
+		if(chkVal==""){
+			alert("삭제할 데이터를 체크해주세요.");
+			return ;
+		}
+	}
+	
+	function status(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		
+		var chkVal = "";
+		$(":checkbox[name='delete_ids']:checked").each(function(pi,po){
+			chkVal += po.value+",";
+		});
+		
+		if(chkVal!=""){
+			chkVal = chkVal.substring(0, chkVal.length-1);
+		}
+		
+		console.log("### chkVal : " + chkVal);
+		
+		if (confirm("상태를 변경 하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/user/status",
+				data:	{ 
+							"delete_ids" : chkVal
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("변경 되었습니다.");
+							location.href="/user/list";;
+						}else{
+							alert("변경 실패.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+
+		if(chkVal==""){
+			alert("변경할 데이터를 체크해주세요.");
+			return ;
+		}
+	}
+	
+   </script>
+
+<body>
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{fragments/menu::menu}"></div>
+		<hr>
+			
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				<div th:replace="~{fragments/header::header}"></div>
+				<hr>
+				
+				<div align="center" layout:fragment="content" ></div>
+				<hr>
+				
+				<div th:replace="~{fragments/footer::footer}"></div>
+				<hr>
+			</div>		
+		</div>
+
+	</div>
+</body>
+</html>

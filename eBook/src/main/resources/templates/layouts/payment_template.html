@@ -1,0 +1,267 @@
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+   <title>Main</title>
+   <script src="/js/jQuery-2.1.4.min.js"></script>
+	<!--    <script src="/js/platform.js"></script> -->
+   
+	<!-- Custom styles for this template-->
+	<link href="../css/sb-admin-2.min.css" rel="stylesheet">
+	
+	<!-- Custom fonts for this template -->
+	<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	
+	<!-- Custom styles for this page -->
+	<link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	
+	<!-- Bootstrap core JavaScript-->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- Core plugin JavaScript-->
+	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+	<!-- Custom scripts for all pages-->
+	<script src="/js/sb-admin-2.min.js"></script>
+  
+  
+</head>
+<style>
+	input {
+		border : 0px;
+		background-color : transparent;
+	}
+	
+	table {
+		font-size: 12px !important;
+		text-align: center;
+	}
+	table input {
+		text-align: center;
+	}
+	
+	.sheet-container{
+		
+	}
+	
+	.sheet-container .logo {
+		position: relative;	
+		height: 100px;
+	}
+	
+	.sheet-container .logo img {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		top: 0px;
+		left: 15px;
+	}
+	
+	.sheet-container .logo h2 {
+		position: absolute;
+		top: 35%;
+		left: 50%;
+	}
+	
+	.flat-title {
+		
+	}
+	
+	.flat-title .search {
+		
+	}
+	
+	.flat-title .search select {
+		display: inline-block;
+	}
+	
+	
+	
+</style>
+<script type="text/javascript">
+	$("document").ready(function(){
+		var formObj = $("#listForm");
+		
+		let today = new Date();
+		let year = today.getFullYear();
+		
+		var arrYear = new Array();
+		
+		for(var i=0; i<10; i++)
+		{
+			arrYear[i]=year-i + "년";
+		}
+		
+		var monthSelect = document.getElementById("selete_month");
+		var yearSelect = document.getElementById("selete_year");
+		
+		var option1 = document.createElement("option");
+		var option2 = document.createElement("option");
+		option1.text = arrYear[0];
+		option2.text = arrYear[1];
+		option1.value = arrYear[0];
+		option2.value = arrYear[1];
+		yearSelect.add(option1, null);
+		yearSelect.add(option2, null);
+		
+		yearSelect = document.getElementById("selete_year_select");
+
+		var option1_s = document.createElement("option");
+		var option2_s = document.createElement("option");
+		option1_s.text = arrYear[0];
+		option2_s.text = arrYear[1];
+		option1_s.value = arrYear[0];
+		option2_s.value = arrYear[1];
+		yearSelect.add(option1_s, null);
+		yearSelect.add(option2_s, null);
+		
+	});
+	
+	$("#btnSelect").on("click", function(){
+		formObj.attr("action", "/ebook/payment");
+		formObj.attr("method", "post");
+		formObj.submit();
+	});
+	
+	function func_select(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		alert(token);
+		
+		if (confirm("해당일자로 조회하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/payment",
+				data:	{ 
+							"p_year_select"	: $("#selete_year_select option:selected").val(),
+							"p_month_select"  : $("#selete_month_select option:selected").val()
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							location.href="/ebook/payment";
+						}else{
+							alert("조회 실패.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+	}
+	
+	function func_payment(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		if (confirm("정산하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/createPayment",
+				data:	{ 
+							"p_year"	: $("#selete_year option:selected").val(),
+							"p_month"   : $("#selete_month option:selected").val()
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("정산완료되었습니다.");
+							location.href="/ebook/payment";
+						}else{
+							alert("정산 실패.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+	}
+	
+function func_finalPayment(){
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
+		console.log(token);
+		
+		if (confirm("정산하시겠습니까? 작가별이월금, 선인세 등 정보가 수정됩니다.")) {
+			$.ajax({
+				type:"post",
+				url:"/ebook/finalPayment",
+				data:	{ 
+							"p_year"	: $("#selete_year option:selected").val(),
+							"p_month"   : $("#selete_month option:selected").val()
+						},
+						
+				beforeSend : function(xhr) {   
+					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	                 xhr.setRequestHeader( header, token );
+	             },
+				success:function(data, textStatus, jqXHR){
+
+						if(textStatus){
+							alert("정산완료되었습니다.");
+							location.href="/ebook/payment";
+						}else{
+							alert("정산 실패.");
+						}
+				},
+			     error:function(request,status,error){
+			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+
+			});
+		} else{
+			
+		}
+	}
+	
+</script>
+<body>
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{fragments/menu::menu}"></div>
+		<hr>
+			
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				<div th:replace="~{fragments/header::header}"></div>
+				<hr>
+				
+				<div align="center" layout:fragment="content" ></div>
+				<hr>
+				
+				<div th:replace="~{fragments/footer::footer}"></div>
+				<hr>
+			</div>		
+		</div>
+
+	</div>
+</body>
+</html>
