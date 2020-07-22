@@ -221,5 +221,16 @@
 		</div>
 
 	</div>
+	<form id="logoutForm" action="logoutForm.html" th:action="@{/auth/logout}" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+   </form> 
+   <script>
+		$("#logoutBtn").click(function() {
+			if( confirm("로그아웃 하시겠습니까?") ){
+				$("#logoutForm").submit();
+			}		
+		});
+	
+	</script>
 </body>
 </html>
