@@ -133,9 +133,18 @@
 			<option value="11월">11월</option>
 			<option value="12월">12월</option>
 		</select>
-		<button type="submit" id="btnDownload">파일다운로드</button>
-		<button type="submit" onclick="func_payment();" id="btnPayment">정산TEST</button>
-		<button type="submit" onclick="func_finalPayment();" id="btnPayment">최종정산</button>
+		<button type="submit" id="btnDownload" class="btn btn-primary mr-2" >
+	  		<span class="icon text-white-50"><i class="fas fa-download"></i></span>
+			<span class="text">파일다운로드</span>
+		</button>
+		<button type="submit" onclick="func_payment();" id="btnPayment" class="btn btn-info mr-2">
+			<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
+			<span class="text">정산TEST</span>
+		</button>
+		<button type="submit" onclick="func_finalPayment();" id="btnPayment" class="btn btn-danger mr-2">
+			<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+			<span class="text">최종정산</span>
+		</button>
 	</div>
 </div>
 </body>
