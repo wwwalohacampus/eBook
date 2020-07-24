@@ -51,8 +51,7 @@ public class EBookController {
 	AuthService authService;
 	
 	/*
-	안되는것 2020-07-09 : 카멜케이스 변환하여 Front에 표시 안됨 kakao한정
-	  					작가테이블 writerId 자동추가 SQL 수정요청 (삭제하고 추가하면 겹쳐버림)
+	안되는것 2020-07-24 
 	*/
 	
 	/*

@@ -69,6 +69,7 @@
 		)
 	</insert>
 	
+	<!-- 
 	<insert id="createAuthor">	
 		<![CDATA[	
 		INSERT INTO tb_author
@@ -90,6 +91,36 @@
 			#{settlementRatio},
 			#{carryAmount}
 		FROM tb_author
+		]]>
+	</insert>
+	 -->
+	
+	<insert id="createAuthor">	
+		<![CDATA[	
+		INSERT INTO tb_author
+		(
+			id,
+			writer_id,
+			author,
+			account_number,
+			virtuous_tax,
+			settlement_ratio,
+			carry_amount
+		)
+		SELECT
+			#{id},
+			CONCAT('','au-',(SELECT LPAD(right(
+								(SELECT writer_id
+								FROM tb_author
+								WHERE idx = (SELECT MAX(idx) AS idx
+								FROM tb_author)) , 3) + 1,3,'0'))),
+			#{author},
+			#{accountNumber},
+			#{virtuousTax},
+			#{settlementRatio},
+			#{carryAmount}
+		FROM tb_author
+		LIMIT 1
 		]]>
 	</insert>
 	
