@@ -1,17 +1,22 @@
 <html xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{/layouts/read_template}"
    >
    
 <head>
-   <title>User</title>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>   
-   <script src="/js/jQuery-2.1.4.min.js"></script>
+<title>회원수정</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>  
 </head>
+
 <body>
-<div>
+<div layout:fragment="content">
 		<form id="member" action="list.html" th:action="@{/user/modify}" th:object="${AuthorListDto}" method="POST">
 			<input type="hidden" name="writerId" th:field="*{writerId}"/>
+			
+			<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 			<table>
 				<tr>
 					<td>아이디</td>
@@ -50,31 +55,60 @@
 					<td><input type="text" name="carryAmount" th:field="*{carryAmount}"  /></td>
 				</tr>
 			</table>
+			</th:block>
+			
+			<th:block sec:authorize="hasRole('ROLE_USER')">
+			<table>
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" th:field="*{id}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+				<tr>
+					<td>작가명</td>
+					<td><input type="text" th:field="*{author}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+				<tr>
+					<td>본명</td>
+					<td><input type="text" th:field="*{realName}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+				<tr>
+					<td>계좌번호</td>
+					<td><input type="text" th:field="*{accountNumber}"/></td>
+				</tr>
+				<tr>
+					<td>주민번호</td>
+					<td><input type="text" th:field="*{ctzNumber}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+				<tr>
+					<td>선인세</td>
+					<td><input type="text" th:field="*{virtuousTax}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+				<tr>
+					<td>담당자</td>
+					<td><input type="text" th:field="*{manager}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+				<tr>
+					<td>정산비율</td>
+					<td><input type="text" th:field="*{settlementRatio}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+				<tr>
+					<td>이월정산액</td>
+					<td><input type="text" th:field="*{carryAmount}" readonly="readonly" style="background-color: #e2e2e2;"/></td>
+				</tr>
+			</table>
+			</th:block>
 		</form>
 
-		<div>
-      <button type="submit" id="btnRegister">수정</button>
-      <button type="submit" id="btnList">목록</button>
-   </div>
+	<div>
+		<button type="submit" id="btnRegister" class="btn btn-primary mr-2">
+			<span class="text">수정</span>
+		</button>
+		<button type="submit" id="btnList" class="btn btn-info mr-2">
+			<span class="text">목록</span>
+		</button>
+  	</div>
    
-   <script th:inline="javascript">
-      $(document).ready(function() {
-   
-         var formObj = $("#member");
-   
-         $("#btnRegister").on("click", function() {
-			formObj.attr("method", "post");
-            formObj.submit();
-         });
-         
-      [#th:block sec:authorize="hasRole('ROLE_ADMIN')"]
-         $("#btnList").on("click", function() {
-            self.location = "list";
-         });
-      [/th:block]
-   
-      });
-   </script>
+
 </div>
 </body>
 </html>

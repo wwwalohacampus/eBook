@@ -107,20 +107,16 @@
 			settlement_ratio,
 			carry_amount
 		)
-		SELECT
+		VALUES (
 			#{id},
-			CONCAT('','au-',(SELECT LPAD(right(
-								(SELECT writer_id
-								FROM tb_author
-								WHERE idx = (SELECT MAX(idx) AS idx
-								FROM tb_author)) , 3) + 1,3,'0'))),
+			CONCAT('au-',  (SELECT get_seq('authorSeq')) ),
 			#{author},
 			#{accountNumber},
 			#{virtuousTax},
 			#{settlementRatio},
 			#{carryAmount}
-		FROM tb_author
-		LIMIT 1
+		)
+		
 		]]>
 	</insert>
 	
