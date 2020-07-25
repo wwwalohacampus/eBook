@@ -57,18 +57,19 @@
 		   </div>
 	   </form>
 	</div> 
-	  
-	<div>
-		<a href="register.html" th:href="@{/user/register}" class="btn btn-primary mr-2">새로만들기</a>
-		<button type="submit" onclick="remove();" id="btnDelete" class="btn btn-danger mr-2">
-			<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
-			<span class="text">삭제하기</span>
-		</button>
-		<button type="submit" onclick="status();" id="btnStatus" class="btn btn-info mr-2">
-			<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
-			<span class="text">회원활성, 비활성(반드시 한 행만 체크할것)</span>
-		</button>
-	</div>
+	<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+		<div>
+			<a href="register.html" th:href="@{/user/register}" class="btn btn-primary mr-2">새로만들기</a>
+			<button type="submit" onclick="remove();" id="btnDelete" class="btn btn-danger mr-2">
+				<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+				<span class="text">삭제하기</span>
+			</button>
+			<button type="submit" onclick="status();" id="btnStatus" class="btn btn-info mr-2">
+				<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
+				<span class="text">회원활성, 비활성(반드시 한 행만 체크할것)</span>
+			</button>
+		</div>
+	</th:block>
 </div>
 
 </body>
