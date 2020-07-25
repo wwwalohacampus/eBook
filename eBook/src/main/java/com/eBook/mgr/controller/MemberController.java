@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,8 +53,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(HttpServletRequest request, Model model, RedirectAttributes rttr) throws Exception {
-
+	public String register(HttpServletRequest request, Model model, RedirectAttributes rttr, Authentication authentication) throws Exception {
+		
 //		System.out.println("값???????????" + request.getParameter("id"));
 		
 //		if(result.hasErrors()) {
@@ -84,33 +85,42 @@ public class MemberController {
 		System.out.println(inputPassword);
 		System.out.println(passwordEncoder.encode(inputPassword));
 		
+		
+		log.info("################ test : 1111 ");
+		
 		// id 검사후 중복되는게 있으면 author만 등록
-		if(memberService.findId(member.getId()) == true) {
+		if( memberService.findId(member.getId()) ) {
 			memberService.registerAuthor(author);
+			log.info("################ test : 2222 ");
+			
 		} else {
 			memberService.registerMember(member);
 			memberService.registerAuthor(author);
+			log.info("################ test : 3333 ");
 		}
 		
 		rttr.addFlashAttribute("userName", member.getRealName());
 		
-		return "redirect:/user/list";
+		return "redirect:/user/register";
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model, Principal principal) throws Exception{
+		log.info("################ test : 4444 ");
+		
 		log.info("현재 사용자정보 : " + principal.getName());
 		
 		String auth = authService.authRoll(principal.getName());
 		log.info("권한? : " + auth);
 		List<AuthorListDto> list = null;
-		
+		 
 		if(auth.equals("ROLE_ADMIN")) {
 			list = memberService.list();
 		} else {
 			list = authService.list(principal.getName());
 		}
 		
+		log.info("################ test : 5555 ");
 		
 		for (AuthorListDto author : list) {
 			System.out.println("author : " + author.getRealName());
