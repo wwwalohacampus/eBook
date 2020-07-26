@@ -1,17 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{/layouts/register_template}"
    >
    
 <head>
-   <title>User</title>
-   <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>   
-   <script src="/js/jQuery-2.1.4.min.js"></script>
+<title>회원등록</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/> 
 </head>
 <body>
-<div>
+<div layout:fragment="content">
    <h2>회원 등록</h2>
 		<form id="member" action="list.html" th:action="@{/user/register}" method="POST">
 			<div id="listIdBox" style="display:none">
@@ -93,124 +93,15 @@
 		</form>
 
 		<div>
-      <button type="submit" id="btnRegister">등록</button>
-      <button type="submit" id="btnList">목록</button>
+		<button type="submit" id="btnRegister" class="btn btn-primary mr-2">
+			<span class="text">등록</span>
+		</button>
+		<button type="submit" id="btnList" class="btn btn-info mr-2">
+			<span class="text">목록</span>
+		</button>
    </div>
    
-   <script th:inline="javascript">
-      $(document).ready(function() {
-    	  
-         var formObj = $("#member");
-         var list = new Array();
-         var menuSelect = document.getElementById("select_menu");
-         
-         $("input[name=i_Name]").each(function(index, item){
-      	 	list.push($(item).val());
-         });
-         
-         for(var i=0; i<list.length; i++){
-        	 $("#select_menu").prepend("<option value='+ list[i] +'>"+ list[i] +"</option>");
-       	 	//menuSelect.add(document.createElement("option"), null);
-     	 }
-         
-         $("input:checkbox").on('click', function(){
-        	 if ( $(this).prop('checked') ) {
-        		 $("#hiddenTd").show();
-        	 } else {
-        		 $("#hiddenTd").hide();
-     			$('#id').attr("readonly", false);
-    			$('#realName').attr("readonly", false);
-    			$('#ctzNumber').attr("readonly", false);
-    			$('#manager').attr("readonly", false);
-    			$('#pw').attr("disabled", false);
-    			$('#id').attr("disabled", false);
-    			$('#realName').attr("disabled", false);
-    			$('#ctzNumber').attr("disabled", false);
-    			$('#manager').attr("disabled", false);
-    			$('#id').val("");
-				$('#realName').val("");
-				$('#ctzNumber').val("");
-				$('#manager').val("");
-        	 }
-         });
-   
-         $("#btnRegister").on("click", function() {
- 			$('#pw').attr("disabled", false);
-			$('#id').attr("disabled", false);
-			$('#realName').attr("disabled", false);
-			$('#ctzNumber').attr("disabled", false);
-			$('#manager').attr("disabled", false);
-			formObj.attr("method", "post");
-            formObj.submit();
-         });
-         
-      [#th:block sec:authorize="hasRole('ROLE_ADMIN')"]
-         $("#btnList").on("click", function() {
-            self.location = "list";
-         });
-      [/th:block]
-   
-      });
-      
-      function selected(){
-	  		var token = $("meta[name='_csrf']").attr("content");
-			var header = $("meta[name='_csrf_header']").attr("content");
-			
-			var memberId = "";
-			var memberRealName = "";
-			var memberCtzNumber = "";
-			var memberManager = "";
-			
-			console.log(token);
-			
-			$.ajax({
-				type:"post",
-				url:"/user/selected",
-				data:	{ 
-							"id"	: $("#select_menu option:selected").text()
-						},
-						
-				beforeSend : function(xhr) {   
-					// 데이터를 전송하기 전에 헤더에 csrf값을 설정한다
-	                 xhr.setRequestHeader( header, token );
-	             },
-				success:function(data){
-						memberId = data.member.id;
-						memberRealName = data.member.realName; 
-						memberCtzNumber = data.member.ctzNumber;
-						memberManager = data.member.manager;
-						
-						$('#id').val(memberId);
-						$('#realName').val(memberRealName);
-						$('#ctzNumber').val(memberCtzNumber);
-						$('#manager').val(memberManager);
-						
-						/*
-						if(textStatus){
-							alert("적용 되었습니다.");
-							location.href="/user/register"
-						}else{
-							alert("적용 실패");
-						}
-						*/
-				},
-			     error:function(request,status,error){
-			         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		        }
 
-			});
-			
-			$('#id').attr("readonly", true);
-			$('#realName').attr("readonly", true);
-			$('#ctzNumber').attr("readonly", true);
-			$('#manager').attr("readonly", true);
-			$('#pw').attr("disabled", true);
-			$('#id').attr("disabled", true);
-			$('#realName').attr("disabled", true);
-			$('#ctzNumber').attr("disabled", true);
-			$('#manager').attr("disabled", true);
-      }
-   </script>
 </div>
 </body>
 </html>
