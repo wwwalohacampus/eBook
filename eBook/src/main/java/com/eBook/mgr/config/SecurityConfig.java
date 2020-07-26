@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers("/")
 		.authenticated()
-		.antMatchers("/user/**").authenticated()
+		.antMatchers("/user/**").authenticated() 
 		.antMatchers("/ebook/**").authenticated();
 	}
 
