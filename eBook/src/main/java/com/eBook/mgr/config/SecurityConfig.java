@@ -56,7 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// 접근 제한 설정
 		http.authorizeRequests()
 		.antMatchers("/")
-		.authenticated();
+		.authenticated()
+		.antMatchers("/user/**").authenticated()
+		.antMatchers("/ebook/**").authenticated();
 	}
 
 	@Bean
