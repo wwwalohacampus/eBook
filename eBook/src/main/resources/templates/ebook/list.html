@@ -1113,24 +1113,27 @@
 		</div>
 	</form>
 	
-	<div class="d-flex p-3">
-		<button type="submit" id="btnUpdate" class="btn btn-info mr-2">
-			<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
-			<span class="text">수정하기</span>
-		</button>
-		<button type="submit" onclick="remove();" id="btnDelete" class="btn btn-danger mr-2">
-			<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
-			<span class="text">삭제하기</span>
-		</button>
-   	    <button id="uploadBtn" type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#myModal">
-	  		<span class="icon text-white-50"><i class="fas fa-upload"></i></span>
-	  		<span class="text">파일업로드</span>
-		</button>
-		<button type="submit" id="btnDownLoad" class="btn btn-primary mr-2">
-	  		<span class="icon text-white-50"><i class="fas fa-download"></i></span>
-			<span class="text">파일다운로드</span>
-		</button>
-	</div>
+	<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+		<div class="d-flex p-3">
+			<button type="submit" id="btnUpdate" class="btn btn-info mr-2">
+				<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
+				<span class="text">수정하기</span>
+			</button>
+			<button type="submit" onclick="remove();" id="btnDelete" class="btn btn-danger mr-2">
+				<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+				<span class="text">삭제하기</span>
+			</button>
+	   	    <button id="uploadBtn" type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#myModal">
+		  		<span class="icon text-white-50"><i class="fas fa-upload"></i></span>
+		  		<span class="text">파일업로드</span>
+			</button>
+
+		</div>
+	</th:block>
+			<button type="submit" id="btnDownLoad" class="btn btn-primary mr-2">
+		  		<span class="icon text-white-50"><i class="fas fa-download"></i></span>
+				<span class="text">파일다운로드</span>
+			</button>
 	
 	<!-- Trigger the modal with a button -->
 
