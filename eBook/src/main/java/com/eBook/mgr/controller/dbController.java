@@ -558,7 +558,7 @@ public class dbController implements ServletContextAware{
 			
 							System.out.println("value : " + value);
 							
-							if (columnindex==2) {
+							if (columnindex==3) {
 								System.out.println("값은? " + value);
 								boolean checkName = dbSettingService.findDbSetting(value);
 								if (checkName == false) {
@@ -614,7 +614,7 @@ public class dbController implements ServletContextAware{
 			
 							System.out.println("value : " + value);
 							
-							if (columnindex==1) {
+							if (columnindex==2) {
 								System.out.println("값은? " + value);
 								boolean checkName = dbSettingService.findDbSetting(value);
 								if (checkName == false) {

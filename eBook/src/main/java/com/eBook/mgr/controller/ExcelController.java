@@ -1011,86 +1011,90 @@ public class ExcelController implements ServletContextAware {
 						System.out.println("value : " + value);
 						
 						if (columnindex==0) {
-							ridibooks.setSeriesId(value);
+							ridibooks.setSales(value);
 						} else if (columnindex==1) {
-							ridibooks.setBookId(value);
+							ridibooks.setSeriesId(value);
 						} else if (columnindex==2) {
-							ridibooks.setProductName(value);
+							ridibooks.setBookId(value);
 						} else if (columnindex==3) {
-							ridibooks.setEpisode(value);
+							ridibooks.setProductName(value);
 						} else if (columnindex==4) {
-							ridibooks.setAuthor(value);
+							ridibooks.setEpisode(value);
 						} else if (columnindex==5) {
-							ridibooks.setTranslators(value);
+							ridibooks.setAuthor(value);
 						} else if (columnindex==6) {
-							ridibooks.setPicture(value);
+							ridibooks.setTranslators(value);
 						} else if (columnindex==7) {
-							ridibooks.setBrand(value);
+							ridibooks.setPicture(value);
 						} else if (columnindex==8) {
-							ridibooks.setSeriesName(value);
+							ridibooks.setBrand(value);
 						} else if (columnindex==9) {
-							ridibooks.setEbooksPrice(value);
+							ridibooks.setSeriesName(value);
 						} else if (columnindex==10) {
-							ridibooks.setSingleSaleSales(value);
+							ridibooks.setEbooksPrice(value);
 						} else if (columnindex==11) {
-							ridibooks.setSingleSaleTicket(value);
+							ridibooks.setSingleSaleSales(value);
 						} else if (columnindex==12) {
-							ridibooks.setSingleFreeTicket(value);
+							ridibooks.setSingleSaleTicket(value);
 						} else if (columnindex==13) {
-							ridibooks.setRentalAmount(value);
+							ridibooks.setSingleFreeTicket(value);
 						} else if (columnindex==14) {
-							ridibooks.setRentalTicket(value);
+							ridibooks.setRentalAmount(value);
 						} else if (columnindex==15) {
-							ridibooks.setFreeDownAmount(value);
+							ridibooks.setRentalTicket(value);
 						} else if (columnindex==16) {
-							ridibooks.setFreeDownTicket(value);
+							ridibooks.setRentalFreeTicket(value);
 						} else if (columnindex==17) {
-							ridibooks.setSetSaleAmount(value);
+							ridibooks.setFreeDownAmount(value);
 						} else if (columnindex==18) {
-							ridibooks.setSetSaleTicket(value);
+							ridibooks.setFreeDownTicket(value);
 						} else if (columnindex==19) {
-							ridibooks.setSetRentalAmount(value);
+							ridibooks.setSetSaleAmount(value);
 						} else if (columnindex==20) {
-							ridibooks.setSetRentalTicket(value);
+							ridibooks.setSetSaleTicket(value);
 						} else if (columnindex==21) {
-							ridibooks.setCancelAmount(value);
+							ridibooks.setSetRentalAmount(value);
 						} else if (columnindex==22) {
-							ridibooks.setCancelTicket(value);
+							ridibooks.setSetRentalTicket(value);
 						} else if (columnindex==23) {
-							ridibooks.setCancelSingleSaleSales(value);
+							ridibooks.setCancelAmount(value);
 						} else if (columnindex==24) {
-							ridibooks.setCancelSingleSaleTicket(value);
+							ridibooks.setCancelTicket(value);
 						} else if (columnindex==25) {
-							ridibooks.setCancelRentalAmount(value);
+							ridibooks.setCancelSingleSaleSales(value);
 						} else if (columnindex==26) {
-							ridibooks.setCancelRentalTicket(value);
+							ridibooks.setCancelSingleSaleTicket(value);
 						} else if (columnindex==27) {
-							ridibooks.setCancelFreeDownAmount(value);
+							ridibooks.setCancelRentalAmount(value);
 						} else if (columnindex==28) {
-							ridibooks.setCancelFreeDownTicket(value);
+							ridibooks.setCancelRentalTicket(value);
 						} else if (columnindex==29) {
-							ridibooks.setCancelSetSaleAmount(value);
+							ridibooks.setCancelFreeDownAmount(value);
 						} else if (columnindex==30) {
-							ridibooks.setCancelSetSaleTicket(value);
+							ridibooks.setCancelFreeDownTicket(value);
 						} else if (columnindex==31) {
-							ridibooks.setCancelSetRentalAmount(value);
+							ridibooks.setCancelSetSaleAmount(value);
 						} else if (columnindex==32) {
-							ridibooks.setCancelSetRentalTicket(value);
+							ridibooks.setCancelSetSaleTicket(value);
 						} else if (columnindex==33) {
-							ridibooks.setPayment(value);
+							ridibooks.setCancelSetRentalAmount(value);
 						} else if (columnindex==34) {
-							ridibooks.setPaperbookIsbn10(value);
+							ridibooks.setCancelSetRentalTicket(value);
 						} else if (columnindex==35) {
-							ridibooks.setPaperbookIsbn13(value);
+							ridibooks.setPayment(value);
 						} else if (columnindex==36) {
-							ridibooks.setEbookIsbn10(value);
+							ridibooks.setPaperbookIsbn10(value);
 						} else if (columnindex==37) {
-							ridibooks.setEbookIsbn13(value);
+							ridibooks.setPaperbookIsbn13(value);
 						} else if (columnindex==38) {
-							ridibooks.setCpManageId(value);
+							ridibooks.setEbookIsbn10(value);
 						} else if (columnindex==39) {
-							ridibooks.setCategory1(value);
+							ridibooks.setEbookIsbn13(value);
 						} else if (columnindex==40) {
+							ridibooks.setCpManageId(value);
+						} else if (columnindex==41) {
+							ridibooks.setCategory1(value);
+						} else if (columnindex==42) {
 							ridibooks.setCategory2(value);
 							System.out.println("밸류값?" + value);
 						} 
@@ -1159,22 +1163,24 @@ public class ExcelController implements ServletContextAware {
 						if (columnindex==0) {
 							romance.setBookCode(value);
 						} else if (columnindex==1) {
-							romance.setProductName(value);
+							romance.setType(value);
 						} else if (columnindex==2) {
-							romance.setBrand(value);
+							romance.setProductName(value);
 						} else if (columnindex==3) {
-							romance.setAuthor(value);
+							romance.setBrand(value);
 						} else if (columnindex==4) {
-							romance.setSaleRate(value);
+							romance.setAuthor(value);
 						} else if (columnindex==5) {
-							romance.setInternetSales(value);
+							romance.setSaleRate(value);
 						} else if (columnindex==6) {
-							romance.setPayment(value);
+							romance.setInternetSales(value);
 						} else if (columnindex==7) {
-							romance.setRegDate(value);
+							romance.setPayment(value);
 						} else if (columnindex==8) {
-							romance.setDealer(value);
+							romance.setRegDate(value);
 						} else if (columnindex==9) {
+							romance.setDealer(value);
+						} else if (columnindex==10) {
 							romance.setIsbn(value);
 						} 
 						
@@ -1475,16 +1481,18 @@ public class ExcelController implements ServletContextAware {
 						} else if (columnindex==12) {
 							yes24.setAuthor(value);
 						} else if (columnindex==13) {
-							yes24.setEpublId(value);
+							yes24.setBookId(value);
 						} else if (columnindex==14) {
-							yes24.setSetCode(value);
+							yes24.setEpublId(value);
 						} else if (columnindex==15) {
-							yes24.setPaperbookIsbn(value);
+							yes24.setSetCode(value);
 						} else if (columnindex==16) {
-							yes24.setEbookIsbn(value);
+							yes24.setPaperbookIsbn(value);
 						} else if (columnindex==17) {
-							yes24.setSaleDate(value);
+							yes24.setEbookIsbn(value);
 						} else if (columnindex==18) {
+							yes24.setSaleDate(value);
+						} else if (columnindex==19) {
 							yes24.setRefundDate(value);
 						} 
 						
@@ -2113,7 +2121,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_ridibooks":
 			fileName = "리디북스";
-			String[] ridibooks_title = {"시리즈 ID","도서 ID","제목","권/화수","저자","역자","그림","출판사","시리즈명","전자책정가","단권판매액","단권판매권","단권무료권","대여액","대여권","자유다운금액","자유다운권","세트판매액","세트판매권","세트대여액","세트대여권","취소액","취소권","취소단권판매액","취소단권판매권","취소대여액","취소대여권","취소자유다운액","취소자유다운권","취소세트판매액","취소세트판매권","취소세트대여액","취소세트대여권","정산액","종이책ISBN10","종이책ISBN13","전자책ISBN10","전자책ISBN13","CP 관리 ID","카테고리1","카테고리2"};
+			String[] ridibooks_title = {"판매처","시리즈 ID","도서 ID","제목","권/화수","저자","역자","그림","출판사","시리즈명","전자책정가","단권판매액","단권판매권","단권무료권","대여액","대여유료권","대여무료권","자유다운금액","자유다운권","세트판매액","세트판매권","세트대여액","세트대여권","취소액","취소권","취소단권판매액","취소단권판매권","취소대여액","취소대여권","취소자유다운액","취소자유다운권","취소세트판매액","취소세트판매권","취소세트대여액","취소세트대여권","정산액","종이책ISBN10","종이책ISBN13","전자책ISBN10","전자책ISBN13","CP 관리 ID","카테고리1","카테고리2"};
 			length = ridibooks_title.length;		
 
 			//칼럼이름
@@ -2135,47 +2143,49 @@ public class ExcelController implements ServletContextAware {
 			}
 			for(int i=0; i<ridibooksList.size(); i++) {
 				objRow = objSheet.createRow(1+i);
-				ridibooks_title[0]  = ridibooksList.get(i).getSeriesId(); 				
-				ridibooks_title[1]  = ridibooksList.get(i).getBookId(); 					
-				ridibooks_title[2]  = ridibooksList.get(i).getProductName(); 			
-				ridibooks_title[3]  = ridibooksList.get(i).getEpisode(); 				
-				ridibooks_title[4]  = ridibooksList.get(i).getAuthor(); 					
-				ridibooks_title[5]  = ridibooksList.get(i).getTranslators(); 			
-				ridibooks_title[6]  = ridibooksList.get(i).getPicture(); 				
-				ridibooks_title[7]  = ridibooksList.get(i).getBrand(); 					
-				ridibooks_title[8]  = ridibooksList.get(i).getSeriesName(); 				
-				ridibooks_title[9]  = ridibooksList.get(i).getEbooksPrice(); 			
-				ridibooks_title[10] = ridibooksList.get(i).getSingleSaleSales(); 		
-				ridibooks_title[11] = ridibooksList.get(i).getSingleSaleTicket(); 		
-				ridibooks_title[12] = ridibooksList.get(i).getSingleFreeTicket(); 		
-				ridibooks_title[13] = ridibooksList.get(i).getRentalAmount(); 			
-				ridibooks_title[14] = ridibooksList.get(i).getRentalTicket(); 			
-				ridibooks_title[15] = ridibooksList.get(i).getFreeDownAmount(); 			
-				ridibooks_title[16] = ridibooksList.get(i).getFreeDownTicket(); 			
-				ridibooks_title[17] = ridibooksList.get(i).getSetSaleAmount(); 			
-				ridibooks_title[18] = ridibooksList.get(i).getSetSaleTicket(); 			
-				ridibooks_title[19] = ridibooksList.get(i).getSetRentalAmount(); 		
-				ridibooks_title[20] = ridibooksList.get(i).getSetRentalTicket(); 		
-				ridibooks_title[21] = ridibooksList.get(i).getCancelAmount(); 			
-				ridibooks_title[22] = ridibooksList.get(i).getCancelTicket(); 			
-				ridibooks_title[23] = ridibooksList.get(i).getCancelSingleSaleSales(); 	
-				ridibooks_title[24] = ridibooksList.get(i).getCancelSingleSaleTicket(); 	
-				ridibooks_title[25] = ridibooksList.get(i).getCancelRentalAmount(); 		
-				ridibooks_title[26] = ridibooksList.get(i).getCancelRentalTicket(); 		
-				ridibooks_title[27] = ridibooksList.get(i).getCancelFreeDownAmount(); 	
-				ridibooks_title[28] = ridibooksList.get(i).getCancelFreeDownTicket(); 	
-				ridibooks_title[29] = ridibooksList.get(i).getCancelSetSaleAmount(); 	
-				ridibooks_title[30] = ridibooksList.get(i).getCancelSetSaleTicket(); 	
-				ridibooks_title[31] = ridibooksList.get(i).getCancelSetRentalAmount(); 	
-				ridibooks_title[32] = ridibooksList.get(i).getCancelSetRentalTicket(); 	
-				ridibooks_title[33] = ridibooksList.get(i).getPayment(); 				
-				ridibooks_title[34] = ridibooksList.get(i).getPaperbookIsbn10(); 		
-				ridibooks_title[35] = ridibooksList.get(i).getPaperbookIsbn13(); 		
-				ridibooks_title[36] = ridibooksList.get(i).getEbookIsbn10(); 			
-				ridibooks_title[37] = ridibooksList.get(i).getEbookIsbn13(); 			
-				ridibooks_title[38] = ridibooksList.get(i).getCpManageId(); 				
-				ridibooks_title[39] = ridibooksList.get(i).getCategory1(); 				
-				ridibooks_title[40] = ridibooksList.get(i).getCategory2(); 				
+				ridibooks_title[0]  = ridibooksList.get(i).getSales(); 				
+				ridibooks_title[1]  = ridibooksList.get(i).getSeriesId(); 				
+				ridibooks_title[2]  = ridibooksList.get(i).getBookId(); 					
+				ridibooks_title[3]  = ridibooksList.get(i).getProductName(); 			
+				ridibooks_title[4]  = ridibooksList.get(i).getEpisode(); 				
+				ridibooks_title[5]  = ridibooksList.get(i).getAuthor(); 					
+				ridibooks_title[6]  = ridibooksList.get(i).getTranslators(); 			
+				ridibooks_title[7]  = ridibooksList.get(i).getPicture(); 				
+				ridibooks_title[8]  = ridibooksList.get(i).getBrand(); 					
+				ridibooks_title[9]  = ridibooksList.get(i).getSeriesName(); 				
+				ridibooks_title[10]  = ridibooksList.get(i).getEbooksPrice(); 			
+				ridibooks_title[11] = ridibooksList.get(i).getSingleSaleSales(); 		
+				ridibooks_title[12] = ridibooksList.get(i).getSingleSaleTicket(); 		
+				ridibooks_title[13] = ridibooksList.get(i).getSingleFreeTicket(); 		
+				ridibooks_title[14] = ridibooksList.get(i).getRentalAmount(); 			
+				ridibooks_title[15] = ridibooksList.get(i).getRentalTicket(); 			
+				ridibooks_title[16] = ridibooksList.get(i).getRentalFreeTicket();	
+				ridibooks_title[17] = ridibooksList.get(i).getFreeDownAmount(); 			
+				ridibooks_title[18] = ridibooksList.get(i).getFreeDownTicket(); 			
+				ridibooks_title[19] = ridibooksList.get(i).getSetSaleAmount(); 			
+				ridibooks_title[20] = ridibooksList.get(i).getSetSaleTicket(); 			
+				ridibooks_title[21] = ridibooksList.get(i).getSetRentalAmount(); 		
+				ridibooks_title[22] = ridibooksList.get(i).getSetRentalTicket(); 		
+				ridibooks_title[23] = ridibooksList.get(i).getCancelAmount(); 			
+				ridibooks_title[24] = ridibooksList.get(i).getCancelTicket(); 			
+				ridibooks_title[25] = ridibooksList.get(i).getCancelSingleSaleSales(); 	
+				ridibooks_title[26] = ridibooksList.get(i).getCancelSingleSaleTicket(); 	
+				ridibooks_title[27] = ridibooksList.get(i).getCancelRentalAmount(); 		
+				ridibooks_title[28] = ridibooksList.get(i).getCancelRentalTicket(); 		
+				ridibooks_title[29] = ridibooksList.get(i).getCancelFreeDownAmount(); 	
+				ridibooks_title[30] = ridibooksList.get(i).getCancelFreeDownTicket(); 	
+				ridibooks_title[31] = ridibooksList.get(i).getCancelSetSaleAmount(); 	
+				ridibooks_title[32] = ridibooksList.get(i).getCancelSetSaleTicket(); 	
+				ridibooks_title[33] = ridibooksList.get(i).getCancelSetRentalAmount(); 	
+				ridibooks_title[34] = ridibooksList.get(i).getCancelSetRentalTicket(); 	
+				ridibooks_title[35] = ridibooksList.get(i).getPayment(); 				
+				ridibooks_title[36] = ridibooksList.get(i).getPaperbookIsbn10(); 		
+				ridibooks_title[37] = ridibooksList.get(i).getPaperbookIsbn13(); 		
+				ridibooks_title[38] = ridibooksList.get(i).getEbookIsbn10(); 			
+				ridibooks_title[39] = ridibooksList.get(i).getEbookIsbn13(); 			
+				ridibooks_title[40] = ridibooksList.get(i).getCpManageId(); 				
+				ridibooks_title[41] = ridibooksList.get(i).getCategory1(); 				
+				ridibooks_title[42] = ridibooksList.get(i).getCategory2(); 				
 				
 				for(int j=0; j<length; j++) {
 					objCell = objRow.createCell(j);
@@ -2186,7 +2196,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_romance":
 			fileName = "로망띠끄";
-			String[] romance_title = {"도서코드","도서명","출판사명","저자","판매수","인터넷판매액","출판사정산액","등록일","판매처","isbn"};
+			String[] romance_title = {"도서코드","타입","도서명","출판사명","저자","판매수","인터넷판매액","출판사정산액","등록일","판매처","isbn"};
 			length = romance_title.length;		
 
 			//칼럼이름
@@ -2209,15 +2219,16 @@ public class ExcelController implements ServletContextAware {
 			for(int i=0; i<romanceList.size(); i++) {
 				objRow = objSheet.createRow(3+i);
 				romance_title[0] = romanceList.get(i).getBookCode();		
-				romance_title[1] = romanceList.get(i).getProductName();		
-				romance_title[2] = romanceList.get(i).getBrand();			
-				romance_title[3] = romanceList.get(i).getAuthor();			
-				romance_title[4] = romanceList.get(i).getSaleRate();		
-				romance_title[5] = romanceList.get(i).getInternetSales();	
-				romance_title[6] = romanceList.get(i).getPayment();			
-				romance_title[7] = romanceList.get(i).getRegDate();			
-				romance_title[8] = romanceList.get(i).getDealer();			
-				romance_title[9] = romanceList.get(i).getIsbn();			
+				romance_title[1] = romanceList.get(i).getType();		
+				romance_title[2] = romanceList.get(i).getProductName();		
+				romance_title[3] = romanceList.get(i).getBrand();			
+				romance_title[4] = romanceList.get(i).getAuthor();			
+				romance_title[5] = romanceList.get(i).getSaleRate();		
+				romance_title[6] = romanceList.get(i).getInternetSales();	
+				romance_title[7] = romanceList.get(i).getPayment();			
+				romance_title[8] = romanceList.get(i).getRegDate();			
+				romance_title[9] = romanceList.get(i).getDealer();			
+				romance_title[10] = romanceList.get(i).getIsbn();			
 				
 				for(int j=0; j<length; j++) {
 					objCell = objRow.createCell(j);
@@ -2332,7 +2343,7 @@ public class ExcelController implements ServletContextAware {
 			break;
 		case "p_yes24":
 			fileName = "예스24";
-			String[] yes24_title = {"No","도서명","출판사","출판사판매가","판매서점","서점판매가","서점환불가","원가율","출판사정산액","이벤트구분","판매구분","이벤트판매가","저자명","ePubID","세트코드","종이책ISBN","전자책ISBN","판매일","환불일"};
+			String[] yes24_title = {"No","도서명","출판사","출판사판매가","판매서점","서점판매가","서점환불가","원가율","출판사정산액","이벤트구분","판매구분","이벤트판매가","저자명","bookID","ePubID","세트코드","종이책ISBN","전자책ISBN","판매일","환불일"};
 			length = yes24_title.length;		
 
 			//칼럼이름
@@ -2367,12 +2378,13 @@ public class ExcelController implements ServletContextAware {
 				yes24_title[10] = yes24List.get(i).getSaleType();					
 				yes24_title[11] = yes24List.get(i).getEventSalePrice();						
 				yes24_title[12] = yes24List.get(i).getAuthor();						
-				yes24_title[13] = yes24List.get(i).getEpublId();								
-				yes24_title[14] = yes24List.get(i).getSetCode();						
-				yes24_title[15] = yes24List.get(i).getPaperbookIsbn();						
-				yes24_title[16] = yes24List.get(i).getEbookIsbn();					
-				yes24_title[17] = yes24List.get(i).getSaleDate();					
-				yes24_title[18] = yes24List.get(i).getRefundDate();								
+				yes24_title[13] = yes24List.get(i).getBookId();						
+				yes24_title[14] = yes24List.get(i).getEpublId();								
+				yes24_title[15] = yes24List.get(i).getSetCode();						
+				yes24_title[16] = yes24List.get(i).getPaperbookIsbn();						
+				yes24_title[17] = yes24List.get(i).getEbookIsbn();					
+				yes24_title[18] = yes24List.get(i).getSaleDate();					
+				yes24_title[19] = yes24List.get(i).getRefundDate();								
 				for(int j=0; j<length; j++) {
 					objCell = objRow.createCell(j);
 					objCell.setCellValue(yes24_title[j]);

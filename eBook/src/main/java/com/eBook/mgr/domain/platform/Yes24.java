@@ -21,6 +21,7 @@ public class Yes24 {
 	String saleType;							//판매구분
 	String eventSalePrice;						//이벤트판매가
 	String author;								//저자명
+	String bookId;								//bookID
 	String epublId;								//ePubID
 	String setCode;								//세트코드
 	String paperbookIsbn;						//종이책isbn

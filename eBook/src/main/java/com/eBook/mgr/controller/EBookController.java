@@ -58,9 +58,6 @@ public class EBookController {
 	/*
 	 엑셀 플랫폼 속성 통일하기
 	 --- 5월기준 ---
-	 로망띠끄 (할인 열 추가됨)
-	 예스24 (bookID 열 추가됨)
-	 리디북스 판매처, 대여유료권 생성
 	 */
 	
 	
@@ -876,6 +873,7 @@ public class EBookController {
 				eBookService.allRemoveRidibooks();
 				Ridibooks ridibooks = new Ridibooks();
 				
+				String[] salesRidibooks = request.getParameterValues("sales");
 				String[] seriesIdRidibooks = request.getParameterValues("seriesId");
 				String[] bookIdRidibooks = request.getParameterValues("bookId");
 				String[] productNameRidibooks = request.getParameterValues("productName");
@@ -891,6 +889,7 @@ public class EBookController {
 				String[] singleFreeTicketRidibooks = request.getParameterValues("singleFreeTicket");
 				String[] rentalAmountRidibooks = request.getParameterValues("rentalAmount");
 				String[] rentalTicketRidibooks = request.getParameterValues("rentalTicket");
+				String[] rentalFreeTicketRidibooks = request.getParameterValues("rentalFreeTicket");
 				String[] freeDownAmountRidibooks = request.getParameterValues("freeDownAmount");
 				String[] freeDownTicketRidibooks = request.getParameterValues("freeDownTicket");
 				String[] setSaleAmountRidibooks = request.getParameterValues("setSaleAmount");
@@ -921,6 +920,7 @@ public class EBookController {
 				String[] setDateRidibooks = request.getParameterValues("setDate");
 				
 				for(i=0; i<seriesIdRidibooks.length; i++) {
+					ridibooks.setSales(salesRidibooks[i]);
 					ridibooks.setSeriesId(seriesIdRidibooks[i]);
 					ridibooks.setBookId(bookIdRidibooks[i]);
 					ridibooks.setProductName(productNameRidibooks[i]);
@@ -936,6 +936,7 @@ public class EBookController {
 					ridibooks.setSingleFreeTicket(singleFreeTicketRidibooks[i]);
 					ridibooks.setRentalAmount(rentalAmountRidibooks[i]);
 					ridibooks.setRentalTicket(rentalTicketRidibooks[i]);
+					ridibooks.setRentalFreeTicket(rentalFreeTicketRidibooks[i]);
 					ridibooks.setFreeDownAmount(freeDownAmountRidibooks[i]);
 					ridibooks.setFreeDownTicket(freeDownTicketRidibooks[i]);
 					ridibooks.setSetSaleAmount(setSaleAmountRidibooks[i]);
@@ -974,6 +975,7 @@ public class EBookController {
 				Romance romance = new Romance();
 				
 				String[] bookCodeRomance = request.getParameterValues("bookCode");
+				String[] typeRomance = request.getParameterValues("type");
 				String[] productNameRomance = request.getParameterValues("productName");
 				String[] brandRomance = request.getParameterValues("brand");
 				String[] authorRomance = request.getParameterValues("author");
@@ -988,6 +990,7 @@ public class EBookController {
 				
 				for(i=0; i<bookCodeRomance.length; i++) {
 					romance.setBookCode(bookCodeRomance[i]);
+					romance.setType(typeRomance[i]);
 					romance.setProductName(productNameRomance[i]);
 					romance.setBrand(brandRomance[i]);
 					romance.setAuthor(authorRomance[i]);
@@ -1131,6 +1134,7 @@ public class EBookController {
 				String[] saleTypeYes24 = request.getParameterValues("saleType");
 				String[] eventSalePriceYes24 = request.getParameterValues("eventSalePrice");
 				String[] authorYes24 = request.getParameterValues("author");
+				String[] bookIdYes24 = request.getParameterValues("bookId");
 				String[] epublIdYes24 = request.getParameterValues("epublId");
 				String[] setCodeYes24 = request.getParameterValues("setCode");
 				String[] paperbookIsbnYes24 = request.getParameterValues("paperbookIsbn");
@@ -1156,6 +1160,7 @@ public class EBookController {
 					yes24.setAuthor(authorYes24[i]);
 					yes24.setEpublId(epublIdYes24[i]);
 					yes24.setSetCode(setCodeYes24[i]);
+					yes24.setBookId(bookIdYes24[i]);
 					yes24.setPaperbookIsbn(paperbookIsbnYes24[i]);
 					yes24.setEbookIsbn(ebookIsbnYes24[i]);
 					yes24.setSaleDate(saleDateYes24[i]);

@@ -9,6 +9,7 @@ public class Romance {
 	String idx;
 	
 	String bookCode;						//도서코드
+	String type;							//구분
 	String productName;						//상품명
 	String brand;							//출판사명
 	String author;							//저자명

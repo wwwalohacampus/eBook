@@ -679,6 +679,7 @@
 			<table border="1">
 				<tr>	
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
+					<th align="center">판매처</th>
 					<th align="center">시리즈 ID</th>
 					<th align="center">도서 ID</th>
 					<th align="center">제목</th>
@@ -693,7 +694,8 @@
 					<th align="center">단권판매권</th>
 					<th align="center">단권무료권</th>
 					<th align="center">대여액</th>
-					<th align="center">대여권</th>
+					<th align="center">대여유료권</th>
+					<th align="center">대여무료권</th>
 					<th align="center">자유다운금액</th>
 					<th align="center">자유다운권</th>
 					<th align="center">세트판매액</th>
@@ -728,6 +730,7 @@
 				</tr>
 				<tr th:each="board : ${listRidibooks}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+					<td><input style="" name="sales" type="text" th:value="${board.sales}"/></td>
 					<td><input style="" name="seriesId" type="text" th:value="${board.seriesId}"/></td>
 					<td><input style="" name="bookId" type="text" th:value="${board.bookId}"/></td>
 					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
@@ -743,6 +746,7 @@
 					<td><input style="" name="singleFreeTicket" type="text" th:value="${board.singleFreeTicket}"/></td>
 					<td><input style="" name="rentalAmount" type="text" th:value="${board.rentalAmount}"/></td>
 					<td><input style="" name="rentalTicket" type="text" th:value="${board.rentalTicket}"/></td>
+					<td><input style="" name="rentalFreeTicket" type="text" th:value="${board.rentalFreeTicket}"/></td>
 					<td><input style="" name="freeDownAmount" type="text" th:value="${board.freeDownAmount}"/></td>
 					<td><input style="" name="freeDownTicket" type="text" th:value="${board.freeDownTicket}"/></td>
 					<td><input style="" name="setSaleAmount" type="text" th:value="${board.setSaleAmount}"/></td>
@@ -790,6 +794,7 @@
 				<tr>
 					<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
 					<th align="center">도서코드</th>
+					<th align="center">타입</th>
 					<th align="center">상품명</th>
 					<th align="center">출판사명</th>
 					<th align="center">저자명</th>
@@ -808,6 +813,7 @@
 				<tr th:each="board : ${listRomance}">
 					<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
 					<td><input style="" name="bookCode" type="text" th:value="${board.bookCode}"/></td>
+					<td><input style="" name="type" type="text" th:value="${board.type}"/></td>
 					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
@@ -992,6 +998,7 @@
 					<th align="center">판매구분</th>
 					<th align="center">이벤트판매가</th>
 					<th align="center">저자명</th>
+					<th align="center">bookID</th>
 					<th align="center">ePubID</th>
 					<th align="center">세트코드</th>
 					<th align="center">종이책isbn</th>
@@ -1019,6 +1026,7 @@
 					<td><input style="" name="saleType" type="text" th:value="${board.saleType}"/></td>
 					<td><input style="" name="eventSalePrice" type="text" th:value="${board.eventSalePrice}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
+					<td><input style="" name="bookId" type="text" th:value="${board.bookId}"/></td>
 					<td><input style="" name="epublId" type="text" th:value="${board.epublId}"/></td>
 					<td><input style="" name="setCode" type="text" th:value="${board.setCode}"/></td>
 					<td><input style="" name="paperbookIsbn" type="text" th:value="${board.paperbookIsbn}"/></td>

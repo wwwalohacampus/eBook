@@ -8,6 +8,7 @@ import lombok.Data;
 public class Ridibooks {
 	String idx;
 	
+	String sales;										//판매처
 	String seriesId; 									//시리즈 ID
 	String bookId; 										//도서 ID
 	String productName; 								//제목
@@ -23,6 +24,7 @@ public class Ridibooks {
 	String singleFreeTicket; 							//단권무료권
 	String rentalAmount; 								//대여액
 	String rentalTicket; 								//대여권
+	String rentalFreeTicket;							//대여무료권
 	String freeDownAmount; 								//자유다운금액
 	String freeDownTicket; 								//자유다운권
 	String setSaleAmount; 								//세트판매액
