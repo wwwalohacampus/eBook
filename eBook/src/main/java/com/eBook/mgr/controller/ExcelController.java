@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ import com.eBook.mgr.domain.platform.Romance;
 import com.eBook.mgr.domain.platform.Tocsoda;
 import com.eBook.mgr.domain.platform.Winstore;
 import com.eBook.mgr.domain.platform.Yes24;
+import com.eBook.mgr.service.AuthService;
 import com.eBook.mgr.service.EBookService;
 
 @Controller
@@ -63,7 +65,7 @@ public class ExcelController implements ServletContextAware {
 	
 	/*
 	 * 엑셀파일 업로드  84행
-	 * 엑셀파일 다운로드  1518행
+	 * 엑셀파일 다운로드  1630행
 	 * */
 	
 	private static final Logger log = LoggerFactory.getLogger(ExcelController.class);
@@ -73,6 +75,9 @@ public class ExcelController implements ServletContextAware {
 	
 	@Autowired
 	EBookService eBookService;
+	
+	@Autowired
+	AuthService authService;
 	
 	private ServletContext servletContext;
 	
@@ -1628,7 +1633,9 @@ public class ExcelController implements ServletContextAware {
 	
 	
 	@RequestMapping(value = "/download", method = RequestMethod.POST)
-	public String download(String p_type, HttpServletResponse response, HttpServletRequest request, String[] nowDate) throws Exception {
+	public String download(String p_type, HttpServletResponse response, HttpServletRequest request, String[] nowDate, Principal principal) throws Exception {
+		
+		String auth = authService.authRoll(principal.getName());
 		
 		XSSFWorkbook objWorkBook = new XSSFWorkbook();
 		String fileName = "";
@@ -1723,7 +1730,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Bookcube> bookList = eBookService.listBookcube(setDate);
+			List<Bookcube> bookList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				bookList = eBookService.listBookcube(setDate);
+			} else {
+				bookList = authService.listBookcube(setDate, principal.getName());
+			}
 			for(int i=0; i<bookList.size(); i++) {
 				objRow = objSheet.createRow(3+i);
 				bookcube_title[0] = bookList.get(i).getProductName();
@@ -1767,7 +1779,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Joara> joaraList = eBookService.listJoara(setDate);
+			List<Joara> joaraList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				joaraList = eBookService.listJoara(setDate);
+			} else {
+				joaraList = authService.listJoara(setDate, principal.getName());
+			}
 			for(int i=0; i<joaraList.size(); i++) {
 				objRow = objSheet.createRow(1+i);
 				joara_title[0] = joaraList.get(i).getProductName();
@@ -1803,7 +1820,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Kakao> kakaoList = eBookService.listKakao(setDate);
+			List<Kakao> kakaoList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				kakaoList = eBookService.listKakao(setDate);
+			} else {
+				kakaoList = authService.listKakao(setDate, principal.getName());
+			}
 			for(int i=0; i<kakaoList.size(); i++) {
 				objRow = objSheet.createRow(5+i);
 				kakao_title[0] = kakaoList.get(i).getSpecialGeneral2();
@@ -1873,7 +1895,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Kyobo> kyoboList = eBookService.listkyobo(setDate);
+			List<Kyobo> kyoboList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				kyoboList = eBookService.listkyobo(setDate);
+			} else {
+				kyoboList = authService.listkyobo(setDate, principal.getName());
+			}
 			for(int i=0; i<kyoboList.size(); i++) {
 				objRow = objSheet.createRow(1+i);
 				kyobo_title[0] = kyoboList.get(i).getSalesCategory();
@@ -1920,7 +1947,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Mrblue> mrblueList = eBookService.listMrblue(setDate);
+			List<Mrblue> mrblueList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				mrblueList = eBookService.listMrblue(setDate);
+			} else {
+				mrblueList = authService.listMrblue(setDate, principal.getName());
+			}
 			for(int i=0; i<mrblueList.size(); i++) {
 				objRow = objSheet.createRow(6+i);
 				mrblue_title[0] = mrblueList.get(i).getDate();
@@ -1984,7 +2016,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Munpia> munpiaList = eBookService.listMunpia(setDate);
+			List<Munpia> munpiaList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				munpiaList = eBookService.listMunpia(setDate);
+			} else {
+				munpiaList = authService.listMunpia(setDate, principal.getName());
+			}
 			for(int i=0; i<munpiaList.size(); i++) {
 				objRow = objSheet.createRow(1+i);
 				munpia_title[0] = munpiaList.get(i).getDate();
@@ -2023,7 +2060,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Naver> naverList = eBookService.listNaver(setDate);
+			List<Naver> naverList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				naverList = eBookService.listNaver(setDate);
+			} else {
+				naverList = authService.listNaver(setDate, principal.getName());
+			}
 			for(int i=0; i<naverList.size(); i++) {
 				objRow = objSheet.createRow(1+i);
 				naver_title[0]  = naverList.get(i).getProductName();			
@@ -2085,7 +2127,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Ridibooks> ridibooksList = eBookService.listRidibooks(setDate);
+			List<Ridibooks> ridibooksList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				ridibooksList = eBookService.listRidibooks(setDate);
+			} else {
+				ridibooksList = authService.listRidibooks(setDate, principal.getName());
+			}
 			for(int i=0; i<ridibooksList.size(); i++) {
 				objRow = objSheet.createRow(1+i);
 				ridibooks_title[0]  = ridibooksList.get(i).getSeriesId(); 				
@@ -2153,7 +2200,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Romance> romanceList = eBookService.listRomance(setDate);
+			List<Romance> romanceList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				romanceList = eBookService.listRomance(setDate);
+			} else {
+				romanceList = authService.listRomance(setDate, principal.getName());
+			}
 			for(int i=0; i<romanceList.size(); i++) {
 				objRow = objSheet.createRow(3+i);
 				romance_title[0] = romanceList.get(i).getBookCode();		
@@ -2190,7 +2242,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Tocsoda> tocsodaList = eBookService.listTocsoda(setDate);
+			List<Tocsoda> tocsodaList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				tocsodaList = eBookService.listTocsoda(setDate);
+			} else {
+				tocsodaList = authService.listTocsoda(setDate, principal.getName());
+			}
 			for(int i=0; i<tocsodaList.size(); i++) {
 				objRow = objSheet.createRow(5+i);
 				tocsoda_title[0] = tocsodaList.get(i).getProductBacord();					
@@ -2227,7 +2284,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Winstore> winstoreList = eBookService.listWinstore(setDate);
+			List<Winstore> winstoreList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				winstoreList = eBookService.listWinstore(setDate);
+			} else {
+				winstoreList = authService.listWinstore(setDate, principal.getName());
+			}
 			for(int i=0; i<winstoreList.size(); i++) {
 				objRow = objSheet.createRow(2+i);
 				winstore_title[0]  = winstoreList.get(i).getPartnerName();					
@@ -2284,7 +2346,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Yes24> yes24List = eBookService.listYes24(setDate);
+			List<Yes24> yes24List = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				yes24List = eBookService.listYes24(setDate);
+			} else {
+				yes24List = authService.listYes24(setDate, principal.getName());
+			}
 			for(int i=0; i<yes24List.size(); i++) {
 				objRow = objSheet.createRow(1+i);
 				yes24_title[0]  = yes24List.get(i).getNo();							
@@ -2329,7 +2396,12 @@ public class ExcelController implements ServletContextAware {
 			
 			
 			//본문내용
-			List<Aladin> aladinList = eBookService.listAladin(setDate);
+			List<Aladin> aladinList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				aladinList = eBookService.listAladin(setDate);
+			} else {
+				aladinList = authService.listAladin(setDate, principal.getName());
+			}
 			for(int i=0; i<aladinList.size(); i++) {
 				objRow = objSheet.createRow(1+i);
 				aladin_title[0]  = aladinList.get(i).getSalesCancelDate();	

@@ -117,6 +117,16 @@
 		yearSelect.add(option1_s, null);
 		yearSelect.add(option2_s, null);
 		
+		$("#btnDownLoad").on("click", function(){
+			if (confirm("엑셀파일로 다운로드 하시겠습니까? ")) {
+				formObj.attr("action", "/ebook/paymentUpload");
+				formObj.attr("method", "post");
+				formObj.submit();
+			} else {
+				
+			}
+		});
+		
 	});
 	
 	$("#btnSelect").on("click", function(){

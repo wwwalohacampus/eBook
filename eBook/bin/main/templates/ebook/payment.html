@@ -15,6 +15,7 @@
 <div layout:fragment="content">
 	<div>
 	   <form id="listForm" method="POST">
+	   		<input id="nowDate" name="nowDate" type="hidden" th:value="${setDate}"/>
 	   		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 			<h1><img src="/image/img_ongle.png" style="width:100px;"></h1>
 			<select id="selete_year_select" name="p_year_select" class="form-control w-25" >
@@ -115,6 +116,7 @@
 	</div> 
 	
 	<div>
+		<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 		<select id="selete_year" name="p_year" class="ui compact selection dropdown" >
 				<option value="" selected>연도</option>
 		</select>&nbsp;
@@ -133,28 +135,31 @@
 			<option value="11월">11월</option>
 			<option value="12월">12월</option>
 		</select>
-		<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-			<div>
-				<!-- 
-				<button type="submit" id="btnDownload" class="btn btn-primary mr-2" >
-			  		<span class="icon text-white-50"><i class="fas fa-download"></i></span>
-					<span class="text">파일다운로드</span>
-				</button>
-				 -->
-				<button type="submit" onclick="func_payment();" id="btnPayment" class="btn btn-info mr-2">
-					<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
-					<span class="text">정산TEST</span>
-				</button>
-				<button type="submit" onclick="func_finalPayment();" id="btnPayment" class="btn btn-danger mr-2">
-					<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
-					<span class="text">최종정산</span>
-				</button>
-			</div>
-		</th:block>
-		<button type="submit" id="btnDownLoad" class="btn btn-primary mr-2">
+		
+		<div>
+		
+			<!-- 
+			<button type="submit" id="btnDownload" class="btn btn-primary mr-2" >
 		  		<span class="icon text-white-50"><i class="fas fa-download"></i></span>
 				<span class="text">파일다운로드</span>
-		</button>
+			</button>
+			 -->
+			<button type="submit" onclick="func_payment();" id="btnPayment" class="btn btn-info mr-2">
+				<span class="icon text-white-50"><i class="fas fa-info-circle"></i></span>
+				<span class="text">정산TEST</span>
+			</button>
+			<button type="submit" onclick="func_finalPayment();" id="btnPayment" class="btn btn-danger mr-2">
+				<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+				<span class="text">최종정산</span>
+			</button>
+			</th:block>
+			<button type="submit" id="btnDownLoad" class="btn btn-primary mr-2">
+			  		<span class="icon text-white-50"><i class="fas fa-download"></i></span>
+					<span class="text">파일다운로드</span>
+			</button>				
+		</div>
+		
+
 	</div>
 </div>
 </body>

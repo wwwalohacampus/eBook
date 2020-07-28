@@ -51,7 +51,8 @@ public class EBookController {
 	AuthService authService;
 	
 	/*
-	안되는것 2020-07-24 
+	안되는것 2020-07-28
+	 - 파일다운로드시 뭔가 오류가남
 	*/
 	
 	/*
