@@ -8,7 +8,8 @@ import lombok.Data;
 public class Epub {
 	String idx;
 	
-	String index; 								//번호
+	String indexNum; 							//번호
+	String brand;								//브랜드
 	String productName; 						//도서명
 	String publisher; 							//출판사
 	String publisherAmount; 					//출판사판매가
@@ -28,5 +29,5 @@ public class Epub {
 	String salseDate; 							//판매일
 	String cencelsDate; 						//환불일
 	String writerId; 							//작가id
-	Date setDate; 								//기준월
+	String setDate; 								//기준월
 }

@@ -137,6 +137,74 @@
 			</div>
 		</div>
 		
+		<div id="epubId" style="display:none" >
+			<div class="sheet-container">
+				<div class="logo">
+					<img src="/image/epub.png">
+					<h2>이퍼브</h2>
+				</div>
+				<div style="overflow:scroll; height:500px;">
+				<div class="card-body">
+					<table border="1">
+						<tr>
+							<th><input type="checkbox" name="all_chk" onclick="doPopCheckAll();"></th>
+							<th align="center">번호</th>
+							<th align="center">출판권자</th>
+							<th align="center" width="">도서명</th>
+							<th align="center">출판사</th>
+							<th align="center">출판사판매가</th>
+							<th align="center">판매서점</th>
+							<th align="center">서점판매가</th>
+							<th align="center">서점환불가</th>
+							<th align="center">원가율</th>
+							<th align="center">출판사정산액</th>
+							<th align="center">이벤트구분</th>
+							<th align="center">판매구분</th>
+							<th align="center">이벤트판매가</th>
+							<th align="center">작가명</th>
+							<th align="center">ePubID</th>
+							<th align="center">세트코드</th>
+							<th align="center">종이책ISBN</th>
+							<th align="center">전자책ISBN</th>
+							<th align="center">판매일</th>
+							<th align="center">환불일</th>
+						</tr>
+						<tr th:if="${#lists.isEmpty(listEpub)}">
+							<td colspan="100">
+								데이터가 없습니다.
+							</td>
+						</tr>
+						<tr th:each="board : ${listEpub}"  >
+							<td><input type="checkbox" name="delete_ids" th:value="${board.idx}"/></td>
+							<td><input style="width:80px" type="text" name="indexNum" th:value="${board.indexNum}"/></td>
+							<td><input style="width:80px" type="text" name="brand" th:value="${board.brand}"/></td>
+							<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
+							<td><input style="width:80px" type="text" name="publisher" th:value="${board.publisher}"/></td>
+							<td><input style="width:80px" type="text" name="publisherAmount" th:value="${board.publisherAmount}"/></td>
+							<td><input style="width:80px" type="text" name="sales" th:value="${board.sales}"/></td>
+							<td><input style="width:80px" type="text" name="salesAmount" th:value="${board.salesAmount}"/></td>
+							<td><input style="width:80px" type="text" name="cencelsAmount" th:value="${board.cencelsAmount}"/></td>
+							<td><input style="width:80px" type="text" name="costRate" th:value="${board.costRate}"/></td>
+							<td><input style="width:80px" type="text" name="payment" th:value="${board.payment}"/></td>
+							<td><input style="width:80px" type="text" name="eventType" th:value="${board.eventType}"/></td>
+							<td><input style="width:80px" type="text" name="salesType" th:value="${board.salesType}"/></td>
+							<td><input style="width:80px" type="text" name="eventAmount" th:value="${board.eventAmount}"/></td>
+							<td><input style="width:100px" type="text" name="author" th:value="${board.author}"/></td>
+							<td><input style="width:80px" type="text" name="epubid" th:value="${board.epubid}"/></td>
+							<td><input style="width:100px" type="text" name="setCode" th:value="${board.setCode}"/></td>
+							<td><input style="width:100px" type="text" name="paperbookIsbn" th:value="${board.paperbookIsbn}"/></td>
+							<td><input style="width:100px" type="text" name="ebookIsbn" th:value="${board.ebookIsbn}"/></td>
+							<td><input style="width:100px" type="text" name="salseDate" th:value="${board.salseDate}"/>
+							<td><input style="width:100px" type="text" name="cencelsDate" th:value="${board.cencelsDate}"/>
+							<input type="hidden" name="writerId" th:value="${board.writerId}"/>
+							<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
+						</tr>
+					</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		
 		<div id="joaraId" style="display:none">
 			<div class="sheet-container">
 			<div class="logo">

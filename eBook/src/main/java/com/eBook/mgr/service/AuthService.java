@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
+import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
 import com.eBook.mgr.domain.platform.Kakao;
 import com.eBook.mgr.domain.platform.Kyobo;
@@ -27,6 +28,7 @@ public interface AuthService {
 	
 	// 조회 로직 ----------------------------------------------------------------------
 	public List<Bookcube> listBookcube(String setDate, String id) throws Exception;
+	public List<Epub> listEpub(String setDate, String id) throws Exception;
 	public List<Joara> listJoara(String setDate, String id) throws Exception;
 	public List<Kakao> listKakao(String setDate, String id) throws Exception;
 	public List<Kyobo> listkyobo(String setDate, String id) throws Exception;

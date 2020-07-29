@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
+import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
 import com.eBook.mgr.domain.platform.Kakao;
 import com.eBook.mgr.domain.platform.Kyobo;
@@ -76,6 +77,24 @@ public class AuthServiceImpl implements AuthService {
 		System.out.println("현재 북리스트 " + bookList);
 		
 		return bookList;
+	}
+	
+	@Override
+	public List<Epub> listEpub(String setDate, String id) throws Exception {
+		
+		String[] writerId = authMapper.listWriterId(id);
+		List<Epub> epubList = new ArrayList<Epub>();
+		
+		for(int i = 0; i<writerId.length; i++) {
+			List<Epub> tempEpub = authMapper.listEpub(setDate, writerId[i]);
+			for(int j = 0; j<tempEpub.size(); j++) {
+				epubList.add(tempEpub.get(j));
+			}
+		}
+		
+		System.out.println("현재 북리스트 " + epubList);
+		
+		return epubList;
 	}
 
 	@Override

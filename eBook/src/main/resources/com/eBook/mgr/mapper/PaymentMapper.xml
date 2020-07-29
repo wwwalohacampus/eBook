@@ -19,6 +19,7 @@
 	             ctz_number, 
 	             account_number, 
 	             pay_bookcube, 
+	             pay_epub,
 	             pay_joara, 
 	             pay_kakao, 
 	             pay_kyobo, 
@@ -50,6 +51,7 @@
 				#{ctzNumber},
 				#{accountNumber},
 				#{payBookcube},
+				#{payEpub},
 				#{payJoara},
 				#{payKakao},
 				#{payKyobo},
@@ -103,6 +105,11 @@
 <select id="bookcubePayment" resultType="String">
 	SELECT payment
 	FROM tb_platform_bookcube
+	WHERE writer_id = #{writerId} and DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+</select>
+<select id="epubPayment" resultType="String">
+	SELECT payment
+	FROM tb_platform_epub
 	WHERE writer_id = #{writerId} and DATE(set_date) LIKE CONCAT(#{setDate}, '%')
 </select>
 <select id="joaraPayment" resultType="String">

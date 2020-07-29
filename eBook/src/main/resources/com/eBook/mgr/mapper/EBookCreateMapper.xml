@@ -50,57 +50,59 @@
 		)
 	</insert>
 
-<!-- 
+ 
 	<insert id="createEpub">
 		INSERT INTO tb_platform_epub (
-		index,
-		product_name,
-		publisher,
-		publisher_amount,
-		sales,
-		sales_amount,
-		cencels_amount,
-		cost_rate,
-		payment,
-		event_type,
-		sales_type,
-		event_amount,
-		author,
-		epubid,
-		set_code,
-		paperbook_isbn,
-		ebook_isbn,
-		salse_date,
-		cencels_date,
-		writer_id,
-		set_date
+			index_num,
+			brand,
+			product_name,
+			publisher,
+			publisher_amount,
+			sales,
+			sales_amount,
+			cencels_amount,
+			cost_rate,
+			payment,
+			event_type,
+			sales_type,
+			event_amount,
+			author,
+			epubid,
+			set_code,
+			paperbook_isbn,
+			ebook_isbn,
+			salse_date,
+			cencels_date,
+			writer_id,
+			set_date
 		)
-		VALUES
+			VALUES
 		(
-		#{index},
-		#{productName},
-		#{publisher},
-		#{publisherAmount},
-		#{sales},
-		#{salesAmount},
-		#{cencelsAmount},
-		#{costRate},
-		#{payment},
-		#{eventType},
-		#{salesType},
-		#{eventAmount},
-		#{author},
-		#{epubid},
-		#{setCode},
-		#{paperbookIsbn},
-		#{ebookIsbn},
-		#{salseDate},
-		#{cencelsDate},
-		#{writerId},
-		#{setDate}
+			#{indexNum},
+			#{brand},
+			#{productName},
+			#{publisher},
+			#{publisherAmount},
+			#{sales},
+			#{salesAmount},
+			#{cencelsAmount},
+			#{costRate},
+			#{payment},
+			#{eventType},
+			#{salesType},
+			#{eventAmount},
+			#{author},
+			#{epubid},
+			#{setCode},
+			#{paperbookIsbn},
+			#{ebookIsbn},
+			#{salseDate},
+			#{cencelsDate},
+			#{writerId},
+			#{setDate}
 		)
 	</insert>
- -->
+ 
 
 	<insert id="createJoara">
 		INSERT INTO tb_platform_joara (

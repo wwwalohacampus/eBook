@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
+import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
 import com.eBook.mgr.domain.platform.Kakao;
 import com.eBook.mgr.domain.platform.Kyobo;
@@ -35,6 +36,7 @@ public interface AuthMapper {
 
 	//플랫폼 조회
 	public List<Bookcube> listBookcube(@Param("setDate") String setDate, @Param("writerId") String writerId) throws Exception;
+	public List<Epub> listEpub(@Param("setDate") String setDate, @Param("writerId") String writerId) throws Exception;
 	public List<Joara> listJoara(@Param("setDate") String setDate, @Param("writerId") String writerId) throws Exception;
 	public List<Kakao> listKakao(@Param("setDate") String setDate, @Param("writerId") String writerId) throws Exception;
 	public List<Kyobo> listkyobo(@Param("setDate") String setDate, @Param("writerId") String writerId) throws Exception;

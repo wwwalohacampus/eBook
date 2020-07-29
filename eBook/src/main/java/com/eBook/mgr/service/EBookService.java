@@ -22,7 +22,7 @@ public interface EBookService {
 	
 	// 등록 로직 ----------------------------------------------------------------------
 	public void registerBookcube(Bookcube bookcube) throws Exception;
-	//public void registerEpub(Epub epub) throws Exception;
+	public void registerEpub(Epub epub) throws Exception;
 	public void registerJoara(Joara joara) throws Exception;
 	public void registerKakao(Kakao kakao) throws Exception;
 	public void registerKyobo(Kyobo kyobo) throws Exception;
@@ -44,7 +44,7 @@ public interface EBookService {
 	
 	// 삭제 로직 ---------------------------------------------------------------------
 	public void removeBookcube(String idx) throws Exception;
-	//public void removeEpub(String writerId) throws Exception;
+	public void removeEpub(String idx) throws Exception;
 	public void removeJoara(String idx) throws Exception;
 	public void removeKakao(String idx) throws Exception;
 	public void removeKyobo(String idx) throws Exception;
@@ -60,6 +60,7 @@ public interface EBookService {
 	
 	
 	public void allRemoveBookcube() throws Exception;
+	public void allRemoveEpub() throws Exception;
 	public void allRemoveJoara() throws Exception;
 	public void allRemoveKakao() throws Exception;
 	public void allRemoveKyobo() throws Exception;
@@ -77,7 +78,7 @@ public interface EBookService {
 	
 	// 조회 로직 ----------------------------------------------------------------------
 	public List<Bookcube> listBookcube(String setDate) throws Exception;
-	//public List<Epub> listEpub(Date setDate) throws Exception;
+	public List<Epub> listEpub(String setDate) throws Exception;
 	public List<Joara> listJoara(String setDate) throws Exception;
 	public List<Kakao> listKakao(String setDate) throws Exception;
 	public List<Kyobo> listkyobo(String setDate) throws Exception;

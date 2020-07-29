@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface EBookDeleteMapper {
 	public void deleteBookcube(String idx) throws Exception;
-	//public void deleteEpub(String writerId) throws Exception;
+	public void deleteEpub(String idx) throws Exception;
 	public void deleteJoara(String idx) throws Exception;
 	public void deleteKakao(String idx) throws Exception;
 	public void deleteKyobo(String idx) throws Exception;
@@ -20,6 +20,7 @@ public interface EBookDeleteMapper {
 	public void deleteYes24(String idx) throws Exception;
 	
 	public void allDeleteBookcube() throws Exception;
+	public void allDeleteEpub() throws Exception;
 	public void allDeleteJoara() throws Exception;
 	public void allDeleteKakao() throws Exception;
 	public void allDeleteKyobo() throws Exception;

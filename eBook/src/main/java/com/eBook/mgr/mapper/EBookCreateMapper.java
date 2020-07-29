@@ -20,7 +20,7 @@ import com.eBook.mgr.domain.platform.Kyobo;
 @Mapper
 public interface EBookCreateMapper {
 	public void createBookcube(Bookcube bookcube) throws Exception;
-	//public void createEpub(Epub epub) throws Exception;
+	public void createEpub(Epub epub) throws Exception;
 	public void createJoara(Joara joara) throws Exception;
 	public void createKakao(Kakao kakao) throws Exception;
 	public void createKyobo(Kyobo kyobo) throws Exception;

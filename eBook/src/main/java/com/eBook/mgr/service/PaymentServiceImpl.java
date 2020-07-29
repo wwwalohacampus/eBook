@@ -57,6 +57,7 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		// 각 플랫폼 아이디별로 합계 로직 구성
 		String[] tempBookcube = paymentMapper.bookcubePayment(writerId, setDate);
+		String[] tempEpub = paymentMapper.epubPayment(writerId, setDate);
 		String[] tempJoara = paymentMapper.joaraPayment(writerId, setDate); 
 		String[] tempKakao = paymentMapper.kakaoPayment(writerId, setDate);
 		String[] tempKyobo = paymentMapper.kyoboPayment(writerId, setDate);
@@ -80,6 +81,13 @@ public class PaymentServiceImpl implements PaymentService{
 			sum = sum + Integer.parseInt(tempBookcube[i]);
 		}
 		paymentDto.setPayBookcube(Integer.toString(sum));
+		sum = 0;
+		
+		for(i=0; i<tempEpub.length; i++) {
+			tempEpub[i] = tempEpub[i].replace(",", "");
+			sum = sum + Integer.parseInt(tempEpub[i]);
+		}
+		paymentDto.setPayEpub(Integer.toString(sum));
 		sum = 0;
 		
 		for(i=0; i<tempJoara.length; i++) {

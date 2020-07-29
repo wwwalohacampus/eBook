@@ -23,7 +23,7 @@ import com.eBook.mgr.domain.platform.Kyobo;
 @Mapper
 public interface EBookListMapper {
 	public List<Bookcube> listBookcube(String setDate) throws Exception;
-	//public List<Epub> listEpub(Date setDate) throws Exception;
+	public List<Epub> listEpub(String setDate) throws Exception;
 	public List<Joara> listJoara(String setDate) throws Exception;
 	public List<Kakao> listKakao(String setDate) throws Exception;
 	public List<Kyobo> listkyobo(String setDate) throws Exception;

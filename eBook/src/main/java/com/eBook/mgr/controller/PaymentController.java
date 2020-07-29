@@ -423,7 +423,7 @@ public class PaymentController {
 		
 		// 데이터 넣는 부분----------------------------------------
 		fileName = "정산파일";
-		String[] payment_title = {"작가명","본명","주민등록번호","계좌번호","북큐브","조아라","카카오페이지","교보문고","미스터블루","문피아","네이버","리디북스","로망띠끄","톡소다","원스토어","예스24","알라딘","총매출","정산비율","작가정산액","이월정산액","정산액합계","선인세","소득세","원천징수세","작가지급액"};
+		String[] payment_title = {"작가명","본명","주민등록번호","계좌번호","북큐브","이퍼브","조아라","카카오페이지","교보문고","미스터블루","문피아","네이버","리디북스","로망띠끄","톡소다","원스토어","예스24","알라딘","총매출","정산비율","작가정산액","이월정산액","정산액합계","선인세","소득세","원천징수세","작가지급액"};
 		int length = payment_title.length;		
 
 		//칼럼이름
@@ -456,27 +456,28 @@ public class PaymentController {
 			payment_title[2] = paymentDto.get(i).getCtzNumber();
 			payment_title[3] = paymentDto.get(i).getAccountNumber();
 			payment_title[4] = paymentDto.get(i).getPayBookcube();
-			payment_title[5] = paymentDto.get(i).getPayJoara();
-			payment_title[6] = paymentDto.get(i).getPayKakao();
-			payment_title[7] = paymentDto.get(i).getPayKyobo();
-			payment_title[8] = paymentDto.get(i).getPayMrblue();
-			payment_title[9] = paymentDto.get(i).getPayMunpia();
-			payment_title[10] = paymentDto.get(i).getPayNaver();
-			payment_title[11] = paymentDto.get(i).getPayRidibooks();
-			payment_title[12] = paymentDto.get(i).getPayRomance();
-			payment_title[13] = paymentDto.get(i).getPayTocsoda();
-			payment_title[14] = paymentDto.get(i).getPayWinstore();
-			payment_title[15] = paymentDto.get(i).getPayYes24();
-			payment_title[15] = paymentDto.get(i).getPayAladin();
-			payment_title[15] = paymentDto.get(i).getAllPayment();
-			payment_title[15] = paymentDto.get(i).getSettlementRatio();
-			payment_title[15] = paymentDto.get(i).getAuthorSettlement();
-			payment_title[15] = paymentDto.get(i).getCarryAmount();
-			payment_title[15] = paymentDto.get(i).getPayment();
-			payment_title[15] = paymentDto.get(i).getVirtuousTax();
-			payment_title[15] = paymentDto.get(i).getIncomeTax();
-			payment_title[15] = paymentDto.get(i).getWthldTax();
-			payment_title[15] = paymentDto.get(i).getAuthorPaid();
+			payment_title[5] = paymentDto.get(i).getPayEpub();
+			payment_title[6] = paymentDto.get(i).getPayJoara();
+			payment_title[7] = paymentDto.get(i).getPayKakao();
+			payment_title[8] = paymentDto.get(i).getPayKyobo();
+			payment_title[9] = paymentDto.get(i).getPayMrblue();
+			payment_title[10] = paymentDto.get(i).getPayMunpia();
+			payment_title[11] = paymentDto.get(i).getPayNaver();
+			payment_title[12] = paymentDto.get(i).getPayRidibooks();
+			payment_title[13] = paymentDto.get(i).getPayRomance();
+			payment_title[14] = paymentDto.get(i).getPayTocsoda();
+			payment_title[15] = paymentDto.get(i).getPayWinstore();
+			payment_title[16] = paymentDto.get(i).getPayYes24();
+			payment_title[17] = paymentDto.get(i).getPayAladin();
+			payment_title[18] = paymentDto.get(i).getAllPayment();
+			payment_title[19] = paymentDto.get(i).getSettlementRatio();
+			payment_title[20] = paymentDto.get(i).getAuthorSettlement();
+			payment_title[21] = paymentDto.get(i).getCarryAmount();
+			payment_title[22] = paymentDto.get(i).getPayment();
+			payment_title[23] = paymentDto.get(i).getVirtuousTax();
+			payment_title[24] = paymentDto.get(i).getIncomeTax();
+			payment_title[25] = paymentDto.get(i).getWthldTax();
+			payment_title[26] = paymentDto.get(i).getAuthorPaid();
 			
 			for(int j=0; j<length; j++) {
 				objCell = objRow.createCell(j);
@@ -510,6 +511,7 @@ public class PaymentController {
 		int sum;
 		
 		sum = Integer.parseInt(paymentDto.getPayBookcube()) +
+				Integer.parseInt(paymentDto.getPayEpub()) +
 				Integer.parseInt(paymentDto.getPayJoara()) +
 				Integer.parseInt(paymentDto.getPayKakao()) +
 				Integer.parseInt(paymentDto.getPayKyobo()) +

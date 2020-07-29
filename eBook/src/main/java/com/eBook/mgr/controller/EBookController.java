@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
+import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
 import com.eBook.mgr.domain.platform.Kakao;
 import com.eBook.mgr.domain.platform.Kyobo;
@@ -53,6 +54,8 @@ public class EBookController {
 	/*
 	안되는것 2020-07-28
 	 - 파일다운로드시 뭔가 오류가남
+	 - 삭제수정로직 검토하기
+	 - epub마저 진행 Excel다운로드 후 브랜드명넣고 테스트 진행
 	*/
 	
 	/*
@@ -115,9 +118,16 @@ public class EBookController {
 			}
 			model.addAttribute("listBookcube", bookList);
 			break;
-//		case "p_epub":
-//			model.addAttribute("listBookcube", eBookService.listEpub(setDate));
-//			break;
+		case "p_epub":
+			log.info("p_epub 진입");
+			List<Epub> epubList = new ArrayList<Epub>();
+			if(auth.equals("ROLE_ADMIN")) {
+				epubList = eBookService.listEpub(setDate);
+			} else {
+				epubList = authService.listEpub(setDate, principal.getName());
+			}
+			model.addAttribute("listEpub", epubList);
+			break;
 		case "p_joara":
 			log.info("p_joara 진입");
 			List<Joara> joaraList = new ArrayList<Joara>();
@@ -335,6 +345,9 @@ public class EBookController {
 				case "p_bookcube":
 					eBookService.removeBookcube(deleteIdsArr[i]);
 					break;
+				case "p_epub":
+					eBookService.removeEpub(deleteIdsArr[i]);
+					break;
 				case "p_joara":
 					eBookService.removeJoara(deleteIdsArr[i]);
 					break;
@@ -450,6 +463,63 @@ public class EBookController {
 					bookcube.setSetDate(setDateBookcube[i]);	
 					
 					eBookService.registerBookcube(bookcube);
+				}
+				break;
+				
+			case "p_epub":
+				log.info("-------------ebpudelele------");
+				eBookService.allRemoveEpub();
+				Epub epub = new Epub();
+				
+				String[] indexNumEpub = request.getParameterValues("indexNum");
+				String[] brandEpub = request.getParameterValues("brand");
+				String[] productNameEpub = request.getParameterValues("productName");
+				String[] publisherEpub = request.getParameterValues("publisher");
+				String[] publisherAmountEpub = request.getParameterValues("publisherAmount");
+				String[] salesEpub = request.getParameterValues("sales");
+				String[] salesAmountEpub = request.getParameterValues("salesAmount");
+				String[] cencelsAmountEpub = request.getParameterValues("cencelsAmount");
+				String[] costRateEpub = request.getParameterValues("costRate");
+				String[] paymentEpub = request.getParameterValues("payment");
+				String[] eventTypeEpub = request.getParameterValues("eventType");
+				String[] salesTypeEpub = request.getParameterValues("salesType");
+				String[] eventAmountEpub = request.getParameterValues("eventAmount");
+				String[] authorEpub = request.getParameterValues("author");
+				String[] epubidEpub = request.getParameterValues("epubid");
+				String[] setCodeEpub = request.getParameterValues("setCode");
+				String[] paperbookIsbnEpub = request.getParameterValues("paperbookIsbn");
+				String[] ebookIsbnEpub = request.getParameterValues("ebookIsbn");
+				String[] salseDateEpub = request.getParameterValues("salseDate");
+				String[] cencelsDateEpub = request.getParameterValues("cencelsDate");
+				String[] writerIdEpub = request.getParameterValues("writerId");
+				String[] setDateEpub = request.getParameterValues("setDate");
+				
+				
+				for(i=0; i<productNameEpub.length; i++) {
+					epub.setIndexNum(indexNumEpub[i]);
+					epub.setBrand(brandEpub[i]);
+					epub.setProductName(productNameEpub[i]);
+					epub.setPublisher(publisherEpub[i]);
+					epub.setPublisherAmount(publisherAmountEpub[i]);
+					epub.setSales(salesEpub[i]);
+					epub.setSalesAmount(salesAmountEpub[i]);
+					epub.setCencelsAmount(cencelsAmountEpub[i]);
+					epub.setCostRate(costRateEpub[i]);
+					epub.setPayment(paymentEpub[i]);
+					epub.setEventAmount(eventTypeEpub[i]);
+					epub.setSalesType(salesTypeEpub[i]);
+					epub.setEventAmount(eventAmountEpub[i]);
+					epub.setAuthor(authorEpub[i]);
+					epub.setEpubid(epubidEpub[i]);
+					epub.setSetCode(setCodeEpub[i]);
+					epub.setPaperbookIsbn(paperbookIsbnEpub[i]);
+					epub.setEbookIsbn(ebookIsbnEpub[i]);
+					epub.setSalseDate(salseDateEpub[i]);
+					epub.setCencelsDate(cencelsDateEpub[i]);
+					epub.setWriterId(writerIdEpub[i]);
+					epub.setSetDate(setDateEpub[i]);
+					
+					eBookService.registerEpub(epub);
 				}
 				break;
 				

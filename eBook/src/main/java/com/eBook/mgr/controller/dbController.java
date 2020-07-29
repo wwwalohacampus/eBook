@@ -101,6 +101,7 @@ public class dbController implements ServletContextAware{
 			 * i = 10 : 원스토어
 			 * i = 11 : 예스24
 			 * i = 12 : 알라딘
+			 * i = 13 : 이퍼브
 			 */
 			switch (i) {
 			case 0:
@@ -846,6 +847,60 @@ public class dbController implements ServletContextAware{
 							System.out.println("value : " + value);
 							
 							if (columnindex==2) {
+								System.out.println("값은? " + value);
+								boolean checkName = dbSettingService.findDbSetting(value);
+								if (checkName == false) {
+									bookName.add(value);
+								}
+							}
+						}
+					}
+				}
+				break;
+			case 13:
+				for(rowindex=3;rowindex<rows+2;rowindex++){
+					//행을읽는다 
+					XSSFRow row=sheet.getRow(rowindex); if(row !=null){
+						//셀의 수 
+						int cells=row.getPhysicalNumberOfCells();
+						for(columnindex=0;columnindex<=cells;columnindex++){
+							
+							//셀값을 읽는다 
+							XSSFCell cell=row.getCell(columnindex);
+							String value=""; 
+							//셀이 빈값일경우를 위한 널체크
+							if(cell==null){
+								continue;
+							}else{ 
+								//타입별로 내용 읽기
+								switch (cell.getCellType()){
+								case XSSFCell.CELL_TYPE_FORMULA:
+									value=cell.getCellFormula();
+									break; 
+								case XSSFCell.CELL_TYPE_NUMERIC:
+									if ( HSSFDateUtil.isCellDateFormatted(cell) ){
+										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
+										value = fommatter.format(cell.getDateCellValue())+"";
+									}else{
+										int numeric = (int) cell.getNumericCellValue();
+										value = numeric+"";
+									}
+									break;
+								case XSSFCell.CELL_TYPE_STRING:
+									value=cell.getStringCellValue()+"";
+									break;
+								case XSSFCell.CELL_TYPE_BLANK:
+									value="";
+									break;
+								case XSSFCell.CELL_TYPE_ERROR:
+									value="";
+									break;
+								} 
+							}
+							
+							System.out.println("value : " + value);
+							
+							if (columnindex==1) {
 								System.out.println("값은? " + value);
 								boolean checkName = dbSettingService.findDbSetting(value);
 								if (checkName == false) {

@@ -44,6 +44,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.eBook.mgr.domain.platform.Aladin;
 import com.eBook.mgr.domain.platform.Bookcube;
+import com.eBook.mgr.domain.platform.Epub;
 import com.eBook.mgr.domain.platform.Joara;
 import com.eBook.mgr.domain.platform.Kakao;
 import com.eBook.mgr.domain.platform.Kyobo;
@@ -65,7 +66,7 @@ public class ExcelController implements ServletContextAware {
 	
 	/*
 	 * 엑셀파일 업로드  84행
-	 * 엑셀파일 다운로드  1630행
+	 * 엑셀파일 다운로드  1748행
 	 * */
 	
 	private static final Logger log = LoggerFactory.getLogger(ExcelController.class);
@@ -225,6 +226,110 @@ public class ExcelController implements ServletContextAware {
 					bookcube.setWriterId(writerId);
 					System.out.println("값은? " + bookcube);
 					eBookService.registerBookcube(bookcube);
+				}
+			}
+			break;
+		case "p_epub":		
+			Epub epub = new Epub();
+			epub.setSetDate(date);
+			
+			for(rowindex=3;rowindex<rows+2;rowindex++){
+				//행을읽는다 
+				XSSFRow row=sheet.getRow(rowindex); if(row !=null){
+					//셀의 수 
+					int cells=row.getPhysicalNumberOfCells();
+		
+					for(columnindex=0;columnindex<=cells+2;columnindex++){
+		
+						//셀값을 읽는다 
+						XSSFCell cell=row.getCell(columnindex);
+						String value=""; 
+		
+						//셀이 빈값일경우를 위한 널체크
+						if(cell==null){
+							value="";
+						}else{ 
+							//타입별로 내용 읽기
+							switch (cell.getCellType()){
+								case XSSFCell.CELL_TYPE_FORMULA:
+									value=cell.getCellFormula();
+									break; 
+								case XSSFCell.CELL_TYPE_NUMERIC:
+									if ( HSSFDateUtil.isCellDateFormatted(cell) ){
+										SimpleDateFormat fommatter = new SimpleDateFormat("yyyy-MM-dd");
+										value = fommatter.format(cell.getDateCellValue())+"";
+									}else{
+										double numeric = (double) cell.getNumericCellValue();
+										value = String.valueOf(Math.round(numeric));
+									}
+									break;
+								case XSSFCell.CELL_TYPE_STRING:
+									value=cell.getStringCellValue()+"";
+									break;
+								case XSSFCell.CELL_TYPE_BLANK:
+									value="";
+									break;
+								case XSSFCell.CELL_TYPE_ERROR:
+									value="";
+									break;
+							} 
+						}
+		
+						System.out.println("value : " + value);
+						
+						if (columnindex==0) {
+							epub.setIndexNum(value);
+						} else if (columnindex==1) {
+							epub.setProductName(value);
+						} else if (columnindex==2) {
+							epub.setPublisher(value);
+						} else if (columnindex==3) {
+							epub.setPublisherAmount(value);
+						} else if (columnindex==4) {
+							epub.setSales(value);
+						} else if (columnindex==5) {
+							epub.setSalesAmount(value);
+						} else if (columnindex==6) {
+							epub.setCencelsAmount(value);
+						} else if (columnindex==7) {
+							epub.setCostRate(value);
+						} else if (columnindex==8) {
+							epub.setPayment(value);
+						} else if (columnindex==9) {
+							epub.setEventType(value);
+						} else if (columnindex==10) {
+							epub.setSalesType(value);
+						} else if (columnindex==11) {
+							epub.setEventAmount(value);
+						} else if (columnindex==12) {
+							epub.setAuthor(value);
+						} else if (columnindex==13) {
+							epub.setEpubid(value);
+						} else if (columnindex==14) {
+							epub.setSetCode(value);
+						} else if (columnindex==15) {
+							epub.setPaperbookIsbn(value);
+						} else if (columnindex==16) {
+							epub.setEbookIsbn(value);
+						} else if (columnindex==17) {
+							epub.setSalseDate(value);
+						} else if (columnindex==18) {
+							epub.setCencelsDate(value);
+						}
+						
+						
+					}
+					String brand = eBookService.readBrand(epub.getProductName());
+					String author = eBookService.readAuthor(epub.getProductName());
+					log.info("작가명??? : " + author);
+					epub.setAuthor(author);
+					log.info("브랜드??? : " + brand);
+					String writerId	= eBookService.readWriterId(epub.getAuthor());
+					log.info("작가??? : " + writerId);
+					epub.setBrand(brand);
+					epub.setWriterId(writerId);
+					System.out.println("값은? " + epub);
+					eBookService.registerEpub(epub);
 				}
 			}
 			break;
@@ -1766,6 +1871,59 @@ public class ExcelController implements ServletContextAware {
 				for(int j=0; j<length; j++) {
 					objCell = objRow.createCell(j);
 					objCell.setCellValue(bookcube_title[j]);
+					objCell.setCellStyle(styleSub);
+				}
+			}
+			
+			break;
+			
+		case "p_epub":
+			fileName = "이퍼브";
+			String[] epub_title = {"번호","도서명","출판사","출판사판매가","판매서점","서점판매가","서점환불가","원가율","출판사정산액","이벤트구분","퍈매구분","이벤트판매가","작가명","ePubID","세트코드","종이책ISBN","전자책ISBN","판매일","환불일"};
+			length = epub_title.length;		
+			
+			//칼럼이름
+			objRow = objSheet.createRow(2);
+			
+			for(int i=0; i<length; i++){
+				objCell = objRow.createCell(i);
+				objCell.setCellValue(epub_title[i]);
+				objCell.setCellStyle(styleSub);
+			}
+			
+			
+			//본문내용
+			List<Epub> epubList = null;
+			if(auth.equals("ROLE_ADMIN")) {
+				epubList = eBookService.listEpub(setDate);
+			} else {
+				epubList = authService.listEpub(setDate, principal.getName());
+			}
+			for(int i=0; i<epubList.size(); i++) {
+				objRow = objSheet.createRow(3+i);
+				epub_title[0] = epubList.get(i).getIndexNum();
+				epub_title[1] = epubList.get(i).getProductName();
+				epub_title[2] = epubList.get(i).getPublisher();
+				epub_title[3] = epubList.get(i).getPublisherAmount();
+				epub_title[4] = epubList.get(i).getSales();
+				epub_title[5] = epubList.get(i).getSalesAmount();
+				epub_title[6] = epubList.get(i).getCencelsAmount();
+				epub_title[7] = epubList.get(i).getCostRate();
+				epub_title[8] = epubList.get(i).getPayment();
+				epub_title[9] = epubList.get(i).getEventType();
+				epub_title[10] = epubList.get(i).getSalesType();
+				epub_title[11] = epubList.get(i).getEventAmount();
+				epub_title[12] = epubList.get(i).getAuthor();
+				epub_title[13] = epubList.get(i).getEpubid();
+				epub_title[14] = epubList.get(i).getSetCode();
+				epub_title[15] = epubList.get(i).getPaperbookIsbn();
+				epub_title[16] = epubList.get(i).getEbookIsbn();
+				epub_title[17] = epubList.get(i).getSalseDate();
+				epub_title[18] = epubList.get(i).getCencelsDate();
+				
+				for(int j=0; j<length; j++) {
+					objCell = objRow.createCell(j);
+					objCell.setCellValue(epub_title[j]);
 					objCell.setCellStyle(styleSub);
 				}
 			}

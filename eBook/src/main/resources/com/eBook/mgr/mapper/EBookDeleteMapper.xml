@@ -9,12 +9,12 @@
 		WHERE idx = #{idx}
 	</delete>
 
-<!-- 
+ 
 	<delete id="deleteEpub">
 		DELETE FROM tb_platform_epub
-		WHERE writer_id = #{writerId}
+		WHERE idx = #{idx}
 	</delete>
- -->
+
  
 	<delete id="deleteJoara">
 		DELETE FROM tb_platform_joara
@@ -81,6 +81,10 @@
 	
 	<delete id="allDeleteBookcube">
 		DELETE FROM tb_platform_bookcube
+	</delete>
+	
+	<delete id="allDeleteEpub">
+		DELETE FROM tb_platform_epub
 	</delete>
 	
 	<delete id="allDeleteJoara">

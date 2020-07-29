@@ -12,6 +12,7 @@ public class PaymentDto {
 	String accountNumber;					// 계좌번호
 	
 	String payBookcube;
+	String payEpub;
 	String payJoara;
 	String payKakao;
 	String payKyobo;

@@ -48,11 +48,11 @@ public class EBookServiceImpl implements EBookService{
 		createMapper.createBookcube(bookcube);
 	}
 
-//	@Override
-//	public void registerEpub(Epub epub) throws Exception {
-//		// TODO Auto-generated method stub
-//		createMapper.createEpub(epub);
-//	}
+	@Override
+	public void registerEpub(Epub epub) throws Exception {
+		// TODO Auto-generated method stub
+		createMapper.createEpub(epub);
+	}
 
 	@Override
 	public void registerJoara(Joara joara) throws Exception {
@@ -158,11 +158,11 @@ public class EBookServiceImpl implements EBookService{
 		deleteMapper.deleteBookcube(idx);
 	}
 
-//	@Override
-//	public void removeEpub(String writerId) throws Exception {
-//		// TODO Auto-generated method stub
-//		deleteMapper.deleteEpub(writerId);
-//	}
+	@Override
+	public void removeEpub(String idx) throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.deleteEpub(idx);
+	}
 
 	@Override
 	public void removeJoara(String idx) throws Exception {
@@ -244,6 +244,12 @@ public class EBookServiceImpl implements EBookService{
 		// TODO Auto-generated method stub
 		deleteMapper.allDeleteBookcube();
 	}
+	
+	@Override
+	public void allRemoveEpub() throws Exception {
+		// TODO Auto-generated method stub
+		deleteMapper.allDeleteEpub();
+	}
 
 	@Override
 	public void allRemoveJoara() throws Exception {
@@ -324,11 +330,11 @@ public class EBookServiceImpl implements EBookService{
 		return listMapper.listBookcube(setDate);
 	}
 
-//	@Override
-//	public List<Epub> listEpub(Date setDate) throws Exception {
-//		// TODO Auto-generated method stub
-//		return listMapper.listEpub(setDate);
-//	}
+	@Override
+	public List<Epub> listEpub(String setDate) throws Exception {
+		// TODO Auto-generated method stub
+		return listMapper.listEpub(setDate);
+	}
 
 	@Override
 	public List<Joara> listJoara(String setDate) throws Exception {

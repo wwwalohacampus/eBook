@@ -78,6 +78,15 @@
 	]]>
 	</select>
 	
+	<select id="listEpub" resultType="Epub"> 
+	<![CDATA[
+		SELECT *
+		FROM tb_platform_epub
+		WHERE DATE(set_date) LIKE CONCAT(#{setDate}, '%')
+		AND writer_id = #{writerId}
+	]]>
+	</select>
+	
 	<select id="listJoara" resultType="Joara"> 
 	<![CDATA[
 		SELECT *

@@ -24,6 +24,7 @@ public interface PaymentMapper {
 	
 	// 각 플랫폼 합계 로직
 	public String[] bookcubePayment(@Param("writerId") String writerId, @Param("setDate") String setDate) throws Exception;
+	public String[] epubPayment(@Param("writerId") String writerId, @Param("setDate") String setDate) throws Exception;
 	public String[] joaraPayment(@Param("writerId") String writerId, @Param("setDate") String setDate) throws Exception;
 	public String[] kakaoPayment(@Param("writerId") String writerId, @Param("setDate") String setDate) throws Exception;
 	public String[] kyoboPayment(@Param("writerId") String writerId, @Param("setDate") String setDate) throws Exception;
