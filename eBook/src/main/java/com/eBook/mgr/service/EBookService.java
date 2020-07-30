@@ -59,20 +59,20 @@ public interface EBookService {
 	public void removeAladin(String idx) throws Exception;
 	
 	
-	public void allRemoveBookcube() throws Exception;
-	public void allRemoveEpub() throws Exception;
-	public void allRemoveJoara() throws Exception;
-	public void allRemoveKakao() throws Exception;
-	public void allRemoveKyobo() throws Exception;
-	public void allRemoveMrblue() throws Exception;
-	public void allRemoveMunpia() throws Exception;
-	public void allRemoveNaver() throws Exception;
-	public void allRemoveRidibooks() throws Exception;
-	public void allRemoveRomance() throws Exception;
-	public void allRemoveTocsoda() throws Exception;
-	public void allRemoveWinstore() throws Exception;
-	public void allRemoveAladin() throws Exception;
-	public void allRemoveYes24() throws Exception;
+	public void allRemoveBookcube(String setDate) throws Exception;
+	public void allRemoveEpub(String setDate) throws Exception;
+	public void allRemoveJoara(String setDate) throws Exception;
+	public void allRemoveKakao(String setDate) throws Exception;
+	public void allRemoveKyobo(String setDate) throws Exception;
+	public void allRemoveMrblue(String setDate) throws Exception;
+	public void allRemoveMunpia(String setDate) throws Exception;
+	public void allRemoveNaver(String setDate) throws Exception;
+	public void allRemoveRidibooks(String setDate) throws Exception;
+	public void allRemoveRomance(String setDate) throws Exception;
+	public void allRemoveTocsoda(String setDate) throws Exception;
+	public void allRemoveWinstore(String setDate) throws Exception;
+	public void allRemoveAladin(String setDate) throws Exception;
+	public void allRemoveYes24(String setDate) throws Exception;
 	
 	
 	

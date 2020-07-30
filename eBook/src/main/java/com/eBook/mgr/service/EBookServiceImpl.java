@@ -240,87 +240,87 @@ public class EBookServiceImpl implements EBookService{
 	
 	
 	@Override
-	public void allRemoveBookcube() throws Exception {
+	public void allRemoveBookcube(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteBookcube();
+		deleteMapper.allDeleteBookcube(setDate);
 	}
 	
 	@Override
-	public void allRemoveEpub() throws Exception {
+	public void allRemoveEpub(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteEpub();
+		deleteMapper.allDeleteEpub(setDate);
 	}
 
 	@Override
-	public void allRemoveJoara() throws Exception {
+	public void allRemoveJoara(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteJoara();
+		deleteMapper.allDeleteJoara(setDate);
 	}
 
 	@Override
-	public void allRemoveKakao() throws Exception {
+	public void allRemoveKakao(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteKakao();
+		deleteMapper.allDeleteKakao(setDate);
 	}
 
 	@Override
-	public void allRemoveKyobo() throws Exception {
+	public void allRemoveKyobo(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteKyobo();
+		deleteMapper.allDeleteKyobo(setDate);
 	}
 
 	@Override
-	public void allRemoveMrblue() throws Exception {
+	public void allRemoveMrblue(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteMrblue();
+		deleteMapper.allDeleteMrblue(setDate);
 	}
 
 	@Override
-	public void allRemoveMunpia() throws Exception {
+	public void allRemoveMunpia(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteMunpia();
+		deleteMapper.allDeleteMunpia(setDate);
 	}
 
 	@Override
-	public void allRemoveNaver() throws Exception {
+	public void allRemoveNaver(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteNaver();
+		deleteMapper.allDeleteNaver(setDate);
 	}
 
 	@Override
-	public void allRemoveRidibooks() throws Exception {
+	public void allRemoveRidibooks(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteRidibooks();
+		deleteMapper.allDeleteRidibooks(setDate);
 	}
 
 	@Override
-	public void allRemoveRomance() throws Exception {
+	public void allRemoveRomance(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteRomance();
+		deleteMapper.allDeleteRomance(setDate);
 	}
 
 	@Override
-	public void allRemoveTocsoda() throws Exception {
+	public void allRemoveTocsoda(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteTocsoda();
+		deleteMapper.allDeleteTocsoda(setDate);
 	}
 
 	@Override
-	public void allRemoveWinstore() throws Exception {
+	public void allRemoveWinstore(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteWinstore();
+		deleteMapper.allDeleteWinstore(setDate);
 	}
 
 	@Override
-	public void allRemoveAladin() throws Exception {
+	public void allRemoveAladin(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteAladin();
+		deleteMapper.allDeleteAladin(setDate);
 	}
 
 	@Override
-	public void allRemoveYes24() throws Exception {
+	public void allRemoveYes24(String setDate) throws Exception {
 		// TODO Auto-generated method stub
-		deleteMapper.allDeleteYes24();
+		deleteMapper.allDeleteYes24(setDate);
 	}
 
 	// 조회단---------------------------------------------------------------------------

@@ -54,8 +54,6 @@ public class EBookController {
 	/*
 	안되는것 2020-07-28
 	 - 파일다운로드시 뭔가 오류가남
-	 - 삭제수정로직 검토하기
-	 - epub마저 진행 Excel다운로드 후 브랜드명넣고 테스트 진행
 	*/
 	
 	/*
@@ -409,6 +407,9 @@ public class EBookController {
 		
 		int i;
 		
+		String[] setDate = request.getParameterValues("setDate");
+		log.info("과연 날짜는?" + setDate[0]);
+		
 		//log.info("찍힘? " + a.length + " 값은?" + a[1]);
 		
 		log.info("플랫폼타입검사 : " + p_type);
@@ -418,7 +419,7 @@ public class EBookController {
 			switch (p_type) {
 			case "p_bookcube":
 				log.info("-------------------------------------------------------------");
-				eBookService.allRemoveBookcube();
+				eBookService.allRemoveBookcube(setDate[0]);
 				Bookcube bookcube = new Bookcube();
 				
 				String[] productNameBookcube = request.getParameterValues("productName");
@@ -468,7 +469,7 @@ public class EBookController {
 				
 			case "p_epub":
 				log.info("-------------ebpudelele------");
-				eBookService.allRemoveEpub();
+				eBookService.allRemoveEpub(setDate[0]);
 				Epub epub = new Epub();
 				
 				String[] indexNumEpub = request.getParameterValues("indexNum");
@@ -524,7 +525,7 @@ public class EBookController {
 				break;
 				
 			case "p_joara":
-				eBookService.allRemoveJoara();
+				eBookService.allRemoveJoara(setDate[0]);
 				Joara joara = new Joara();
 				
 				String[] brandJoara = request.getParameterValues("brand");
@@ -557,7 +558,7 @@ public class EBookController {
 				break;
 				
 			case "p_kakao":
-				eBookService.allRemoveKakao();
+				eBookService.allRemoveKakao(setDate[0]);
 				Kakao kakao = new Kakao();
 				
 				String[] brandKakao = request.getParameterValues("brand");
@@ -658,7 +659,7 @@ public class EBookController {
 				break;
 				
 			case "p_kyobo":
-				eBookService.allRemoveKyobo();
+				eBookService.allRemoveKyobo(setDate[0]);
 				Kyobo kyobo = new Kyobo();
 				
 				String[] brandKyobo = request.getParameterValues("brand");
@@ -715,7 +716,7 @@ public class EBookController {
 				break;
 				
 			case "p_mrblue":
-				eBookService.allRemoveMrblue();
+				eBookService.allRemoveMrblue(setDate[0]);
 				Mrblue mrblue = new Mrblue();
 				
 				String[] brandMrblue = request.getParameterValues("brand");
@@ -806,7 +807,7 @@ public class EBookController {
 				break;
 				
 			case "p_munpia":
-				eBookService.allRemoveMunpia();
+				eBookService.allRemoveMunpia(setDate[0]);
 				Munpia munpia = new Munpia();
 				
 				String[] authorMunpia = request.getParameterValues("author");
@@ -851,7 +852,7 @@ public class EBookController {
 				break;
 				
 			case "p_naver":
-				eBookService.allRemoveNaver();
+				eBookService.allRemoveNaver(setDate[0]);
 				Naver naver = new Naver();
 				
 				String[] productNameNaver = request.getParameterValues("productName");
@@ -940,7 +941,7 @@ public class EBookController {
 				break;
 				
 			case "p_ridibooks":
-				eBookService.allRemoveRidibooks();
+				eBookService.allRemoveRidibooks(setDate[0]);
 				Ridibooks ridibooks = new Ridibooks();
 				
 				String[] salesRidibooks = request.getParameterValues("sales");
@@ -1041,7 +1042,7 @@ public class EBookController {
 				break;
 				
 			case "p_romance":
-				eBookService.allRemoveRomance();
+				eBookService.allRemoveRomance(setDate[0]);
 				Romance romance = new Romance();
 				
 				String[] bookCodeRomance = request.getParameterValues("bookCode");
@@ -1078,7 +1079,7 @@ public class EBookController {
 				break;
 				
 			case "p_tocsoda":
-				eBookService.allRemoveTocsoda();
+				eBookService.allRemoveTocsoda(setDate[0]);
 				Tocsoda tocsoda = new Tocsoda();
 				
 				String[] productBacordTocsoda = request.getParameterValues("productBacord");
@@ -1113,7 +1114,7 @@ public class EBookController {
 				break;
 				
 			case "p_winstore":
-				eBookService.allRemoveWinstore();
+				eBookService.allRemoveWinstore(setDate[0]);
 				Winstore winstore = new Winstore();
 				
 				String[] partnerNameWinstore = request.getParameterValues("partnerName");
@@ -1188,7 +1189,7 @@ public class EBookController {
 				break;
 				
 			case "p_yes24":
-				eBookService.allRemoveYes24();
+				eBookService.allRemoveYes24(setDate[0]);
 				Yes24 yes24 = new Yes24();
 				
 				String[] noYes24 = request.getParameterValues("no");
@@ -1243,7 +1244,7 @@ public class EBookController {
 				break;
 				
 			case "p_aladin":
-				eBookService.allRemoveAladin();
+				eBookService.allRemoveAladin(setDate[0]);
 				Aladin aladin = new Aladin();
 				
 				String[] salesCancelDateAladin = request.getParameterValues("salesCancelDate");

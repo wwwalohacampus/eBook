@@ -19,18 +19,18 @@ public interface EBookDeleteMapper {
 	public void deleteAladin(String idx) throws Exception;
 	public void deleteYes24(String idx) throws Exception;
 	
-	public void allDeleteBookcube() throws Exception;
-	public void allDeleteEpub() throws Exception;
-	public void allDeleteJoara() throws Exception;
-	public void allDeleteKakao() throws Exception;
-	public void allDeleteKyobo() throws Exception;
-	public void allDeleteMrblue() throws Exception;
-	public void allDeleteMunpia() throws Exception;
-	public void allDeleteNaver() throws Exception;
-	public void allDeleteRidibooks() throws Exception;
-	public void allDeleteRomance() throws Exception;
-	public void allDeleteTocsoda() throws Exception;
-	public void allDeleteWinstore() throws Exception;
-	public void allDeleteAladin() throws Exception;
-	public void allDeleteYes24() throws Exception;
+	public void allDeleteBookcube(String setDate) throws Exception;
+	public void allDeleteEpub(String setDate) throws Exception;
+	public void allDeleteJoara(String setDate) throws Exception;
+	public void allDeleteKakao(String setDate) throws Exception;
+	public void allDeleteKyobo(String setDate) throws Exception;
+	public void allDeleteMrblue(String setDate) throws Exception;
+	public void allDeleteMunpia(String setDate) throws Exception;
+	public void allDeleteNaver(String setDate) throws Exception;
+	public void allDeleteRidibooks(String setDate) throws Exception;
+	public void allDeleteRomance(String setDate) throws Exception;
+	public void allDeleteTocsoda(String setDate) throws Exception;
+	public void allDeleteWinstore(String setDate) throws Exception;
+	public void allDeleteAladin(String setDate) throws Exception;
+	public void allDeleteYes24(String setDate) throws Exception;
 }

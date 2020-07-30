@@ -88,6 +88,7 @@ public class ExcelController implements ServletContextAware {
 	}
 	
 	
+	//엑셀 업로드 로직
 	@RequestMapping(value = "/process", method = RequestMethod.POST)
 	public String process(@RequestParam("file") MultipartFile file, String p_type, String yearText, String monthText) throws Exception {
 		System.out.println("file : " + file.getOriginalFilename());
@@ -1744,7 +1745,7 @@ public class ExcelController implements ServletContextAware {
 		this.servletContext = servletContext;
 	}
 	
-	
+	//엑셀 다운로드 로직
 	@RequestMapping(value = "/download", method = RequestMethod.POST)
 	public String download(String p_type, HttpServletResponse response, HttpServletRequest request, String[] nowDate, Principal principal) throws Exception {
 		
