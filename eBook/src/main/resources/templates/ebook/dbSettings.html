@@ -15,14 +15,15 @@
 <body>
 <div layout:fragment="content">
 	<form id="platList" th:action="@{search}" method="POST">
-		<h1><img src="/image/img_ongle_sub.png" style="width:100px;"> &emsp; &emsp; &emsp; 작업파일 다운로드 &emsp; &emsp; &emsp; &emsp; DB파일 업로드</h1>
+		<img src="/image/img_ongle_sub.png" style="width:200px;"><br></br>
+		
 		<table border="1">
 			<tr>
-				<th></th>
-				<th></th>
+				<th><h2>작업파일 다운로드</h2></th>
+				<th><h2>DB파일 업로드</h2></th>
 			</tr>
 			<tr>
-				<td>북큐브 파일 : <input type="file" name="file" ></td>
+				<td align="center">북큐브 파일 : <input style="text-align: left;" type="file" name="file" ></td>
 				<td></td>
 			</tr>
 			<tr>
