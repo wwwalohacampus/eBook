@@ -127,6 +127,7 @@
 			}
 		});
 		
+		switchNum();
 	});
 	
 	$("#btnSelect").on("click", function(){
@@ -213,7 +214,7 @@
 		}
 	}
 	
-function func_finalPayment(){
+	function func_finalPayment(){
 		
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
@@ -248,6 +249,217 @@ function func_finalPayment(){
 
 			});
 		} else{
+			
+		}
+	}
+	
+	function replaceAll(str, searchStr, replaceStr) {
+		return str.split(searchStr).join(replaceStr);
+	}
+	
+	function switchNum(){
+		var size = $("input[name='payBookcube']").length;
+		var tempNum = "";		
+		
+		for(i=0;i<size;i++){
+			
+			tempNum = $("input[name='payBookcube']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payBookcube']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payBookcube']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payEpub']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payEpub']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payEpub']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payJoara']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payJoara']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payJoara']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payKakao']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payKakao']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payKakao']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payKyobo']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payKyobo']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payKyobo']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payMrblue']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payMrblue']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payMrblue']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payMunpia']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payMunpia']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payMunpia']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payNaver']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payNaver']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payNaver']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payRidibooks']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payRidibooks']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payRidibooks']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payRomance']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payRomance']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payRomance']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payTocsoda']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payTocsoda']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payTocsoda']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payWinstore']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payWinstore']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payWinstore']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payYes24']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payYes24']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payYes24']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payAladin']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payAladin']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payAladin']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='allPayment']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='allPayment']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='allPayment']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='authorSettlement']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='authorSettlement']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='authorSettlement']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='carryAmount']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='carryAmount']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='carryAmount']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='payment']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='payment']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='payment']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='virtuousTax']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='virtuousTax']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='virtuousTax']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='incomeTax']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='incomeTax']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='incomeTax']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='wthldTax']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='wthldTax']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='wthldTax']").eq(i).val(tempNum);
+			}
+			
+			tempNum = $("input[name='authorPaid']").eq(i).val();
+			tempNum = replaceAll(tempNum, ",", "");
+			if ( !$.isNumeric(tempNum) ) {
+				$("input[name='authorPaid']").eq(i).val("");
+			} else {
+				tempNum = tempNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+				$("input[name='authorPaid']").eq(i).val(tempNum);
+			}
 			
 		}
 	}

@@ -26,6 +26,33 @@
 	<script src="/js/sb-admin-2.min.js"></script>
 </head>
 
+<style>
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    z-index: 999;
+    background: #333;
+    color: #fff;
+    transition: all 0.3s;
+}
+#sidebar.active {
+    left: 0;
+}
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    display: none;
+}
+
+</style>
+
 <body>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -56,6 +83,17 @@
 				$("#logoutForm").submit();
 			}		
 		});
+		
+		$('#sidebarCollapse').on('click', function () {
+		    $('#sidebar').addClass('active');
+		    $('.overlay').fadeIn();
+		});
+		
+		$('.overlay').on('click', function () {
+		    $('#sidebar').removeClass('active');
+		    $('.overlay').fadeOut();
+		});
+
 	
 	</script>
 	

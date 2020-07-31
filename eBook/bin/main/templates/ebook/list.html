@@ -79,7 +79,7 @@
 			<div class="sheet-container">
 				<div class="logo">
 					<img src="/image/bookcube.png">
-					<h2>북큐브</h2>
+					<h2></h2>
 				</div>
 				<div style="overflow:scroll; height:500px;">
 				<div class="card-body">
@@ -117,13 +117,13 @@
 							<td><input style="width:80px" type="text" name="salesCategory" th:value="${board.salesCategory}"/></td>
 							<td><input style="width:80px" type="text" name="salesType" th:value="${board.salesType}"/></td>
 							<td><input style="width:80px" type="text" name="episode" th:value="${board.episode}"/></td>
-							<td><input style="width:80px" type="text" name="netPrice" th:value="${board.netPrice}"/></td>
-							<td><input style="width:80px" type="text" name="salePrice" th:value="${board.salePrice}"/></td>
-							<td><input style="width:80px" type="text" name="discount" th:value="${board.discount}"/></td>
-							<td><input style="width:80px" type="text" name="fee" th:value="${board.fee}"/></td>
-							<td><input style="width:80px" type="text" name="netTargetPrice" th:value="${board.netTargetPrice}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="netPrice" th:value="${board.netPrice}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="salePrice" th:value="${board.salePrice}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="discount" th:value="${board.discount}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="fee" th:value="${board.fee}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="netTargetPrice" th:value="${board.netTargetPrice}"/></td>
 							<td><input style="width:100px" type="text" name="deductionReservesEvent" th:value="${board.deductionReservesEvent}"/></td>
-							<td><input style="width:80px" type="text" name="payment" th:value="${board.payment}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="payment" th:value="${board.payment}"/></td>
 							<td><input style="width:100px" type="text" name="bookId" th:value="${board.bookId}"/></td>
 							<td><input style="width:100px" type="text" name="isbn" th:value="${board.isbn}"/></td>
 							<td><input style="width:100px" type="text" name="eIsbn" th:value="${board.eIsbn}"/></td>
@@ -141,7 +141,7 @@
 			<div class="sheet-container">
 				<div class="logo">
 					<img src="/image/epub.png">
-					<h2>이퍼브</h2>
+					<h2></h2>
 				</div>
 				<div style="overflow:scroll; height:500px;">
 				<div class="card-body">
@@ -180,12 +180,12 @@
 							<td><input style="width:80px" type="text" name="brand" th:value="${board.brand}"/></td>
 							<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 							<td><input style="width:80px" type="text" name="publisher" th:value="${board.publisher}"/></td>
-							<td><input style="width:80px" type="text" name="publisherAmount" th:value="${board.publisherAmount}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="publisherAmount" th:value="${board.publisherAmount}"/></td>
 							<td><input style="width:80px" type="text" name="sales" th:value="${board.sales}"/></td>
-							<td><input style="width:80px" type="text" name="salesAmount" th:value="${board.salesAmount}"/></td>
-							<td><input style="width:80px" type="text" name="cencelsAmount" th:value="${board.cencelsAmount}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="salesAmount" th:value="${board.salesAmount}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="cencelsAmount" th:value="${board.cencelsAmount}"/></td>
 							<td><input style="width:80px" type="text" name="costRate" th:value="${board.costRate}"/></td>
-							<td><input style="width:80px" type="text" name="payment" th:value="${board.payment}"/></td>
+							<td><input style="width:80px" type="text" onKeyUp="switchNumCell(this);" name="payment" th:value="${board.payment}"/></td>
 							<td><input style="width:80px" type="text" name="eventType" th:value="${board.eventType}"/></td>
 							<td><input style="width:80px" type="text" name="salesType" th:value="${board.salesType}"/></td>
 							<td><input style="width:80px" type="text" name="eventAmount" th:value="${board.eventAmount}"/></td>
@@ -209,7 +209,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/joara.png">
-				<h2>조아라</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">		
@@ -237,10 +237,10 @@
 					<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 					<td><input style="" type="text" name="productCode" th:value="${board.productCode}"/></td>
 					<td><input style="" type="text" name="author" th:value="${board.author}"/></td>
-					<td><input style="" type="text" name="unit" th:value="${board.unit}"/></td>
-					<td><input style="" type="text" name="saleAmount" th:value="${board.saleAmount}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="unit" th:value="${board.unit}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="saleAmount" th:value="${board.saleAmount}"/></td>
 					<td><input style="" type="text" name="ratio" th:value="${board.ratio}"/></td>
-					<td><input style="" type="text" name="payment" th:value="${board.payment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="payment" th:value="${board.payment}"/></td>
 					<td><input style="" type="text" name="paymentDate" th:value="${board.paymentDate}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
@@ -255,7 +255,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/kakao.png">
-				<h2>카카오페이지</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">	
@@ -338,30 +338,30 @@
 					<td><input style="" type="text" name="cpSettlementRateAndroid" th:value="${board.cpSettlementRateAndroid}"/></td>
 					<td><input style="" type="text" name="cpSettlementRateIos" th:value="${board.cpSettlementRateIos}"/></td>
 					<td><input style="" type="text" name="useTicketType" th:value="${board.useTicketType}"/></td>
-					<td><input style="" type="text" name="useTicketAmount" th:value="${board.useTicketAmount}"/></td>
-					<td><input style="" type="text" name="cacheSum" th:value="${board.cacheSum}"/></td>
-					<td><input style="" type="text" name="cpp1" th:value="${board.cpp1}"/></td>
-					<td><input style="" type="text" name="cpl1" th:value="${board.cpl1}"/></td>
-					<td><input style="" type="text" name="cp1_1" th:value="${board.cp1_1}"/></td>
-					<td><input style="" type="text" name="cp2_1" th:value="${board.cp2_1}"/></td>
-					<td><input style="" type="text" name="cp3_1" th:value="${board.cp3_1}"/></td>
-					<td><input style="" type="text" name="cp7_1" th:value="${board.cp7_1}"/></td>
-					<td><input style="" type="text" name="cp8_1" th:value="${board.cp8_1}"/></td>
-					<td><input style="" type="text" name="cp9_1" th:value="${board.cp9_1}"/></td>
-					<td><input style="" type="text" name="eventCache1" th:value="${board.eventCache1}"/></td>
-					<td><input style="" type="text" name="originalSum" th:value="${board.originalSum}"/></td>
-					<td><input style="" type="text" name="cpp2" th:value="${board.cpp2}"/></td>
-					<td><input style="" type="text" name="cpl2" th:value="${board.cpl2}"/></td>
-					<td><input style="" type="text" name="cp1_2" th:value="${board.cp1_2}"/></td>
-					<td><input style="" type="text" name="cp2_2" th:value="${board.cp2_2}"/></td>
-					<td><input style="" type="text" name="cp3_2" th:value="${board.cp3_2}"/></td>
-					<td><input style="" type="text" name="cp7_2" th:value="${board.cp7_2}"/></td>
-					<td><input style="" type="text" name="cp8_2" th:value="${board.cp8_2}"/></td>
-					<td><input style="" type="text" name="cp9_2" th:value="${board.cp9_2}"/></td>
-					<td><input style="" type="text" name="eventCache2" th:value="${board.eventCache2}"/></td>
-					<td><input style="" type="text" name="valueSupply" th:value="${board.valueSupply}"/></td>
-					<td><input style="" type="text" name="taxAmount" th:value="${board.taxAmount}"/></td>
-					<td><input style="" type="text" name="payment" th:value="${board.payment}"/>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="useTicketAmount" th:value="${board.useTicketAmount}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cacheSum" th:value="${board.cacheSum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cpp1" th:value="${board.cpp1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cpl1" th:value="${board.cpl1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp1_1" th:value="${board.cp1_1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp2_1" th:value="${board.cp2_1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp3_1" th:value="${board.cp3_1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp7_1" th:value="${board.cp7_1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp8_1" th:value="${board.cp8_1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp9_1" th:value="${board.cp9_1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="eventCache1" th:value="${board.eventCache1}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="originalSum" th:value="${board.originalSum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cpp2" th:value="${board.cpp2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cpl2" th:value="${board.cpl2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp1_2" th:value="${board.cp1_2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp2_2" th:value="${board.cp2_2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp3_2" th:value="${board.cp3_2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp7_2" th:value="${board.cp7_2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp8_2" th:value="${board.cp8_2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="cp9_2" th:value="${board.cp9_2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="eventCache2" th:value="${board.eventCache2}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="valueSupply" th:value="${board.valueSupply}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="taxAmount" th:value="${board.taxAmount}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="payment" th:value="${board.payment}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
@@ -375,7 +375,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/kyobo.png">
-				<h2>교보문고</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -423,13 +423,13 @@
 					<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 					<td><input style="" type="text" name="episode" th:value="${board.episode}"/></td>
 					<td><input style="" type="text" name="author" th:value="${board.author}"/></td>
-					<td><input style="" type="text" name="netPrice" th:value="${board.netPrice}"/></td>
-					<td><input style="" type="text" name="salePrice" th:value="${board.salePrice}"/></td>
-					<td><input style="" type="text" name="saleRate" th:value="${board.saleRate}"/></td>
-					<td><input style="" type="text" name="download" th:value="${board.download}"/></td>
-					<td><input style="" type="text" name="netTargetPrice" th:value="${board.netTargetPrice}"/></td>
-					<td><input style="" type="text" name="netTargetPriceAmount" th:value="${board.netTargetPriceAmount}"/></td>
-					<td><input style="" type="text" name="payment" th:value="${board.payment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="netPrice" th:value="${board.netPrice}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="salePrice" th:value="${board.salePrice}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="saleRate" th:value="${board.saleRate}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="download" th:value="${board.download}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="netTargetPrice" th:value="${board.netTargetPrice}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="netTargetPriceAmount" th:value="${board.netTargetPriceAmount}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="payment" th:value="${board.payment}"/></td>
 					<td><input style="" type="text" name="accountingRates" th:value="${board.accountingRates}"/></td>
 					<td><input style="" type="text" name="bookNumber" th:value="${board.bookNumber}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
@@ -445,7 +445,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/mrblue.png">
-				<h2>미스터블루</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -526,39 +526,39 @@
 					<td><input style="text-align: left; width:200px;" type="text" name="productName" th:value="${board.productName}"/></td>
 					<td><input style="" type="text" name="author" th:value="${board.author}"/></td>
 					<td><input style="" type="text" name="code" th:value="${board.code}"/></td>
-					<td><input style="" type="text" name="fixedNum" th:value="${board.fixedNum}"/></td>
-					<td><input style="" type="text" name="fixedSales" th:value="${board.fixedSales}"/></td>
-					<td><input style="" type="text" name="fixedPayment" th:value="${board.fixedPayment}"/></td>
-					<td><input style="" type="text" name="aAppOnerentalNum" th:value="${board.aAppOnerentalNum}"/></td>
-					<td><input style="" type="text" name="aAppOnerentalUse" th:value="${board.aAppOnerentalUse}"/></td>
-					<td><input style="" type="text" name="aAppOnerentalPayment" th:value="${board.aAppOnerentalPayment}"/></td>
-					<td><input style="" type="text" name="aAppOnemngrNum" th:value="${board.aAppOnemngrNum}"/></td>
-					<td><input style="" type="text" name="aAppOnemngrUse" th:value="${board.aAppOnemngrUse}"/></td>
-					<td><input style="" type="text" name="aAppOnemngrPayment" th:value="${board.aAppOnemngrPayment}"/></td>
-					<td><input style="" type="text" name="aAppAllrentalNum" th:value="${board.aAppAllrentalNum}"/></td>
-					<td><input style="" type="text" name="aAppAllrentalUse" th:value="${board.aAppAllrentalUse}"/></td>
-					<td><input style="" type="text" name="aAppAllrentalPayment" th:value="${board.aAppAllrentalPayment}"/></td>
-					<td><input style="" type="text" name="aAppAllmngrNum" th:value="${board.aAppAllmngrNum}"/></td>
-					<td><input style="" type="text" name="aAppAllmngrUse" th:value="${board.aAppAllmngrUse}"/></td>
-					<td><input style="" type="text" name="aAppAllmngrPayment" th:value="${board.aAppAllmngrPayment}"/></td>
-					<td><input style="" type="text" name="iAppOnerentalNum" th:value="${board.iAppOnerentalNum}"/></td>
-					<td><input style="" type="text" name="iAppOnerentalUse" th:value="${board.iAppOnerentalUse}"/></td>
-					<td><input style="" type="text" name="iAppOnerentalPayment" th:value="${board.iAppOnerentalPayment}"/></td>
-					<td><input style="" type="text" name="iAppOnemngrNum" th:value="${board.iAppOnemngrNum}"/></td>
-					<td><input style="" type="text" name="iAppOnemngrUse" th:value="${board.iAppOnemngrUse}"/></td>
-					<td><input style="" type="text" name="iAppOnemngrPayment" th:value="${board.iAppOnemngrPayment}"/></td>
-					<td><input style="" type="text" name="iAppAllrentalNum" th:value="${board.iAppAllrentalNum}"/></td>
-					<td><input style="" type="text" name="iAppAllrentalUse" th:value="${board.iAppAllrentalUse}"/></td>
-					<td><input style="" type="text" name="iAppAllrentalPayment" th:value="${board.iAppAllrentalPayment}"/></td>
-					<td><input style="" type="text" name="iAppAllmngrNum" th:value="${board.iAppAllmngrNum}"/></td>
-					<td><input style="" type="text" name="iAppAllmngrUse" th:value="${board.iAppAllmngrUse}"/></td>
-					<td><input style="" type="text" name="iAppAllmngrPayment" th:value="${board.iAppAllmngrPayment}"/></td>
-					<td><input style="" type="text" name="amountNum" th:value="${board.amountNum}"/></td>
-					<td><input style="" type="text" name="amountUse" th:value="${board.amountUse}"/></td>
-					<td><input style="" type="text" name="amountPayment" th:value="${board.amountPayment}"/></td>
-					<td><input style="" type="text" name="amountSettlement" th:value="${board.amountSettlement}"/></td>
-					<td><input style="" type="text" name="sales" th:value="${board.sales}"/></td>
-					<td><input style="" type="text" name="payment" th:value="${board.payment}"/>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="fixedNum" th:value="${board.fixedNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="fixedSales" th:value="${board.fixedSales}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="fixedPayment" th:value="${board.fixedPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppOnerentalNum" th:value="${board.aAppOnerentalNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppOnerentalUse" th:value="${board.aAppOnerentalUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppOnerentalPayment" th:value="${board.aAppOnerentalPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppOnemngrNum" th:value="${board.aAppOnemngrNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppOnemngrUse" th:value="${board.aAppOnemngrUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppOnemngrPayment" th:value="${board.aAppOnemngrPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppAllrentalNum" th:value="${board.aAppAllrentalNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppAllrentalUse" th:value="${board.aAppAllrentalUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppAllrentalPayment" th:value="${board.aAppAllrentalPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppAllmngrNum" th:value="${board.aAppAllmngrNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppAllmngrUse" th:value="${board.aAppAllmngrUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="aAppAllmngrPayment" th:value="${board.aAppAllmngrPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppOnerentalNum" th:value="${board.iAppOnerentalNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppOnerentalUse" th:value="${board.iAppOnerentalUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppOnerentalPayment" th:value="${board.iAppOnerentalPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppOnemngrNum" th:value="${board.iAppOnemngrNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppOnemngrUse" th:value="${board.iAppOnemngrUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppOnemngrPayment" th:value="${board.iAppOnemngrPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppAllrentalNum" th:value="${board.iAppAllrentalNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppAllrentalUse" th:value="${board.iAppAllrentalUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppAllrentalPayment" th:value="${board.iAppAllrentalPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppAllmngrNum" th:value="${board.iAppAllmngrNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppAllmngrUse" th:value="${board.iAppAllmngrUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="iAppAllmngrPayment" th:value="${board.iAppAllmngrPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="amountNum" th:value="${board.amountNum}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="amountUse" th:value="${board.amountUse}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="amountPayment" th:value="${board.amountPayment}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="amountSettlement" th:value="${board.amountSettlement}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="sales" th:value="${board.sales}"/></td>
+					<td><input style="" type="text" onKeyUp="switchNumCell(this);" name="payment" th:value="${board.payment}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
@@ -572,7 +572,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/munpia.png">
-				<h2>문피아</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -611,12 +611,12 @@
 					<td><input style="" name="purchaseCancel" type="text" th:value="${board.purchaseCancel}"/></td>
 					<td><input style="" name="rental" type="text" th:value="${board.rental}"/></td>
 					<td><input style="" name="rentalCencel" type="text" th:value="${board.rentalCencel}"/></td>
-					<td><input style="" name="totalSales" type="text" th:value="${board.totalSales}"/></td>
-					<td><input style="" name="totalSalesCencel" type="text" th:value="${board.totalSalesCencel}"/></td>
-					<td><input style="" name="realSale" type="text" th:value="${board.realSale}"/></td>
-					<td><input style="" name="subPayment" type="text" th:value="${board.subPayment}"/></td>
-					<td><input style="" name="ios" type="text" th:value="${board.ios}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="totalSales" type="text" th:value="${board.totalSales}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="totalSalesCencel" type="text" th:value="${board.totalSalesCencel}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="realSale" type="text" th:value="${board.realSale}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="subPayment" type="text" th:value="${board.subPayment}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ios" type="text" th:value="${board.ios}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
@@ -630,7 +630,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/naver.png">
-				<h2>네이버</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -698,35 +698,35 @@
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
 					<td><input style="" name="ageLimit" type="text" th:value="${board.ageLimit}"/></td>
 					<td><input style="" name="serviceDay" type="text" th:value="${board.serviceDay}"/></td>
-					<td><input style="" name="rentalNumber" type="text" th:value="${board.rentalNumber}"/></td>
-					<td><input style="" name="rentalNonpy" type="text" th:value="${board.rentalNonpy}"/></td>
-					<td><input style="" name="rentalFree" type="text" th:value="${board.rentalFree}"/></td>
-					<td><input style="" name="rentalPaidCookie" type="text" th:value="${board.rentalPaidCookie}"/></td>
-					<td><input style="" name="rentalFreeCookie" type="text" th:value="${board.rentalFreeCookie}"/></td>
-					<td><input style="" name="rentalPaidICookie" type="text" th:value="${board.rentalPaidICookie}"/></td>
-					<td><input style="" name="rentalFreeICookie" type="text" th:value="${board.rentalFreeICookie}"/></td>
-					<td><input style="" name="ownNumber" type="text" th:value="${board.ownNumber}"/></td>
-					<td><input style="" name="ownNonpy" type="text" th:value="${board.ownNonpy}"/></td>
-					<td><input style="" name="ownFree" type="text" th:value="${board.ownFree}"/></td>
-					<td><input style="" name="ownPaidCookie" type="text" th:value="${board.ownPaidCookie}"/></td>
-					<td><input style="" name="ownFreeCookie" type="text" th:value="${board.ownFreeCookie}"/></td>
-					<td><input style="" name="ownPaidICookie" type="text" th:value="${board.ownPaidICookie}"/></td>
-					<td><input style="" name="ownFreeICookie" type="text" th:value="${board.ownFreeICookie}"/></td>
-					<td><input style="" name="cookieRentalNumber" type="text" th:value="${board.cookieRentalNumber}"/></td>
-					<td><input style="" name="cookieRentalPaid" type="text" th:value="${board.cookieRentalPaid}"/></td>
-					<td><input style="" name="cookieRentalFree" type="text" th:value="${board.cookieRentalFree}"/></td>
-					<td><input style="" name="cookieOwnNumber" type="text" th:value="${board.cookieOwnNumber}"/></td>
-					<td><input style="" name="cookieOwnPaid" type="text" th:value="${board.cookieOwnPaid}"/></td>
-					<td><input style="" name="cookieOwnFree" type="text" th:value="${board.cookieOwnFree}"/></td>
-					<td><input style="" name="iCookieRentalNumber" type="text" th:value="${board.iCookieRentalNumber}"/></td>
-					<td><input style="" name="iCookieRentalPaid" type="text" th:value="${board.iCookieRentalPaid}"/></td>
-					<td><input style="" name="iCookieRentalFree" type="text" th:value="${board.iCookieRentalFree}"/></td>
-					<td><input style="" name="iCookieOwnNumber" type="text" th:value="${board.iCookieOwnNumber}"/></td>
-					<td><input style="" name="iCookieOwnPaid" type="text" th:value="${board.iCookieOwnPaid}"/></td>
-					<td><input style="" name="iCookieOwnFree" type="text" th:value="${board.iCookieOwnFree}"/></td>
-					<td><input style="" name="iCookieFee" type="text" th:value="${board.iCookieFee}"/></td>
-					<td><input style="" name="sum" type="text" th:value="${board.sum}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="rentalNumber" type="text" th:value="${board.rentalNumber}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="rentalNonpy" type="text" th:value="${board.rentalNonpy}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="rentalFree" type="text" th:value="${board.rentalFree}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="rentalPaidCookie" type="text" th:value="${board.rentalPaidCookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="rentalFreeCookie" type="text" th:value="${board.rentalFreeCookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="rentalPaidICookie" type="text" th:value="${board.rentalPaidICookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="rentalFreeICookie" type="text" th:value="${board.rentalFreeICookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ownNumber" type="text" th:value="${board.ownNumber}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ownNonpy" type="text" th:value="${board.ownNonpy}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ownFree" type="text" th:value="${board.ownFree}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ownPaidCookie" type="text" th:value="${board.ownPaidCookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ownFreeCookie" type="text" th:value="${board.ownFreeCookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ownPaidICookie" type="text" th:value="${board.ownPaidICookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ownFreeICookie" type="text" th:value="${board.ownFreeICookie}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="cookieRentalNumber" type="text" th:value="${board.cookieRentalNumber}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="cookieRentalPaid" type="text" th:value="${board.cookieRentalPaid}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="cookieRentalFree" type="text" th:value="${board.cookieRentalFree}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="cookieOwnNumber" type="text" th:value="${board.cookieOwnNumber}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="cookieOwnPaid" type="text" th:value="${board.cookieOwnPaid}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="cookieOwnFree" type="text" th:value="${board.cookieOwnFree}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iCookieRentalNumber" type="text" th:value="${board.iCookieRentalNumber}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iCookieRentalPaid" type="text" th:value="${board.iCookieRentalPaid}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iCookieRentalFree" type="text" th:value="${board.iCookieRentalFree}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iCookieOwnNumber" type="text" th:value="${board.iCookieOwnNumber}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iCookieOwnPaid" type="text" th:value="${board.iCookieOwnPaid}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iCookieOwnFree" type="text" th:value="${board.iCookieOwnFree}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iCookieFee" type="text" th:value="${board.iCookieFee}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="sum" type="text" th:value="${board.sum}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
@@ -740,7 +740,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/ridi.png">
-				<h2>리디북스</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -833,7 +833,7 @@
 					<td><input style="" name="cancelSetSaleTicket" type="text" th:value="${board.cancelSetSaleTicket}"/></td>
 					<td><input style="" name="cancelSetRentalAmount" type="text" th:value="${board.cancelSetRentalAmount}"/></td>
 					<td><input style="" name="cancelSetRentalTicket" type="text" th:value="${board.cancelSetRentalTicket}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/></td>
 					<td><input style="" name="paperbookIsbn10" type="text" th:value="${board.paperbookIsbn10}"/></td>
 					<td><input style="" name="paperbookIsbn13" type="text" th:value="${board.paperbookIsbn13}"/></td>
 					<td><input style="" name="ebookIsbn10" type="text" th:value="${board.ebookIsbn10}"/></td>
@@ -854,7 +854,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/romance.png">
-				<h2>로망띠끄</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -886,8 +886,8 @@
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
 					<td><input style="" name="saleRate" type="text" th:value="${board.saleRate}"/></td>
-					<td><input style="" name="internetSales" type="text" th:value="${board.internetSales}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="internetSales" type="text" th:value="${board.internetSales}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/></td>
 					<td><input style="" name="regDate" type="text" th:value="${board.regDate}"/></td>
 					<td><input style="" name="dealer" type="text" th:value="${board.dealer}"/></td>
 					<td><input style="" name="isbn" type="text" th:value="${board.isbn}"/>
@@ -904,7 +904,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/tocsoda.png">
-				<h2>톡소다</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -933,12 +933,12 @@
 					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
-					<td><input style="" name="pc" type="text" th:value="${board.pc}"/></td>
-					<td><input style="" name="android" type="text" th:value="${board.android}"/></td>
-					<td><input style="" name="ios" type="text" th:value="${board.ios}"/></td>
-					<td><input style="" name="iosIap" type="text" th:value="${board.iosIap}"/></td>
-					<td><input style="" name="sum" type="text" th:value="${board.sum}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="pc" type="text" th:value="${board.pc}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="android" type="text" th:value="${board.android}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="ios" type="text" th:value="${board.ios}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="iosIap" type="text" th:value="${board.iosIap}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="sum" type="text" th:value="${board.sum}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
 				</tr>
@@ -952,7 +952,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/onestore.png">
-				<h2>원스토어</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -1019,19 +1019,19 @@
 					<td><input style="" name="type" type="text" th:value="${board.type}"/></td>
 					<td><input style="" name="saleRate" type="text" th:value="${board.saleRate}"/></td>
 					<td><input style="" name="cencelRate" type="text" th:value="${board.cencelRate}"/></td>
-					<td><input style="" name="settlementTargetAmount" type="text" th:value="${board.settlementTargetAmount}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="settlementTargetAmount" type="text" th:value="${board.settlementTargetAmount}"/></td>
 					<td><input style="" name="salesRate" type="text" th:value="${board.salesRate}"/></td>
-					<td><input style="" name="salesAmount" type="text" th:value="${board.salesAmount}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="salesAmount" type="text" th:value="${board.salesAmount}"/></td>
 					<td><input style="" name="cencelsRate" type="text" th:value="${board.cencelsRate}"/></td>
-					<td><input style="" name="cencelsAmount" type="text" th:value="${board.cencelsAmount}"/></td>
-					<td><input style="" name="sum" type="text" th:value="${board.sum}"/></td>
-					<td><input style="" name="customerPayment" type="text" th:value="${board.customerPayment}"/></td>
-					<td><input style="" name="customerPaymentReceipt" type="text" th:value="${board.customerPaymentReceipt}"/></td>
-					<td><input style="" name="customerPaymentEtc" type="text" th:value="${board.customerPaymentEtc}"/></td>
-					<td><input style="" name="customerPaymentService" type="text" th:value="${board.customerPaymentService}"/></td>
-					<td><input style="" name="customerPaymentServiceEtc" type="text" th:value="${board.customerPaymentServiceEtc}"/></td>
-					<td><input style="" name="serviceDeduction" type="text" th:value="${board.serviceDeduction}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="cencelsAmount" type="text" th:value="${board.cencelsAmount}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="sum" type="text" th:value="${board.sum}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="customerPayment" type="text" th:value="${board.customerPayment}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="customerPaymentReceipt" type="text" th:value="${board.customerPaymentReceipt}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="customerPaymentEtc" type="text" th:value="${board.customerPaymentEtc}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="customerPaymentService" type="text" th:value="${board.customerPaymentService}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="customerPaymentServiceEtc" type="text" th:value="${board.customerPaymentServiceEtc}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="serviceDeduction" type="text" th:value="${board.serviceDeduction}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/></td>
 					<td><input style="" name="paymentType" type="text" th:value="${board.paymentType}"/>
 					<input type="hidden" name="writerId" th:value="${board.writerId}"/>
 					<input type="hidden" name="setDate" th:value="${board.setDate}"/></td>
@@ -1046,7 +1046,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/yes24.png">
-				<h2>예스24</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -1084,15 +1084,15 @@
 					<td><input style="" name="no" type="text" th:value="${board.no}"/></td>
 					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>
-					<td><input style="" name="brandSalePrice" type="text" th:value="${board.brandSalePrice}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="brandSalePrice" type="text" th:value="${board.brandSalePrice}"/></td>
 					<td><input style="" name="sales" type="text" th:value="${board.sales}"/></td>
-					<td><input style="" name="salesSalePrice" type="text" th:value="${board.salesSalePrice}"/></td>
-					<td><input style="" name="salesRefundPrice" type="text" th:value="${board.salesRefundPrice}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="salesSalePrice" type="text" th:value="${board.salesSalePrice}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="salesRefundPrice" type="text" th:value="${board.salesRefundPrice}"/></td>
 					<td><input style="" name="costRate" type="text" th:value="${board.costRate}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/></td>
 					<td><input style="" name="eventType" type="text" th:value="${board.eventType}"/></td>
 					<td><input style="" name="saleType" type="text" th:value="${board.saleType}"/></td>
-					<td><input style="" name="eventSalePrice" type="text" th:value="${board.eventSalePrice}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="eventSalePrice" type="text" th:value="${board.eventSalePrice}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
 					<td><input style="" name="bookId" type="text" th:value="${board.bookId}"/></td>
 					<td><input style="" name="epublId" type="text" th:value="${board.epublId}"/></td>
@@ -1114,7 +1114,7 @@
 			<div class="sheet-container">
 			<div class="logo">
 				<img src="/image/aladin.png">
-				<h2>알라딘</h2>
+				<h2></h2>
 			</div>
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -1146,9 +1146,9 @@
 					<td><input style="" name="itemId" type="text" th:value="${board.itemId}"/></td>
 					<td><input style="text-align: left; width:200px;" name="productName" type="text" th:value="${board.productName}"/></td>
 					<td><input style="" name="salesType" type="text" th:value="${board.salesType}"/></td>
-					<td><input style="" name="netPrice" type="text" th:value="${board.netPrice}"/></td>
-					<td><input style="" name="salePrice" type="text" th:value="${board.salePrice}"/></td>
-					<td><input style="" name="payment" type="text" th:value="${board.payment}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="netPrice" type="text" th:value="${board.netPrice}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="salePrice" type="text" th:value="${board.salePrice}"/></td>
+					<td><input style="" onKeyUp="switchNumCell(this);" name="payment" type="text" th:value="${board.payment}"/></td>
 					<td><input style="" name="cancelDate" type="text" th:value="${board.cancelDate}"/></td>
 					<td><input style="" name="author" type="text" th:value="${board.author}"/></td>
 					<td><input style="" name="brand" type="text" th:value="${board.brand}"/></td>

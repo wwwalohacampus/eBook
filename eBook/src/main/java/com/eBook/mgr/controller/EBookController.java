@@ -443,6 +443,13 @@ public class EBookController {
 				String[] setDateBookcube = request.getParameterValues("setDate");
 				
 				for(i=0; i<productNameBookcube.length; i++) {
+					netPriceBookcube[i] = netPriceBookcube[i].replaceAll(",", "");
+					salePriceBookcube[i] = salePriceBookcube[i].replaceAll(",", "");
+					discountBookcube[i] = discountBookcube[i].replaceAll(",", "");
+					feeBookcube[i] = feeBookcube[i].replaceAll(",", "");
+					netTargetPriceBookcube[i] = netTargetPriceBookcube[i].replaceAll(",", "");
+					paymentBookcube[i] = paymentBookcube[i].replaceAll(",", "");
+					
 					bookcube.setProductName(productNameBookcube[i]);
 					bookcube.setAuthor(authorBookcube[i]);			
 					bookcube.setBrand(brandBookcube[i]);			
@@ -497,6 +504,11 @@ public class EBookController {
 				
 				
 				for(i=0; i<productNameEpub.length; i++) {
+					publisherAmountEpub[i] = publisherAmountEpub[i].replaceAll(",", "");
+					salesAmountEpub[i] = salesAmountEpub[i].replaceAll(",", "");
+					cencelsAmountEpub[i] = cencelsAmountEpub[i].replaceAll(",", "");
+					paymentEpub[i] = paymentEpub[i].replaceAll(",", "");
+					
 					epub.setIndexNum(indexNumEpub[i]);
 					epub.setBrand(brandEpub[i]);
 					epub.setProductName(productNameEpub[i]);
@@ -541,6 +553,10 @@ public class EBookController {
 				String[] setDateJoara = request.getParameterValues("setDate");
 				
 				for(i=0; i<brandJoara.length; i++) {
+					unitJoara[i] = unitJoara[i].replaceAll(",", "");
+					saleAmountJoara[i] = saleAmountJoara[i].replaceAll(",", "");
+					paymentJoara[i] = paymentJoara[i].replaceAll(",", "");
+					
 					joara.setBrand(brandJoara[i]);
 					joara.setProductName(productNameJoara[i]);
 					joara.setProductCode(productCodeJoara[i]);
@@ -608,6 +624,31 @@ public class EBookController {
 				String[] setDateKakao = request.getParameterValues("setDate");
 				
 				for(i=0; i<brandKakao.length; i++) {
+					useTicketAmountKakao[i] = useTicketAmountKakao[i].replaceAll(",", "");
+					cacheSumKakao[i] = cacheSumKakao[i].replaceAll(",", "");
+					cpp1Kakao[i] = cpp1Kakao[i].replaceAll(",", "");
+					cpl1Kakao[i] = cpl1Kakao[i].replaceAll(",", "");
+					cp1_1Kakao[i] = cp1_1Kakao[i].replaceAll(",", "");
+					cp2_1Kakao[i] = cp2_1Kakao[i].replaceAll(",", "");
+					cp3_1Kakao[i] = cp3_1Kakao[i].replaceAll(",", "");
+					cp7_1Kakao[i] = cp7_1Kakao[i].replaceAll(",", "");
+					cp8_1Kakao[i] = cp8_1Kakao[i].replaceAll(",", "");
+					cp9_1Kakao[i] = cp9_1Kakao[i].replaceAll(",", "");
+					eventCache1Kakao[i] = eventCache1Kakao[i].replaceAll(",", "");
+					originalSumKakao[i] = originalSumKakao[i].replaceAll(",", "");
+					cpp2Kakao[i] = cpp2Kakao[i].replaceAll(",", "");
+					cpl2Kakao[i] = cpl2Kakao[i].replaceAll(",", "");
+					cp1_2Kakao[i] = cp1_2Kakao[i].replaceAll(",", "");
+					cp2_2Kakao[i] = cp2_2Kakao[i].replaceAll(",", "");
+					cp3_2Kakao[i] = cp3_2Kakao[i].replaceAll(",", "");
+					cp7_2Kakao[i] = cp7_2Kakao[i].replaceAll(",", "");
+					cp8_2Kakao[i] = cp8_2Kakao[i].replaceAll(",", "");
+					cp9_2Kakao[i] = cp9_2Kakao[i].replaceAll(",", "");
+					eventCache2Kakao[i] = eventCache2Kakao[i].replaceAll(",", "");
+					valueSupplyKakao[i] = valueSupplyKakao[i].replaceAll(",", "");
+					taxAmountKakao[i] = taxAmountKakao[i].replaceAll(",", "");
+					paymentKakao[i] = paymentKakao[i].replaceAll(",", "");
+					
 					kakao.setBrand(brandKakao[i]);
 					kakao.setSpecialGeneral2(specialGeneral2Kakao[i]);
 					kakao.setEntrepreneur(entrepreneurKakao[i]);
@@ -761,6 +802,40 @@ public class EBookController {
 				String[] setDateMrblue = request.getParameterValues("setDate");
 				
 				for(i=0; i<brandMrblue.length; i++) {
+					fixedNumMrblue[i] = fixedNumMrblue[i].replaceAll(",", "");
+					fixedSalesMrblue[i] = fixedSalesMrblue[i].replaceAll(",", "");
+					fixedPaymentMrblue[i] = fixedPaymentMrblue[i].replaceAll(",", "");
+					aAppOnerentalNumMrblue[i] = aAppOnerentalNumMrblue[i].replaceAll(",", "");
+					aAppOnerentalUseMrblue[i] = aAppOnerentalUseMrblue[i].replaceAll(",", "");
+					aAppOnerentalPaymentMrblue[i] = aAppOnerentalPaymentMrblue[i].replaceAll(",", "");
+					aAppOnemngrNumMrblue[i] = aAppOnemngrNumMrblue[i].replaceAll(",", "");
+					aAppOnemngrUseMrblue[i] = aAppOnemngrUseMrblue[i].replaceAll(",", "");
+					aAppOnemngrPaymentMrblue[i] = aAppOnemngrPaymentMrblue[i].replaceAll(",", "");
+					aAppAllrentalNumMrblue[i] = aAppAllrentalNumMrblue[i].replaceAll(",", "");
+					aAppAllrentalUseMrblue[i] = aAppAllrentalUseMrblue[i].replaceAll(",", "");
+					aAppAllrentalPaymentMrblue[i] = aAppAllrentalPaymentMrblue[i].replaceAll(",", "");
+					aAppAllmngrNumMrblue[i] = aAppAllmngrNumMrblue[i].replaceAll(",", "");
+					aAppAllmngrUseMrblue[i] = aAppAllmngrUseMrblue[i].replaceAll(",", "");
+					aAppAllmngrPaymentMrblue[i] = aAppAllmngrPaymentMrblue[i].replaceAll(",", "");
+					iAppOnerentalNumMrblue[i] = iAppOnerentalNumMrblue[i].replaceAll(",", "");
+					iAppOnerentalUseMrblue[i] = iAppOnerentalUseMrblue[i].replaceAll(",", "");
+					iAppOnerentalPaymentMrblue[i] = iAppOnerentalPaymentMrblue[i].replaceAll(",", "");
+					iAppOnemngrNumMrblue[i] = iAppOnemngrNumMrblue[i].replaceAll(",", "");
+					iAppOnemngrUseMrblue[i] = iAppOnemngrUseMrblue[i].replaceAll(",", "");
+					iAppOnemngrPaymentMrblue[i] = iAppOnemngrPaymentMrblue[i].replaceAll(",", "");
+					iAppAllrentalNumMrblue[i] = iAppAllrentalNumMrblue[i].replaceAll(",", "");
+					iAppAllrentalUseMrblue[i] = iAppAllrentalUseMrblue[i].replaceAll(",", "");
+					iAppAllrentalPaymentMrblue[i] = iAppAllrentalPaymentMrblue[i].replaceAll(",", "");
+					iAppAllmngrNumMrblue[i] = iAppAllmngrNumMrblue[i].replaceAll(",", "");
+					iAppAllmngrUseMrblue[i] = iAppAllmngrUseMrblue[i].replaceAll(",", "");
+					iAppAllmngrPaymentMrblue[i] = iAppAllmngrPaymentMrblue[i].replaceAll(",", "");
+					amountNumMrblue[i] = amountNumMrblue[i].replaceAll(",", "");
+					amountUseMrblue[i] = amountUseMrblue[i].replaceAll(",", "");
+					amountPaymentMrblue[i] = amountPaymentMrblue[i].replaceAll(",", "");
+					amountSettlementMrblue[i] = amountSettlementMrblue[i].replaceAll(",", "");
+					salesMrblue[i] = salesMrblue[i].replaceAll(",", "");
+					paymentMrblue[i] = paymentMrblue[i].replaceAll(",", "");
+					
 					mrblue.setBrand(brandMrblue[i]);
 					mrblue.setDate(dateMrblue[i]);
 					mrblue.setProductName(productNameMrblue[i]);
@@ -829,6 +904,13 @@ public class EBookController {
 				String[] setDateMunpia = request.getParameterValues("setDate");
 				
 				for(i=0; i<authorMunpia.length; i++) {
+					totalSalesMunpia[i] = totalSalesMunpia[i].replaceAll(",", "");
+					totalSalesCencelMunpia[i] = totalSalesCencelMunpia[i].replaceAll(",", "");
+					realSaleMunpia[i] = realSaleMunpia[i].replaceAll(",", "");
+					subPaymentMunpia[i] = subPaymentMunpia[i].replaceAll(",", "");
+					iosMunpia[i] = iosMunpia[i].replaceAll(",", "");
+					paymentMunpia[i] = paymentMunpia[i].replaceAll(",", "");
+					
 					munpia.setAuthor(authorMunpia[i]);
 					munpia.setBrand(brandMunpia[i]);
 					munpia.setDate(dateMunpia[i]);
@@ -896,6 +978,36 @@ public class EBookController {
 				String[] setDateNaver = request.getParameterValues("setDate");
 				
 				for(i=0; i<productNameNaver.length; i++) {
+					rentalNumberNaver[i] = rentalNumberNaver[i].replaceAll(",", "");
+					rentalNonpyNaver[i] = rentalNonpyNaver[i].replaceAll(",", "");
+					rentalFreeNaver[i] = rentalFreeNaver[i].replaceAll(",", "");
+					rentalPaidCookieNaver[i] = rentalPaidCookieNaver[i].replaceAll(",", "");
+					rentalFreeCookieNaver[i] = rentalFreeCookieNaver[i].replaceAll(",", "");
+					rentalPaidICookieNaver[i] = rentalPaidICookieNaver[i].replaceAll(",", "");
+					rentalFreeICookieNaver[i] = rentalFreeICookieNaver[i].replaceAll(",", "");
+					ownNumberNaver[i] = ownNumberNaver[i].replaceAll(",", "");
+					ownNonpyNaver[i] = ownNonpyNaver[i].replaceAll(",", "");
+					ownFreeNaver[i] = ownFreeNaver[i].replaceAll(",", "");
+					ownPaidCookieNaver[i] = ownPaidCookieNaver[i].replaceAll(",", "");
+					ownFreeCookieNaver[i] = ownFreeCookieNaver[i].replaceAll(",", "");
+					ownPaidICookieNaver[i] = ownPaidICookieNaver[i].replaceAll(",", "");
+					ownFreeICookieNaver[i] = ownFreeICookieNaver[i].replaceAll(",", "");
+					cookieRentalNumberNaver[i] = cookieRentalNumberNaver[i].replaceAll(",", "");
+					cookieRentalPaidNaver[i] = cookieRentalPaidNaver[i].replaceAll(",", "");
+					cookieRentalFreeNaver[i] = cookieRentalFreeNaver[i].replaceAll(",", "");
+					cookieOwnNumberNaver[i] = cookieOwnNumberNaver[i].replaceAll(",", "");
+					cookieOwnPaidNaver[i] = cookieOwnPaidNaver[i].replaceAll(",", "");
+					cookieOwnFreeNaver[i] = cookieOwnFreeNaver[i].replaceAll(",", "");
+					iCookieRentalNumberNaver[i] = iCookieRentalNumberNaver[i].replaceAll(",", "");
+					iCookieRentalPaidNaver[i] = iCookieRentalPaidNaver[i].replaceAll(",", "");
+					iCookieRentalFreeNaver[i] = iCookieRentalFreeNaver[i].replaceAll(",", "");
+					iCookieOwnNumberNaver[i] = iCookieOwnNumberNaver[i].replaceAll(",", "");
+					iCookieOwnPaidNaver[i] = iCookieOwnPaidNaver[i].replaceAll(",", "");
+					iCookieOwnFreeNaver[i] = iCookieOwnFreeNaver[i].replaceAll(",", "");
+					iCookieFeeNaver[i] = iCookieFeeNaver[i].replaceAll(",", "");
+					sumNaver[i] = sumNaver[i].replaceAll(",", "");
+					paymentNaver[i] = paymentNaver[i].replaceAll(",", "");
+					
 					naver.setProductName(productNameNaver[i]);
 					naver.setProductNo(productNoNaver[i]);
 					naver.setProviderCode(providerCodeNaver[i]);
@@ -991,6 +1103,8 @@ public class EBookController {
 				String[] setDateRidibooks = request.getParameterValues("setDate");
 				
 				for(i=0; i<seriesIdRidibooks.length; i++) {
+					paymentRidibooks[i] = paymentRidibooks[i].replaceAll(",", "");
+					
 					ridibooks.setSales(salesRidibooks[i]);
 					ridibooks.setSeriesId(seriesIdRidibooks[i]);
 					ridibooks.setBookId(bookIdRidibooks[i]);
@@ -1060,6 +1174,9 @@ public class EBookController {
 				String[] setDateRomance = request.getParameterValues("setDate");
 				
 				for(i=0; i<bookCodeRomance.length; i++) {
+					internetSalesRomance[i] = internetSalesRomance[i].replaceAll(",", "");
+					paymentRomance[i] = paymentRomance[i].replaceAll(",", "");
+					
 					romance.setBookCode(bookCodeRomance[i]);
 					romance.setType(typeRomance[i]);
 					romance.setProductName(productNameRomance[i]);
@@ -1096,6 +1213,13 @@ public class EBookController {
 				String[] setDateTocsoda = request.getParameterValues("setDate");
 				
 				for(i=0; i<productBacordTocsoda.length; i++) {
+					pcTocsoda[i] = pcTocsoda[i].replaceAll(",", "");
+					androidTocsoda[i] = androidTocsoda[i].replaceAll(",", "");
+					iosTocsoda[i] = iosTocsoda[i].replaceAll(",", "");
+					iosIapTocsoda[i] = iosIapTocsoda[i].replaceAll(",", "");
+					sumTocsoda[i] = sumTocsoda[i].replaceAll(",", "");
+					paymentTocsoda[i] = paymentTocsoda[i].replaceAll(",", "");
+					
 					tocsoda.setProductBacord(productBacordTocsoda[i]);
 					tocsoda.setProductName(productNameTocsoda[i]);
 					tocsoda.setAuthor(authorTocsoda[i]);
@@ -1151,6 +1275,18 @@ public class EBookController {
 				String[] setDateWinstore = request.getParameterValues("setDate");
 				
 				for(i=0; i<partnerNameWinstore.length; i++) {
+					settlementTargetAmountWinstore[i] = settlementTargetAmountWinstore[i].replaceAll(",", "");
+					salesAmountWinstore[i] = salesAmountWinstore[i].replaceAll(",", "");
+					cencelsAmountWinstore[i] = cencelsAmountWinstore[i].replaceAll(",", "");
+					sumWinstore[i] = sumWinstore[i].replaceAll(",", "");
+					customerPaymentWinstore[i] = customerPaymentWinstore[i].replaceAll(",", "");
+					customerPaymentReceiptWinstore[i] = customerPaymentReceiptWinstore[i].replaceAll(",", "");
+					customerPaymentEtcWinstore[i] = customerPaymentEtcWinstore[i].replaceAll(",", "");
+					customerPaymentServiceWinstore[i] = customerPaymentServiceWinstore[i].replaceAll(",", "");
+					customerPaymentServiceEtcWinstore[i] = customerPaymentServiceEtcWinstore[i].replaceAll(",", "");
+					serviceDeductionWinstore[i] = serviceDeductionWinstore[i].replaceAll(",", "");
+					paymentWinstore[i] = paymentWinstore[i].replaceAll(",", "");
+					
 					winstore.setPartnerName(partnerNameWinstore[i]);
 					winstore.setPartnerId(partnerIdWinstore[i]);
 					winstore.setEntrepreneur(entrepreneurWinstore[i]);
@@ -1216,6 +1352,12 @@ public class EBookController {
 				String[] setDateYes24 = request.getParameterValues("setDate");
 				
 				for(i=0; i<noYes24.length; i++) {
+					brandSalePriceYes24[i] = brandSalePriceYes24[i].replaceAll(",", "");
+					salesSalePriceYes24[i] = salesSalePriceYes24[i].replaceAll(",", "");
+					salesRefundPriceYes24[i] = salesRefundPriceYes24[i].replaceAll(",", "");
+					paymentYes24[i] = paymentYes24[i].replaceAll(",", "");
+					eventSalePriceYes24[i] = eventSalePriceYes24[i].replaceAll(",", "");
+					
 					yes24.setNo(noYes24[i]);
 					yes24.setProductName(productNameYes24[i]);
 					yes24.setBrand(brandYes24[i]);
@@ -1264,6 +1406,10 @@ public class EBookController {
 				String[] setDateAladin = request.getParameterValues("setDate");
 				
 				for(i=0; i<salesCancelDateAladin.length; i++) {
+					netPriceAladin[i] = netPriceAladin[i].replaceAll(",", "");
+					salePriceAladin[i] = salePriceAladin[i].replaceAll(",", "");
+					paymentAladin[i] = paymentAladin[i].replaceAll(",", "");
+					
 					aladin.setSalesCancelDate(salesCancelDateAladin[i]);
 					aladin.setItemId(itemIdAladin[i]);
 					aladin.setProductName(productNameAladin[i]);
@@ -1308,7 +1454,13 @@ public class EBookController {
 	}
 	
 	
-	
+	private String[] divStr(String fullStr) {
+		String[] str = null;
+		
+		str = fullStr.split(",");
+		
+		return str;
+	}
 	
 }
 

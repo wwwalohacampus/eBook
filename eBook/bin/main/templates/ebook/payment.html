@@ -13,35 +13,40 @@
 </head>
 <body>
 <div layout:fragment="content">
+	<h1><img src="/image/img_ongle_sub.png" style="width:100px; align-self: left"></h1>
 	<div>
 	   <form id="listForm" method="POST">
 	   		<input id="nowDate" name="nowDate" type="hidden" th:value="${setDate}"/>
 	   		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-			<h1><img src="/image/img_ongle_sub.png" style="width:100px;"></h1>
-			<select id="selete_year_select" name="p_year_select" class="form-control w-25" >
-				<option value="" selected>연도</option>
-			</select>&nbsp;
-			<select id="selete_month_select" name="p_month_select" class="form-control w-25" >
-				<option value="" selected>월</option>
-				<option value="01월">1월</option>
-				<option value="02월">2월</option>
-				<option value="03월">3월</option>
-				<option value="04월">4월</option>
-				<option value="05월">5월</option>
-				<option value="06월">6월</option>
-				<option value="07월">7월</option>
-				<option value="08월">8월</option>
-				<option value="09월">9월</option>
-				<option value="10월">10월</option>
-				<option value="11월">11월</option>
-				<option value="12월">12월</option>
-			</select>
-			<button type="submit" id="btnSelect" class="btn btn-success btn-icon-split">
-				<span class="icon text-white-50">
-		                   <i class="fas fa-check"></i>
-		                   </span>
-				<span class="text">조회</span>
-			</button>
+			
+			<div class="flat-title">
+				<div class="search">
+					<select id="selete_year_select" name="p_year_select" class="form-control w-25" >
+						<option value="" selected>연도</option>
+					</select>&nbsp;
+					<select id="selete_month_select" name="p_month_select" class="form-control w-25" >
+						<option value="" selected>월</option>
+						<option value="01월">1월</option>
+						<option value="02월">2월</option>
+						<option value="03월">3월</option>
+						<option value="04월">4월</option>
+						<option value="05월">5월</option>
+						<option value="06월">6월</option>
+						<option value="07월">7월</option>
+						<option value="08월">8월</option>
+						<option value="09월">9월</option>
+						<option value="10월">10월</option>
+						<option value="11월">11월</option>
+						<option value="12월">12월</option>
+					</select>
+					<button type="submit" id="btnSelect" class="btn btn-success ">
+						<span class="icon text-white-50">
+				                   <i class="fas fa-check"></i>
+				                   </span>
+						<span class="text">조회</span>
+					</button>
+				</div>
+			</div>
 			
 			<div style="overflow:scroll; height:500px;">
 			<div class="card-body">
@@ -83,33 +88,33 @@
 		      </tr>
 		      
 		      <tr th:each="paymentL : ${paymentList}">
-		        <td><input style="text-align:center;" type="text" name="author" th:value="${paymentL.author}"/></td>
-		        <td><input style="text-align:center;" type="text" name="realName" th:value="${paymentL.realName}"/></td>
-		        <td><input style="text-align:center;" type="text" name="ctzNumber" th:value="${paymentL.ctzNumber}"/></td>
-		        <td><input style="text-align:center;" type="text" name="accountNumber" th:value="${paymentL.accountNumber}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payBookcube" th:value="${paymentL.payBookcube}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payEpub" th:value="${paymentL.payEpub}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payJoara" th:value="${paymentL.payJoara}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payKakao" th:value="${paymentL.payKakao}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payKyobo" th:value="${paymentL.payKyobo}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payMrblue" th:value="${paymentL.payMrblue}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payMunpia" th:value="${paymentL.payMunpia}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payNaver" th:value="${paymentL.payNaver}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payRidibooks" th:value="${paymentL.payRidibooks}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payRomance" th:value="${paymentL.payRomance}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payTocsoda" th:value="${paymentL.payTocsoda}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payWinstore" th:value="${paymentL.payWinstore}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payYes24" th:value="${paymentL.payYes24}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payAladin" th:value="${paymentL.payAladin}"/></td>
-		        <td><input style="text-align:center;" type="text" name="allPayment" th:value="${paymentL.allPayment}"/></td>
-		        <td><input style="text-align:center;" type="text" name="settlementRatio" th:value="${paymentL.settlementRatio}"/></td>
-		        <td><input style="text-align:center;" type="text" name="authorSettlement" th:value="${paymentL.authorSettlement}"/></td>
-		        <td><input style="text-align:center;" type="text" name="carryAmount" th:value="${paymentL.carryAmount}"/></td>
-		        <td><input style="text-align:center;" type="text" name="payment" th:value="${paymentL.payment}"/></td>
-		        <td><input style="text-align:center;" type="text" name="virtuousTax" th:value="${paymentL.virtuousTax}"/></td>
-		        <td><input style="text-align:center;" type="text" name="incomeTax" th:value="${paymentL.incomeTax}"/></td>
-		        <td><input style="text-align:center;" type="text" name="wthldTax" th:value="${paymentL.wthldTax}"/></td>
-		        <td><input style="text-align:center;" type="text" name="authorPaid" th:value="${paymentL.authorPaid}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="author" th:value="${paymentL.author}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="realName" th:value="${paymentL.realName}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="ctzNumber" th:value="${paymentL.ctzNumber}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="accountNumber" th:value="${paymentL.accountNumber}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payBookcube" th:value="${paymentL.payBookcube}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payEpub" th:value="${paymentL.payEpub}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payJoara" th:value="${paymentL.payJoara}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payKakao" th:value="${paymentL.payKakao}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payKyobo" th:value="${paymentL.payKyobo}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payMrblue" th:value="${paymentL.payMrblue}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payMunpia" th:value="${paymentL.payMunpia}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payNaver" th:value="${paymentL.payNaver}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payRidibooks" th:value="${paymentL.payRidibooks}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payRomance" th:value="${paymentL.payRomance}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payTocsoda" th:value="${paymentL.payTocsoda}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payWinstore" th:value="${paymentL.payWinstore}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payYes24" th:value="${paymentL.payYes24}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payAladin" th:value="${paymentL.payAladin}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="allPayment" th:value="${paymentL.allPayment}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="settlementRatio" th:value="${paymentL.settlementRatio}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="authorSettlement" th:value="${paymentL.authorSettlement}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="carryAmount" th:value="${paymentL.carryAmount}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="payment" th:value="${paymentL.payment}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="virtuousTax" th:value="${paymentL.virtuousTax}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="incomeTax" th:value="${paymentL.incomeTax}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="wthldTax" th:value="${paymentL.wthldTax}"/></td>
+		        <td><input style="text-align:center;" readonly="readonly" type="text" name="authorPaid" th:value="${paymentL.authorPaid}"/></td>
 		      </tr>
 		   </table>
 		   </div>
@@ -118,6 +123,12 @@
 	</div> 
 	
 	<div>
+		<th:block sec:authorize="hasRole('ROLE_USER')">
+		<select style="display:none" id="selete_year" name="p_year" class="ui compact selection dropdown" >
+				<option value="" selected>연도</option>
+		</select>&nbsp;
+		</th:block>
+	
 		<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 		<select id="selete_year" name="p_year" class="ui compact selection dropdown" >
 				<option value="" selected>연도</option>
