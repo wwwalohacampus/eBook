@@ -77,13 +77,18 @@
 		 formObj.attr("method", "post");
          formObj.submit();
       });
-      
+     
+      /*
    [#th:block sec:authorize="hasRole('ROLE_ADMIN')"]
       $("#btnList").on("click", function() {
          self.location = "list";
       });
    [/th:block]
+   */
 
+	  $("#btnList").on("click", function() {
+	         self.location = "list";
+	  });
    });
 </script>
 <body>
