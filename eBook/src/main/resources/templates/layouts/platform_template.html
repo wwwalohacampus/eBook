@@ -213,13 +213,32 @@
 		});
 
 		$("#btnUpload").on("click", function(){
+			// validaion
+			var yearText = $("#yearText").val();
+			var monthText = $("#monthText").val();
+			var excelFile = $("#excelFile").val();
+			
+
+			if( yearText == null || yearText == undefined || yearText == '' ){
+				alert("\'년도\'를 입력해주세요.");
+				return;
+			}
+			if( monthText == null || monthText == undefined || monthText == '' ){
+				alert("\'월\'을 입력해주세요.");
+				return;
+			}
+			if( excelFile == null || excelFile == undefined || excelFile == '' ){
+				alert("파일을 선택해주세요.");
+				return;
+			}
+			
 			if (confirm("업로드 하시겠습니까? 현재 파일명 : " + fileName + "입니다.")) {
 				formObj.attr("action", "/ebook/process");
 				formObj.attr("method", "post");
 				formObj.attr("enctype", "multipart/form-data");
 				formObj.submit();
 			} else {
-				
+					
 			}
 		});
 		
