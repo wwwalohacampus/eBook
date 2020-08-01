@@ -3,7 +3,12 @@
 
 
 <body>
-
+	<style>
+		#left-menu {
+			overflow-x: hidden;
+  			transition: 0.5s;
+		}
+	</style>
 
 	<div align="center" th:fragment="menu" style="background-color: #224abe !important">
 
@@ -12,11 +17,11 @@
          <th:block sec:authorize="isAuthenticated()">
              <!-- 관리자 권한 메뉴 -->
              <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-             	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+             	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion slide-action" id="left-menu">
 		         	<!-- Sidebar - Brand -->
-					<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" th:href="@{../../}">
+					<a class="sidebar-brand d-flex align-items-center justify-content-center"  th:href="@{../../}">
 					  <!-- <div class="sidebar-brand-text mx-3">ALOHA CAMPUS</div> -->
-					  <img src="/image/img_ongle.png" style="width:100px;">
+					  <img src="/image/img_ongle.png" style="width:100px;" class="slide-action-logo">
 					</a>
              		<li class="nav-item">
              			<a class="nav-link" href="#" th:href="@{/user/list}" >
@@ -64,17 +69,22 @@
              			    <span>사전DB작업</span>
              			</a>
              		</li>
+             		<!-- 슬라이드 버튼 -->
+             		<hr class="sidebar-divider d-none d-md-block">
+             		<div class="text-center d-none d-md-inline">
+						<button class="rounded-circle border-0" id="sidebarToggle"></button>
+					</div>
              	</ul>	
              </th:block>
              
              
               <!-- 사용자 권한 메뉴 -->
              <th:block sec:authorize="hasRole('ROLE_USER')">
-		         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+		         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion slide-action">
 		         	<!-- Sidebar - Brand -->
 					<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" th:href="@{../../}">
 					  <!-- <div class="sidebar-brand-text mx-3">ALOHA CAMPUS</div> -->
-					  <img src="/image/img_ongle.png" style="width:100px;">
+					  <img src="/image/img_ongle.png" style="width:100px;" class="slide-action-logo">
 					</a>
              		<li class="nav-item">
              			<a class="nav-link" href="#" th:href="@{/user/list}" >
@@ -116,11 +126,17 @@
 	             			<span>정산내역</span>
              			</a>
              		</li>
-             		
+             		<!-- 슬라이드 버튼 -->
+             		<hr class="sidebar-divider d-none d-md-block">
+             		<div class="text-center d-none d-md-inline">
+						<button class="rounded-circle border-0" id="sidebarToggle"></button>
+					</div>
              	</ul>
 	         </th:block> 
          </th:block>
-         </div>
+			
+		</div>
    </div>
+   
 </body>
 </html>

@@ -51,6 +51,22 @@
     display: none;
 }
 
+.slide-left {
+	width: 0px !important;
+	transition: 2s;
+}
+
+.slide-right {
+	width: 100% !important;
+	transition: 2s;
+}
+
+	.burger {
+		color: white; font-size:30px; cursor:pointer;
+		position: absolute;
+		left: 10px;
+		top: 15px;
+	}
 </style>
 
 <body>
@@ -93,7 +109,19 @@
 		    $('#sidebar').removeClass('active');
 		    $('.overlay').fadeOut();
 		});
-
+		
+		// 슬라이드 버튼
+		$('#sidebarToggle').on('click', function () {
+			$(".slide-action").addClass("slide-left");
+			$(".slide-action-logo").hide();
+		});
+		
+		// burger 버튼
+		$('#burger').on('click', function () {
+			$(".slide-action").addClass("slide-right");
+			$(".slide-action-logo").show();
+		});
+		
 	
 	</script>
 	
